@@ -1,0 +1,262 @@
+/* Estilos para la cabecera */
+header {
+	background-color: #FFFFFF;
+	max-width: 1500px; /* ajusta el ancho máximo según tus necesidades */
+	display: flex;
+	align-items: center;
+	height: 88px;
+}
+
+/* Estilos para el pie de página */
+footer {
+	background-color: #333;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	height: 50px;
+	padding: 10px;
+	position: absolute;
+	bottom: 0;
+	width: 98%;
+	max-width: 1500px;
+	margin: 0 auto;
+	display: flex;
+}
+
+.right-text-footer {
+	margin-left: auto;
+}
+  
+.left-text-footer {
+	margin-right: auto;
+}
+
+/* Estilos para los botones del encabezado */
+.btn-header {
+	background-color: transparent;
+	border: none;
+	color: #646262;
+	cursor: pointer;
+	font-size: 16px;
+	margin: 0 10px;
+	padding: 0;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+  
+.btn-header:hover {
+	color: #a8a8a8;
+}
+  
+.btn-header:focus {
+	outline: none;
+}
+  
+/* Estilos para la imagen */
+.img-UBU {
+	height: auto; /* Ajusta la altura proporcionalmente */
+	max-width: 97px; /* Cambiar px al ancho que quieras */
+	display: block; /* Para centrar horizontalmente la imagen */
+	margin: 0 auto; /* Para centrar horizontalmente la imagen */	  
+}
+
+.img-escudo {
+	height: auto; /* Ajusta la altura proporcionalmente */
+	max-width: 70px; /* Cambiar px al ancho que quieras */
+	display: block; /* Para centrar horizontalmente la imagen */
+	margin: 0 auto; /* Para centrar horizontalmente la imagen */	  
+}
+
+.img-provisional{
+	height: auto;
+	max-width: 600px;
+	display: block;
+	margin: -50px 0 0 auto;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+	border-radius: 50px;
+	border: 2px solid #2230CA;
+  }
+  
+ /* Estilos para el botón de inicio de sesión */
+.btn-login{
+	background-color: #2230CA;
+	border: none;
+	border-radius: 5px;
+	color: #fff;
+	cursor: pointer;
+	font-size: 16px;
+	float: right;
+	margin-left: 10px;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+  }
+  
+.btn-login:hover {
+	background-color: #4A57E8 ;
+}
+
+ /* Estilos para el botón de empezar */
+ .btn-empezar {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background-color: #2230CA;
+	border: none;
+	border-radius: 5px;
+	color: #fff;
+	cursor: pointer;
+	font-size: 16px;
+	margin-left: 10px;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	position: absolute;
+	top: 70%;
+	left: 50%;
+	transform: translate(-350%, -50%);
+  }
+
+.btn-empezar:hover {
+	background-color: #4A57E8 ;
+}
+
+ /* Estilos para el botón de login */
+input[type="submit"] {
+	background-color: #2230CA;
+	border: none;
+	border-radius: 5px;
+	color: #fff;
+	cursor: pointer;
+	font-size: 16px;
+	padding: 10px;
+	width: 100%;
+}
+
+input[type="submit"]:hover {
+	background-color: #4A57E8;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+body {
+	background-color: #f2f2f2;
+	font-family: Arial, sans-serif;
+}
+
+h1 {
+	color: #333;
+	text-align: center;
+}
+
+form {
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px #999;
+	margin: auto;
+	max-width: 400px;
+	padding: 20px;
+	width: 100%;
+}
+
+label {
+	display: block;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+input[type="text"], input[type="password"] {
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	box-sizing: border-box;
+	display: block;
+	font-size: 16px;
+	margin-bottom: 20px;
+	padding: 10px;
+	width: 100%;
+}
+
+
+
+.error {
+	color: red;
+	margin-top: 10px;
+	text-align: center;
+}
+
+  
+
+  
+
+  
+/* Estilos para el título */
+h1 {
+	color: #333333;
+	font-size: 36px;
+	font-weight: bold;
+	margin-top: 40px;
+	text-align: center;
+}
+  
+/* Estilos para los botones */
+.btn {
+	background-color: #4CAF50;
+	border-radius: 5px;
+	border: none;
+	color: white;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 10px;
+	cursor: pointer;
+}
+.btn:hover {
+	background-color: #3E8E41;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
