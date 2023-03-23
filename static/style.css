@@ -31,6 +31,42 @@ footer {
 	margin-right: auto;
 }
 
+/*Estilos inicio*/
+.msj-bienvenida{
+	transform: translate(17%, 180%);
+}
+
+.inicio{
+	transform: translate(-5%, 10%);
+}
+
+ /* Estilos para el botón de empezar */
+ .btn-empezar {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background-color: #2230CA;
+	border: none;
+	border-radius: 5px;
+	color: #fff;
+	cursor: pointer;
+	font-size: 16px;
+	margin-left: 10px;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	position: absolute;
+	top: 70%;
+	left: 50%;
+	transform: translate(-350%, -40%);
+  }
+
+.btn-empezar:hover {
+	background-color: #4A57E8 ;
+}
+
+
+
 /* Estilos para los botones del encabezado */
 .btn-header {
 	background-color: transparent;
@@ -65,9 +101,10 @@ footer {
 	height: auto; /* Ajusta la altura proporcionalmente */
 	max-width: 70px; /* Cambiar px al ancho que quieras */
 	display: block; /* Para centrar horizontalmente la imagen */
-	margin: 0 auto; /* Para centrar horizontalmente la imagen */	  
-}
-
+	margin: 0 auto; /* Para centrar horizontalmente la imagen */
+	margin-left: 20px; /* Para mover la imagen hacia la derecha */
+  }
+  
 .img-provisional{
 	height: auto;
 	max-width: 600px;
@@ -97,30 +134,7 @@ footer {
 	background-color: #4A57E8 ;
 }
 
- /* Estilos para el botón de empezar */
- .btn-empezar {
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
-	background-color: #2230CA;
-	border: none;
-	border-radius: 5px;
-	color: #fff;
-	cursor: pointer;
-	font-size: 16px;
-	margin-left: 10px;
-	padding: 10px 20px;
-	text-align: center;
-	text-decoration: none;
-	position: absolute;
-	top: 70%;
-	left: 50%;
-	transform: translate(-350%, -50%);
-  }
 
-.btn-empezar:hover {
-	background-color: #4A57E8 ;
-}
 
  /* Estilos para el botón de login */
 input[type="submit"] {
