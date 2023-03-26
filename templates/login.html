@@ -9,27 +9,26 @@
     <header>
         <button class="btn-header">Acerca de</button>
         <button class="btn-header">Contacto</button>
-        <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" class="img-UBU">
+        <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" class="img-UBU-sin-btn">
     </header>
 
     <h1>Iniciar sesión</h1>
     {% if error %}
     <p class="error">{{ error }}</p>
     {% endif %}
+    
     <form method="POST" action="{{ url_for('login_post') }}">
         <label for="usuario">Nombre de usuario:</label>
         <input type="text" id="usuario" name="usuario">
-
         <label for="contraseña">Contraseña:</label>
         <input type="password" id="contraseña" name="contraseña" style="margin-bottom: 10px;">
-
         <input type="submit" value="Iniciar sesión">
+        <p>¿No tienes cuenta? <a href="registro">Regístrate</a></p>
     </form>
     
-    <p>¿No tienes cuenta? <a href="registro">Regístrate</a></p>
-
     <footer>
         <div class="left-text-footer">Universidad de Burgos © Trabajo de Fin de Grado - 2023</div>
+        <img src="/static/img/escudo-politecnica.gif" alt="Escudo ingeniería informática" class="img-escudo">
         <div class="right-text-footer">Estela Victoria Ballester Delgado</div>
     </footer>
 </body>
