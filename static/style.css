@@ -23,6 +23,21 @@ footer {
 	display: flex;
 }
 
+.footer-registro {
+	background-color: #333;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	height: 50px;
+	padding: 10px;
+	position: absolute;
+	bottom: -370px;
+	width: 98%;
+	max-width: 1500px;
+	margin: 0 auto;
+	display: flex;
+}
+
 .right-text-footer {
 	margin-left: auto;
 }
@@ -65,8 +80,6 @@ footer {
 	background-color: #4A57E8 ;
 }
 
-
-
 /* Estilos para los botones del encabezado */
 .btn-header {
 	background-color: transparent;
@@ -95,6 +108,14 @@ footer {
 	max-width: 97px; /* Cambiar px al ancho que quieras */
 	display: block; /* Para centrar horizontalmente la imagen */
 	margin: 0 auto; /* Para centrar horizontalmente la imagen */	  
+}
+
+.img-UBU-sin-btn {
+	height: auto; /* Ajusta la altura proporcionalmente */
+	max-width: 97px; /* Cambiar px al ancho que quieras */
+	display: block; /* Para centrar horizontalmente la imagen */
+	margin: 0 auto; /* Para centrar horizontalmente la imagen */	 
+	transform: translate(-130%, 0%); 
 }
 
 .img-escudo {
@@ -163,22 +184,66 @@ input[type="submit"]:hover {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+/* Estilos para el campo de edad */
+label[for="edad"] {
+	display: block;
+	margin-top: 20px;
+	font-weight: bold;
+	padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  
+  input[type="number"] {
+	padding: 10px;
+	border-radius: 5px;
+	border: 2px solid #ccc;
+	font-size: 16px;
+	margin-bottom: 20px; /* Agregar margen inferior de 20px */
+  }
+  
+  
+  
+/**********************************************************
+*/
+  
+  
+select#genero {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	background-color: #f1f1f1;
+	font-size: 16px;
+	margin-bottom: 20px; /* Agregar margen inferior de 20px */
+  }
+  
+  select#genero:focus {
+	outline: none;
+	box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+  }
+  
+  select#genero option {
+	font-size: 16px;
+	background-color: white;
+	color: black;
+  }
+  
+/**********************************************************
+*/
 
 body {
 	background-color: #f2f2f2;
 	font-family: Arial, sans-serif;
+	padding: 10px;
+}
+
+.body-registro {
+	background-color: #f2f2f2;
+	font-family: Arial, sans-serif;
+	padding: 10px;
+	padding-bottom: 50px;
+	min-height: 110vh;
 }
 
 h1 {

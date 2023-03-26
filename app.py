@@ -3,7 +3,7 @@ from flask import Flask, request, redirect, render_template, url_for
 from flask_login import LoginManager, login_user, current_user, login_required, logout_user
 from werkzeug.security import check_password_hash
 from src.database import conectar, crear_tablas, tabla_usuarios_existe
-from src.models import Usuario
+from src.usuario import Usuario
 from datetime import datetime, timedelta
 
 app = Flask(__name__)
@@ -30,12 +30,12 @@ def load_user(usuario_id):
     return Usuario.get(usuario_id)
 
 @app.route('/', methods=['GET'])
-def home_get():
-    return render_template("home.html")
+def inicio_get():
+    return render_template("inicio.html")
 
 #@app.route('/', methods=['POST'])
-#def home_post():
- #   return render_template("home.html")
+#def inicio_post():
+ #   return render_template("inicio.html")
 
 @app.route('/login', methods=['GET'])
 def login_get():
@@ -48,7 +48,7 @@ def login_post():
     usuario = request.form['usuario']
     contraseña = request.form['contraseña']
 
-    # Si se cumple la sanción de tiempo se desbloquea la cuenta del usuario y tiene un intentos más de inicio de sesión
+    # Si se cumple la sanción de tiempo se desbloquea la cuenta del usuario y tiene un intento más de inicio de sesión
     if usuario in usuarios_bloqueados and usuarios_bloqueados[usuario] < datetime.now():
         intentos_login[usuario] = 2
         del usuarios_bloqueados[usuario]
@@ -59,15 +59,13 @@ def login_post():
         error = f"Tu cuenta ha sido bloqueada por {time_remaining} segundos."
         return render_template('login.html', error=error)
 
-    # Abrir la conexión a la base de datos
-    conn = psycopg2.connect(
-        host="localhost",
-        database="juegos_docentes",
-        user="admin",
-        password="1234"
-    )
+    # Establecer la conexión a la base de datos
+    conn = conectar()
+
+    # Crear un cursor para ejecutar la consulta
     cur = conn.cursor()
 
+    # Consultar un registro que coincida con el nombre del usuario especificado
     cur.execute("SELECT * FROM schema_juegos_docentes.usuarios WHERE usuario = %s", (usuario,))
     usuario_db = cur.fetchone()
 
@@ -76,7 +74,7 @@ def login_post():
     conn.close()
 
     # Verificar si se encontró un usuario y si la contraseña es correcta
-    if not usuario_db or not check_password_hash(usuario_db[2], contraseña):
+    if not usuario_db or not check_password_hash(usuario_db[7], contraseña):
         error = "Nombre de usuario o contraseña incorrectos"
 
         # Si el login falla, incrementamos el contador de intentos fallidos
@@ -99,7 +97,7 @@ def login_post():
         del intentos_login[usuario]
 
     # Crear un objeto de usuario a partir de los datos de la base de datos y autenticar al usuario
-    usuario = Usuario(usuario_db[0], usuario_db[1], usuario_db[2], usuario_db[3])    
+    usuario = Usuario(usuario_db[0], usuario_db[1], usuario_db[2],  usuario_db[3], usuario_db[4], usuario_db[5], usuario_db[6], usuario_db[7], usuario_db[8])    
     login_user(usuario)
 
     return redirect(url_for('inicio'))
@@ -108,14 +106,60 @@ def login_post():
 def registro_get():
     return render_template("registro.html")
 
+@app.route('/registro', methods=['POST'])
+def registro_post():
+    # Obtener los datos del formulario
+    usuario = request.form['usuario']
+    nombre = request.form['nombre']
+    apellido = request.form['apellido']
+    universidad = request.form['universidad']
+    edad = request.form['edad']
+    genero = request.form['genero']
+    contraseña = request.form['contraseña']
+    confirmar_contraseña = request.form['confirmar_contraseña']
 
+    # Establecer la conexión a la base de datos
+    conn = conectar()
 
+    # Crear un cursor para ejecutar la consulta
+    cur = conn.cursor()
+
+    # Consultar si el nombre de usuario ya existe en la tabla de usuarios
+    cur.execute("SELECT * FROM schema_juegos_docentes.usuarios WHERE usuario = %s", (usuario,))
+
+    # Obtener el resultado de la consulta
+    usuario_existe = cur.fetchone()
+
+    # Si el resultado no es None, significa que el nombre de usuario ya existe
+    if usuario_existe is not None:
+        error = "El nombre de usuario ya existe"
+        return render_template('registro.html', error=error)
+    
+    # Validar longitud y complejidad de contraseña
+    if not (
+    any(char.isupper() for char in contraseña) 
+    and any(char.isdigit() for char in contraseña) 
+    and any(char in "!@#$%^&*()-+?_=,<>/" for char in contraseña) 
+    and len(contraseña) >= 8
+    ):
+        error = "La contraseña debe tener al menos 8 caracteres, un número, una mayúscula y un símbolo"
+        return render_template('registro.html', error=error)
+
+    # Comprobar que la contraseña y la confirmación coinciden
+    if contraseña != confirmar_contraseña:
+        error = "Las contraseñas no coinciden"
+        return render_template('registro.html', error=error)
+
+    Usuario.crear(usuario, nombre, apellido, universidad, edad, genero, contraseña)    
+    
+    # Redirigir a la página de inicio de sesión
+    return redirect('/login')
 
 @app.route('/logout')
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('home_get'))
+    return redirect(url_for('inicio_get'))
 
 # Definir una ruta para la página de éxito
 @app.route('/inicio')
@@ -127,68 +171,3 @@ def inicio():
 if __name__ == '__main__':
     app.run()
 
-
-
-
-"""
-import psycopg2 
-from flask import Flask, request, redirect, render_template, url_for
-from src.database import conectar, crear_tablas
-
-app = Flask(__name__)
-
-# Llamada a la función create_tables en la inicialización de la aplicación
-with app.app_context():
-    crear_tablas()
-
-@app.route('/', methods=['GET'])
-def home():
-    return "hola mundo"
-    #return render_template("inicio.html")
-
-@app.route('/login', methods=['GET'])
-def login_get():
-    return render_template("login.html")
-
-def validar_credenciales(usuario, contraseña):
-    conn = psycopg2.connect("dbname=juegos_docentes user=admin password=1234")
-    cur = conn.cursor()
-    cur.execute("SELECT COUNT(*) FROM schema_juegos_docentes.usuarios WHERE usuario = %s AND contraseña = %s", (usuario, contraseña))
-    result = cur.fetchone()
-    cur.close()
-    conn.close()
-    return result[0] == 1
-
-def contar_usuarios():
-    conn = psycopg2.connect("dbname=juegos_docentes user=admin password=1234")
-    cur = conn.cursor()
-    cur.execute("SELECT COUNT(*) FROM schema_juegos_docentes.usuarios;")
-    num_usuarios = cur.fetchone()[0]
-    cur.close()
-    conn.close()
-    print(f"Hay {num_usuarios} usuarios en la tabla.")
-    return "Conteo de usuarios completado."
-
-@app.route('/login', methods=['POST'])
-def login_post():
-    usuario = request.form['usuario']
-    contraseña = request.form['contraseña']
-    contar_usuarios()
-    if validar_credenciales(usuario, contraseña):
-        # Inicio de sesión correcto, redirigir al usuario a una página de éxito
-        return redirect(url_for('inicio'))
-    else:
-        # Usuario o contraseña incorrectos, mostrar un mensaje de error
-        error = "Usuario o contraseña incorrectos"
-        return render_template('login.html', error=error)
-
-# Definir una ruta para la página de éxito
-@app.route('/inicio')
-def inicio():
-    return render_template('inicio.html')
-
-# Ejecutar la aplicación Flask
-if __name__ == '__main__':
-    app.run()
-
-"""

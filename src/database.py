@@ -32,14 +32,25 @@ def crear_tablas():
     
     # Crear tabla
     cursor = conn.cursor()
+    
+    # Crear el tipo de datos ENUM
+    # cursor.execute("DROP TYPE IF EXISTS schema_juegos_docentes.genero_enum;")
+    # cursor.execute("DROP TABLE schema_juegos_docentes.usuarios CASCADE;")
+    # cursor.execute("CREATE TYPE schema_juegos_docentes.genero_enum AS ENUM ('Masculino', 'Femenino', 'Prefiero no contestar');")
+
     # Tabla de usuarios
     # cursor.execute("CREATE TABLE IF NOT EXISTS schema_juegos_docentes.usuarios (id SERIAL PRIMARY KEY, usuario VARCHAR(50), contraseña VARCHAR(150), rol VARCHAR(20));")
     cursor.execute(
     "CREATE TABLE IF NOT EXISTS schema_juegos_docentes.usuarios "
     "(id SERIAL PRIMARY KEY, "
-    "usuario VARCHAR(50), "
+    " usuario VARCHAR(50) UNIQUE NOT NULL, "
+    " nombre VARCHAR(50) NOT NULL, "
+    "apellido VARCHAR(50) NOT NULL, "
+    "universidad VARCHAR(100) NOT NULL, "
+    "edad VARCHAR(50) NOT NULL, "
+    "genero schema_juegos_docentes.genero_enum NOT NULL, "
     "contraseña VARCHAR(150), "
-    "rol VARCHAR(20)); "
+    "rol TEXT DEFAULT 'usuario'); "
     )
 
     # Tabla de juegos
@@ -134,7 +145,7 @@ def crear_tablas():
 
     # passhash = generate_password_hash('12345')
     # Insertar usuario de prueba
-    # cursor.execute("INSERT INTO schema_juegos_docentes.usuarios (usuario, contraseña, rol) VALUES ('usuarioPrueba', %s, 'usuario');", (passhash,))
+    # cursor.execute("INSERT INTO schema_juegos_docentes.usuarios (usuario, nombre, apellido, universidad, edad, genero, contraseña, rol) VALUES ('usuarioPrueba', 'este', 'este', 'este', '21','Femenino', %s, 'administrador');", (passhash,))
     # cursor.execute("INSERT INTO schema_juegos_docentes.usuarios (usuario, contraseña) VALUES ('usuarioPrueba', '12345');")
     # Eliminar usuario de prueba
     # cursor.execute("DELETE FROM schema_juegos_docentes.usuarios WHERE usuario = 'usuarioPrueba';")
