@@ -74,7 +74,7 @@ def login_post():
     conn.close()
 
     # Verificar si se encontró un usuario y si la contraseña es correcta
-    if not usuario_db or not check_password_hash(usuario_db[7], contraseña):
+    if not usuario_db or not check_password_hash(usuario_db[5], contraseña):
         error = "Nombre de usuario o contraseña incorrectos"
 
         # Si el login falla, incrementamos el contador de intentos fallidos
@@ -97,7 +97,7 @@ def login_post():
         del intentos_login[usuario]
 
     # Crear un objeto de usuario a partir de los datos de la base de datos y autenticar al usuario
-    usuario = Usuario(usuario_db[0], usuario_db[1], usuario_db[2],  usuario_db[3], usuario_db[4], usuario_db[5], usuario_db[6], usuario_db[7], usuario_db[8])    
+    usuario = Usuario(usuario_db[0], usuario_db[1], usuario_db[2],  usuario_db[3], usuario_db[4], usuario_db[5], usuario_db[6])    
     login_user(usuario)
 
     return redirect(url_for('inicio'))
@@ -112,9 +112,7 @@ def registro_post():
     usuario = request.form['usuario']
     nombre = request.form['nombre']
     apellido = request.form['apellido']
-    universidad = request.form['universidad']
-    edad = request.form['edad']
-    genero = request.form['genero']
+    institucion = request.form['institucion']
     contraseña = request.form['contraseña']
     confirmar_contraseña = request.form['confirmar_contraseña']
 
@@ -150,7 +148,7 @@ def registro_post():
         error = "Las contraseñas no coinciden"
         return render_template('registro.html', error=error)
 
-    Usuario.crear(usuario, nombre, apellido, universidad, edad, genero, contraseña)    
+    Usuario.crear(usuario, nombre, apellido, institucion, contraseña)    
     
     # Redirigir a la página de inicio de sesión
     return redirect('/login')
