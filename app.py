@@ -4,7 +4,10 @@ from flask_login import LoginManager, login_user, current_user, login_required, 
 from werkzeug.security import check_password_hash
 from src.database import conectar, crear_tablas, tabla_usuarios_existe
 from src.usuario import Usuario
+from src.busqueda import obtener_resultados_busqueda
 from datetime import datetime, timedelta
+from unidecode import unidecode
+
 
 app = Flask(__name__)
 app.secret_key = 'mysecretkey'
@@ -40,7 +43,7 @@ def inicio_get():
 @app.route('/login', methods=['GET'])
 def login_get():
     if current_user.is_authenticated:
-        return redirect(url_for('inicio'))
+        return redirect(url_for('menu_juegos_get'))
     return render_template("login.html")
 
 @app.route('/login', methods=['POST'])
@@ -69,7 +72,7 @@ def login_post():
     cur.execute("SELECT * FROM schema_juegos_docentes.usuarios WHERE usuario = %s", (usuario,))
     usuario_db = cur.fetchone()
 
-    # Cerrar la conexión a la base de datos
+    # Cerrar el cursor y la conexión a la base de datos
     cur.close()
     conn.close()
 
@@ -100,7 +103,7 @@ def login_post():
     usuario = Usuario(usuario_db[0], usuario_db[1], usuario_db[2],  usuario_db[3], usuario_db[4], usuario_db[5], usuario_db[6])    
     login_user(usuario)
 
-    return redirect(url_for('inicio'))
+    return redirect(url_for('menu_juegos_get'))
 
 @app.route('/registro', methods=['GET'])
 def registro_get():
@@ -127,6 +130,10 @@ def registro_post():
 
     # Obtener el resultado de la consulta
     usuario_existe = cur.fetchone()
+
+    # Cerrar el cursor y la conexión a la base de datos
+    cur.close()
+    conn.close()
 
     # Si el resultado no es None, significa que el nombre de usuario ya existe
     if usuario_existe is not None:
@@ -159,11 +166,43 @@ def logout():
     logout_user()
     return redirect(url_for('inicio_get'))
 
-# Definir una ruta para la página de éxito
-@app.route('/inicio')
-@login_required
-def inicio():
-    return render_template('inicio.html')
+
+@app.route('/menu_juegos', methods=['GET'])
+def menu_juegos_get():
+    
+    # Establecer la conexión a la base de datos
+    conn = conectar()
+
+    # Crear un cursor para ejecutar la consulta
+    cur = conn.cursor()
+
+    # Consultar datos de los juegos
+    cur.execute("SELECT nombre_juego, descripcion, idioma, enlace, puntuacion FROM schema_juegos_docentes.juegos ")
+
+    # Obtener el resultado de la consulta
+    juegos = cur.fetchall()
+
+    # Cerrar el cursor y la conexión a la base de datos
+    cur.close()
+    conn.close()
+
+    return render_template('menu_juegos.html', juegos=juegos)
+   
+@app.route('/menu_juegos', methods=['POST'])
+def menu_juegos_post():
+
+    busqueda = request.form['busqueda']
+    idioma = request.form['idioma']
+    puntuacion = request.form['puntuacion']
+
+    # Procesar la consulta y obtener los resultados
+    resultados_busqueda = obtener_resultados_busqueda(busqueda, idioma, puntuacion)
+
+    if resultados_busqueda:
+        return render_template('menu_juegos.html', resultados_busqueda=resultados_busqueda)
+    else:
+        error = "No se encontraron resultados de la búsqueda"
+        return render_template('menu_juegos.html', error=error)
 
 # Ejecutar la aplicación Flask
 if __name__ == '__main__':

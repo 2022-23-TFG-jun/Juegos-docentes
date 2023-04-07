@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Menú juegos</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <header>
+    <button class="btn-header">Acerca de</button>
+    <button class="btn-header">Contacto</button>
+    <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" class="img-UBU-sin-btn">
+    <a href="logout" class="btn-login">Cerrar sesión</a>
+  </header>
+
+  <h1>Menú juegos docentes</h1>
+ 
+  <form class="form-buscar" action="/menu_juegos" method="POST">
+    <div class="busqueda">
+      <input type="text" placeholder="Buscar..." name="busqueda">
+
+      <select name="idioma">
+        <option value="">Idioma</option>
+        <option value="Español">Español</option>
+        <option value="Inglés">Inglés</option>
+        <option value="Francés">Francés</option>
+      </select>
+
+      <select name="puntuacion">
+        <option value="">Puntuación</option>
+        <option value="5.0">5.0</option>
+        <option value="4.0">4.0</option>
+        <option value="3.0">3.0</option>
+        <option value="2.0">2.0</option>
+        <option value="1.0">1.0</option>
+      </select>
+
+      <button type="submit" class="btn-buscar"><i class="fa fa-search"></i></button>
+    </div>
+  </form>
+
+  {% if error %}
+    <p class="error">{{ error }}</p>
+  {% endif %}
+
+  <div class="card-container">
+    {% for juego in juegos %}
+    <div class="card">
+        <img src="{{ juego.imagen }}" alt="Imagen del Juego">
+        <h3>{{ juego[0] }}</h3>
+        <p>{{ juego[1]}}</p>
+        <ul>
+          <li>Idioma: {{ juego[2] }}</li>
+          <li>Puntuación: {{ juego[4] }}</li>
+          <li>Enlace: {{ juego[3] }}</li>
+        </ul>
+        <a href="{{ enlace }}">Más información</a>
+    </div>
+    {% endfor %}
+  </div>
+  
+  <div class="card-container">
+    {% if resultados_busqueda %}
+      {% for juego in resultados_busqueda %}
+      <div class="card">
+          <img src="{{ juego.imagen }}" alt="Imagen del Juego">
+          <h3>{{ juego[0] }}</h3>
+          <p>{{ juego[1]}}</p>
+          <ul>
+            <li>Idioma: {{ juego[2] }}</li>
+            <li>Puntuación: {{ juego[4] }}</li>
+            <li>Enlace: {{ juego[3] }}</li>
+          </ul>
+          <a href="{{ enlace }}">Más información</a>
+      </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+  
+  <footer>
+    <div class="left-text-footer">Universidad de Burgos © Trabajo de Fin de Grado - 2023</div>
+    <img src="/static/img/escudo-politecnica.gif" alt="Escudo ingeniería informática" class="img-escudo">
+    <div class="right-text-footer">Estela Victoria Ballester Delgado</div>
+  </footer>
+</body>
+</html>
