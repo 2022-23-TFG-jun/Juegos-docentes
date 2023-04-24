@@ -10,18 +10,16 @@
   <header>
     <button class="btn-header">Acerca de</button>
     <button class="btn-header">Contacto</button>
-    <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" class="img-UBU-sin-btn">
+    <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" class="img-UBU">
+    <a href="añadir_juego" class="btn-login">Añadir juego</a>
     <a href="logout" class="btn-login">Cerrar sesión</a>
   </header>
 
   <h1>Menú juegos docentes</h1>
-  
-  <a href="añadir_juego" class="btn-empezar">Añadir juego</a>
 
   <form class="form-buscar" action="/menu_juegos" method="POST">
     <div class="busqueda">
       <input type="text" placeholder="Buscar..." name="busqueda">
-
       <select name="idioma">
         <option value="">Idioma</option>
         <option value="Español">Español</option>

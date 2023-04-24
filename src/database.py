@@ -63,64 +63,28 @@ def crear_tablas():
     "enlace VARCHAR(200), "
     "puntuacion NUMERIC(2,1), "
     "fecha TIMESTAMP DEFAULT NOW(), "
-    "id_usuario INTEGER REFERENCES schema_juegos_docentes.usuarios(id)); "
-    )
 
-    # Tabla de la categorización de los juegos
-    # cursor.execute("CREATE TABLE IF NOT EXISTS schema_juegos_docentes.juegos_categorizacion (id SERIAL PRIMARY KEY, disciplina VARCHAR(100), naturaleza VARCHAR(100), idioma VARCHAR(100), precio VARCHAR(100); instrucciones VARCHAR(100), notas_instructor VARCHAR(100), id_juego INTEGER REFERENCES juegos(id));")
-    cursor.execute(
-    "CREATE TABLE IF NOT EXISTS schema_juegos_docentes.juegos_categorizacion "
-    "(id SERIAL PRIMARY KEY, "
     "disciplina VARCHAR(100), "
     "naturaleza VARCHAR(100), "
-    "idioma VARCHAR(100), "
     "precio VARCHAR(100), "
     "instrucciones VARCHAR(100), "
     "notas_instructor VARCHAR(100), "
-    "id_juego INTEGER REFERENCES schema_juegos_docentes.juegos(id)); "
-    )
 
-    # Tabla de la descripción de los juegos
-    # cursor.execute("CREATE TABLE IF NOT EXISTS schema_juegos_docentes.juegos_descripcion (id SERIAL PRIMARY KEY, contexto VARCHAR(200), objetivos VARCHAR(100), espacio_control VARCHAR(100), id_juego INTEGER REFERENCES juegos(id));")
-    cursor.execute(
-    "CREATE TABLE IF NOT EXISTS schema_juegos_docentes.juegos_descripcion "
-    "(id SERIAL PRIMARY KEY, "
-    "contexto VARCHAR(200), "
     "objetivos VARCHAR(100), "
     "espacio_control VARCHAR(100), "
-    "id_juego INTEGER REFERENCES schema_juegos_docentes.juegos(id)); "
-    )
 
-    # Tabla del aprendizaje de los juegos
-    # cursor.execute("CREATE TABLE IF NOT EXISTS schema_juegos_docentes.juegos_aprendizaje (id SERIAL PRIMARY KEY, objetivos_principales VARCHAR(100), objetivos_secundarios VARCHAR(100), id_juego INTEGER REFERENCES juegos(id));")
-    cursor.execute(
-    "CREATE TABLE IF NOT EXISTS schema_juegos_docentes.juegos_aprendizaje "
-    "(id SERIAL PRIMARY KEY, "
     "objetivos_principales VARCHAR(100), "
     "objetivos_secundarios VARCHAR(100), "
-    "id_juego INTEGER REFERENCES schema_juegos_docentes.juegos(id)); "
-    )
 
-    # Tabla de la organización de los juegos
-    # cursor.execute("CREATE TABLE IF NOT EXISTS schema_juegos_docentes.juegos_organización (id SERIAL PRIMARY KEY, estructura_sesiones VARCHAR(100), aspectos_adicionales VARCHAR(100), id_juego INTEGER REFERENCES juegos(id));")
-    cursor.execute(
-    "CREATE TABLE IF NOT EXISTS schema_juegos_docentes.juegos_organización "
-    "(id SERIAL PRIMARY KEY, "
     "estructura_sesiones VARCHAR(100), "
     "aspectos_adicionales VARCHAR(100), "
-    "id_juego INTEGER REFERENCES schema_juegos_docentes.juegos(id)); "
-    )
 
-    # Tabla de la valoración del profesor de los juegos
-    # cursor.execute("CREATE TABLE IF NOT EXISTS schema_juegos_docentes.juegos_valoracion_profesor (id SERIAL PRIMARY KEY, entretenimiento VARCHAR(100), aprendizaje VARCHAR(100), complejidad_alumno VARCHAR(100), complejidad_instructores VARCHAR(100), id_juego INTEGER REFERENCES juegos(id));")
-    cursor.execute(
-    "CREATE TABLE IF NOT EXISTS schema_juegos_docentes.juegos_valoracion_profesor "
-    "(id SERIAL PRIMARY KEY, "
     "entretenimiento VARCHAR(100), "
     "aprendizaje VARCHAR(100), "
     "complejidad_alumno VARCHAR(100), "
     "complejidad_instructores VARCHAR(100), "
-    "id_juego INTEGER REFERENCES schema_juegos_docentes.juegos(id)); "
+
+    "id_usuario INTEGER REFERENCES schema_juegos_docentes.usuarios(id)); "
     )
 
     # Tabla de puntuaciones

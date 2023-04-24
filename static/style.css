@@ -76,6 +76,26 @@ footer {
 	transform: translate(-350%, -40%);
   }
 
+  .btn-añadir {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background-color: #2230CA;
+	border: none;
+	border-radius: 5px;
+	color: #fff;
+	cursor: pointer;
+	font-size: 16px;
+	margin-left: 10px;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	position: absolute;
+	top: 70%;
+	left: 50%;
+	transform: translate(-350%, -40%);
+  }
+
 .btn-empezar:hover {
 	background-color: #4A57E8 ;
 }

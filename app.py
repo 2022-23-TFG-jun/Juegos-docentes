@@ -202,7 +202,7 @@ def menu_juegos_get():
     # Cerrar el cursor y la conexión a la base de datos
     cur.close()
     conn.close()
-    print("Alohomora")
+    
     return render_template('menu_juegos.html', juegos=juegos, pagina_actual=pagina_actual, total_paginas=total_paginas)
 
 @app.route('/menu_juegos', methods=['POST'])
@@ -239,6 +239,46 @@ def menu_juegos_post():
     else:
         error = "No se encontraron resultados de la búsqueda"
         return render_template('menu_juegos.html', error=error, pagina_actual=pagina_actual, total_paginas=total_paginas)
+
+@app.route('/añadir_juego', methods=['GET'])
+def añadir_juego_get():
+    return render_template("añadir_juego.html")
+
+@app.route('/añadir_juego', methods=['POST'])
+def añadir_juego_post():
+    # Obtener los datos del formulario
+    nombre_juego = request.form['nombre_juego']
+    descripcion = request.form['descripcion']
+    idioma = request.form['idioma']
+    enlace = request.form['enlace']
+    puntuacion = request.form['puntuacion']
+    fecha = datetime.now()
+    id_usuario = current_user.id
+
+    disciplina = request.form['disciplina']
+    naturaleza = request.form['naturaleza']
+    precio = request.form['precio']
+    instrucciones = request.form['instrucciones']
+    notas_instructor = request.form['notas_instructor']
+
+    objetivos = request.form['objetivos']
+    espacio_control = request.form['espacio_control']
+
+    objetivos_principales = request.form['objetivos_principales']
+    objetivos_secundarios = request.form['objetivos_secundarios']
+
+    estructura_sesiones = request.form['estructura_sesiones']
+    aspectos_adicionales = request.form['aspectos_adicionales']
+
+    entretenimiento = request.form['entretenimiento']
+    aprendizaje = request.form['aprendizaje']
+    complejidad_alumno = request.form['complejidad_alumno']
+    complejidad_instructores = request.form['complejidad_instructores']
+
+
+    Juego.crear_juego(nombre_juego, descripcion, idioma, enlace, puntuacion, fecha, id_usuario, disciplina, naturaleza, precio, instrucciones, notas_instructor, objetivos, espacio_control, objetivos_principales, objetivos_secundarios, estructura_sesiones, aspectos_adicionales, entretenimiento, aprendizaje, complejidad_alumno, complejidad_instructores)
+    
+    return redirect('/menu_juegos')
 
 # Ejecutar la aplicación Flask
 if __name__ == '__main__':
