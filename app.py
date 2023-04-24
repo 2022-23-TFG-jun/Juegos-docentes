@@ -4,10 +4,11 @@ from flask_login import LoginManager, login_user, current_user, login_required, 
 from werkzeug.security import check_password_hash
 from src.database import conectar, crear_tablas, tabla_usuarios_existe
 from src.usuario import Usuario
+from src.juego import Juego
 from src.busqueda import obtener_resultados_busqueda
 from datetime import datetime, timedelta
 from unidecode import unidecode
-
+import math
 
 app = Flask(__name__)
 app.secret_key = 'mysecretkey'
@@ -166,7 +167,6 @@ def logout():
     logout_user()
     return redirect(url_for('inicio_get'))
 
-
 @app.route('/menu_juegos', methods=['GET'])
 def menu_juegos_get():
     
@@ -176,33 +176,69 @@ def menu_juegos_get():
     # Crear un cursor para ejecutar la consulta
     cur = conn.cursor()
 
-    # Consultar datos de los juegos
-    cur.execute("SELECT nombre_juego, descripcion, idioma, enlace, puntuacion FROM schema_juegos_docentes.juegos ")
+    # Obtener el número de página actual de la consulta de la cadena de consulta
+    pagina_actual = request.args.get('pagina', 1, type=int)
 
+    # Número máximo de juegos por página
+    juegos_por_pagina = 4
+
+    # Calcular el número de juegos que se deben omitir antes de devolver el resultado
+    desplazamiento = (pagina_actual - 1) * juegos_por_pagina
+
+    # Consultar datos de los juegos
+    #cur.execute("SELECT nombre_juego, descripcion, idioma, enlace, puntuacion FROM schema_juegos_docentes.juegos ")
+    cur.execute("SELECT nombre_juego, descripcion, idioma, enlace, puntuacion FROM schema_juegos_docentes.juegos ORDER BY nombre_juego LIMIT %s OFFSET %s", (juegos_por_pagina, desplazamiento))
+    
     # Obtener el resultado de la consulta
     juegos = cur.fetchall()
+    
+    # Contar el número total de juegos
+    cur.execute("SELECT COUNT(*) FROM schema_juegos_docentes.juegos")
+    total_juegos = cur.fetchone()[0]
+
+    # Calcular el número total de páginas
+    total_paginas = math.ceil(total_juegos / juegos_por_pagina)
 
     # Cerrar el cursor y la conexión a la base de datos
     cur.close()
     conn.close()
+    print("Alohomora")
+    return render_template('menu_juegos.html', juegos=juegos, pagina_actual=pagina_actual, total_paginas=total_paginas)
 
-    return render_template('menu_juegos.html', juegos=juegos)
-   
 @app.route('/menu_juegos', methods=['POST'])
 def menu_juegos_post():
-
     busqueda = request.form['busqueda']
     idioma = request.form['idioma']
     puntuacion = request.form['puntuacion']
 
-    # Procesar la consulta y obtener los resultados
-    resultados_busqueda = obtener_resultados_busqueda(busqueda, idioma, puntuacion)
+    if busqueda == "" and idioma == "" and puntuacion == "":
+        if(request.args.get('busqueda')):
+            busqueda = request.args.get('busqueda')
+        if(request.args.get('idioma')):
+            idioma = request.args.get('idioma')
+        if(request.args.get('puntuacion')):
+            puntuacion = request.args.get('puntuacion')
 
+    # Obtener el número de página actual de la consulta de la cadena de consulta
+    pagina_actual = request.args.get('pagina', 1, type=int)
+
+    # Número máximo de juegos por página
+    juegos_por_pagina = 4
+
+    # Calcular el número de juegos que se deben omitir antes de devolver el resultado
+    desplazamiento = (pagina_actual - 1) * juegos_por_pagina
+    # Procesar la consulta y obtener los resultados
+    # resultados_busqueda = obtener_resultados_busqueda(busqueda, idioma, puntuacion)
+    resultados_busqueda, total_juegos = obtener_resultados_busqueda(busqueda, idioma, puntuacion, juegos_por_pagina, desplazamiento)
+
+    # Calcular el número total de páginas
+    total_paginas = math.ceil(total_juegos / juegos_por_pagina)
     if resultados_busqueda:
-        return render_template('menu_juegos.html', resultados_busqueda=resultados_busqueda)
+        # return render_template('menu_juegos.html', resultados_busqueda=resultados_busqueda)
+        return render_template('menu_juegos.html', resultados_busqueda=resultados_busqueda, pagina_actual=pagina_actual, total_paginas=total_paginas, busqueda=busqueda, idioma=idioma, puntuacion=puntuacion)
     else:
         error = "No se encontraron resultados de la búsqueda"
-        return render_template('menu_juegos.html', error=error)
+        return render_template('menu_juegos.html', error=error, pagina_actual=pagina_actual, total_paginas=total_paginas)
 
 # Ejecutar la aplicación Flask
 if __name__ == '__main__':

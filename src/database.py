@@ -38,7 +38,7 @@ def crear_tablas():
     # cursor.execute("DROP TABLE schema_juegos_docentes.juegos CASCADE;")
     # cursor.execute("DROP TYPE IF EXISTS schema_juegos_docentes.genero_enum;")
     # cursor.execute("CREATE TYPE schema_juegos_docentes.genero_enum AS ENUM ('Masculino', 'Femenino', 'Prefiero no contestar');")
-
+    
     # Tabla de usuarios
     # cursor.execute("CREATE TABLE IF NOT EXISTS schema_juegos_docentes.usuarios (id SERIAL PRIMARY KEY, usuario VARCHAR(50), contraseña VARCHAR(150), rol VARCHAR(20));")
     cursor.execute(
