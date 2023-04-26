@@ -68,14 +68,19 @@
 
       {% for juego in resultados_busqueda %}
       <div class="card">
-          <h3>{{ juego[0] }}</h3>
-          <p>{{ juego[1]}}</p>
+          <h3>{{ juego[1] }}</h3>
+          <p>{{ juego[2]}}</p>
           <ul>
-            <li>Idioma: {{ juego[2] }}</li>
-            <li>Puntuación: {{ juego[4] }}</li>
-            <li>Enlace: {{ juego[3] }}</li>
+            <li>Idioma: {{ juego[3] }}</li>
+            <li>Puntuación: {{ juego[5] }}</li>
+            <li>Enlace: {{ juego[4] }}</li>
           </ul>
-          <a href="{{ enlace }}">Más información</a>
+
+          <form class="form-flecha" method="get" action="{{ url_for('visualizar_juego_get') }}">
+            <input type="hidden" name="id" value="{{ juego[0]}}">
+            <button type="submit" class="btn-login">Ver información</button>
+          </form>
+
       </div>
       {% endfor %}
     {% else %}
@@ -88,14 +93,19 @@
   
       {% for juego in juegos %}
       <div class="card">
-          <h3>{{ juego[0] }}</h3>
-          <p>{{ juego[1]}}</p>
+          <h3>{{ juego[1] }}</h3>
+          <p>{{ juego[2]}}</p>
           <ul>
-            <li>Idioma: {{ juego[2] }}</li>
-            <li>Puntuación: {{ juego[4] }}</li>
-            <li>Enlace: {{ juego[3] }}</li>
+            <li>Idioma: {{ juego[3] }}</li>
+            <li>Puntuación: {{ juego[5] }}</li>
+            <li>Enlace: {{ juego[4] }}</li>
           </ul>
-          <a href="{{ enlace }}">Más información</a>
+
+          <form class="form-flecha" method="get" action="{{ url_for('visualizar_juego_get') }}">
+            <input type="hidden" name="id" value="{{ juego[0]}}">
+            <button type="submit" class="btn-login">Ver información</button>
+          </form>
+        
       </div>
       {% endfor %}
     {% endif %}

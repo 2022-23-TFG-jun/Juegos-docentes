@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Añadir juego</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+	<header>
+		<button class="btn-header">Acerca de</button>
+		<button class="btn-header">Contacto</button>
+		<img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" class="img-UBU">
+	</header>
+
+    <h1>Información del juego</h1>
+
+	<div class="card_visualizar_juego">
+		<h3>{{ informacion_juego[1] }}</h3>
+		<table>
+			<tr>
+				<th>Enlace</th>
+				<td><a href="{{ informacion_juego[4] }}" target="_blank">{{ informacion_juego[4] }}</a></td>
+			</tr>
+			<tr>
+				<th>Puntuación</th>
+				<td>{{ informacion_juego[5] }}</td>
+			</tr>
+		</table>
+
+		<h3>Categorización del juego</h3>
+		<table>
+			<tr>
+				<th>Disciplina</th>
+				<td>{{ informacion_juego[7] }}</td>
+			</tr>
+			<tr>
+				<th>Naturaleza</th>
+				<td>{{ informacion_juego[8] }}</td>
+			</tr>
+			<tr>
+				<th>Idioma</th>
+				<td>{{ informacion_juego[3] }}</td>
+			</tr>
+			<tr>
+				<th>Precio</th>
+				<td>{{ informacion_juego[9] }}</td>
+			</tr>
+			<tr>
+				<th>Instrucciones jugador</th>
+				<td>{{ informacion_juego[10] }}</td>
+			</tr>
+			<tr>
+				<th>Instrucciones instructor</th>
+				<td>{{ informacion_juego[11] }}</td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="card_visualizar_juego">
+		<h3>Descripción del juego</h3>
+		<table>
+			<tr>
+				<th>Descripción</th>
+				<td>{{ informacion_juego[2] }}</td>
+			</tr>
+			<tr>
+				<th>Objetivos</th>
+				<td>{{ informacion_juego[12] }}</td>
+			</tr>
+			<tr>
+				<th>Espacio de control</th>
+				<td>{{ informacion_juego[13] }}</td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="card_visualizar_juego">
+		<h3>Aprendizaje del juego</h3>
+		<table>
+			<tr>
+				<th>Objetivos principales</th>
+				<td>{{ informacion_juego[14] }}</td>
+			</tr>
+			<tr>
+				<th>Objetivos secundarios</th>
+				<td>{{ informacion_juego[15] }}</td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="card_visualizar_juego">
+		<h3>Organización del juego</h3>
+		<table>
+			<tr>
+				<th>Estructura propuesta para las sesiones</th>
+				<td>{{ informacion_juego[16] }}</td>
+			</tr>
+			<tr>
+				<th>Aspectos adicionales</th>
+				<td>{{ informacion_juego[17] }}</td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="card_visualizar_juego">
+		<h3>Valoración final del profesor</h3>
+		<table>
+			<tr>
+				<th>Entretenimiento</th>
+				<td>{{ informacion_juego[18] }}</td>
+			</tr>
+			<tr>
+				<th>Aprendizaje</th>
+				<td>{{ informacion_juego[19] }}</td>
+			</tr>
+			<tr>
+				<th>Complejidad para el alumno</th>
+				<td>{{ informacion_juego[20] }}</td>
+			</tr>
+			<tr>
+				<th>Complejidad para nuevos instructores</th>
+				<td>{{ informacion_juego[21] }}</td>
+			</tr>
+		</table>
+	</div>
+	
+	{% if informacion_juego[22] %}
+		<h1>Video tutorial</h1>
+		<div class="centrar-video">
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/{{ informacion_juego[22].split('v=')[-1] }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+		</div>
+	{% endif %}
+</body>
+</html>

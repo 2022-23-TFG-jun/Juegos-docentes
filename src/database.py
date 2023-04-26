@@ -70,19 +70,20 @@ def crear_tablas():
     "instrucciones VARCHAR(100), "
     "notas_instructor VARCHAR(100), "
 
-    "objetivos VARCHAR(100), "
-    "espacio_control VARCHAR(100), "
+    "objetivos TEXT, "
+    "espacio_control TEXT, "
 
-    "objetivos_principales VARCHAR(100), "
-    "objetivos_secundarios VARCHAR(100), "
+    "objetivos_principales TEXT, "
+    "objetivos_secundarios TEXT, "
 
-    "estructura_sesiones VARCHAR(100), "
-    "aspectos_adicionales VARCHAR(100), "
+    "estructura_sesiones TEXT, "
+    "aspectos_adicionales TEXT, "
 
     "entretenimiento VARCHAR(100), "
     "aprendizaje VARCHAR(100), "
     "complejidad_alumno VARCHAR(100), "
     "complejidad_instructores VARCHAR(100), "
+    "youtube_url VARCHAR(150), "
 
     "id_usuario INTEGER REFERENCES schema_juegos_docentes.usuarios(id)); "
     )

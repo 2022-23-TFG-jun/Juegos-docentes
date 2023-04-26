@@ -40,98 +40,103 @@
 			<option value="3.0">3.0</option>
 			<option value="2.0">2.0</option>
 			<option value="1.0">1.0</option>
-		  </select>
+		</select>
 		
+		<h3>Categorización del juego</h3>
+		<label for="disciplina">Disciplina:</label>
+		<input type="text" id="disciplina" name="disciplina" required>
+		<label for="naturaleza">Naturaleza:</label>
+		<select id="naturaleza" name="naturaleza" required>
+			<option value="">Seleccione una opción</option>
+			<option value="online">Online</option>
+			<option value="descargable">Descargable</option>
+		</select>
 
-		  <h3>Categorización del juego</h3>
-		  <label for="disciplina">Disciplina:</label>
-		  <input type="text" id="disciplina" name="disciplina" required>
-		  <label for="naturaleza">Naturaleza:</label>
-		  <select id="naturaleza" name="naturaleza" required>
-			   <option value="">Seleccione una opción</option>
-			   <option value="online">Online</option>
-			   <option value="descargable">Descargable</option>
-		  </select>
+		<label for="precio">Precio:</label>
+		<select id="precio" name="precio" required>
+			<option value="">Seleccione una opción</option>
+			<option value="pago">Pago</option>
+			<option value="gratuito">Gratuito</option>
+	   	</select>
 
-		  <label for="precio">Precio:</label>
-		  <select id="precio" name="precio" required>
-			  <option value="">Seleccione una opción</option>
-			  <option value="gratuito">Gratuito</option>
-			  <option value="pago">De pago</option>
-		  </select>
-		  
-		  <label for="instrucciones">Instrucciones para el jugador:</label>
-		  	<select id="instrucciones" name="instrucciones" required>
-				<option value="">Seleccione una opción</option>
-				<option value="gratuito">Sí</option>
-				<option value="pago">No</option>
-			</select>
+		<label for="instrucciones">Instrucciones para el jugador:</label>
+		<select id="instrucciones" name="instrucciones" required>
+			<option value="">Seleccione una opción</option>
+			<option value="si">Sí</option>
+			<option value="no">No</option>
+		</select>
 
-			<label for="notas_instructor">Instrucciones para el instructor:</label>
-			<select id="notas_instructor" name="notas_instructor" required>
-			  <option value="">Seleccione una opción</option>
-			  <option value="gratuito">Sí</option>
-			  <option value="pago">No</option>
-		  	</select>
+		<label for="notas_instructor">Instrucciones para el instructor:</label>
+		<select id="notas_instructor" name="notas_instructor" required>
+			<option value="">Seleccione una opción</option>
+			<option value="si">Sí</option>
+			<option value="no">No</option>
+		</select>
 
-			<h3>Descripción del juego</h3>
-			<label for="objetivos">Objetivos:</label><br>
-			<textarea id="objetivos" name="objetivos" rows="4" cols="50" placeholder="Escriba los objetivos...">			</textarea>
-			<label for="espacio_control">Espacio de control:</label><br>
-			<textarea id="espacio_control" name="espacio_control" rows="4" cols="50" placeholder="Escriba el espacio de control...">			</textarea>
+		<h3>Descripción del juego</h3>
+		<label for="objetivos">Objetivos:</label><br>
+		<textarea id="objetivos" name="objetivos" rows="4" cols="50" placeholder="Escriba los objetivos...">			</textarea>
+		<label for="espacio_control">Espacio de control:</label><br>
+		<textarea id="espacio_control" name="espacio_control" rows="4" cols="50" placeholder="Escriba el espacio de control...">			</textarea>
 		 
-			<h3>Aprendizaje del juego</h3>
-			<label for="objetivos_principales">Objetivos principales:</label><br>
-			<textarea id="objetivos_principales" name="objetivos_principales" rows="4" cols="50" placeholder="Escriba los objetivos principales...">			</textarea>
-			<label for="objetivos_secundarios">Objetivos secundarios:</label><br>
-			<textarea id="objetivos_secundarios" name="objetivos_secundarios" rows="4" cols="50" placeholder="Escriba los objetivos secundarios...">			</textarea>
-		   
-			<h3>Organización del juego</h3>
-			<label for="estructura_sesiones">Estructura propuesta para las sesiones:</label><br>
-			<textarea id="estructura_sesiones" name="estructura_sesiones" rows="4" cols="50" placeholder="Escriba la estructura propuesta...">			</textarea>
-			<label for="aspectos_adicionales">Aspectos adicionales:</label><br>
-			<textarea id="aspectos_adicionales" name="aspectos_adicionales" rows="4" cols="50" placeholder="Escriba los aspectos adicionales...">			</textarea>
-		  
-			  <h3>Valoración final del profesor</h3>
-			  <label for="entretenimiento">Entretenimiento:</label>
-			<select id="entretenimiento" name="entretenimiento" required>
-				<option value="">Seleccione una opción</option>
-				<option value="excelente">5 - Excelente</option>
-				<option value="muy_alto">4 - Muy alto</option>
-				  <option value="sencillo">3 - Sencillo</option>
-				<option value="regular">2 - Regular</option>
-			  <option value="muy_bajo">1 - Muy bajo</option>
-			</select>
-			<label for="aprendizaje">Aprendizaje:</label>
-			<select id="aprendizaje" name="aprendizaje" required>
-				<option value="">Seleccione una opción</option>
-				<option value="excelente">5 - Excelente</option>
-				<option value="muy_alto">4 - Muy alto</option>
-				  <option value="sencillo">3 - Sencillo</option>
-				<option value="regular">2 - Regular</option>
-			  <option value="muy_bajo">1 - Muy bajo</option>
-			</select>
-			<label for="complejidad_alumno">Complejidad para el alumno:</label>
-			<select id="complejidad_alumno" name="complejidad_alumno" required>
-				<option value="">Seleccione una opción</option>
-				<option value="excelente">5 - Excelente</option>
-				<option value="muy_alto">4 - Muy alto</option>
-				  <option value="sencillo">3 - Sencillo</option>
-				<option value="regular">2 - Regular</option>
-			  <option value="muy_bajo">1 - Muy bajo</option>
-			</select>
-			<label for="complejidad_instructores">Complejidad para nuevos instructores::</label>
-			<select id="complejidad_instructores" name="complejidad_instructores" required>
-				<option value="">Seleccione una opción</option>
-				<option value="excelente">5 - Excelente</option>
-				<option value="muy_alto">4 - Muy alto</option>
-				  <option value="sencillo">3 - Sencillo</option>
-				<option value="regular">2 - Regular</option>
-			  <option value="muy_bajo">1 - Muy bajo</option>
-			</select>
-		  
+		<h3>Aprendizaje del juego</h3>
+		<label for="objetivos_principales">Objetivos principales:</label><br>
+		<textarea id="objetivos_principales" name="objetivos_principales" rows="4" cols="50" placeholder="Escriba los objetivos principales...">			</textarea>
+		<label for="objetivos_secundarios">Objetivos secundarios:</label><br>
+		<textarea id="objetivos_secundarios" name="objetivos_secundarios" rows="4" cols="50" placeholder="Escriba los objetivos secundarios...">			</textarea>
 		
-		<input type="submit" value="Añadir juego">
+		<h3>Organización del juego</h3>
+		<label for="estructura_sesiones">Estructura propuesta para las sesiones:</label><br>
+		<textarea id="estructura_sesiones" name="estructura_sesiones" rows="4" cols="50" placeholder="Escriba la estructura propuesta...">			</textarea>
+		<label for="aspectos_adicionales">Aspectos adicionales:</label><br>
+		<textarea id="aspectos_adicionales" name="aspectos_adicionales" rows="4" cols="50" placeholder="Escriba los aspectos adicionales...">			</textarea>
+		  
+		<h3>Valoración final del profesor</h3>
+		<label for="entretenimiento">Entretenimiento:</label>
+		<select id="entretenimiento" name="entretenimiento" required>
+			<option value="">Seleccione una opción</option>
+			<option value="excelente">5 - Excelente</option>
+			<option value="muy_alto">4 - Muy alto</option>
+			<option value="sencillo">3 - Sencillo</option>
+			<option value="regular">2 - Regular</option>
+			<option value="muy_bajo">1 - Muy bajo</option>
+		</select>
+
+		<label for="aprendizaje">Aprendizaje:</label>
+		<select id="aprendizaje" name="aprendizaje" required>
+			<option value="">Seleccione una opción</option>
+			<option value="excelente">5 - Excelente</option>
+			<option value="muy_alto">4 - Muy alto</option>
+			<option value="sencillo">3 - Sencillo</option>
+			<option value="regular">2 - Regular</option>
+			<option value="muy_bajo">1 - Muy bajo</option>
+		</select>
+		
+		<label for="complejidad_alumno">Complejidad para el alumno:</label>
+		<select id="complejidad_alumno" name="complejidad_alumno" required>
+			<option value="">Seleccione una opción</option>
+			<option value="excelente">5 - Excelente</option>
+			<option value="muy_alto">4 - Muy alto</option>
+			<option value="sencillo">3 - Sencillo</option>
+			<option value="regular">2 - Regular</option>
+			<option value="muy_bajo">1 - Muy bajo</option>
+		</select>
+
+		<label for="complejidad_instructores">Complejidad para nuevos instructores::</label>
+		<select id="complejidad_instructores" name="complejidad_instructores" required>
+			<option value="">Seleccione una opción</option>
+			<option value="excelente">5 - Excelente</option>
+			<option value="muy_alto">4 - Muy alto</option>
+			<option value="sencillo">3 - Sencillo</option>
+			<option value="regular">2 - Regular</option>
+			<option value="muy_bajo">1 - Muy bajo</option>
+		</select>
+
+		<h3>Agregar video tutorial</h3>
+		<label for="youtube_url">URL de YouTube:</label>
+		<input type="text" name="youtube_url" id="youtube_url">
+
+		<input type="submit" name="submit" value="Añadir juego">
   	</form>
 </body>
 </html>

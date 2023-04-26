@@ -168,6 +168,7 @@ def logout():
     return redirect(url_for('inicio_get'))
 
 @app.route('/menu_juegos', methods=['GET'])
+@login_required
 def menu_juegos_get():
     
     # Establecer la conexión a la base de datos
@@ -186,12 +187,11 @@ def menu_juegos_get():
     desplazamiento = (pagina_actual - 1) * juegos_por_pagina
 
     # Consultar datos de los juegos
-    #cur.execute("SELECT nombre_juego, descripcion, idioma, enlace, puntuacion FROM schema_juegos_docentes.juegos ")
-    cur.execute("SELECT nombre_juego, descripcion, idioma, enlace, puntuacion FROM schema_juegos_docentes.juegos ORDER BY nombre_juego LIMIT %s OFFSET %s", (juegos_por_pagina, desplazamiento))
+    cur.execute("SELECT id, nombre_juego, descripcion, idioma, enlace, puntuacion FROM schema_juegos_docentes.juegos ORDER BY nombre_juego LIMIT %s OFFSET %s", (juegos_por_pagina, desplazamiento))
     
     # Obtener el resultado de la consulta
     juegos = cur.fetchall()
-    
+
     # Contar el número total de juegos
     cur.execute("SELECT COUNT(*) FROM schema_juegos_docentes.juegos")
     total_juegos = cur.fetchone()[0]
@@ -206,6 +206,7 @@ def menu_juegos_get():
     return render_template('menu_juegos.html', juegos=juegos, pagina_actual=pagina_actual, total_paginas=total_paginas)
 
 @app.route('/menu_juegos', methods=['POST'])
+@login_required
 def menu_juegos_post():
     busqueda = request.form['busqueda']
     idioma = request.form['idioma']
@@ -227,24 +228,25 @@ def menu_juegos_post():
 
     # Calcular el número de juegos que se deben omitir antes de devolver el resultado
     desplazamiento = (pagina_actual - 1) * juegos_por_pagina
+
     # Procesar la consulta y obtener los resultados
-    # resultados_busqueda = obtener_resultados_busqueda(busqueda, idioma, puntuacion)
     resultados_busqueda, total_juegos = obtener_resultados_busqueda(busqueda, idioma, puntuacion, juegos_por_pagina, desplazamiento)
 
     # Calcular el número total de páginas
     total_paginas = math.ceil(total_juegos / juegos_por_pagina)
     if resultados_busqueda:
-        # return render_template('menu_juegos.html', resultados_busqueda=resultados_busqueda)
         return render_template('menu_juegos.html', resultados_busqueda=resultados_busqueda, pagina_actual=pagina_actual, total_paginas=total_paginas, busqueda=busqueda, idioma=idioma, puntuacion=puntuacion)
     else:
         error = "No se encontraron resultados de la búsqueda"
         return render_template('menu_juegos.html', error=error, pagina_actual=pagina_actual, total_paginas=total_paginas)
 
 @app.route('/añadir_juego', methods=['GET'])
+@login_required
 def añadir_juego_get():
     return render_template("añadir_juego.html")
 
 @app.route('/añadir_juego', methods=['POST'])
+@login_required
 def añadir_juego_post():
     # Obtener los datos del formulario
     nombre_juego = request.form['nombre_juego']
@@ -274,11 +276,36 @@ def añadir_juego_post():
     aprendizaje = request.form['aprendizaje']
     complejidad_alumno = request.form['complejidad_alumno']
     complejidad_instructores = request.form['complejidad_instructores']
+    
+    youtube_url = request.form['youtube_url']
 
-
-    Juego.crear_juego(nombre_juego, descripcion, idioma, enlace, puntuacion, fecha, id_usuario, disciplina, naturaleza, precio, instrucciones, notas_instructor, objetivos, espacio_control, objetivos_principales, objetivos_secundarios, estructura_sesiones, aspectos_adicionales, entretenimiento, aprendizaje, complejidad_alumno, complejidad_instructores)
+    Juego.crear_juego(nombre_juego, descripcion, idioma, enlace, puntuacion, fecha, id_usuario, disciplina, naturaleza, precio, instrucciones, notas_instructor, objetivos, espacio_control, objetivos_principales, objetivos_secundarios, estructura_sesiones, aspectos_adicionales, entretenimiento, aprendizaje, complejidad_alumno, complejidad_instructores, youtube_url)
     
     return redirect('/menu_juegos')
+
+@app.route('/visualizar_juego', methods=['GET'])
+@login_required
+def visualizar_juego_get():
+
+    id_juego = request.args.get('id')
+
+    # Establecer la conexión a la base de datos
+    conn = conectar()
+
+    # Crear un cursor para ejecutar la consulta
+    cur = conn.cursor()
+
+    # Consultar datos del juego
+    cur.execute("SELECT * FROM schema_juegos_docentes.juegos WHERE id = %s", (id_juego,))
+    
+    # Obtener el resultado de la consulta
+    informacion_juego = cur.fetchone()
+    
+    # Cerrar el cursor y la conexión a la base de datos
+    cur.close()
+    conn.close()
+    
+    return render_template("visualizar_juego.html", informacion_juego=informacion_juego)
 
 # Ejecutar la aplicación Flask
 if __name__ == '__main__':
