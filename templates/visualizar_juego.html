@@ -12,120 +12,120 @@
 		<img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" class="img-UBU">
 	</header>
 
-    <h1>Información del juego</h1>
+    <h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
 
 	<div class="card_visualizar_juego">
 		<h3>{{ informacion_juego[1] }}</h3>
 		<table>
 			<tr>
-				<th>Enlace</th>
+				<th>{{ traducciones['ENLACE'][idioma] }}</th>
 				<td><a href="{{ informacion_juego[4] }}" target="_blank">{{ informacion_juego[4] }}</a></td>
 			</tr>
 			<tr>
-				<th>Puntuación</th>
+				<th>{{ traducciones['PUNTUACION'][idioma] }}</th>
 				<td>{{ informacion_juego[5] }}</td>
 			</tr>
 		</table>
 
-		<h3>Categorización del juego</h3>
+		<h3>{{ traducciones['TITULO-CATEGORIZACION'][idioma] }}</h3>
 		<table>
 			<tr>
-				<th>Disciplina</th>
+				<th>{{ traducciones['DISCIPLINA'][idioma] }}</th>
 				<td>{{ informacion_juego[7] }}</td>
 			</tr>
 			<tr>
-				<th>Naturaleza</th>
+				<th>{{ traducciones['NATURALEZA'][idioma] }}</th>
 				<td>{{ informacion_juego[8] }}</td>
 			</tr>
 			<tr>
-				<th>Idioma</th>
+				<th>{{ traducciones['IDIOMA'][idioma] }}</th>
 				<td>{{ informacion_juego[3] }}</td>
 			</tr>
 			<tr>
-				<th>Precio</th>
+				<th>{{ traducciones['PRECIO'][idioma] }}</th>
 				<td>{{ informacion_juego[9] }}</td>
 			</tr>
 			<tr>
-				<th>Instrucciones jugador</th>
+				<th>{{ traducciones['ISNTRUCCIONES_JUGADOR'][idioma] }}</th>
 				<td>{{ informacion_juego[10] }}</td>
 			</tr>
 			<tr>
-				<th>Instrucciones instructor</th>
+				<th>{{ traducciones['ISNTRUCCIONES_INSTRUCTOR'][idioma] }}</th>
 				<td>{{ informacion_juego[11] }}</td>
 			</tr>
 		</table>
 	</div>
 
 	<div class="card_visualizar_juego">
-		<h3>Descripción del juego</h3>
+		<h3>{{ traducciones['TITULO-DESCRIPCION'][idioma] }}</h3>
 		<table>
 			<tr>
-				<th>Descripción</th>
+				<th>{{ traducciones['DESCRIPCION'][idioma] }}</th>
 				<td>{{ informacion_juego[2] }}</td>
 			</tr>
 			<tr>
-				<th>Objetivos</th>
+				<th>{{ traducciones['OBJETIVOS'][idioma] }}</th>
 				<td>{{ informacion_juego[12] }}</td>
 			</tr>
 			<tr>
-				<th>Espacio de control</th>
+				<th>{{ traducciones['ESPACIO_CONTROL'][idioma] }}</th>
 				<td>{{ informacion_juego[13] }}</td>
 			</tr>
 		</table>
 	</div>
 
 	<div class="card_visualizar_juego">
-		<h3>Aprendizaje del juego</h3>
+		<h3>{{ traducciones['TITULO-APRENDIZAJE'][idioma] }}</h3>
 		<table>
 			<tr>
-				<th>Objetivos principales</th>
+				<th>{{ traducciones['OBJETIVOS_PRINCIPALES'][idioma] }}</th>
 				<td>{{ informacion_juego[14] }}</td>
 			</tr>
 			<tr>
-				<th>Objetivos secundarios</th>
+				<th>{{ traducciones['OBJETIVOS_SECUNDARIOS'][idioma] }}</th>
 				<td>{{ informacion_juego[15] }}</td>
 			</tr>
 		</table>
 	</div>
 
 	<div class="card_visualizar_juego">
-		<h3>Organización del juego</h3>
+		<h3>{{ traducciones['TITULO-ORGANIZACION'][idioma] }}</h3>
 		<table>
 			<tr>
-				<th>Estructura propuesta para las sesiones</th>
+				<th>{{ traducciones['ESTRUCTURA'][idioma] }}</th>
 				<td>{{ informacion_juego[16] }}</td>
 			</tr>
 			<tr>
-				<th>Aspectos adicionales</th>
+				<th>{{ traducciones['ASPECTOS'][idioma] }}</th>
 				<td>{{ informacion_juego[17] }}</td>
 			</tr>
 		</table>
 	</div>
 
 	<div class="card_visualizar_juego">
-		<h3>Valoración final del profesor</h3>
+		<h3>{{ traducciones['TITULO-VALORACION'][idioma] }}</h3>
 		<table>
 			<tr>
-				<th>Entretenimiento</th>
+				<th>{{ traducciones['ENTRETENIMIENTO'][idioma] }}</th>
 				<td>{{ informacion_juego[18] }}</td>
 			</tr>
 			<tr>
-				<th>Aprendizaje</th>
+				<th>{{ traducciones['APRENDIZAJE'][idioma] }}</th>
 				<td>{{ informacion_juego[19] }}</td>
 			</tr>
 			<tr>
-				<th>Complejidad para el alumno</th>
+				<th>{{ traducciones['COMPLEJIDAD_ALUMNO'][idioma] }}</th>
 				<td>{{ informacion_juego[20] }}</td>
 			</tr>
 			<tr>
-				<th>Complejidad para nuevos instructores</th>
+				<th>{{ traducciones['COMPLEJIDAD_INSTRUCTORES'][idioma] }}</th>
 				<td>{{ informacion_juego[21] }}</td>
 			</tr>
 		</table>
 	</div>
 	
 	{% if informacion_juego[22] %}
-		<h1>Video tutorial</h1>
+		<h1>{{ traducciones['TITULO-VIDEO'][idioma] }}</h1>
 		<div class="centrar-video">
 			<iframe width="560" height="315" src="https://www.youtube.com/embed/{{ informacion_juego[22].split('v=')[-1] }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 		</div>

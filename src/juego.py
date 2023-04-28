@@ -1,7 +1,7 @@
 from src.database import conectar
 
 class Juego():
-    def __init__(self, id, nombre_juego, descripcion, idioma, enlace, puntuacion, fecha, id_usuario,
+    def __init__(self, id, nombre_juego, descripcion, idiomaN, enlace, puntuacion, fecha, id_usuario,
                  disciplina, naturaleza, precio, instrucciones, notas_instructor,
                  objetivos, espacio_control,
                  objetivos_principales, objetivos_secundarios,
@@ -12,7 +12,7 @@ class Juego():
         self.id = id
         self.nombre_juego = nombre_juego
         self.descripcion = descripcion
-        self.idioma = idioma
+        self.idiomaN = idiomaN
         self.enlace = enlace
         self.puntuacion = puntuacion
         self.fecha = fecha
@@ -41,10 +41,10 @@ class Juego():
         self.youtube_url = youtube_url
     
     @staticmethod
-    def crear_juego(nombre_juego, descripcion, idioma, enlace, puntuacion, fecha, id_usuario, disciplina, naturaleza, precio, 
+    def crear_juego(nombre_juego, descripcion, idiomaN, enlace, puntuacion, fecha, id_usuario, disciplina, naturaleza, precio, 
                     instrucciones, notas_instructor, objetivos, espacio_control, objetivos_principales, objetivos_secundarios, 
                     estructura_sesiones, aspectos_adicionales, entretenimiento, aprendizaje, complejidad_alumno, complejidad_instructores, youtube_url):
         db = conectar()
         cursor = db.cursor()
-        cursor.execute("INSERT INTO schema_juegos_docentes.juegos (nombre_juego, descripcion, idioma, enlace, puntuacion, fecha, id_usuario, disciplina, naturaleza, precio, instrucciones, notas_instructor, objetivos, espacio_control, objetivos_principales, objetivos_secundarios, estructura_sesiones, aspectos_adicionales, entretenimiento, aprendizaje, complejidad_alumno, complejidad_instructores, youtube_url) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (nombre_juego, descripcion, idioma, enlace, puntuacion, fecha, id_usuario, disciplina, naturaleza, precio, instrucciones, notas_instructor, objetivos, espacio_control, objetivos_principales, objetivos_secundarios, estructura_sesiones, aspectos_adicionales, entretenimiento, aprendizaje, complejidad_alumno, complejidad_instructores, youtube_url))
+        cursor.execute("INSERT INTO schema_juegos_docentes.juegos (nombre_juego, descripcion, idioma, enlace, puntuacion, fecha, id_usuario, disciplina, naturaleza, precio, instrucciones, notas_instructor, objetivos, espacio_control, objetivos_principales, objetivos_secundarios, estructura_sesiones, aspectos_adicionales, entretenimiento, aprendizaje, complejidad_alumno, complejidad_instructores, youtube_url) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (nombre_juego, descripcion, idiomaN, enlace, puntuacion, fecha, id_usuario, disciplina, naturaleza, precio, instrucciones, notas_instructor, objetivos, espacio_control, objetivos_principales, objetivos_secundarios, estructura_sesiones, aspectos_adicionales, entretenimiento, aprendizaje, complejidad_alumno, complejidad_instructores, youtube_url))
         db.commit()

@@ -1,0 +1,26 @@
+{
+    "TITULO-INICIO": {
+        "en": "Log in",
+        "es": "Iniciar sesión"
+    },
+    "USUARIO": {
+        "en": "Username:",
+        "es": "Nombre de usuario:"
+    },
+    "CONTRASEÑA": {
+        "en": "Password:",
+        "es": "Contraseña:"
+    },
+    "BTN-LOGIN": {
+      "en": "Log in",
+      "es": "Iniciar sesión"
+    },
+    "BTN-REGISTRARSE": {
+        "en": "Sign up",
+        "es": "Regístrate"
+    },
+    "BTN-CUENTA": {
+        "en": "You do not have an account?",
+        "es": "¿No tienes cuenta?"
+      }
+  }

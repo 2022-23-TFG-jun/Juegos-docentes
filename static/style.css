@@ -663,3 +663,25 @@ div.centrar-video {
 	align-items: center;
   }
   
+/*Seleccionar el idioma*/
+.bandera-espana,
+.bandera-inglaterra {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-position: center;
+    background-size: cover;
+	text-align: right;
+	cursor: pointer;
+}
+
+.bandera-espana {
+    background-image: url("https://cdn.countryflags.com/thumbs/spain/flag-round-250.png");
+	transform: translate(2790%, 10%);
+}
+
+.bandera-inglaterra {
+    background-image: url("https://cdn.countryflags.com/thumbs/united-kingdom/flag-round-250.png");
+	transform: translate(2900%, -95%);
+}

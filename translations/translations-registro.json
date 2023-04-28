@@ -1,0 +1,42 @@
+{
+    "TITULO-INICIO": {
+        "en": "Log in",
+        "es": "Crea una cuenta"
+    },
+    "USUARIO": {
+        "en": "Username:",
+        "es": "Nombre de usuario:"
+    },
+    "NOMBRE": {
+        "en": "Username:",
+        "es": "Name:"
+    },
+    "APELLIDO": {
+        "en": "Last name:",
+        "es": "Apellido:"
+    },
+    "INSTITUCION": {
+        "en": "Institution:",
+        "es": "Institución:"
+    },
+    "CONTRA": {
+        "en": "Password:",
+        "es": "Contraseña:"
+    },
+    "CONFIRMAR_CONTRA": {
+        "en": "Confirm Password:",
+        "es": "Confirmar contraseña:"
+    },
+    "BTN-CUENTA": {
+        "en": "Already have an account?",
+        "es": "¿Ya tienes cuenta?"
+      },
+    "BTN-LOGIN": {
+      "en": "Log in",
+      "es": "Iniciar sesión"
+    },
+    "BTN-CREAR": {
+        "en": "Create Account",
+        "es": "Crear cuenta"
+    }
+  }

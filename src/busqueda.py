@@ -2,10 +2,10 @@ from src.database import conectar
 # Convertir cadenas de texto Unicode a cadenas ASCII
 from unidecode import unidecode
 
-def obtener_resultados_busqueda(busqueda, idioma, puntuacion, juegos_por_pagina, desplazamiento):
+def obtener_resultados_busqueda(busqueda, idiomaF, puntuacion, juegos_por_pagina, desplazamiento):
     # Convertir contenido de busqueda e idioma en minúsculas y normalizarla
     busqueda = unidecode(busqueda.lower())
-    idioma = unidecode(idioma.lower())
+    idiomaF = unidecode(idiomaF.lower())
  
     # Establecer la conexión a la base de datos
     conn = conectar()
@@ -20,7 +20,7 @@ def obtener_resultados_busqueda(busqueda, idioma, puntuacion, juegos_por_pagina,
     busqueda = busqueda if busqueda else '%'
 
     # Si idioma tiene un valor se asigna a sí mismo, si no se le asigna cualquier cadena de caracteres
-    idioma = idioma if idioma else '%'
+    idiomaF = idiomaF if idiomaF else '%'
 
     # Si puntuación tiene un valor se asigna a sí misma, si no se le asigna un número decimal
     puntuacion = puntuacion if puntuacion else '[0-5].[0-9]'
@@ -35,7 +35,7 @@ def obtener_resultados_busqueda(busqueda, idioma, puntuacion, juegos_por_pagina,
             "ORDER BY nombre_juego "
             "LIMIT %s OFFSET %s ",
 
-            (f"%{busqueda}%", f"%{busqueda}%", f"%{busqueda}%", idioma, puntuacion, juegos_por_pagina, desplazamiento))
+            (f"%{busqueda}%", f"%{busqueda}%", f"%{busqueda}%", idiomaF, puntuacion, juegos_por_pagina, desplazamiento))
 
     # Obtener el resultado de la consulta de todos los juegos (4 por página)
     resultados_busqueda = cur.fetchall()
@@ -49,7 +49,7 @@ def obtener_resultados_busqueda(busqueda, idioma, puntuacion, juegos_por_pagina,
             "AND (CAST(puntuacion as VARCHAR) SIMILAR TO %s)) "
             "ORDER BY nombre_juego",
 
-            (f"%{busqueda}%", f"%{busqueda}%", f"%{busqueda}%", idioma, puntuacion))
+            (f"%{busqueda}%", f"%{busqueda}%", f"%{busqueda}%", idiomaF, puntuacion))
     
     # Obtener el resultado de la consulta del número total de juegos de la búsqueda
     total_juegos =  len(cur.fetchall())

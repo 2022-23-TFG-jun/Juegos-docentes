@@ -1,0 +1,34 @@
+{
+    "TITULO-INICIO": {
+        "en": "Teacher games menu",
+        "es": "Menú juegos docentes"
+    },
+    "BARRA-BUSQUEDA": {
+        "en": "Search...",
+        "es": "Buscar..."
+    },
+    "IDIOMA": {
+        "en": "Language",
+        "es": "Idioma"
+    },
+    "ESPAÑOL": {
+        "en": "Spanish",
+        "es": "Español"
+    },
+    "INGLES": {
+        "en": "English",
+        "es": "Inglés"
+    },
+    "PUNTUACION": {
+        "en": "Punctuation",
+        "es": "Puntuación"
+    },
+    "ENLACE": {
+            "en": "Link",
+            "es": "Enlace"
+    },
+    "BTON-INFO": {
+      "en": "See information",
+      "es": "Ver información"
+    }
+  }

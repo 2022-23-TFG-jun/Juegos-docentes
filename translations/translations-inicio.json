@@ -1,0 +1,31 @@
+{
+    "INICIO": {
+        "en": "Introduction",
+        "es": "Inicio"
+    },
+    "TITULO-INICIO": {
+        "en": "Educational Games Repository",
+        "es": "Repositorio de Juegos Docentes"
+    },
+    "TITULO-BIENVENIDA": {
+        "en": "Welcome to our website",
+        "es": "Bienvenido a nuestro sitio web"
+    },
+    "MSJ-BIENVENIDA": {
+        "en": "Find, rate and share your games with other teachers!",
+        "es": "¡Busca, puntúa y comparte tus juegos con los demás docentes!"
+    },
+    "BTN-LOGIN": {
+      "en": "Log in",
+      "es": "Iniciar sesión"
+    },
+    "BTN-REGISTRARSE": {
+        "en": "Sign up",
+        "es": "Registrarse"
+    },
+    "BTN-EMPEZAR": {
+        "en": "Start",
+        "es": "Empezar"
+    }
+  }
+  

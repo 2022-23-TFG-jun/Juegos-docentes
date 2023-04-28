@@ -12,18 +12,25 @@
         <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" class="img-UBU-sin-btn">
     </header>
 
-    <h1>Iniciar sesión</h1>
-    {% if error %}
-    <p class="error">{{ error }}</p>
+    <h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
+
+    {% if error_login_incorrecto %}
+    <p class="error">{{ error_login_incorrecto['LOGIN-INCORRECTO'][idioma] }}</p>
+    {% endif %}
+    {% if error_login_repetido %}
+    <p class="error">{{ error_login_repetido['LOGIN-REPETIDO'][idioma] }}</p>
+    {% endif %}
+    {% if error_cuenta_bloqueada %}
+    <p class="error">{{ error_cuenta_bloqueada }}</p>
     {% endif %}
     
-    <form method="POST" action="{{ url_for('login_post') }}">
-        <label for="usuario">Nombre de usuario:</label>
+    <form method="POST" action="{{ url_for('login_post', idioma=idioma) }}">
+        <label for="usuario">{{ traducciones['USUARIO'][idioma] }}</label>
         <input type="text" id="usuario" name="usuario">
-        <label for="contraseña">Contraseña:</label>
+        <label for="contraseña">{{ traducciones['CONTRASEÑA'][idioma] }}</label>
         <input type="password" id="contraseña" name="contraseña" style="margin-bottom: 10px;">
-        <input type="submit" value="Iniciar sesión">
-        <p>¿No tienes cuenta? <a href="registro">Regístrate</a></p>
+        <input type="submit" value="{{ traducciones['BTN-LOGIN'][idioma] }}">
+        <p>{{ traducciones['BTN-CUENTA'][idioma] }} <a href="registro?idioma={{idioma}}">{{ traducciones['BTN-REGISTRARSE'][idioma] }}</a></p>
     </form>
     
     <footer>

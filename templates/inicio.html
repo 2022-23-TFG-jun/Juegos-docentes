@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Inicio</title>
+    <title>{{ traducciones['INICIO'][idioma] }}</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -10,19 +10,27 @@
         <button class="btn-header">Acerca de</button>
         <button class="btn-header">Contacto</button>
         <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" class="img-UBU">
-        <a href="login" class="btn-login">Iniciar sesión</a>
-        <a href="registro" class="btn-login">Registrarse</a>
+        <a href="login?idioma={{idioma}}" class="btn-login">{{ traducciones['BTN-LOGIN'][idioma] }}</a>
+        <a href="registro?idioma={{idioma}}" class="btn-login">{{ traducciones['BTN-REGISTRARSE'][idioma] }}</a>
     </header>
-    
+
+    <form class="form-flecha" method="get" action="{{ url_for('inicio_get') }}">
+        <button type="submit" name="idioma" value="es" class="bandera-espana"></button>
+        <button type="submit" name="idioma" value="en" class="bandera-inglaterra"></button>
+    </form>
+      
     <main>
-        <h1>Repositorio de Juegos Docentes</h1>
+        <h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
+        
         <div class="inicio">
             <div class="msj-bienvenida">
-                <h2>Bienvenido a nuestro sitio web</h2>
-                <p>¡Busca, puntúa y comparte tus juegos con los demás docentes!</p>
+                <h2>{{ traducciones['TITULO-BIENVENIDA'][idioma] }}</h2>
+                <p>{{ traducciones['MSJ-BIENVENIDA'][idioma] }}</p>
             </div>
             <img src="/static/img/inicio.png" alt="Captura inicio" class="img-provisional">  
-            <a href="login" class="btn-empezar">Empezar</a>
+            <!-- <a href="login" class="btn-empezar">{{ traducciones['BTN-EMPEZAR'][idioma] }}</a> -->
+            <a href="login?idioma={{idioma}}" class="btn-empezar">{{ traducciones['BTN-EMPEZAR'][idioma] }}</a>
+
         </div>
     </main>
     

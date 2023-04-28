@@ -11,57 +11,59 @@
     <button class="btn-header">Acerca de</button>
     <button class="btn-header">Contacto</button>
     <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" class="img-UBU">
-    <a href="añadir_juego" class="btn-login">Añadir juego</a>
+    <a href="añadir_juego?idioma={{idioma}}" class="btn-login">Añadir juego</a>
     <a href="logout" class="btn-login">Cerrar sesión</a>
   </header>
 
-  <h1>Menú juegos docentes</h1>
+  <h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
 
-  <form class="form-buscar" action="/menu_juegos" method="POST">
+  <form class="form-buscar" action="/menu_juegos?idioma={{ request.args.get('idioma') }}" method="POST">
     <div class="busqueda">
-      <input type="text" placeholder="Buscar..." name="busqueda">
-      <select name="idioma">
-        <option value="">Idioma</option>
-        <option value="Español">Español</option>
-        <option value="Inglés">Inglés</option>
+      <input type="text" placeholder="{{ traducciones['BARRA-BUSQUEDA'][idioma] }}" name="busqueda">
+      <select name="idiomaF">
+        <option value="">{{ traducciones['IDIOMA'][idioma] }}</option>
+        <option value="{{ traducciones['ESPAÑOL'][idioma] }}">{{ traducciones['ESPAÑOL'][idioma] }}</option>
+        <option value="{{ traducciones['INGLES'][idioma] }}">{{ traducciones['INGLES'][idioma] }}</option>
         <option value="Francés">Francés</option>
       </select>
 
       <select name="puntuacion">
-        <option value="">Puntuación</option>
+        <option value="">{{ traducciones['PUNTUACION'][idioma] }}</option>
         <option value="5.0">5.0</option>
         <option value="4.0">4.0</option>
         <option value="3.0">3.0</option>
         <option value="2.0">2.0</option>
         <option value="1.0">1.0</option>
       </select>
-
+      
       <button type="submit" class="btn-buscar"><i class="fa fa-search"></i></button>
     </div>
   </form>
 
-  {% if error %}
-    <p class="error">{{ error }}</p>
+  {% if error_busqueda %}
+  <p class="error">{{ error_busqueda['NO-BUSQUEDA'][idioma] }}</p>
   {% endif %}
   
   <div class="card-container">
     {% if resultados_busqueda %}
       {% if pagina_actual > 1 %}
-        <form class="form-flecha" method="post" action="{{ url_for('menu_juegos_post', pagina=pagina_actual-1, busqueda=busqueda, idioma=idioma, puntuacion=puntuacion) }}">
+        <form class="form-flecha" method="post" action="{{ url_for('menu_juegos_post', pagina=pagina_actual-1, busqueda=busqueda, idiomaF=idiomaF, puntuacion=puntuacion, idioma=idioma) }}">
           <input type="hidden" name="pagina" value="{{ pagina_actual - 1 }}">
           <input type="hidden" name="busqueda" value="{{ busqueda }}">
-          <input type="hidden" name="idioma" value="{{ idioma }}">
+          <input type="hidden" name="idiomaF" value="{{ idiomaF }}">
           <input type="hidden" name="puntuacion" value="{{ puntuacion }}">
+          <input type="hidden" name="idioma" value="{{ idioma }}">
           <button type="submit" class="arrow-btn prev"><i class="fa fa-arrow-left"></i></button>
         </form>
       {% endif %}
       
       {% if pagina_actual < total_paginas %}
-        <form class="form-flecha" method="post" action="{{ url_for('menu_juegos_post', pagina=pagina_actual+1, busqueda=busqueda, idioma=idioma, puntuacion=puntuacion) }}">
+        <form class="form-flecha" method="post" action="{{ url_for('menu_juegos_post', pagina=pagina_actual+1, busqueda=busqueda, idiomaF=idiomaF, puntuacion=puntuacion, idioma=idioma) }}">
           <input type="hidden" name="pagina" value="{{ pagina_actual + 1 }}">
           <input type="hidden" name="busqueda" value="{{ busqueda }}">
-          <input type="hidden" name="idioma" value="{{ idioma }}">
+          <input type="hidden" name="idiomaF" value="{{ idiomaF }}">
           <input type="hidden" name="puntuacion" value="{{ puntuacion }}">
+          <input type="hidden" name="idioma" value="{{ idioma }}">
           <button type="submit" class="arrow-btn next"><i class="fa fa-arrow-right"></i></button>
         </form>
       {% endif %}
@@ -71,24 +73,25 @@
           <h3>{{ juego[1] }}</h3>
           <p>{{ juego[2]}}</p>
           <ul>
-            <li>Idioma: {{ juego[3] }}</li>
-            <li>Puntuación: {{ juego[5] }}</li>
-            <li>Enlace: {{ juego[4] }}</li>
+            <li>{{ traducciones['IDIOMA'][idioma] }}: {{ juego[3] }}</li>
+            <li>{{ traducciones['PUNTUACION'][idioma] }}: {{ juego[5] }}</li>
+            <li>{{ traducciones['ENLACE'][idioma] }}: {{ juego[4] }}</li>
           </ul>
 
           <form class="form-flecha" method="get" action="{{ url_for('visualizar_juego_get') }}">
             <input type="hidden" name="id" value="{{ juego[0]}}">
-            <button type="submit" class="btn-login">Ver información</button>
+            <input type="hidden" name="idioma" value="{{ idioma}}">
+            <button type="submit" class="btn-login">{{ traducciones['BTON-INFO'][idioma] }}</button>
           </form>
 
       </div>
       {% endfor %}
     {% else %}
       {% if pagina_actual > 1 %}
-        <a href="{{ url_for('menu_juegos_get', pagina=pagina_actual-1) }}" class="arrow-btn prev"><i class="fa fa-arrow-left"></i></a>
+        <a href="{{ url_for('menu_juegos_get', pagina=pagina_actual-1, idioma=idioma) }}" class="arrow-btn prev"><i class="fa fa-arrow-left"></i></a>
       {% endif %}
       {% if pagina_actual < total_paginas %}
-        <a href="{{ url_for('menu_juegos_get', pagina=pagina_actual+1) }}" class="arrow-btn next"><i class="fa fa-arrow-right"></i></a>
+        <a href="{{ url_for('menu_juegos_get', pagina=pagina_actual+1, idioma=idioma) }}" class="arrow-btn next"><i class="fa fa-arrow-right"></i></a>
       {% endif %}
   
       {% for juego in juegos %}
@@ -96,14 +99,15 @@
           <h3>{{ juego[1] }}</h3>
           <p>{{ juego[2]}}</p>
           <ul>
-            <li>Idioma: {{ juego[3] }}</li>
-            <li>Puntuación: {{ juego[5] }}</li>
-            <li>Enlace: {{ juego[4] }}</li>
+            <li>{{ traducciones['IDIOMA'][idioma] }}: {{ juego[3] }}</li>
+            <li>{{ traducciones['PUNTUACION'][idioma] }}: {{ juego[5] }}</li>
+            <li>{{ traducciones['ENLACE'][idioma] }}: {{ juego[4] }}</li>
           </ul>
 
           <form class="form-flecha" method="get" action="{{ url_for('visualizar_juego_get') }}">
             <input type="hidden" name="id" value="{{ juego[0]}}">
-            <button type="submit" class="btn-login">Ver información</button>
+            <input type="hidden" name="idioma" value="{{ idioma}}">
+            <button type="submit" class="btn-login">{{ traducciones['BTON-INFO'][idioma] }}</button>
           </form>
         
       </div>

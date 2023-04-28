@@ -12,29 +12,28 @@
 		<img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" class="img-UBU">
 	</header>
 
-    <h1>Añadir nuevo juego</h1>
-    
-    <form action="/añadir_juego" method="POST">
-        <label for="nombre_juego">Nombre del juego:</label>
+    <h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
+    <form action="/añadir_juego?idioma={{ request.args.get('idioma') }}" method="POST">
+        <label for="nombre_juego">{{ traducciones['NOMBRE_JUEGO'][idioma] }}</label>
      	<input type="text" id="nombre_juego" name="nombre_juego" required>
 		
-		<label for="descripcion">Descripción:</label><br>
+		<label for="descripcion">{{ traducciones['DESCRIPCION'][idioma] }}</label><br>
 		<textarea id="descripcion" name="descripcion" rows="4" cols="50" placeholder="Escriba la descripcion..."></textarea>
 		
-		<label for="idioma">Idioma:</label>
-		<select id="idioma" name="idioma" required>
-			 <option value="">Seleccione una opción</option>
-			 <option value="español">Español</option>
-			 <option value="inglés">Inglés</option>
-			 <option value="francés">Francés</option>
+		<label for="idiomaN">{{ traducciones['IDIOMA'][idioma] }}</label>
+		<select id="idiomaN" name="idiomaN" required>
+			<option value="">{{ traducciones['OPCION'][idioma] }}</option>
+			<option value="{{ traducciones['ES'][idioma] }}">{{ traducciones['ES'][idioma] }}</option>
+			<option value="{{ traducciones['EN'][idioma] }}">{{ traducciones['EN'][idioma] }}</option>
+			<option value="{{ traducciones['FR'][idioma] }}">{{ traducciones['FR'][idioma] }}</option>
 		</select>
         
-		<label for="enlace">Enlace:</label>
+		<label for="enlace">{{ traducciones['ENLACE'][idioma] }}</label>
         <input type="text" id="enlace" name="enlace" required>
      	
-		<label for="puntuacion"> Puntuación:</label>
+		<label for="puntuacion">{{ traducciones['PUNTUACION'][idioma] }}</label>
 		<select name="puntuacion">
-			<option value="">Puntuación</option>
+			<option value="">{{ traducciones['PUNTUACION'][idioma] }}</option>
 			<option value="5.0">5.0</option>
 			<option value="4.0">4.0</option>
 			<option value="3.0">3.0</option>
@@ -42,101 +41,101 @@
 			<option value="1.0">1.0</option>
 		</select>
 		
-		<h3>Categorización del juego</h3>
-		<label for="disciplina">Disciplina:</label>
+		<h3>{{ traducciones['TITULO-CATEGORIZACION'][idioma] }}</h3>
+		<label for="disciplina">{{ traducciones['DISCIPLINA'][idioma] }}</label>
 		<input type="text" id="disciplina" name="disciplina" required>
-		<label for="naturaleza">Naturaleza:</label>
+		<label for="naturaleza">{{ traducciones['NATURALEZA'][idioma] }}</label>
 		<select id="naturaleza" name="naturaleza" required>
-			<option value="">Seleccione una opción</option>
-			<option value="online">Online</option>
-			<option value="descargable">Descargable</option>
+			<option value="">{{ traducciones['OPCION'][idioma] }}</option>
+			<option value="{{ traducciones['ONLINE'][idioma] }}">{{ traducciones['ONLINE'][idioma] }}</option>
+			<option value="{{ traducciones['DESCARGABLE'][idioma] }}">{{ traducciones['DESCARGABLE'][idioma] }}</option>
 		</select>
-
-		<label for="precio">Precio:</label>
+		
+		<label for="precio">{{ traducciones['PRECIO'][idioma] }}</label>
 		<select id="precio" name="precio" required>
-			<option value="">Seleccione una opción</option>
-			<option value="pago">Pago</option>
-			<option value="gratuito">Gratuito</option>
+			<option value="">{{ traducciones['OPCION'][idioma] }}</option>
+			<option value="{{ traducciones['PAGO'][idioma] }}">{{ traducciones['PAGO'][idioma] }}</option>
+			<option value="{{ traducciones['GRATUITO'][idioma] }}">{{ traducciones['GRATUITO'][idioma] }}</option>
 	   	</select>
 
-		<label for="instrucciones">Instrucciones para el jugador:</label>
+		<label for="instrucciones">{{ traducciones['ISNTRUCCIONES_JUGADOR'][idioma] }}</label>
 		<select id="instrucciones" name="instrucciones" required>
-			<option value="">Seleccione una opción</option>
-			<option value="si">Sí</option>
+			<option value="">{{ traducciones['OPCION'][idioma] }}</option>
+			<option value="{{ traducciones['YES'][idioma] }}">{{ traducciones['YES'][idioma] }}</option>
 			<option value="no">No</option>
 		</select>
 
-		<label for="notas_instructor">Instrucciones para el instructor:</label>
+		<label for="notas_instructor">{{ traducciones['INSTRUCCIONES_INSTRUCTOR'][idioma] }}</label>
 		<select id="notas_instructor" name="notas_instructor" required>
-			<option value="">Seleccione una opción</option>
-			<option value="si">Sí</option>
+			<option value="">{{ traducciones['OPCION'][idioma] }}</option>
+			<option value="{{ traducciones['YES'][idioma] }}">{{ traducciones['YES'][idioma] }}</option>
 			<option value="no">No</option>
 		</select>
 
-		<h3>Descripción del juego</h3>
-		<label for="objetivos">Objetivos:</label><br>
+		<h3>{{ traducciones['TITULO-DESCRIPCION'][idioma] }}</h3>
+		<label for="objetivos">{{ traducciones['OBJETIVOS'][idioma] }}</label><br>
 		<textarea id="objetivos" name="objetivos" rows="4" cols="50" placeholder="Escriba los objetivos...">			</textarea>
-		<label for="espacio_control">Espacio de control:</label><br>
+		<label for="espacio_control">{{ traducciones['ESPACIO_CONTROL'][idioma] }}</label><br>
 		<textarea id="espacio_control" name="espacio_control" rows="4" cols="50" placeholder="Escriba el espacio de control...">			</textarea>
 		 
-		<h3>Aprendizaje del juego</h3>
-		<label for="objetivos_principales">Objetivos principales:</label><br>
+		<h3>{{ traducciones['TITULO-APRENDIZAJE'][idioma] }}</h3>
+		<label for="objetivos_principales">{{ traducciones['OBJETIVOS_PRINCIPALES'][idioma] }}</label><br>
 		<textarea id="objetivos_principales" name="objetivos_principales" rows="4" cols="50" placeholder="Escriba los objetivos principales...">			</textarea>
-		<label for="objetivos_secundarios">Objetivos secundarios:</label><br>
+		<label for="objetivos_secundarios">{{ traducciones['OBJETIVOS_SECUNDARIOS'][idioma] }}</label><br>
 		<textarea id="objetivos_secundarios" name="objetivos_secundarios" rows="4" cols="50" placeholder="Escriba los objetivos secundarios...">			</textarea>
 		
-		<h3>Organización del juego</h3>
-		<label for="estructura_sesiones">Estructura propuesta para las sesiones:</label><br>
+		<h3>{{ traducciones['TITULO-ORGANIZACION'][idioma] }}</h3>
+		<label for="estructura_sesiones">{{ traducciones['ESTRUCTURA'][idioma] }}</label><br>
 		<textarea id="estructura_sesiones" name="estructura_sesiones" rows="4" cols="50" placeholder="Escriba la estructura propuesta...">			</textarea>
-		<label for="aspectos_adicionales">Aspectos adicionales:</label><br>
+		<label for="aspectos_adicionales">{{ traducciones['ASPECTOS'][idioma] }}</label><br>
 		<textarea id="aspectos_adicionales" name="aspectos_adicionales" rows="4" cols="50" placeholder="Escriba los aspectos adicionales...">			</textarea>
 		  
-		<h3>Valoración final del profesor</h3>
-		<label for="entretenimiento">Entretenimiento:</label>
+		<h3>{{ traducciones['TITULO-VALORACION'][idioma] }}</h3>
+		<label for="entretenimiento">{{ traducciones['ENTRETENIMIENTO'][idioma] }}</label>
 		<select id="entretenimiento" name="entretenimiento" required>
-			<option value="">Seleccione una opción</option>
-			<option value="excelente">5 - Excelente</option>
-			<option value="muy_alto">4 - Muy alto</option>
-			<option value="sencillo">3 - Sencillo</option>
-			<option value="regular">2 - Regular</option>
-			<option value="muy_bajo">1 - Muy bajo</option>
+			<option value="">{{ traducciones['OPCION'][idioma] }}</option>
+			<option value="{{ traducciones['EXCELENTE'][idioma] }}">{{ traducciones['EXCELENTE'][idioma] }}</option>
+			<option value="{{ traducciones['MUY_ALTO'][idioma] }}">{{ traducciones['MUY_ALTO'][idioma] }}</option>
+			<option value="{{ traducciones['SENCILLO'][idioma] }}">{{ traducciones['SENCILLO'][idioma] }}</option>
+			<option value="{{ traducciones['REGULAR'][idioma] }}">{{ traducciones['REGULAR'][idioma] }}</option>
+			<option value="{{ traducciones['MUY_BAJO'][idioma] }}">{{ traducciones['MUY_BAJO'][idioma] }}</option>
 		</select>
 
-		<label for="aprendizaje">Aprendizaje:</label>
+		<label for="aprendizaje">{{ traducciones['APRENDIZAJE'][idioma] }}</label>
 		<select id="aprendizaje" name="aprendizaje" required>
-			<option value="">Seleccione una opción</option>
-			<option value="excelente">5 - Excelente</option>
-			<option value="muy_alto">4 - Muy alto</option>
-			<option value="sencillo">3 - Sencillo</option>
-			<option value="regular">2 - Regular</option>
-			<option value="muy_bajo">1 - Muy bajo</option>
+			<option value="">{{ traducciones['OPCION'][idioma] }}</option>
+			<option value="{{ traducciones['EXCELENTE'][idioma] }}">{{ traducciones['EXCELENTE'][idioma] }}</option>
+			<option value="{{ traducciones['MUY_ALTO'][idioma] }}">{{ traducciones['MUY_ALTO'][idioma] }}</option>
+			<option value="{{ traducciones['SENCILLO'][idioma] }}">{{ traducciones['SENCILLO'][idioma] }}</option>
+			<option value="{{ traducciones['REGULAR'][idioma] }}">{{ traducciones['REGULAR'][idioma] }}</option>
+			<option value="{{ traducciones['MUY_BAJO'][idioma] }}">{{ traducciones['MUY_BAJO'][idioma] }}</option>
 		</select>
 		
-		<label for="complejidad_alumno">Complejidad para el alumno:</label>
+		<label for="complejidad_alumno">{{ traducciones['COMPLEJIDAD_ALUMNO'][idioma] }}</label>
 		<select id="complejidad_alumno" name="complejidad_alumno" required>
-			<option value="">Seleccione una opción</option>
-			<option value="excelente">5 - Excelente</option>
-			<option value="muy_alto">4 - Muy alto</option>
-			<option value="sencillo">3 - Sencillo</option>
-			<option value="regular">2 - Regular</option>
-			<option value="muy_bajo">1 - Muy bajo</option>
+			<option value="">{{ traducciones['OPCION'][idioma] }}</option>
+			<option value="{{ traducciones['EXCELENTE'][idioma] }}">{{ traducciones['EXCELENTE'][idioma] }}</option>
+			<option value="{{ traducciones['MUY_ALTO'][idioma] }}">{{ traducciones['MUY_ALTO'][idioma] }}</option>
+			<option value="{{ traducciones['SENCILLO'][idioma] }}">{{ traducciones['SENCILLO'][idioma] }}</option>
+			<option value="{{ traducciones['REGULAR'][idioma] }}">{{ traducciones['REGULAR'][idioma] }}</option>
+			<option value="{{ traducciones['MUY_BAJO'][idioma] }}">{{ traducciones['MUY_BAJO'][idioma] }}</option>
 		</select>
 
-		<label for="complejidad_instructores">Complejidad para nuevos instructores::</label>
+		<label for="complejidad_instructores">{{ traducciones['COMPLEJIDAD_INSTRUCTORES'][idioma] }}</label>
 		<select id="complejidad_instructores" name="complejidad_instructores" required>
-			<option value="">Seleccione una opción</option>
-			<option value="excelente">5 - Excelente</option>
-			<option value="muy_alto">4 - Muy alto</option>
-			<option value="sencillo">3 - Sencillo</option>
-			<option value="regular">2 - Regular</option>
-			<option value="muy_bajo">1 - Muy bajo</option>
+			<option value="">{{ traducciones['OPCION'][idioma] }}</option>
+			<option value="{{ traducciones['EXCELENTE'][idioma] }}">{{ traducciones['EXCELENTE'][idioma] }}</option>
+			<option value="{{ traducciones['MUY_ALTO'][idioma] }}">{{ traducciones['MUY_ALTO'][idioma] }}</option>
+			<option value="{{ traducciones['SENCILLO'][idioma] }}">{{ traducciones['SENCILLO'][idioma] }}</option>
+			<option value="{{ traducciones['REGULAR'][idioma] }}">{{ traducciones['REGULAR'][idioma] }}</option>
+			<option value="{{ traducciones['MUY_BAJO'][idioma] }}">{{ traducciones['MUY_BAJO'][idioma] }}</option>
 		</select>
 
-		<h3>Agregar video tutorial</h3>
-		<label for="youtube_url">URL de YouTube:</label>
+		<h3>{{ traducciones['TITULO-VIDEO'][idioma] }}</h3>
+		<label for="youtube_url">{{ traducciones['URL'][idioma] }}</label>
 		<input type="text" name="youtube_url" id="youtube_url">
 
-		<input type="submit" name="submit" value="Añadir juego">
+		<input type="submit" name="submit" value="{{ traducciones['BTON-AÑADIR'][idioma] }}">
   	</form>
 </body>
 </html>

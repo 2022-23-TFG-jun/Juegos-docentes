@@ -12,27 +12,33 @@
     <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" class="img-UBU-sin-btn">
   </header>
 
-  <h1>Crea una cuenta</h1>
+  <h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
 
-  {% if error %}
-    <p class="error">{{ error }}</p>
+  {% if error_usuario_existe %}
+    <p class="error">{{ error_usuario_existe['USUARIO-EXISTE'][idioma] }}</p>
+  {% endif %}
+  {% if error_contraseña_condiciones %}
+    <p class="error">{{ error_contraseña_condiciones['CONTRASEÑA'][idioma] }}</p>
+  {% endif %}
+  {% if error_contraseñas_no_coinciden %}
+    <p class="error">{{ error_contraseñas_no_coinciden['NO-COINCIDEN'][idioma] }}</p>
   {% endif %}
 
   <form action="/registro" method="POST">
-    <label for="usuario">Nombre de usuario:</label>
+    <label for="usuario">{{ traducciones['USUARIO'][idioma] }}</label>
     <input type="text" id="usuario" name="usuario" required>
-    <label for="nombre">Nombre:</label>
+    <label for="nombre">{{ traducciones['NOMBRE'][idioma] }}</label>
     <input type="text" id="nombre" name="nombre" required>
-    <label for="apellido">Apellido:</label>
+    <label for="apellido">{{ traducciones['APELLIDO'][idioma] }}</label>
     <input type="text" id="apellido" name="apellido" required>
-    <label for="institucion">Institución:</label>
+    <label for="institucion">{{ traducciones['INSTITUCION'][idioma] }}</label>
     <input type="text" id="institucion" name="institucion">
-    <label for="contraseña">Contraseña:</label>
+    <label for="contraseña">{{ traducciones['CONTRA'][idioma] }}</label>
     <input type="password" id="contraseña" name="contraseña" required>
-    <label for="confirmar_contraseña">Confirmar contraseña:</label>
+    <label for="confirmar_contraseña">{{ traducciones['CONFIRMAR_CONTRA'][idioma] }}</label>
     <input type="password" id="confirmar_contraseña" name="confirmar_contraseña" required>
-    <input type="submit" value="Crear cuenta">
-    <p>¿Ya tienes cuenta? <a href="login">Iniciar sesión</a></p>
+    <input type="submit" value="{{ traducciones['BTN-CREAR'][idioma] }}">
+    <p>{{ traducciones['BTN-CUENTA'][idioma] }} <a href="login?idioma={{idioma}}">{{ traducciones['BTN-LOGIN'][idioma] }}</a></p>
   </form>
   <footer class="footer-registro">
     <div class="left-text-footer">Universidad de Burgos © Trabajo de Fin de Grado - 2023</div>
