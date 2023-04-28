@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Editar perfil de usuario</title>
+</head>
+<body>
+  
+    <header>
+        <button class="btn-header">Acerca de</button>
+        <button class="btn-header">Contacto</button>
+        <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" class="img-UBU">
+        <a href="login" class="btn-login">Cerrar sesión</a>
+    </header>
+  
+    <h1>Editar perfil de usuario</h1>
+    <form action="guardar_perfil.php" method="POST">
+        <h2>Cambiar información general</h2>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" value="Juan">
+
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" name="apellido" value="Pérez">
+
+        <label for="correo">Correo electrónico:</label>
+        <input type="email" id="correo" name="correo" value="juanperez@email.com">
+
+        <label for="genero">Género:</label>
+        <select id="genero" name="genero">
+            <option value="masculino" selected>Masculino</option>
+            <option value="femenino">Femenino</option>
+            <option value="otro">Otro</option>
+        </select>
+
+        <label for="edad">Edad:</label>
+        <input type="number" id="edad" name="edad" value="25">
+        
+        <h2>Cambiar contraseña</h2>
+        <label for="contraseña">Contraseña:</label>
+        <input type="password" id="contraseña" name="contraseña" value="Juan">
+   
+        <label for="contraseña">Confirmar contraseña:</label>
+        <input type="password" id="contraseña" name="contraseña" required>
+      
+        <input type="submit" value="Guardar perfil">
+        <input type="submit" value="Borrar perfil">
+    </form>
+  
+    <footer>
+        <div class="left-text-footer">Universidad de Burgos © Trabajo de Fin de Grado - 2023</div>
+        <div class="right-text-footer">Estela Victoria Ballester Delgado</div>
+    </footer>
+</body>
+</html>
