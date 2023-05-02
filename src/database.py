@@ -55,38 +55,42 @@ def crear_tablas():
     # Tabla de juegos
     # cursor.execute("CREATE TABLE IF NOT EXISTS schema_juegos_docentes.juegos (id SERIAL PRIMARY KEY, nombre_juego VARCHAR(100), enlace VARCHAR(200), id_usuario INTEGER REFERENCES schema_juegos_docentes.usuarios(id), fecha TIMESTAMP);")
     cursor.execute(
-    "CREATE TABLE IF NOT EXISTS schema_juegos_docentes.juegos "
-    "(id SERIAL PRIMARY KEY, "
-    "nombre_juego VARCHAR(100), "
-    "descripcion TEXT, "
-    "idioma VARCHAR(100), "
-    "enlace VARCHAR(200), "
-    "puntuacion NUMERIC(2,1), "
-    "fecha TIMESTAMP DEFAULT NOW(), "
+        "CREATE TABLE IF NOT EXISTS schema_juegos_docentes.juegos "
+        "(id SERIAL PRIMARY KEY, "
+        "nombre_juego VARCHAR(100), "
+        "descripcion TEXT, "
+        "idioma VARCHAR(100), "
+        "enlace VARCHAR(200), "
+        "puntuacion NUMERIC(2,1), "
 
-    "disciplina VARCHAR(100), "
-    "naturaleza VARCHAR(100), "
-    "precio VARCHAR(100), "
-    "instrucciones VARCHAR(100), "
-    "notas_instructor VARCHAR(100), "
+        "disciplina VARCHAR(100), "
+        "naturaleza VARCHAR(100), "
+        "precio VARCHAR(100), "
+        "instrucciones VARCHAR(100), "
+        "notas_instructor VARCHAR(100), "
 
-    "objetivos TEXT, "
-    "espacio_control TEXT, "
+        "objetivos TEXT, "
+        "espacio_control TEXT, "
 
-    "objetivos_principales TEXT, "
-    "objetivos_secundarios TEXT, "
+        "objetivos_principales TEXT, "
+        "objetivos_secundarios TEXT, "
 
-    "estructura_sesiones TEXT, "
-    "aspectos_adicionales TEXT, "
+        "estructura_sesiones TEXT, "
+        "aspectos_adicionales TEXT, "
 
-    "entretenimiento VARCHAR(100), "
-    "aprendizaje VARCHAR(100), "
-    "complejidad_alumno VARCHAR(100), "
-    "complejidad_instructores VARCHAR(100), "
-    "youtube_url VARCHAR(150), "
+        "entretenimiento VARCHAR(100), "
+        "aprendizaje VARCHAR(100), "
+        "complejidad_alumno VARCHAR(100), "
+        "complejidad_instructores VARCHAR(100), "
+        "youtube_url VARCHAR(150), "
 
-    "id_usuario INTEGER REFERENCES schema_juegos_docentes.usuarios(id)); "
+        "id_usuario_creacion INTEGER REFERENCES schema_juegos_docentes.usuarios(id), "
+        "fecha_creacion TIMESTAMP DEFAULT NOW(), "
+        
+        "id_usuario_modificacion INTEGER REFERENCES schema_juegos_docentes.usuarios(id), "
+        "fecha_modificacion TIMESTAMP DEFAULT NOW());"
     )
+
 
     # Tabla de puntuaciones
     # cursor.execute("CREATE TABLE IF NOT EXISTS schema_juegos_docentes.juegos_puntuaciones (id SERIAL PRIMARY KEY,id_usuario INTEGER REFERENCES schema_juegos_docentes.usuarios(id), id_juego INTEGER REFERENCES schema_juegos_docentes.juegos(id), puntuacion INTEGER,fecha TIMESTAMP DEFAULT NOW());")

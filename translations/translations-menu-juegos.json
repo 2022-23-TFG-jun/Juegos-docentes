@@ -24,11 +24,24 @@
         "es": "Puntuación"
     },
     "ENLACE": {
-            "en": "Link",
-            "es": "Enlace"
+        "en": "Link",
+        "es": "Enlace"
     },
-    "BTON-INFO": {
-      "en": "See information",
-      "es": "Ver información"
+    "BTN-INFO": {
+        "en": "See information",
+        "es": "Ver información"
+    },
+    "BTN-MODIFICAR": {
+        "en": "Modify game",
+        "es": "Modificar juego"
+    },
+    "BTN-AÑADIR": {
+        "en": "Add game",
+        "es": "Añadir juego"
+    },
+    "BTN-CERRAR-SESION": {
+        "en": "Log out",
+        "es": "Cerrar sesión"
     }
-  }
+}
+    

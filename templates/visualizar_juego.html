@@ -31,11 +31,11 @@
 		<table>
 			<tr>
 				<th>{{ traducciones['DISCIPLINA'][idioma] }}</th>
-				<td>{{ informacion_juego[7] }}</td>
+				<td>{{ informacion_juego[6] }}</td>
 			</tr>
 			<tr>
 				<th>{{ traducciones['NATURALEZA'][idioma] }}</th>
-				<td>{{ informacion_juego[8] }}</td>
+				<td>{{ informacion_juego[7] }}</td>
 			</tr>
 			<tr>
 				<th>{{ traducciones['IDIOMA'][idioma] }}</th>
@@ -43,15 +43,15 @@
 			</tr>
 			<tr>
 				<th>{{ traducciones['PRECIO'][idioma] }}</th>
-				<td>{{ informacion_juego[9] }}</td>
+				<td>{{ informacion_juego[8] }}</td>
 			</tr>
 			<tr>
 				<th>{{ traducciones['ISNTRUCCIONES_JUGADOR'][idioma] }}</th>
-				<td>{{ informacion_juego[10] }}</td>
+				<td>{{ informacion_juego[9] }}</td>
 			</tr>
 			<tr>
 				<th>{{ traducciones['ISNTRUCCIONES_INSTRUCTOR'][idioma] }}</th>
-				<td>{{ informacion_juego[11] }}</td>
+				<td>{{ informacion_juego[10] }}</td>
 			</tr>
 		</table>
 	</div>
@@ -65,11 +65,11 @@
 			</tr>
 			<tr>
 				<th>{{ traducciones['OBJETIVOS'][idioma] }}</th>
-				<td>{{ informacion_juego[12] }}</td>
+				<td>{{ informacion_juego[11] }}</td>
 			</tr>
 			<tr>
 				<th>{{ traducciones['ESPACIO_CONTROL'][idioma] }}</th>
-				<td>{{ informacion_juego[13] }}</td>
+				<td>{{ informacion_juego[12] }}</td>
 			</tr>
 		</table>
 	</div>
@@ -79,11 +79,11 @@
 		<table>
 			<tr>
 				<th>{{ traducciones['OBJETIVOS_PRINCIPALES'][idioma] }}</th>
-				<td>{{ informacion_juego[14] }}</td>
+				<td>{{ informacion_juego[13] }}</td>
 			</tr>
 			<tr>
 				<th>{{ traducciones['OBJETIVOS_SECUNDARIOS'][idioma] }}</th>
-				<td>{{ informacion_juego[15] }}</td>
+				<td>{{ informacion_juego[14] }}</td>
 			</tr>
 		</table>
 	</div>
@@ -93,11 +93,11 @@
 		<table>
 			<tr>
 				<th>{{ traducciones['ESTRUCTURA'][idioma] }}</th>
-				<td>{{ informacion_juego[16] }}</td>
+				<td>{{ informacion_juego[15] }}</td>
 			</tr>
 			<tr>
 				<th>{{ traducciones['ASPECTOS'][idioma] }}</th>
-				<td>{{ informacion_juego[17] }}</td>
+				<td>{{ informacion_juego[16] }}</td>
 			</tr>
 		</table>
 	</div>
@@ -107,27 +107,27 @@
 		<table>
 			<tr>
 				<th>{{ traducciones['ENTRETENIMIENTO'][idioma] }}</th>
-				<td>{{ informacion_juego[18] }}</td>
+				<td>{{ informacion_juego[17] }}</td>
 			</tr>
 			<tr>
 				<th>{{ traducciones['APRENDIZAJE'][idioma] }}</th>
-				<td>{{ informacion_juego[19] }}</td>
+				<td>{{ informacion_juego[18] }}</td>
 			</tr>
 			<tr>
 				<th>{{ traducciones['COMPLEJIDAD_ALUMNO'][idioma] }}</th>
-				<td>{{ informacion_juego[20] }}</td>
+				<td>{{ informacion_juego[19] }}</td>
 			</tr>
 			<tr>
 				<th>{{ traducciones['COMPLEJIDAD_INSTRUCTORES'][idioma] }}</th>
-				<td>{{ informacion_juego[21] }}</td>
+				<td>{{ informacion_juego[20] }}</td>
 			</tr>
 		</table>
 	</div>
-	
-	{% if informacion_juego[22] %}
+
+	{% if informacion_juego[21] %}
 		<h1>{{ traducciones['TITULO-VIDEO'][idioma] }}</h1>
 		<div class="centrar-video">
-			<iframe width="560" height="315" src="https://www.youtube.com/embed/{{ informacion_juego[22].split('v=')[-1] }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/{{ informacion_juego[21].split('v=')[-1] }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 		</div>
 	{% endif %}
 </body>

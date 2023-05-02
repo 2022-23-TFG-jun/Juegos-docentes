@@ -30,6 +30,11 @@ def cargar_traducciones_visualizar_juego(idioma):
         traducciones = json.load(f)
     return traducciones
 
+def cargar_traducciones_modificar_juego(idioma):
+    with open('translations/translations-modificar-juego.json', encoding='utf-8') as f:
+        traducciones = json.load(f)
+    return traducciones
+
 def cargar_traducciones_errores(idioma):
     with open('translations/translations-errores.json', encoding='utf-8') as f:
         traducciones = json.load(f)

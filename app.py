@@ -9,7 +9,7 @@ from src.busqueda import obtener_resultados_busqueda
 from datetime import datetime, timedelta
 from unidecode import unidecode
 import math
-from translations.translations import cargar_traducciones_inicio, cargar_traducciones_login, cargar_traducciones_registro, cargar_traducciones_menu_juegos,  cargar_traducciones_añadir_juego, cargar_traducciones_visualizar_juego, cargar_traducciones_errores
+from translations.translations import cargar_traducciones_inicio, cargar_traducciones_login, cargar_traducciones_registro, cargar_traducciones_menu_juegos,  cargar_traducciones_añadir_juego, cargar_traducciones_visualizar_juego, cargar_traducciones_errores, cargar_traducciones_modificar_juego
 
 
 app = Flask(__name__)
@@ -319,8 +319,6 @@ def añadir_juego_post():
     idiomaN = request.form['idiomaN']
     enlace = request.form['enlace']
     puntuacion = request.form['puntuacion']
-    fecha = datetime.now()
-    id_usuario = current_user.id
 
     disciplina = request.form['disciplina']
     naturaleza = request.form['naturaleza']
@@ -344,10 +342,13 @@ def añadir_juego_post():
     
     youtube_url = request.form['youtube_url']
 
+    fecha_creacion = datetime.now()
+    id_usuario_creacion = current_user.id
+
     # Obtener idioma elegido
     idioma = request.args.get('idioma', 'es')
 
-    Juego.crear_juego(nombre_juego, descripcion, idiomaN, enlace, puntuacion, fecha, id_usuario, disciplina, naturaleza, precio, instrucciones, notas_instructor, objetivos, espacio_control, objetivos_principales, objetivos_secundarios, estructura_sesiones, aspectos_adicionales, entretenimiento, aprendizaje, complejidad_alumno, complejidad_instructores, youtube_url)
+    Juego.crear_juego(nombre_juego, descripcion, idiomaN, enlace, puntuacion, disciplina, naturaleza, precio, instrucciones, notas_instructor, objetivos, espacio_control, objetivos_principales, objetivos_secundarios, estructura_sesiones, aspectos_adicionales, entretenimiento, aprendizaje, complejidad_alumno, complejidad_instructores, youtube_url, fecha_creacion, id_usuario_creacion)
 
     #return redirect('/menu_juegos')
     return redirect(url_for('menu_juegos_get', idioma=idioma))
@@ -382,6 +383,85 @@ def visualizar_juego_get():
     conn.close()
 
     return render_template('visualizar_juego.html', informacion_juego=informacion_juego, traducciones=traducciones, idioma=idioma)
+
+@app.route('/modificar_juego', methods=['GET'])
+@login_required
+def modificar_juego_get():
+    # Obtener id del juego elegido
+    id_juego = request.args.get('id')
+
+    # Obtener idioma elegido
+    idioma = request.args.get('idioma', 'es')
+
+    #Obtener traducciones para el idioma específico
+    traducciones = cargar_traducciones_modificar_juego(idioma)
+
+    # Establecer la conexión a la base de datos
+    conn = conectar()
+
+    # Crear un cursor para ejecutar la consulta
+    cur = conn.cursor()
+
+    # Consultar datos del juego
+    cur.execute("SELECT * FROM schema_juegos_docentes.juegos WHERE id = %s", (id_juego,))
+    
+    # Obtener el resultado de la consulta
+    informacion_juego = cur.fetchone()
+    
+    # Cerrar el cursor y la conexión a la base de datos
+    cur.close()
+    conn.close()
+
+    return render_template('modificar_juego.html', informacion_juego=informacion_juego, traducciones=traducciones, idioma=idioma)
+
+@app.route('/modificar_juego', methods=['POST'])
+@login_required
+def modificar_juego_post():
+    # Obtener los datos del formulario
+    nombre_juego = request.form['nombre_juego']
+    descripcion = request.form['descripcion']
+    idiomaN = request.form['idiomaN']
+    enlace = request.form['enlace']
+    puntuacion = request.form['puntuacion']
+
+    disciplina = request.form['disciplina']
+    naturaleza = request.form['naturaleza']
+    precio = request.form['precio']
+    instrucciones = request.form['instrucciones']
+    notas_instructor = request.form['notas_instructor']
+
+    objetivos = request.form['objetivos']
+    espacio_control = request.form['espacio_control']
+
+    objetivos_principales = request.form['objetivos_principales']
+    objetivos_secundarios = request.form['objetivos_secundarios']
+
+    estructura_sesiones = request.form['estructura_sesiones']
+    aspectos_adicionales = request.form['aspectos_adicionales']
+
+    entretenimiento = request.form['entretenimiento']
+    aprendizaje = request.form['aprendizaje']
+    complejidad_alumno = request.form['complejidad_alumno']
+    complejidad_instructores = request.form['complejidad_instructores']
+    
+    youtube_url = request.form['youtube_url']
+
+    # Obtener id del juego elegido
+    id_juego = request.args.get('id')
+
+    print(id_juego)
+
+    fecha_modificacion = datetime.now()
+    id_usuario_modificacion = current_user.id
+
+    # Obtener idioma elegido
+    idioma = request.args.get('idioma', 'es')
+    
+    Juego.modificar_juego(nombre_juego, descripcion, idiomaN, enlace, puntuacion, disciplina, naturaleza, precio, instrucciones, notas_instructor, objetivos, espacio_control, objetivos_principales, objetivos_secundarios, estructura_sesiones, aspectos_adicionales, entretenimiento, aprendizaje, complejidad_alumno, complejidad_instructores, youtube_url, fecha_modificacion, id_usuario_modificacion, id_juego)
+
+
+    #return redirect('/menu_juegos')
+    return redirect(url_for('menu_juegos_get', idioma=idioma))
 
 @app.route('/logout')
 @login_required

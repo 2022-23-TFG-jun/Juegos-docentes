@@ -11,8 +11,8 @@
     <button class="btn-header">Acerca de</button>
     <button class="btn-header">Contacto</button>
     <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" class="img-UBU">
-    <a href="añadir_juego?idioma={{idioma}}" class="btn-login">Añadir juego</a>
-    <a href="logout" class="btn-login">Cerrar sesión</a>
+    <a href="añadir_juego?idioma={{idioma}}" class="btn-login">{{ traducciones['BTN-AÑADIR'][idioma] }}</a>
+    <a href="logout" class="btn-login">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
   </header>
 
   <h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
@@ -79,9 +79,15 @@
           </ul>
 
           <form class="form-flecha" method="get" action="{{ url_for('visualizar_juego_get') }}">
-            <input type="hidden" name="id" value="{{ juego[0]}}">
+            <input type="hidden" name="idioma" value="{{ idioma }}">
+            <input type="hidden" name="id" value="{{ juego[0] }}">
+            <button type="submit" class="btn-login">{{ traducciones['BTN-INFO'][idioma] }}</button>
+          </form>
+
+          <form class="form-flecha" method="get" action="{{ url_for('modificar_juego_get') }}">
             <input type="hidden" name="idioma" value="{{ idioma}}">
-            <button type="submit" class="btn-login">{{ traducciones['BTON-INFO'][idioma] }}</button>
+            <input type="hidden" name="id" value="{{ juego[0]}}">
+            <button type="submit" class="btn-login">{{ traducciones['BTN-MODIFICAR'][idioma] }}</button>
           </form>
 
       </div>
@@ -105,11 +111,16 @@
           </ul>
 
           <form class="form-flecha" method="get" action="{{ url_for('visualizar_juego_get') }}">
-            <input type="hidden" name="id" value="{{ juego[0]}}">
             <input type="hidden" name="idioma" value="{{ idioma}}">
-            <button type="submit" class="btn-login">{{ traducciones['BTON-INFO'][idioma] }}</button>
+            <input type="hidden" name="id" value="{{ juego[0]}}">
+            <button type="submit" class="btn-login">{{ traducciones['BTN-INFO'][idioma] }}</button>
           </form>
-        
+
+          <form class="form-flecha" method="get" action="{{ url_for('modificar_juego_get') }}">
+            <input type="hidden" name="idioma" value="{{ idioma}}">
+            <input type="hidden" name="id" value="{{ juego[0]}}">
+            <button type="submit" class="btn-login">{{ traducciones['BTN-MODIFICAR'][idioma] }}</button>
+          </form>
       </div>
       {% endfor %}
     {% endif %}
