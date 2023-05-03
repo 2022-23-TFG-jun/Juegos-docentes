@@ -10,6 +10,7 @@ from datetime import datetime, timedelta
 from unidecode import unidecode
 import math
 from translations.translations import cargar_traducciones_inicio, cargar_traducciones_login, cargar_traducciones_registro, cargar_traducciones_menu_juegos,  cargar_traducciones_añadir_juego, cargar_traducciones_visualizar_juego, cargar_traducciones_errores, cargar_traducciones_modificar_juego
+from flask import session
 
 
 app = Flask(__name__)
@@ -96,8 +97,6 @@ def login_post():
 
     # Verificar si se encontró un usuario y si la contraseña es correcta
     if not usuario_db or not check_password_hash(usuario_db[5], contraseña):
-        # error = "Nombre de usuario o contraseña incorrectos"
-
         #Obtener traducciones de errores para el idioma específico
         error_login_incorrecto = cargar_traducciones_errores(idioma)
         
@@ -111,13 +110,10 @@ def login_post():
             usuarios_bloqueados[usuario] = datetime.now() + timedelta(seconds=app.config['LOGIN_BLOCK_DURATION'])
 
         if intentos_login[usuario] > 2:
-            # error = "Nombre de usuario o contraseña incorrectos. Varios intentos consecutivos fallidos. Cuenta bloqueada durante 60 segundos"
-            
             #Obtener traducciones de errores para el idioma específico
             error_login_repetido = cargar_traducciones_errores(idioma)
             return render_template('login.html', error_login_repetido=error_login_repetido, idioma=idioma, traducciones=traducciones)
         
-        #return render_template('login.html', error=error) 
         return render_template('login.html', error_login_incorrecto=error_login_incorrecto, idioma=idioma, traducciones=traducciones)
 
     # Si son correctos, reseteamos el contador de intentos fallidos
@@ -128,7 +124,11 @@ def login_post():
     usuario = Usuario(usuario_db[0], usuario_db[1], usuario_db[2],  usuario_db[3], usuario_db[4], usuario_db[5], usuario_db[6])    
     login_user(usuario)
 
-    
+    rol_usuario_autenticado = usuario_db[6]
+
+    # Almacenar el rol del usuario autenticado en la sesión
+    session['rol_usuario'] = rol_usuario_autenticado
+
     return redirect(url_for('menu_juegos_get', idioma=idioma))
 
 @app.route('/registro', methods=['GET'])
@@ -174,10 +174,6 @@ def registro_post():
     conn.close()
 
     # Si el resultado no es None, significa que el nombre de usuario ya existe
-    # if usuario_existe is not None:
-     #   error = "El nombre de usuario ya existe"
-      #  return render_template('registro.html', error=error)
-    
     if usuario_existe is not None:
         #Obtener traducciones de errores para el idioma específico
         error_usuario_existe = cargar_traducciones_errores(idioma)
@@ -190,17 +186,12 @@ def registro_post():
     and any(char in "!@#$%^&*()-+?_=,<>/" for char in contraseña) 
     and len(contraseña) >= 8
     ):
-        # error = "La contraseña debe tener al menos 8 caracteres, un número, una mayúscula y un símbolo"
-        # return render_template('registro.html', error=error)
-    
         #Obtener traducciones de errores para el idioma específico
         error_contraseña_condiciones = cargar_traducciones_errores(idioma)
         return render_template('registro.html', error_contraseña_condiciones=error_contraseña_condiciones, idioma=idioma, traducciones=traducciones)
 
     # Comprobar que la contraseña y la confirmación coinciden
     if contraseña != confirmar_contraseña:
-        #error = "Las contraseñas no coinciden"
-        #return render_template('registro.html', error=error)
         #Obtener traducciones de errores para el idioma específico
         error_contraseñas_no_coinciden = cargar_traducciones_errores(idioma)
         return render_template('registro.html', error_contraseñas_no_coinciden=error_contraseñas_no_coinciden, idioma=idioma, traducciones=traducciones)
@@ -251,7 +242,14 @@ def menu_juegos_get():
     cur.close()
     conn.close()
 
-    return render_template('menu_juegos.html', juegos=juegos, pagina_actual=pagina_actual, total_paginas=total_paginas, traducciones=traducciones, idioma=idioma)
+    # Obtener el rol del usuario autenticado desde la sesión
+    rol_usuario_autenticado = session['rol_usuario']
+
+    #Comprueba rol de usuario autenticado para obtener funciones específicas
+    if rol_usuario_autenticado == 'usuario' or rol_usuario_autenticado == 'administrador':
+        return render_template('menu_juegos_usuario.html', juegos=juegos, pagina_actual=pagina_actual, total_paginas=total_paginas, traducciones=traducciones, idioma=idioma)
+    else:
+        return render_template('menu_juegos_profesor.html', juegos=juegos, pagina_actual=pagina_actual, total_paginas=total_paginas, traducciones=traducciones, idioma=idioma)
     
 @app.route('/menu_juegos', methods=['POST'])
 @login_required
@@ -290,14 +288,24 @@ def menu_juegos_post():
     # Calcular el número total de páginas
     total_paginas = math.ceil(total_juegos / juegos_por_pagina)
 
+    # Obtener el rol del usuario autenticado desde la sesión
+    rol_usuario_autenticado = session['rol_usuario']
+
     if resultados_busqueda:
-        return render_template('menu_juegos.html', resultados_busqueda=resultados_busqueda, pagina_actual=pagina_actual, total_paginas=total_paginas, busqueda=busqueda, idiomaF=idiomaF, puntuacion=puntuacion, traducciones=traducciones, idioma=idioma)
+        #Comprueba rol de usuario autenticado para obtener funciones específicas
+        if rol_usuario_autenticado == 'usuario' or rol_usuario_autenticado == 'administrador':
+            return render_template('menu_juegos_usuario.html', resultados_busqueda=resultados_busqueda, pagina_actual=pagina_actual, total_paginas=total_paginas, busqueda=busqueda, idiomaF=idiomaF, puntuacion=puntuacion, traducciones=traducciones, idioma=idioma)
+        else:
+            return render_template('menu_juegos_profesor.html', resultados_busqueda=resultados_busqueda, pagina_actual=pagina_actual, total_paginas=total_paginas, busqueda=busqueda, idiomaF=idiomaF, puntuacion=puntuacion, traducciones=traducciones, idioma=idioma)
     else:
-        #error = "No se encontraron resultados de la búsqueda"
         #Obtener traducciones de errores para el idioma específico
         error_busqueda = cargar_traducciones_errores(idioma)
-        
-        return render_template('menu_juegos.html', error_busqueda=error_busqueda, pagina_actual=pagina_actual, total_paginas=total_paginas, idioma=idioma, traducciones=traducciones)
+    
+        #Comprueba rol de usuario autenticado para obtener funciones específicas
+        if rol_usuario_autenticado == 'usuario' or rol_usuario_autenticado == 'administrador':
+            return render_template('menu_juegos_usuario.html', error_busqueda=error_busqueda, pagina_actual=pagina_actual, total_paginas=total_paginas, idioma=idioma, traducciones=traducciones)
+        else:
+            return render_template('menu_juegos_profesor.html', error_busqueda=error_busqueda, pagina_actual=pagina_actual, total_paginas=total_paginas, idioma=idioma, traducciones=traducciones)
 
 @app.route('/añadir_juego', methods=['GET'])
 @login_required
@@ -309,7 +317,7 @@ def añadir_juego_get():
     traducciones = cargar_traducciones_añadir_juego(idioma)
 
     return render_template('añadir_juego.html', traducciones=traducciones, idioma=idioma)
-
+    
 @app.route('/añadir_juego', methods=['POST'])
 @login_required
 def añadir_juego_post():
@@ -350,13 +358,11 @@ def añadir_juego_post():
 
     Juego.crear_juego(nombre_juego, descripcion, idiomaN, enlace, puntuacion, disciplina, naturaleza, precio, instrucciones, notas_instructor, objetivos, espacio_control, objetivos_principales, objetivos_secundarios, estructura_sesiones, aspectos_adicionales, entretenimiento, aprendizaje, complejidad_alumno, complejidad_instructores, youtube_url, fecha_creacion, id_usuario_creacion)
 
-    #return redirect('/menu_juegos')
     return redirect(url_for('menu_juegos_get', idioma=idioma))
 
 @app.route('/visualizar_juego', methods=['GET'])
 @login_required
 def visualizar_juego_get():
-
     # Obtener id del juego elegido
     id_juego = request.args.get('id')
 
@@ -449,8 +455,6 @@ def modificar_juego_post():
     # Obtener id del juego elegido
     id_juego = request.args.get('id')
 
-    print(id_juego)
-
     fecha_modificacion = datetime.now()
     id_usuario_modificacion = current_user.id
 
@@ -459,8 +463,6 @@ def modificar_juego_post():
     
     Juego.modificar_juego(nombre_juego, descripcion, idiomaN, enlace, puntuacion, disciplina, naturaleza, precio, instrucciones, notas_instructor, objetivos, espacio_control, objetivos_principales, objetivos_secundarios, estructura_sesiones, aspectos_adicionales, entretenimiento, aprendizaje, complejidad_alumno, complejidad_instructores, youtube_url, fecha_modificacion, id_usuario_modificacion, id_juego)
 
-
-    #return redirect('/menu_juegos')
     return redirect(url_for('menu_juegos_get', idioma=idioma))
 
 @app.route('/logout')
