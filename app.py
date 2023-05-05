@@ -575,6 +575,80 @@ def administrar_solicitudes_post():
     # return render_template('administrar_solicitudes.html') #, traducciones=traducciones, idioma=idioma)
     return redirect(url_for('administrar_solicitudes_get'))#, idioma=idioma))
 
+@app.route('/administrar_usuarios', methods=['GET'])
+@login_required
+def administrar_usuarios_get():
+    # Obtener idioma elegido
+    # idioma = request.args.get('idioma', 'es')
+
+    #Obtener traducciones para el idioma específico
+    #traducciones = cargar_traducciones_visualizar_juego(idioma)
+ 
+    # Establecer la conexión a la base de datos
+    conn = conectar()
+
+    # Crear un cursor para ejecutar la consulta
+    cur = conn.cursor()
+
+    # Consultar datos del juego
+    cur.execute("SELECT id, usuario, nombre, apellido, institucion, rol FROM schema_juegos_docentes.usuarios")
+
+    # Obtener el resultado de la consulta
+    usuarios = cur.fetchall()
+    
+    # Cerrar el cursor y la conexión a la base de datos
+    cur.close()
+    conn.close()
+
+    return render_template('administrar_usuarios.html', usuarios=usuarios)#, traducciones=traducciones, idioma=idioma)
+
+@app.route('/administrar_usuarios', methods=['POST'])
+@login_required
+def administrar_usuarios_post():
+    # Obtener id del usuario a eliminar
+    id_usuario = request.form['id_usuario']
+
+    Usuario.eliminar_usuario(id_usuario)
+
+    return redirect(url_for('administrar_usuarios_get'))#, idioma=idioma))
+
+@app.route('/administrar_juegos', methods=['GET'])
+@login_required
+def administrar_juegos_get():
+    # Obtener idioma elegido
+    # idioma = request.args.get('idioma', 'es')
+
+    #Obtener traducciones para el idioma específico
+    #traducciones = cargar_traducciones_visualizar_juego(idioma)
+
+    # Establecer la conexión a la base de datos
+    conn = conectar()
+
+    # Crear un cursor para ejecutar la consulta
+    cur = conn.cursor()
+
+    # Consultar datos del juego
+    cur.execute("SELECT id, nombre_juego, idioma, descripcion FROM schema_juegos_docentes.juegos")
+
+    # Obtener el resultado de la consulta
+    juegos = cur.fetchall()
+    
+    # Cerrar el cursor y la conexión a la base de datos
+    cur.close()
+    conn.close()
+
+    return render_template('administrar_juegos.html', juegos=juegos)#, traducciones=traducciones, idioma=idioma)
+
+@app.route('/administrar_juegos', methods=['POST'])
+@login_required
+def administrar_juegos_post():
+    # Obtener id del usuario a eliminar
+    id_juego = request.form['id_juego']
+
+    Juego.eliminar_juego(id_juego)
+
+    return redirect(url_for('administrar_juegos_get'))#, idioma=idioma))
+
 @app.route('/logout')
 @login_required
 def logout():

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Administrar usuarios</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+
+  <body>
+    <header>
+      <button class="btn-header">Acerca de</button>
+      <button class="btn-header">Contacto</button>
+      <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" class="img-UBU">
+    </header>
+
+    <h1>Administración de usuarios</h1>
+    <div class="card_visualizar_juego">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Usuario</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Institución</th>
+            <th>Rol</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for usuario in usuarios %}
+            <tr>
+              <td>{{ usuario[0] }}</td>
+              <td>{{ usuario[1] }}</td>
+              <td>{{ usuario[2] }}</td>
+              <td>{{ usuario[3] }}</td>
+              <td>{{ usuario[4] }}</td>
+              <td>{{ usuario[5] }}</td>
+              <td>
+                <form class="form-flecha" action="{{ url_for('administrar_usuarios_post') }}" method="POST">
+                  <input type="hidden" name="id_usuario" value="{{ usuario[0] }}">
+                  <button class="boton-eliminar-usuario" type="submit">Eliminar</button>
+                </form>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <footer>
+      <div class="left-text-footer">Universidad de Burgos © Trabajo de Fin de Grado - 2023</div>
+      <img src="/static/img/escudo-politecnica.gif" alt="Escudo ingeniería informática" class="img-escudo">
+      <div class="right-text-footer">Estela Victoria Ballester Delgado</div>
+    </footer>
+  </body>
+</html>

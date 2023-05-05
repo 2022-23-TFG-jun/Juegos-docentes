@@ -45,3 +45,10 @@ class Usuario(UserMixin):
 
     def comprobar_contraseña(self, contraseña):
         return check_password_hash(self.contraseña, contraseña)
+
+    @staticmethod
+    def eliminar_usuario(id_usuario):
+        db = conectar()
+        cursor = db.cursor()
+        cursor.execute("DELETE FROM schema_juegos_docentes.usuarios WHERE id = %s", (id_usuario,))
+        db.commit()
