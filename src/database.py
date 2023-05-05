@@ -36,6 +36,7 @@ def crear_tablas():
     # Crear el tipo de datos ENUM
     # cursor.execute("DROP TYPE IF EXISTS schema_juegos_docentes.genero_enum;")
     # cursor.execute("DROP TABLE schema_juegos_docentes.juegos CASCADE;")
+    
     # cursor.execute("DROP TYPE IF EXISTS schema_juegos_docentes.genero_enum;")
     # cursor.execute("CREATE TYPE schema_juegos_docentes.genero_enum AS ENUM ('Masculino', 'Femenino', 'Prefiero no contestar');")
     
@@ -91,6 +92,14 @@ def crear_tablas():
         "fecha_modificacion TIMESTAMP DEFAULT NOW());"
     )
 
+    # Tabla de solicitudes para obtener el rol de profesor
+    cursor.execute(
+    "CREATE TABLE IF NOT EXISTS schema_juegos_docentes.solicitudes "
+    "(id SERIAL PRIMARY KEY, "
+    "estado VARCHAR(50) NOT NULL, "
+    "id_usuario_solicitud INTEGER REFERENCES schema_juegos_docentes.usuarios(id), "
+    "fecha_solicitud TIMESTAMP DEFAULT NOW());"
+    )
 
     # Tabla de puntuaciones
     # cursor.execute("CREATE TABLE IF NOT EXISTS schema_juegos_docentes.juegos_puntuaciones (id SERIAL PRIMARY KEY,id_usuario INTEGER REFERENCES schema_juegos_docentes.usuarios(id), id_juego INTEGER REFERENCES schema_juegos_docentes.juegos(id), puntuacion INTEGER,fecha TIMESTAMP DEFAULT NOW());")

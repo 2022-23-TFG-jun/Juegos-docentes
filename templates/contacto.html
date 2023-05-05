@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contacto</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <button class="btn-header">Acerca de</button>
+        <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" class="img-UBU">
+    </header>
+
+    <main>
+        <h1>¿Eres profesor? Solicita el rol de profesor para poder gestionar los juegos
+        </h1>
+
+    </main>
+
+    {% if mensaje_solicitud %}
+        <p>{{ mensaje_solicitud }}</p>
+    {% else %}
+        <form action="/solicitud_profesor" method="POST">
+            <input type="submit" value="Solicitar rol de profesor">
+        </form>
+    {% endif %}
+  
+    <footer>
+        <div class="left-text-footer">Universidad de Burgos © Trabajo de Fin de Grado - 2023</div>
+        <img src="/static/img/escudo-politecnica.gif" alt="Escudo ingeniería informática" class="img-escudo">
+        <div class="right-text-footer">Estela Victoria Ballester Delgado</div>
+    </footer>
+</body>
+</html>

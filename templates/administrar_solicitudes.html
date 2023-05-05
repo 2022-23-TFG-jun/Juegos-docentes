@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Administrar solicitudes</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+	<header>
+		<button class="btn-header">Acerca de</button>
+		<button class="btn-header">Contacto</button>
+		<img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" class="img-UBU">
+	</header>
+
+    <h1>Administración de las solicitudes del rol de profesor</h1>
+
+	<div class="card_visualizar_juego">
+        <table>
+            <thead>
+              <tr>
+                <th>Id solicitud</th>
+                <th>Estado</th>
+                <th>Id usuario</th>
+                <th>Fecha</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for solicitud in solicitudes %}
+              <tr>
+                <td>{{ solicitud[0] }}</td>
+                <td>{{ solicitud[1] }}</td>
+                <td>{{ solicitud[2] }}</td>
+                <td>{{ solicitud[3] }}</td>
+                <td>
+                  <form class="form-flecha" action="{{ url_for('administrar_solicitudes_post') }}" method="POST">
+                    <input type="hidden" name="id_usuario_solicitud" value="{{ solicitud[0] }}">
+                    <input type="hidden" name="accion" value="aceptar">
+                    <button class="boton-aceptar" type="submit">Aceptar</button>
+                  </form>
+                  <form class="form-flecha" action="{{ url_for('administrar_solicitudes_post') }}" method="POST">
+                    <input type="hidden" name="id_usuario_solicitud" value="{{ solicitud[0] }}">
+                    <input type="hidden" name="accion" value="rechazar">
+                    <button class="boton-rechazar" type="submit">Rechazar</button>
+                  </form>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+	</div>
+</body>
+</html>

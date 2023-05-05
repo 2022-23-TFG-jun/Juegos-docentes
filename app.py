@@ -5,11 +5,12 @@ from werkzeug.security import check_password_hash
 from src.database import conectar, crear_tablas, tabla_usuarios_existe
 from src.usuario import Usuario
 from src.juego import Juego
+from src.solicitud import Solicitud
 from src.busqueda import obtener_resultados_busqueda
 from datetime import datetime, timedelta
 from unidecode import unidecode
 import math
-from translations.translations import cargar_traducciones_inicio, cargar_traducciones_login, cargar_traducciones_registro, cargar_traducciones_menu_juegos,  cargar_traducciones_añadir_juego, cargar_traducciones_visualizar_juego, cargar_traducciones_errores, cargar_traducciones_modificar_juego
+from translations.translations import cargar_traducciones_inicio, cargar_traducciones_login, cargar_traducciones_registro, cargar_traducciones_menu_juegos,  cargar_traducciones_añadir_juego, cargar_traducciones_visualizar_juego, cargar_traducciones_errores, cargar_traducciones_modificar_juego, cargar_traducciones_administrar_solicitudes
 from flask import session
 
 
@@ -246,8 +247,10 @@ def menu_juegos_get():
     rol_usuario_autenticado = session['rol_usuario']
 
     #Comprueba rol de usuario autenticado para obtener funciones específicas
-    if rol_usuario_autenticado == 'usuario' or rol_usuario_autenticado == 'administrador':
+    if rol_usuario_autenticado == 'usuario':
         return render_template('menu_juegos_usuario.html', juegos=juegos, pagina_actual=pagina_actual, total_paginas=total_paginas, traducciones=traducciones, idioma=idioma)
+    elif rol_usuario_autenticado == 'administrador':
+            return render_template('menu_juegos_administrador.html', juegos=juegos, pagina_actual=pagina_actual, total_paginas=total_paginas, traducciones=traducciones, idioma=idioma)
     else:
         return render_template('menu_juegos_profesor.html', juegos=juegos, pagina_actual=pagina_actual, total_paginas=total_paginas, traducciones=traducciones, idioma=idioma)
     
@@ -293,8 +296,10 @@ def menu_juegos_post():
 
     if resultados_busqueda:
         #Comprueba rol de usuario autenticado para obtener funciones específicas
-        if rol_usuario_autenticado == 'usuario' or rol_usuario_autenticado == 'administrador':
+        if rol_usuario_autenticado == 'usuario':
             return render_template('menu_juegos_usuario.html', resultados_busqueda=resultados_busqueda, pagina_actual=pagina_actual, total_paginas=total_paginas, busqueda=busqueda, idiomaF=idiomaF, puntuacion=puntuacion, traducciones=traducciones, idioma=idioma)
+        elif rol_usuario_autenticado == 'administrador':
+            return render_template('menu_juegos_administrador.html', resultados_busqueda=resultados_busqueda, pagina_actual=pagina_actual, total_paginas=total_paginas, busqueda=busqueda, idiomaF=idiomaF, puntuacion=puntuacion, traducciones=traducciones, idioma=idioma)
         else:
             return render_template('menu_juegos_profesor.html', resultados_busqueda=resultados_busqueda, pagina_actual=pagina_actual, total_paginas=total_paginas, busqueda=busqueda, idiomaF=idiomaF, puntuacion=puntuacion, traducciones=traducciones, idioma=idioma)
     else:
@@ -302,8 +307,10 @@ def menu_juegos_post():
         error_busqueda = cargar_traducciones_errores(idioma)
     
         #Comprueba rol de usuario autenticado para obtener funciones específicas
-        if rol_usuario_autenticado == 'usuario' or rol_usuario_autenticado == 'administrador':
+        if rol_usuario_autenticado == 'usuario':
             return render_template('menu_juegos_usuario.html', error_busqueda=error_busqueda, pagina_actual=pagina_actual, total_paginas=total_paginas, idioma=idioma, traducciones=traducciones)
+        elif rol_usuario_autenticado == 'administrador':
+            return render_template('menu_juegos_administrador.html', error_busqueda=error_busqueda, pagina_actual=pagina_actual, total_paginas=total_paginas, idioma=idioma, traducciones=traducciones)
         else:
             return render_template('menu_juegos_profesor.html', error_busqueda=error_busqueda, pagina_actual=pagina_actual, total_paginas=total_paginas, idioma=idioma, traducciones=traducciones)
 
@@ -464,6 +471,109 @@ def modificar_juego_post():
     Juego.modificar_juego(nombre_juego, descripcion, idiomaN, enlace, puntuacion, disciplina, naturaleza, precio, instrucciones, notas_instructor, objetivos, espacio_control, objetivos_principales, objetivos_secundarios, estructura_sesiones, aspectos_adicionales, entretenimiento, aprendizaje, complejidad_alumno, complejidad_instructores, youtube_url, fecha_modificacion, id_usuario_modificacion, id_juego)
 
     return redirect(url_for('menu_juegos_get', idioma=idioma))
+
+@app.route('/solicitud_profesor', methods=['GET'])
+def solicitud_profesor_get():
+    # Obtener datos del usuario que realiza la solicitud
+    id_usuario_solicitud = current_user.id
+
+    # Establecer la conexión a la base de datos
+    conn = conectar()
+
+    # Crear un cursor para ejecutar la consulta
+    cur = conn.cursor()
+
+    # Obtener solicitud pendiente
+    cur.execute("SELECT * FROM schema_juegos_docentes.solicitudes WHERE id_usuario_solicitud = %s AND estado = 'PENDIENTE'", (id_usuario_solicitud,))
+    solicitud = cur.fetchone()
+   
+    # Cerrar el cursor y la conexión a la base de datos
+    cur.close()
+    conn.close()
+
+    # Si el usuario no tiene una solicitud pendiente, muestra el botón para la solicitud
+    if solicitud is None: 
+        return render_template('contacto.html')
+    
+    # Si el usuario tiene una solicitud pendiente ya no puede solicitar otra vez la solcitud y muestra el mensaje
+    mensaje_solicitud = "La solicitud para el rol de profesor ha sido enviada con éxito."
+    return render_template('contacto.html', mensaje_solicitud=mensaje_solicitud)
+
+@app.route('/solicitud_profesor', methods=['POST'])
+def solicitud_profesor_post():
+    # Obtener idioma elegido
+    # idioma = request.args.get('idioma', 'es')
+
+    # Obtener traducciones para el idioma específico
+    # traducciones = cargar_traducciones_menu_juegos(idioma)
+    
+    # Obtener datos de la fecha-hora y del usuario que realiza la psolicitud
+    fecha_solicitud = datetime.now()
+    id_usuario_solicitud = current_user.id
+
+    # Crear solicitud
+    Solicitud.rol_profesor(id_usuario_solicitud, fecha_solicitud)
+
+    # Mensaje de solicitud exitosa
+    mensaje_solicitud = "La solicitud para el rol de profesor ha sido enviada con éxito."
+    
+    return render_template('contacto.html', mensaje_solicitud=mensaje_solicitud)
+
+
+@app.route('/administracion', methods=['GET'])
+@login_required
+def administracion_get():
+    return render_template('administracion.html')
+
+@app.route('/administrar_solicitudes', methods=['GET'])
+@login_required
+def administrar_solicitudes_get():
+    # Obtener idioma elegido
+    # idioma = request.args.get('idioma', 'es')
+
+    # Obtener traducciones para el idioma específico
+    # traducciones = cargar_traducciones_administrar_solicitudes(idioma)
+
+    # Establecer la conexión a la base de datos
+    conn = conectar()
+
+    # Crear un cursor para ejecutar la consulta
+    cur = conn.cursor()
+
+    # Consultar solicitudes
+    cur.execute("SELECT * FROM schema_juegos_docentes.solicitudes ORDER BY id")
+
+    # Obtener el resultado de la consulta
+    solicitudes = cur.fetchall()
+    
+    # Cerrar el cursor y la conexión a la base de datos
+    cur.close()
+    conn.close()
+
+    return render_template('administrar_solicitudes.html', solicitudes=solicitudes) #, traducciones=traducciones, idioma=idioma)
+    
+@app.route('/administrar_solicitudes', methods=['POST'])
+@login_required
+def administrar_solicitudes_post():
+    # Obtener idioma elegido
+    # idioma = request.args.get('idioma', 'es')
+
+    # Obtener traducciones para el idioma específico
+    # traducciones = cargar_traducciones_administrar_solicitudes(idioma)
+
+    # Obtener id del usuario que realizó la solicitud 
+    id_usuario_solicitud = request.form['id_usuario_solicitud']
+
+    # Obtener acción que realizó el administrador
+    accion = request.form['accion']
+
+    if accion == 'aceptar':
+        Solicitud.aceptar_solicitud(id_usuario_solicitud)
+    elif accion == 'rechazar':
+        Solicitud.rechazar_solicitud(id_usuario_solicitud)
+    
+    # return render_template('administrar_solicitudes.html') #, traducciones=traducciones, idioma=idioma)
+    return redirect(url_for('administrar_solicitudes_get'))#, idioma=idioma))
 
 @app.route('/logout')
 @login_required

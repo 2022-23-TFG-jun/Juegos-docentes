@@ -39,3 +39,8 @@ def cargar_traducciones_errores(idioma):
     with open('translations/translations-errores.json', encoding='utf-8') as f:
         traducciones = json.load(f)
     return traducciones
+
+def cargar_traducciones_administrar_solicitudes(idioma):
+    with open('translations/translations-administrar-solicitudes-rol.json', encoding='utf-8') as f:
+        traducciones = json.load(f)
+    return traducciones

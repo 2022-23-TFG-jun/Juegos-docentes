@@ -685,3 +685,35 @@ div.centrar-video {
     background-image: url("https://cdn.countryflags.com/thumbs/united-kingdom/flag-round-250.png");
 	transform: translate(2900%, -95%);
 }
+
+
+/*ESTILOS PARA BOTONES DE ACEPTAR Y RECHAZAR EN SOLICITUDES*/
+.boton-aceptar {
+    background-color: rgb(70, 208, 70);
+    color: white;
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: none;
+    margin-right: 1rem;
+	cursor: pointer;
+	transform: translate(-250%, 20%);
+}
+.boton-aceptar:hover {
+	background-color: #1f941b ;
+}
+
+.boton-rechazar {
+    background-color: rgb(217, 26, 26);
+    color: white;
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: none;
+	cursor: pointer;
+	transform: translate(-120%, -80%);
+}
+
+.boton-rechazar:hover {
+	background-color: #7c1515 ;
+}
