@@ -7,7 +7,7 @@ class Juego():
                  objetivos_principales, objetivos_secundarios,
                  estructura_sesiones, aspectos_adicionales,
                  entretenimiento, aprendizaje, complejidad_alumno, complejidad_instructores,
-                youtube_url, fecha_creacion, id_usuario_creacion, fecha_modificacion, id_usuario_modificacion,):
+                youtube_url, fecha_creacion, id_usuario_creacion, fecha_modificacion, id_usuario_modificacion, nombre_archivo):
 
         self.id_juego = id_juego
         self.nombre_juego = nombre_juego
@@ -43,6 +43,8 @@ class Juego():
 
         self.fecha_modificacion = fecha_modificacion
         self.id_usuario_modificacion = id_usuario_modificacion
+
+        self.nombre_archivo = nombre_archivo
     
     @staticmethod
     def crear_juego(nombre_juego, descripcion, idiomaN, enlace, puntuacion, disciplina, naturaleza, precio, 
@@ -52,6 +54,13 @@ class Juego():
         db = conectar()
         cursor = db.cursor()
         cursor.execute("INSERT INTO schema_juegos_docentes.juegos (nombre_juego, descripcion, idioma, enlace, puntuacion, disciplina, naturaleza, precio, instrucciones, notas_instructor, objetivos, espacio_control, objetivos_principales, objetivos_secundarios, estructura_sesiones, aspectos_adicionales, entretenimiento, aprendizaje, complejidad_alumno, complejidad_instructores, youtube_url, fecha_creacion, id_usuario_creacion) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (nombre_juego, descripcion, idiomaN, enlace, puntuacion, disciplina, naturaleza, precio, instrucciones, notas_instructor, objetivos, espacio_control, objetivos_principales, objetivos_secundarios, estructura_sesiones, aspectos_adicionales, entretenimiento, aprendizaje, complejidad_alumno, complejidad_instructores, youtube_url, fecha_creacion, id_usuario_creacion))
+        db.commit()
+    
+    @staticmethod
+    def añadir_instrucciones(archivo_instrucciones_jugador, id_juego):
+        db = conectar()
+        cursor = db.cursor()
+        cursor.execute("UPDATE schema_juegos_docentes.juegos SET archivo_instrucciones_jugador = %s WHERE id = %s", (archivo_instrucciones_jugador, id_juego))
         db.commit()
 
     @staticmethod

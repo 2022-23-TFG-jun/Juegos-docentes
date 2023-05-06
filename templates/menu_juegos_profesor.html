@@ -90,6 +90,12 @@
             <button type="submit" class="btn-login">{{ traducciones['BTN-MODIFICAR'][idioma] }}</button>
           </form>
 
+          <form class="form-flecha" method="get" action="{{ url_for('instrucciones_juego_get') }}">
+            <input type="hidden" name="idioma" value="{{ idioma}}">
+            <input type="hidden" name="id" value="{{ juego[0]}}">
+            <button type="submit" class="btn-login">Añadir instrucciones</button>
+          </form>
+
       </div>
       {% endfor %}
     {% else %}
@@ -120,6 +126,12 @@
             <input type="hidden" name="idioma" value="{{ idioma}}">
             <input type="hidden" name="id" value="{{ juego[0]}}">
             <button type="submit" class="btn-login">{{ traducciones['BTN-MODIFICAR'][idioma] }}</button>
+          </form>
+
+          <form class="form-flecha" method="get" action="{{ url_for('instrucciones_juego_get') }}">
+            <input type="hidden" name="idioma" value="{{ idioma}}">
+            <input type="hidden" name="id" value="{{ juego[0]}}">
+            <button type="submit" class="btn-login">Añadir instrucciones</button>
           </form>
       </div>
       {% endfor %}

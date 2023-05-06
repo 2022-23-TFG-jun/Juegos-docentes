@@ -48,6 +48,9 @@
 			<tr>
 				<th>{{ traducciones['ISNTRUCCIONES_JUGADOR'][idioma] }}</th>
 				<td>{{ informacion_juego[9] }}</td>
+				{% if informacion_juego[9] == "Sí" %}
+    				<td><a href="{{ url_for('descargar_instrucciones', filename=informacion_juego[26]) }}">Descargar instrucciones</a></td>
+				{% endif %}
 			</tr>
 			<tr>
 				<th>{{ traducciones['ISNTRUCCIONES_INSTRUCTOR'][idioma] }}</th>

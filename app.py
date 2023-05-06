@@ -12,10 +12,18 @@ from unidecode import unidecode
 import math
 from translations.translations import cargar_traducciones_inicio, cargar_traducciones_login, cargar_traducciones_registro, cargar_traducciones_menu_juegos,  cargar_traducciones_añadir_juego, cargar_traducciones_visualizar_juego, cargar_traducciones_errores, cargar_traducciones_modificar_juego, cargar_traducciones_administrar_solicitudes
 from flask import session
+import os
+from werkzeug.utils import secure_filename
+from flask import send_from_directory
+from flask import send_file
+
 
 
 app = Flask(__name__)
 app.secret_key = 'mysecretkey'
+
+# Carpeta para guardar archivos subidos
+app.config['UPLOAD_FOLDER'] = './uploads'
 
 # Configuración de la conexión a la base de datos
 with app.app_context():
@@ -366,6 +374,35 @@ def añadir_juego_post():
     Juego.crear_juego(nombre_juego, descripcion, idiomaN, enlace, puntuacion, disciplina, naturaleza, precio, instrucciones, notas_instructor, objetivos, espacio_control, objetivos_principales, objetivos_secundarios, estructura_sesiones, aspectos_adicionales, entretenimiento, aprendizaje, complejidad_alumno, complejidad_instructores, youtube_url, fecha_creacion, id_usuario_creacion)
 
     return redirect(url_for('menu_juegos_get', idioma=idioma))
+
+@app.route('/añadir_instrucciones', methods=['GET'])
+def instrucciones_juego_get():
+    return render_template('añadir_instrucciones.html')
+
+@app.route('/añadir_instrucciones', methods=['POST'])
+def instrucciones_juego_post():
+    # Obtener el archivo cargado
+    f = request.files['archivo_juego']
+    
+    # Obtener id del juego elegido
+    id_juego = request.args.get('id')
+    
+    filename = secure_filename(f.filename)
+
+    # Guardar el archivo cargado en la carpeta de carga
+    ruta_archivo = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    f.save(ruta_archivo)
+
+    Juego.añadir_instrucciones(filename, id_juego)
+
+    return redirect(url_for('menu_juegos_get'))
+
+@app.route('/descargar_instrucciones')
+def descargar_instrucciones():
+    filename = request.args.get('filename')
+    PATH = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    
+    return send_file(PATH, as_attachment=True)
 
 @app.route('/visualizar_juego', methods=['GET'])
 @login_required

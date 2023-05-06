@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Menú juegos</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <header>
+    <button class="btn-header">Acerca de</button>
+    <button class="btn-header">Contacto</button>
+    <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" class="img-UBU">
+  </header>
+  
+<h1>Carga de archivo</h1>
+<form action="/añadir_instrucciones?id={{ request.args.get('id') }}" method="POST" enctype="multipart/form-data">
+    <input type="file" name="archivo_juego" multiple>
+    <button type="submit">Cargar archivo</button>
+</form>
+
+<footer>
+    <div class="left-text-footer">Universidad de Burgos © Trabajo de Fin de Grado - 2023</div>
+    <img src="/static/img/escudo-politecnica.gif" alt="Escudo ingeniería informática" class="img-escudo">
+    <div class="right-text-footer">Estela Victoria Ballester Delgado</div>
+  </footer>
+</body>
+</html>

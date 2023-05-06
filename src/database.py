@@ -89,7 +89,11 @@ def crear_tablas():
         "fecha_creacion TIMESTAMP DEFAULT NOW(), "
         
         "id_usuario_modificacion INTEGER REFERENCES schema_juegos_docentes.usuarios(id), "
-        "fecha_modificacion TIMESTAMP DEFAULT NOW());"
+        "fecha_modificacion TIMESTAMP DEFAULT NOW(), "
+
+        "archivo_instrucciones_jugador VARCHAR(50), "
+        "archivo_instrucciones_instructor VARCHAR(50), "
+        "archivo_juego VARCHAR(50));"
     )
 
     # Tabla de solicitudes para obtener el rol de profesor
