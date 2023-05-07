@@ -38,5 +38,13 @@
     "BTN-CREAR": {
         "en": "Create Account",
         "es": "Crear cuenta"
+    },
+    "ACERCA": {
+        "en": "About",
+        "es": "Acerca de"
+    },
+    "FOOTER": {
+        "en": "University of Burgos © Final Degree Project - 2023",
+        "es": "Universidad de Burgos © Trabajo de Fin de Grado - 2023"
     }
   }

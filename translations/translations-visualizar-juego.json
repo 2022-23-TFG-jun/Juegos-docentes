@@ -104,9 +104,20 @@
         "en": "Complexity for new instructors",
         "es": "Complejidad para nuevos instructores"
     },
-
     "TITULO-VIDEO": {
         "en": "Video tutorial",
         "es": "Vídeo tutorial"
+    },
+    "DESCARGAR": {
+        "en": "Download instructions",
+        "es": "Descargar instrucciones"
+    },
+    "ACERCA": {
+        "en": "About",
+        "es": "Acerca de"
+    },
+    "FOOTER": {
+        "en": "University of Burgos © Final Degree Project - 2023",
+        "es": "Universidad de Burgos © Trabajo de Fin de Grado - 2023"
     }
   }

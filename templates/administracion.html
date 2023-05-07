@@ -7,12 +7,11 @@
 	
 	<body>
 		<header>
-			<button class="btn-header">Acerca de</button>
-			<button class="btn-header">Contacto</button>
+			<button class="btn-header">{{ traducciones['ACERCA'][idioma] }}</button>
 			<img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" class="img-UBU">
 	  	</header>
 
-		<h1>Bienvenido al panel de administración</h1>
+		<h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
 
 		<h3>Por favor, selecciona una opción de administración:</h3>
 		
@@ -20,20 +19,20 @@
 			<h4>Administración de usuarios</h4>
 			<!-- <a href="administrar_juegos?idioma={{idioma}}" class="btn-empezar">Administrar Juegos</a> -->
 		</div>
-		<a href="administrar_usuarios" class="btn-usuarios">Administrar Usuarios</a>
+		<a href="administrar_usuarios?idioma={{idioma}}" class="btn-usuarios">{{ traducciones['BTN-USUARIOS'][idioma] }}</a>
 
 		<div class="card_juegos">
 			<h4>Administración de juegos</h4>
 		</div>
-		<a href="administrar_juegos" class="btn-juegos">Administrar Juegos</a>
+		<a href="administrar_juegos?idioma={{idioma}}" class="btn-juegos">{{ traducciones['BTN-JUEGOS'][idioma] }}</a>
 
 		<div class="card_solicitudes">
 			<h4>Administración de solicitudes</h4>
 		</div>
-		<a href="administrar_solicitudes" class="btn-solicitudes">Administrar Solicitudes</a>
+		<a href="administrar_solicitudes?idioma={{idioma}}" class="btn-solicitudes">{{ traducciones['BTN-SOLICITUDES'][idioma] }}</a>
 
 		<footer>
-			<div class="left-text-footer">Universidad de Burgos © Trabajo de Fin de Grado - 2023</div>
+			<div class="left-text-footer">{{ traducciones['FOOTER'][idioma] }}</div>
 			<img src="/static/img/escudo-politecnica.gif" alt="Escudo ingeniería informática" class="img-escudo">
 			<div class="right-text-footer">Estela Victoria Ballester Delgado</div>
 		  </footer>

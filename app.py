@@ -10,14 +10,28 @@ from src.busqueda import obtener_resultados_busqueda
 from datetime import datetime, timedelta
 from unidecode import unidecode
 import math
-from translations.translations import cargar_traducciones_inicio, cargar_traducciones_login, cargar_traducciones_registro, cargar_traducciones_menu_juegos,  cargar_traducciones_añadir_juego, cargar_traducciones_visualizar_juego, cargar_traducciones_errores, cargar_traducciones_modificar_juego, cargar_traducciones_administrar_solicitudes
+from translations.translations import (
+    cargar_traducciones_inicio, 
+    cargar_traducciones_login, 
+    cargar_traducciones_registro, 
+    cargar_traducciones_menu_juegos, 
+    cargar_traducciones_añadir_juego, 
+    cargar_traducciones_visualizar_juego, 
+    cargar_traducciones_errores, 
+    cargar_traducciones_modificar_juego, 
+    cargar_traducciones_administrar_solicitudes, 
+    cargar_traducciones_añadir_instrucciones, 
+    cargar_traducciones_administracion, 
+    cargar_traducciones_administrar_usuarios, 
+    cargar_traducciones_administrar_juegos, 
+    cargar_traducciones_contacto
+)
+
 from flask import session
 import os
 from werkzeug.utils import secure_filename
 from flask import send_from_directory
 from flask import send_file
-
-
 
 app = Flask(__name__)
 app.secret_key = 'mysecretkey'
@@ -377,10 +391,20 @@ def añadir_juego_post():
 
 @app.route('/añadir_instrucciones', methods=['GET'])
 def instrucciones_juego_get():
-    return render_template('añadir_instrucciones.html')
+
+    idioma = request.args.get('idioma', 'es')
+
+    #Obtener traducciones para el idioma específico
+    traducciones = cargar_traducciones_añadir_instrucciones(idioma)
+
+    return render_template('añadir_instrucciones.html', traducciones=traducciones, idioma=idioma)
 
 @app.route('/añadir_instrucciones', methods=['POST'])
 def instrucciones_juego_post():
+
+    # Obtener idioma elegido
+    idioma = request.args.get('idioma', 'es')
+
     # Obtener el archivo cargado
     f = request.files['archivo_juego']
     
@@ -395,7 +419,7 @@ def instrucciones_juego_post():
 
     Juego.añadir_instrucciones(filename, id_juego)
 
-    return redirect(url_for('menu_juegos_get'))
+    return redirect(url_for('menu_juegos_get', idioma=idioma))
 
 @app.route('/descargar_instrucciones')
 def descargar_instrucciones():
@@ -511,6 +535,12 @@ def modificar_juego_post():
 
 @app.route('/solicitud_profesor', methods=['GET'])
 def solicitud_profesor_get():
+    # Obtener idioma elegido
+    idioma = request.args.get('idioma', 'es')
+
+    #Obtener traducciones para el idioma específico
+    traducciones = cargar_traducciones_contacto(idioma)
+
     # Obtener datos del usuario que realiza la solicitud
     id_usuario_solicitud = current_user.id
 
@@ -530,19 +560,19 @@ def solicitud_profesor_get():
 
     # Si el usuario no tiene una solicitud pendiente, muestra el botón para la solicitud
     if solicitud is None: 
-        return render_template('contacto.html')
+        return render_template('contacto.html', idioma=idioma, traducciones=traducciones)
     
     # Si el usuario tiene una solicitud pendiente ya no puede solicitar otra vez la solcitud y muestra el mensaje
     mensaje_solicitud = "La solicitud para el rol de profesor ha sido enviada con éxito."
-    return render_template('contacto.html', mensaje_solicitud=mensaje_solicitud)
+    return render_template('contacto.html', mensaje_solicitud=mensaje_solicitud, idioma=idioma, traducciones=traducciones)
 
 @app.route('/solicitud_profesor', methods=['POST'])
 def solicitud_profesor_post():
     # Obtener idioma elegido
-    # idioma = request.args.get('idioma', 'es')
+    idioma = request.args.get('idioma', 'es')
 
     # Obtener traducciones para el idioma específico
-    # traducciones = cargar_traducciones_menu_juegos(idioma)
+    traducciones = cargar_traducciones_contacto(idioma)
     
     # Obtener datos de la fecha-hora y del usuario que realiza la psolicitud
     fecha_solicitud = datetime.now()
@@ -554,22 +584,27 @@ def solicitud_profesor_post():
     # Mensaje de solicitud exitosa
     mensaje_solicitud = "La solicitud para el rol de profesor ha sido enviada con éxito."
     
-    return render_template('contacto.html', mensaje_solicitud=mensaje_solicitud)
-
+    return render_template('contacto.html', mensaje_solicitud=mensaje_solicitud, idioma=idioma, traducciones=traducciones)
 
 @app.route('/administracion', methods=['GET'])
 @login_required
 def administracion_get():
-    return render_template('administracion.html')
+    # Obtener idioma elegido
+    idioma = request.args.get('idioma', 'es')
+
+    #Obtener traducciones para el idioma específico
+    traducciones = cargar_traducciones_administracion(idioma)
+
+    return render_template('administracion.html', idioma=idioma, traducciones=traducciones)
 
 @app.route('/administrar_solicitudes', methods=['GET'])
 @login_required
 def administrar_solicitudes_get():
     # Obtener idioma elegido
-    # idioma = request.args.get('idioma', 'es')
+    idioma = request.args.get('idioma', 'es')
 
     # Obtener traducciones para el idioma específico
-    # traducciones = cargar_traducciones_administrar_solicitudes(idioma)
+    traducciones = cargar_traducciones_administrar_solicitudes(idioma)
 
     # Establecer la conexión a la base de datos
     conn = conectar()
@@ -587,16 +622,13 @@ def administrar_solicitudes_get():
     cur.close()
     conn.close()
 
-    return render_template('administrar_solicitudes.html', solicitudes=solicitudes) #, traducciones=traducciones, idioma=idioma)
+    return render_template('administrar_solicitudes.html', solicitudes=solicitudes, traducciones=traducciones, idioma=idioma)
     
 @app.route('/administrar_solicitudes', methods=['POST'])
 @login_required
 def administrar_solicitudes_post():
     # Obtener idioma elegido
-    # idioma = request.args.get('idioma', 'es')
-
-    # Obtener traducciones para el idioma específico
-    # traducciones = cargar_traducciones_administrar_solicitudes(idioma)
+    idioma = request.args.get('idioma', 'es')
 
     # Obtener id del usuario que realizó la solicitud 
     id_usuario_solicitud = request.form['id_usuario_solicitud']
@@ -610,16 +642,16 @@ def administrar_solicitudes_post():
         Solicitud.rechazar_solicitud(id_usuario_solicitud)
     
     # return render_template('administrar_solicitudes.html') #, traducciones=traducciones, idioma=idioma)
-    return redirect(url_for('administrar_solicitudes_get'))#, idioma=idioma))
+    return redirect(url_for('administrar_solicitudes_get', idioma=idioma))
 
 @app.route('/administrar_usuarios', methods=['GET'])
 @login_required
 def administrar_usuarios_get():
     # Obtener idioma elegido
-    # idioma = request.args.get('idioma', 'es')
+    idioma = request.args.get('idioma', 'es')
 
     #Obtener traducciones para el idioma específico
-    #traducciones = cargar_traducciones_visualizar_juego(idioma)
+    traducciones = cargar_traducciones_administrar_usuarios(idioma)
  
     # Establecer la conexión a la base de datos
     conn = conectar()
@@ -637,26 +669,29 @@ def administrar_usuarios_get():
     cur.close()
     conn.close()
 
-    return render_template('administrar_usuarios.html', usuarios=usuarios)#, traducciones=traducciones, idioma=idioma)
+    return render_template('administrar_usuarios.html', usuarios=usuarios, traducciones=traducciones, idioma=idioma)
 
 @app.route('/administrar_usuarios', methods=['POST'])
 @login_required
 def administrar_usuarios_post():
+    # Obtener idioma elegido
+    idioma = request.args.get('idioma', 'es')
+
     # Obtener id del usuario a eliminar
     id_usuario = request.form['id_usuario']
 
     Usuario.eliminar_usuario(id_usuario)
 
-    return redirect(url_for('administrar_usuarios_get'))#, idioma=idioma))
+    return redirect(url_for('administrar_usuarios_get', idioma=idioma))
 
 @app.route('/administrar_juegos', methods=['GET'])
 @login_required
 def administrar_juegos_get():
     # Obtener idioma elegido
-    # idioma = request.args.get('idioma', 'es')
+    idioma = request.args.get('idioma', 'es')
 
     #Obtener traducciones para el idioma específico
-    #traducciones = cargar_traducciones_visualizar_juego(idioma)
+    traducciones = cargar_traducciones_administrar_juegos(idioma)
 
     # Establecer la conexión a la base de datos
     conn = conectar()
@@ -674,17 +709,20 @@ def administrar_juegos_get():
     cur.close()
     conn.close()
 
-    return render_template('administrar_juegos.html', juegos=juegos)#, traducciones=traducciones, idioma=idioma)
+    return render_template('administrar_juegos.html', juegos=juegos, traducciones=traducciones, idioma=idioma)
 
 @app.route('/administrar_juegos', methods=['POST'])
 @login_required
 def administrar_juegos_post():
+    # Obtener idioma elegido
+    idioma = request.args.get('idioma', 'es')
+
     # Obtener id del usuario a eliminar
     id_juego = request.form['id_juego']
 
     Juego.eliminar_juego(id_juego)
 
-    return redirect(url_for('administrar_juegos_get'))#, idioma=idioma))
+    return redirect(url_for('administrar_juegos_get', idioma=idioma))
 
 @app.route('/logout')
 @login_required

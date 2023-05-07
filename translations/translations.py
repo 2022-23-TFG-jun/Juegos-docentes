@@ -41,6 +41,32 @@ def cargar_traducciones_errores(idioma):
     return traducciones
 
 def cargar_traducciones_administrar_solicitudes(idioma):
-    with open('translations/translations-administrar-solicitudes-rol.json', encoding='utf-8') as f:
+    with open('translations/translations-administrar-solicitudes.json', encoding='utf-8') as f:
         traducciones = json.load(f)
     return traducciones
+
+def cargar_traducciones_administrar_usuarios(idioma):
+    with open('translations/translations-administrar-usuarios.json', encoding='utf-8') as f:
+        traducciones = json.load(f)
+    return traducciones
+
+def cargar_traducciones_administrar_juegos(idioma):
+    with open('translations/translations-administrar-juegos.json', encoding='utf-8') as f:
+        traducciones = json.load(f)
+    return traducciones
+
+def cargar_traducciones_añadir_instrucciones(idioma):
+    with open('translations/translations-añadir-instrucciones.json', encoding='utf-8') as f:
+        traducciones = json.load(f)
+    return traducciones
+
+def cargar_traducciones_administracion(idioma):
+    with open('translations/translations-administracion.json', encoding='utf-8') as f:
+        traducciones = json.load(f)
+    return traducciones
+
+def cargar_traducciones_contacto(idioma):
+    with open('translations/translations-contacto.json', encoding='utf-8') as f:
+        traducciones = json.load(f)
+    return traducciones
+

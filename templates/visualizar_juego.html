@@ -7,8 +7,7 @@
 
 <body>
 	<header>
-		<button class="btn-header">Acerca de</button>
-		<button class="btn-header">Contacto</button>
+		<button class="btn-header">{{ traducciones['ACERCA'][idioma] }}</button>
 		<img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" class="img-UBU">
 	</header>
 
@@ -48,8 +47,8 @@
 			<tr>
 				<th>{{ traducciones['ISNTRUCCIONES_JUGADOR'][idioma] }}</th>
 				<td>{{ informacion_juego[9] }}</td>
-				{% if informacion_juego[9] == "Sí" %}
-    				<td><a href="{{ url_for('descargar_instrucciones', filename=informacion_juego[26]) }}">Descargar instrucciones</a></td>
+				{% if informacion_juego[9] == "Sí" or informacion_juego[9] == "Yes" %}
+    				<td><a href="{{ url_for('descargar_instrucciones', filename=informacion_juego[26]) }}">{{ traducciones['DESCARGAR'][idioma] }}</a></td>
 				{% endif %}
 			</tr>
 			<tr>
@@ -133,5 +132,11 @@
 			<iframe width="560" height="315" src="https://www.youtube.com/embed/{{ informacion_juego[21].split('v=')[-1] }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 		</div>
 	{% endif %}
+
+	<footer>
+        <div class="left-text-footer">{{ traducciones['FOOTER'][idioma] }}</div>
+        <img src="/static/img/escudo-politecnica.gif" alt="Escudo ingeniería informática" class="img-escudo">
+        <div class="right-text-footer">Estela Victoria Ballester Delgado</div>
+    </footer>
 </body>
 </html>

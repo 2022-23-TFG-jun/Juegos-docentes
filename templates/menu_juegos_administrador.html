@@ -8,11 +8,9 @@
 
 <body>
   <header>
-    <button class="btn-header">Acerca de</button>
-    <a href="{{ url_for('solicitud_profesor_get') }}"><button class="btn-header">Contacto</button></a>
+    <button class="btn-header">{{ traducciones['ACERCA'][idioma] }}</button>
     <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" class="img-UBU">
-    <!-- <a href="administracion?idioma={{idioma}}" class="btn-login">Administración</a> -->
-    <a href="administracion" class="btn-login">Administración</a>
+    <a href="administracion?idioma={{idioma}}" class="btn-login">{{ traducciones['BTN-ADMINISTRACION'][idioma] }}</a>
     <a href="logout" class="btn-login">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
   </header>
 
@@ -115,7 +113,7 @@
   </div>
   
   <footer>
-    <div class="left-text-footer">Universidad de Burgos © Trabajo de Fin de Grado - 2023</div>
+    <div class="left-text-footer">{{ traducciones['FOOTER'][idioma] }}</div>
     <img src="/static/img/escudo-politecnica.gif" alt="Escudo ingeniería informática" class="img-escudo">
     <div class="right-text-footer">Estela Victoria Ballester Delgado</div>
   </footer>

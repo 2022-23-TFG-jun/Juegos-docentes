@@ -1,0 +1,41 @@
+{
+    "TITULO-INICIO": {
+        "en": "Games management",
+        "es": "Administración de juegos"
+    },
+    "ID-JUEGO": {
+        "en": "Game ID",
+        "es": "ID juego"
+    },
+
+    "NOMBRE": {
+        "en": "Name",
+        "es": "Nombre"
+    },
+    "IDIOMA": {
+        "en": "Language",
+        "es": "Idioma"
+    },
+    "DESCRIPCION": {
+        "en": "Description",
+        "es": "Descripción"
+    },
+    
+    "ACCIONES": {
+        "en": "Actions",
+        "es": "Acciones"
+    },
+
+    "ELIMINAR": {
+        "en": "Eliminate",
+        "es": "Eliminar"
+    },
+    "ACERCA": {
+        "en": "About",
+        "es": "Acerca de"
+    },
+    "FOOTER": {
+        "en": "University of Burgos © Final Degree Project - 2023",
+        "es": "Universidad de Burgos © Trabajo de Fin de Grado - 2023"
+    }
+  }

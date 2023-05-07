@@ -7,21 +7,20 @@
 
   <body>
     <header>
-      <button class="btn-header">Acerca de</button>
-      <button class="btn-header">Contacto</button>
+      <button class="btn-header">{{ traducciones['ACERCA'][idioma] }}</button>
       <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" class="img-UBU">
     </header>
 
-    <h1>Administración de juegos</h1>
+    <h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
     <div class="card_visualizar_juego">
       <table>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Idioma</th>
-            <th>Descripción</th>
-            <th>Acciones</th>
+            <th>{{ traducciones['ID-JUEGO'][idioma] }}</th>
+            <th>{{ traducciones['NOMBRE'][idioma] }}</th>
+            <th>{{ traducciones['IDIOMA'][idioma] }}</th>
+            <th>{{ traducciones['DESCRIPCION'][idioma] }}</th>
+            <th>{{ traducciones['ACCIONES'][idioma] }}</th>
           </tr>
         </thead>
         <tbody>
@@ -32,9 +31,9 @@
               <td>{{ juego[2] }}</td>
               <td>{{ juego[3] }}</td>
               <td>
-                <form class="form-flecha" action="{{ url_for('administrar_juegos_post') }}" method="POST">
+                <form class="form-flecha" action="/administrar_juegos?idioma={{ request.args.get('idioma') }}" method="POST">
                   <input type="hidden" name="id_juego" value="{{ juego[0] }}">
-                  <button class="boton-eliminar-juego" type="submit">Eliminar</button>
+                  <button class="boton-eliminar-juego" type="submit">{{ traducciones['ELIMINAR'][idioma] }}</button>
                 </form>
               </td>
             </tr>
@@ -43,7 +42,7 @@
       </table>
     </div>
     <footer>
-      <div class="left-text-footer">Universidad de Burgos © Trabajo de Fin de Grado - 2023</div>
+      <div class="left-text-footer">{{ traducciones['FOOTER'][idioma] }}</div>
       <img src="/static/img/escudo-politecnica.gif" alt="Escudo ingeniería informática" class="img-escudo">
       <div class="right-text-footer">Estela Victoria Ballester Delgado</div>
     </footer>

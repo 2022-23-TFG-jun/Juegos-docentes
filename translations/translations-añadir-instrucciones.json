@@ -1,0 +1,18 @@
+{
+    "TITULO-INICIO": {
+        "en": "File Upload",
+        "es": "Carga de archivos"
+    },
+    "BTN-CARGAR": {
+        "en": "File upload",
+        "es": "Cargar archivo"
+    },
+    "ACERCA": {
+        "en": "About",
+        "es": "Acerca de"
+    },
+    "FOOTER": {
+        "en": "University of Burgos © Final Degree Project - 2023",
+        "es": "Universidad de Burgos © Trabajo de Fin de Grado - 2023"
+    }
+}

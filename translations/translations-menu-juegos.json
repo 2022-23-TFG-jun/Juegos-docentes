@@ -42,6 +42,26 @@
     "BTN-CERRAR-SESION": {
         "en": "Log out",
         "es": "Cerrar sesión"
+    },
+    "BTN-ADMINISTRACION": {
+        "en": "Administration",
+        "es": "Administración"
+    },
+    "BTN-INSTRUCCIONES": {
+        "en": "Add instructions",
+        "es": "Añadir instrucciones"
+    },
+    "ACERCA": {
+        "en": "About",
+        "es": "Acerca de"
+    },
+    "CONTACTO": {
+        "en": "Contact",
+        "es": "Contacto"
+    },
+    "FOOTER": {
+        "en": "University of Burgos © Final Degree Project - 2023",
+        "es": "Universidad de Burgos © Trabajo de Fin de Grado - 2023"
     }
 }
     

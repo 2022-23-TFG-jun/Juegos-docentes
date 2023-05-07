@@ -1,0 +1,47 @@
+{
+    "TITULO-INICIO": {
+        "en": "Users management",
+        "es": "Administración de usuarios"
+    },
+    "ID-USUARIO": {
+        "en": "User ID",
+        "es": "ID usuario"
+    },
+    "USUARIO": {
+        "en": "User",
+        "es": "Usuario"
+    },
+    "NOMBRE": {
+        "en": "Name",
+        "es": "Nombre"
+    },
+    "APELLIDO": {
+        "en": "Last name",
+        "es": "Apellido"
+    },
+    "INSTITUCION": {
+        "en": "Institution",
+        "es": "Institución"
+    },
+    "ROL": {
+        "en": "Role",
+        "es": "Rol"
+    },
+    "ACCIONES": {
+        "en": "Actions",
+        "es": "Acciones"
+    },
+
+    "ELIMINAR": {
+        "en": "Eliminate",
+        "es": "Eliminar"
+    },
+    "ACERCA": {
+        "en": "About",
+        "es": "Acerca de"
+    },
+    "FOOTER": {
+        "en": "University of Burgos © Final Degree Project - 2023",
+        "es": "Universidad de Burgos © Trabajo de Fin de Grado - 2023"
+    }
+  }

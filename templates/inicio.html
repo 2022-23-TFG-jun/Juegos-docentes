@@ -7,7 +7,7 @@
 </head>
 <body>
     <header>
-        <button class="btn-header">Acerca de</button>
+        <button class="btn-header">{{ traducciones['ACERCA'][idioma] }}</button>
         <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" class="img-UBU">
         <a href="login?idioma={{idioma}}" class="btn-login">{{ traducciones['BTN-LOGIN'][idioma] }}</a>
         <a href="registro?idioma={{idioma}}" class="btn-login">{{ traducciones['BTN-REGISTRARSE'][idioma] }}</a>
@@ -34,7 +34,7 @@
     </main>
     
     <footer>
-        <div class="left-text-footer">Universidad de Burgos © Trabajo de Fin de Grado - 2023</div>
+        <div class="left-text-footer">{{ traducciones['FOOTER'][idioma] }}</div>
         <img src="/static/img/escudo-politecnica.gif" alt="Escudo ingeniería informática" class="img-escudo">
         <div class="right-text-footer">Estela Victoria Ballester Delgado</div>
     </footer>

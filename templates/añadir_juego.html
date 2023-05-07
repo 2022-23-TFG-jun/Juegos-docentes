@@ -7,8 +7,7 @@
 
 <body>
 	<header>
-		<button class="btn-header">Acerca de</button>
-		<button class="btn-header">Contacto</button>
+		<button class="btn-header">{{ traducciones['ACERCA'][idioma] }}</button>
 		<img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" class="img-UBU">
 	</header>
 
@@ -136,5 +135,10 @@
 		<input type="text" name="youtube_url" id="youtube_url">
 		<input type="submit" name="submit" value="{{ traducciones['BTON-AÑADIR'][idioma] }}">
   	</form>
+	<footer>
+        <div class="left-text-footer">{{ traducciones['FOOTER'][idioma] }}</div>
+        <img src="/static/img/escudo-politecnica.gif" alt="Escudo ingeniería informática" class="img-escudo">
+        <div class="right-text-footer">Estela Victoria Ballester Delgado</div>
+    </footer>
 </body>
 </html>
