@@ -2,6 +2,74 @@
 <html>
   <head>
     <title>Administrar juegos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+
+  <body>
+    <header class="d-flex justify-content-between align-items-center p-3">
+      <a href="solicitud_profesor?idioma={{idioma}}"><button class="btn-acerca">{{ traducciones['ACERCA'][idioma] }}</button></a>
+      <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" style="max-width: 7%;" class="mx-auto">
+      <div>
+        <a href="logout">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
+      </div>
+    </header>
+
+    <div class="container">
+      <h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>{{ traducciones['ID-JUEGO'][idioma] }}</th>
+              <th>{{ traducciones['NOMBRE'][idioma] }}</th>
+              <th>{{ traducciones['IDIOMA'][idioma] }}</th>
+              <th>{{ traducciones['DESCRIPCION'][idioma] }}</th>
+              <th>{{ traducciones['ACCIONES'][idioma] }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for juego in juegos %}
+              <tr>
+                <td>{{ juego[0] }}</td>
+                <td>{{ juego[1] }}</td>
+                <td>{{ juego[2] }}</td>
+                <td>{{ juego[3] }}</td>
+                <td>
+                  <form action="/administrar_juegos?idioma={{ request.args.get('idioma') }}" method="POST">
+                    <input type="hidden" name="id_juego" value="{{ juego[0] }}">
+                    <button type="submit" class="btn btn-danger">{{ traducciones['ELIMINAR'][idioma] }}</button>
+                  </form>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-bottom: 100px;"></div>
+    </div>
+
+    <footer class="bg-light py-1 fixed-bottom">
+      <div class="container-fluid">
+          <div class="row justify-content-between">
+              <div class="col-md-3 col-12 text-left">{{ traducciones['FOOTER'][idioma] }}</div>
+              <div class="col-md-6 col-12 text-center">
+                  <img src="/static/img/escudo-politecnica.gif" alt="Escudo ingeniería informática" style="max-width: 7%;">
+              </div>
+              <div class="col-md-3 col-12 text-right">Estela Victoria Ballester Delgado</div>
+          </div>
+      </div>
+  </footer>
+    </body>
+  </html>
+
+
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <title>Administrar juegos</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
   </head>
 
@@ -48,3 +116,4 @@
     </footer>
   </body>
 </html>
+-->

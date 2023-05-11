@@ -19,6 +19,10 @@
         "en": "Date",
         "es": "Fecha"
     },
+    "ACCION": {
+        "en": "Action",
+        "es": "Acción"
+    },
     "ACEPTAR": {
         "en": "Accept",
         "es": "Aceptar"
@@ -30,9 +34,13 @@
     "ACERCA": {
         "en": "About",
         "es": "Acerca de"
+    },    
+    "BTN-CERRAR-SESION": {
+        "en": "Log out",
+        "es": "Cerrar sesión"
     },
     "FOOTER": {
-        "en": "University of Burgos © Final Degree Project - 2023",
-        "es": "Universidad de Burgos © Trabajo de Fin de Grado - 2023"
+        "en": "Final Degree Project © 2023",
+        "es": "Trabajo de Fin de Grado © 2023"
     }
   }

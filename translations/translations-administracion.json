@@ -1,4 +1,8 @@
 {
+    "INICIO": {
+        "en": "Administration",
+        "es": "Administración"  
+        },
     "TITULO-INICIO": {
         "en": "Administration panel",
         "es": "Panel de administración"
@@ -15,12 +19,16 @@
         "en": "Manage Requests",
         "es": "Administrar solicitudes"
     },
+    "BTN-CERRAR-SESION": {
+        "en": "Log out",
+        "es": "Cerrar sesión"
+    },
     "ACERCA": {
         "en": "About",
         "es": "Acerca de"
     },
     "FOOTER": {
-        "en": "University of Burgos © Final Degree Project - 2023",
-        "es": "Universidad de Burgos © Trabajo de Fin de Grado - 2023"
+        "en": "Final Degree Project © 2023",
+        "es": "Trabajo de Fin de Grado © 2023"
     }
 }

@@ -1,42 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="html-inicio" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{{ traducciones['INICIO'][idioma] }}</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
-<body>
-    <header>
-        <button class="btn-header">{{ traducciones['ACERCA'][idioma] }}</button>
-        <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" class="img-UBU">
-        <a href="login?idioma={{idioma}}" class="btn-login">{{ traducciones['BTN-LOGIN'][idioma] }}</a>
-        <a href="registro?idioma={{idioma}}" class="btn-login">{{ traducciones['BTN-REGISTRARSE'][idioma] }}</a>
-    </header>
-
-    <form class="form-flecha" method="get" action="{{ url_for('inicio_get') }}">
-        <button type="submit" name="idioma" value="es" class="bandera-espana"></button>
-        <button type="submit" name="idioma" value="en" class="bandera-inglaterra"></button>
-    </form>
-      
-    <main>
-        <h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
-        
-        <div class="inicio">
-            <div class="msj-bienvenida">
-                <h2>{{ traducciones['TITULO-BIENVENIDA'][idioma] }}</h2>
-                <p>{{ traducciones['MSJ-BIENVENIDA'][idioma] }}</p>
+<body class="body-inicio">
+    <div class="container-fluid fondo-color">
+        <header class="d-flex justify-content-between align-items-center p-3">
+            <a href="solicitud_profesor?idioma={{idioma}}"><button class="btn-acerca">{{ traducciones['ACERCA'][idioma] }}</button></a>
+            <img src="/static/img/logo_UBU.png" alt="Logo de la Universidad de Burgos" style="max-width: 7%;">
+            <div>
+                <a href="login?idioma={{idioma}}" class="btn-login">{{ traducciones['BTN-LOGIN'][idioma] }}</a>
+                <a href="registro?idioma={{idioma}}" class="btn-registro">{{ traducciones['BTN-REGISTRARSE'][idioma] }}</a>
             </div>
-            <img src="/static/img/inicio.png" alt="Captura inicio" class="img-provisional">  
-            <!-- <a href="login" class="btn-empezar">{{ traducciones['BTN-EMPEZAR'][idioma] }}</a> -->
-            <a href="login?idioma={{idioma}}" class="btn-empezar">{{ traducciones['BTN-EMPEZAR'][idioma] }}</a>
+        </header>
 
+        <div class="text-right">
+            <form method="get" action="{{ url_for('inicio_get') }}">
+                <button type="submit" name="idioma" value="es" class="bandera-espana"></button>
+                <button type="submit" name="idioma" value="en" class="bandera-inglaterra"></button>
+            </form>
         </div>
-    </main>
-    
-    <footer>
-        <div class="left-text-footer">{{ traducciones['FOOTER'][idioma] }}</div>
-        <img src="/static/img/escudo-politecnica.gif" alt="Escudo ingeniería informática" class="img-escudo">
-        <div class="right-text-footer">Estela Victoria Ballester Delgado</div>
-    </footer>
+
+        <main class="container pb-5" style="margin-bottom: 282px">
+
+            <h1 class="text-center color-texto mb-5">{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
+        
+            <div class="row justify-content-left">
+                <div class="col-lg-6">
+                    <h2 class="color-texto mb-4">{{ traducciones['TITULO-BIENVENIDA'][idioma] }}</h2>
+                    <p class="color-texto mb-4">{{ traducciones['MSJ-BIENVENIDA'][idioma] }}</p>
+                    <a href="login?idioma={{idioma}}" class="btn-comenzar mx-auto">{{ traducciones['BTN-EMPEZAR'][idioma] }}</a>
+                </div>
+            </div>
+
+        </main>
+        <footer class="bg-light py-1 fixed-bottom">
+            <div class="container-fluid">
+                <div class="row justify-content-between">
+                    <div class="col-md-3 col-12 text-left">{{ traducciones['FOOTER'][idioma] }}</div>
+                    <div class="col-md-6 col-12 text-center">
+                        <img src="/static/img/escudo-politecnica.gif" alt="Escudo ingeniería informática" style="max-width: 7%;">
+                    </div>
+                    <div class="col-md-3 col-12 text-right">Estela Victoria Ballester Delgado</div>
+                </div>
+            </div>
+        </footer>
+        
+        
+        
+        
+          
+    </div>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
 </body>
 </html>
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{{ traducciones['INICIO'][idioma] }}</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    </head>
+
+    <header class="header-inicio">
+        <button class="btn-header-inicio">{{ traducciones['ACERCA'][idioma] }}</button>
+        <img src="/static/img/logo_UBU.png" alt="Logo de la Universidad de Burgos" class="img-UBU">
+        <div class="alineacion-idiomas-container">
+            <a href="login?idioma={{idioma}}" class="btn-login">{{ traducciones['BTN-LOGIN'][idioma] }}</a>
+            <a href="registro?idioma={{idioma}}" class="btn-login">{{ traducciones['BTN-REGISTRARSE'][idioma] }}</a>
+        </div>
+    </header>
+    
+    <body class="body-inicio">
+        <div class="container-fluid">
+            <main>
+                <div class="alineacion-idiomas-container">
+                    <form class="flecha-auto" method="get" action="{{ url_for('inicio_get') }}">
+                        <button type="submit" name="idioma" value="es" class="bandera-espana"></button>
+                        <button type="submit" name="idioma" value="en" class="bandera-inglaterra"></button>
+                    </form>
+                </div>
+
+                <h1 class="h1-inicio">{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
+                <div class="inicio">
+                    <div class="msj-bienvenida">
+                        <h2>{{ traducciones['TITULO-BIENVENIDA'][idioma] }}</h2>
+                        <p>{{ traducciones['MSJ-BIENVENIDA'][idioma] }}</p>
+                    </div>
+                    
+                    <a href="login?idioma={{idioma}}" class="btn-empezar">{{ traducciones['BTN-EMPEZAR'][idioma] }}</a>
+                </div>
+            </main>
+        </div>
+    </body> 
+
+    <footer class="footer-inicio">
+        <div class="left-text-footer">{{ traducciones['FOOTER'][idioma] }}</div>
+        <img src="/static/img/escudo-politecnica.gif" alt="Escudo ingeniería informática" class="img-escudo">
+        <div class="rigth-text-footer">Estela Victoria Ballester Delgado</div>
+    </footer>
+</html> -->

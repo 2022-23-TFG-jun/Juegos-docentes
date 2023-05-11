@@ -4,6 +4,58 @@
     <meta charset="UTF-8">
     <title>Contacto</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <header class="d-flex justify-content-between align-items-center p-3">
+        <a href="solicitud_profesor?idioma={{idioma}}"><button class="btn-acerca">{{ traducciones['ACERCA'][idioma] }}</button></a>
+        <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" style="max-width: 7%;" class="mx-auto">
+        <div>
+          <a href="logout">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
+        </div>
+      </header>
+
+    <main class="container mt-5">
+        <h1 class="text-center mb-5">{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
+        <p class="text-center text-justify">¡Conviértete en profesor en nuestra plataforma y ayuda a mejorar la educación! Como profesor, podrás agregar tus propios juegos docentes, modificar los existentes y agregar instrucciones. Para solicitar el rol de profesor, por favor pulse el botón de solicitar. Recuerda que tu solicitud será revisada por el administrador antes de ser aprobada.</p>
+
+
+        {% if mensaje_solicitud %}
+            <div class="alert alert-success">{{ mensaje_solicitud }}</div>
+        {% else %}
+            <form class="text-center" action="/solicitud_profesor?idioma={{ request.args.get('idioma') }}" method="POST">
+                <button class="btn btn-primary" type="submit">{{ traducciones['BTN-SOLICITAR-PROFESOR'][idioma] }}</button>
+            </form>
+        {% endif %}
+    </main>
+  
+	<footer class="bg-light py-1 fixed-bottom">
+		<div class="container-fluid">
+			<div class="row justify-content-between">
+				<div class="col-md-3 col-12 text-left">{{ traducciones['FOOTER'][idioma] }}</div>
+				<div class="col-md-6 col-12 text-center">
+					<img src="/static/img/escudo-politecnica.gif" alt="Escudo ingeniería informática" style="max-width: 7%;">
+				</div>
+				<div class="col-md-3 col-12 text-right">Estela Victoria Ballester Delgado</div>
+			</div>
+		</div>
+	</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+<!--
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contacto</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <header>
@@ -32,3 +84,4 @@
     </footer>
 </body>
 </html>
+-->

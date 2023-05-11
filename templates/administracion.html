@@ -1,6 +1,92 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="UTF-8">
+		<title>{{ traducciones['INICIO'][idioma] }}</title>
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	</head>
+<body>
+	<header class="d-flex justify-content-between align-items-center p-3">
+		<a href="solicitud_profesor?idioma={{idioma}}"><button class="btn-acerca">{{ traducciones['ACERCA'][idioma] }}</button></a>
+		<img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" style="max-width: 7%;" class="mx-auto">
+		<div>
+			<a href="logout">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
+		</div>
+	</header>
+
+	<main class="container my-5">
+		<div class="d-flex justify-content-center">
+			<h1 class="mb-5">{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
+		</div>
+
+		<h3 class="mb-4">Selecciona una opción de administración:</h3>
+
+		<div class="card">
+			<div class="card-header">
+				<div class="d-flex justify-content-center">
+					<h4>Administración de usuarios</h4>
+				</div>
+			</div>
+			<div class="card-body">
+				<p>En esta sección podrás gestionar las cuentas de usuario, permitiendo la eliminación de las cuentas de los usuarios.</p>
+				<div class="d-flex justify-content-center">
+					<a href="administrar_usuarios?idioma={{idioma}}" class="btn btn-primary">{{ traducciones['BTN-USUARIOS'][idioma] }}</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="card my-3">
+			<div class="card-header">
+				<div class="d-flex justify-content-center">
+					<h4>Administración de juegos</h4>
+				</div>
+			</div>
+			<div class="card-body">
+				<p>Aquí podrás administrar los juegos disponibles en la plataforma, permitiendo la eliminación de juegos.</p>
+				<div class="d-flex justify-content-center">
+					<a href="administrar_juegos?idioma={{idioma}}" class="btn btn-primary">{{ traducciones['BTN-JUEGOS'][idioma] }}</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="card my-3">
+			<div class="card-header">
+				<div class="d-flex justify-content-center">
+					<h4>Administración de solicitudes</h4>
+				</div>
+			</div>
+			<div class="card-body">
+				<p>Esta sección está dedicada a la gestión de las solicitudes de los usuarios para convertirse en profesores. Aquí podrás aceptar o rechazar solicitudes de los usuarios, así como gestionar los permisos de los profesores existentes.</p>
+				<div class="d-flex justify-content-center">
+					<a href="administrar_solicitudes?idioma={{idioma}}" class="btn btn-primary">{{ traducciones['BTN-SOLICITUDES'][idioma] }}</a>
+				</div>
+			</div>
+		</div>
+		<div style="margin-bottom: 100px;"></div>
+	</main>
+
+	<footer class="bg-light py-1 fixed-bottom">
+		<div class="container-fluid">
+			<div class="row justify-content-between">
+				<div class="col-md-3 col-12 text-left">{{ traducciones['FOOTER'][idioma] }}</div>
+				<div class="col-md-6 col-12 text-center">
+					<img src="/static/img/escudo-politecnica.gif" alt="Escudo ingeniería informática" style="max-width: 7%;">
+				</div>
+				<div class="col-md-3 col-12 text-right">Estela Victoria Ballester Delgado</div>
+			</div>
+		</div>
+	</footer>
+
+</body>
+</html>
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+	<head>
 		<title>Administración</title>
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 	</head>
@@ -17,7 +103,6 @@
 		
 		<div class="card_usuarios">
 			<h4>Administración de usuarios</h4>
-			<!-- <a href="administrar_juegos?idioma={{idioma}}" class="btn-empezar">Administrar Juegos</a> -->
 		</div>
 		<a href="administrar_usuarios?idioma={{idioma}}" class="btn-usuarios">{{ traducciones['BTN-USUARIOS'][idioma] }}</a>
 
@@ -37,4 +122,4 @@
 			<div class="right-text-footer">Estela Victoria Ballester Delgado</div>
 		  </footer>
 	</body>
-</html>
+</html> -->

@@ -1,142 +1,188 @@
-<!DOCTYPE html>
-<html>
 <head>
-	<title>Añadir juego</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+	<title>Visualizar juego</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
-	<header>
-		<button class="btn-header">{{ traducciones['ACERCA'][idioma] }}</button>
-		<img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" class="img-UBU">
-	</header>
-
-    <h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
-
-	<div class="card_visualizar_juego">
-		<h3>{{ informacion_juego[1] }}</h3>
-		<table>
-			<tr>
-				<th>{{ traducciones['ENLACE'][idioma] }}</th>
-				<td><a href="{{ informacion_juego[4] }}" target="_blank">{{ informacion_juego[4] }}</a></td>
-			</tr>
-			<tr>
-				<th>{{ traducciones['PUNTUACION'][idioma] }}</th>
-				<td>{{ informacion_juego[5] }}</td>
-			</tr>
-		</table>
-
-		<h3>{{ traducciones['TITULO-CATEGORIZACION'][idioma] }}</h3>
-		<table>
-			<tr>
-				<th>{{ traducciones['DISCIPLINA'][idioma] }}</th>
-				<td>{{ informacion_juego[6] }}</td>
-			</tr>
-			<tr>
-				<th>{{ traducciones['NATURALEZA'][idioma] }}</th>
-				<td>{{ informacion_juego[7] }}</td>
-			</tr>
-			<tr>
-				<th>{{ traducciones['IDIOMA'][idioma] }}</th>
-				<td>{{ informacion_juego[3] }}</td>
-			</tr>
-			<tr>
-				<th>{{ traducciones['PRECIO'][idioma] }}</th>
-				<td>{{ informacion_juego[8] }}</td>
-			</tr>
-			<tr>
-				<th>{{ traducciones['ISNTRUCCIONES_JUGADOR'][idioma] }}</th>
-				<td>{{ informacion_juego[9] }}</td>
-				{% if informacion_juego[9] == "Sí" or informacion_juego[9] == "Yes" %}
-    				<td><a href="{{ url_for('descargar_instrucciones', filename=informacion_juego[26]) }}">{{ traducciones['DESCARGAR'][idioma] }}</a></td>
-				{% endif %}
-			</tr>
-			<tr>
-				<th>{{ traducciones['ISNTRUCCIONES_INSTRUCTOR'][idioma] }}</th>
-				<td>{{ informacion_juego[10] }}</td>
-			</tr>
-		</table>
-	</div>
-
-	<div class="card_visualizar_juego">
-		<h3>{{ traducciones['TITULO-DESCRIPCION'][idioma] }}</h3>
-		<table>
-			<tr>
-				<th>{{ traducciones['DESCRIPCION'][idioma] }}</th>
-				<td>{{ informacion_juego[2] }}</td>
-			</tr>
-			<tr>
-				<th>{{ traducciones['OBJETIVOS'][idioma] }}</th>
-				<td>{{ informacion_juego[11] }}</td>
-			</tr>
-			<tr>
-				<th>{{ traducciones['ESPACIO_CONTROL'][idioma] }}</th>
-				<td>{{ informacion_juego[12] }}</td>
-			</tr>
-		</table>
-	</div>
-
-	<div class="card_visualizar_juego">
-		<h3>{{ traducciones['TITULO-APRENDIZAJE'][idioma] }}</h3>
-		<table>
-			<tr>
-				<th>{{ traducciones['OBJETIVOS_PRINCIPALES'][idioma] }}</th>
-				<td>{{ informacion_juego[13] }}</td>
-			</tr>
-			<tr>
-				<th>{{ traducciones['OBJETIVOS_SECUNDARIOS'][idioma] }}</th>
-				<td>{{ informacion_juego[14] }}</td>
-			</tr>
-		</table>
-	</div>
-
-	<div class="card_visualizar_juego">
-		<h3>{{ traducciones['TITULO-ORGANIZACION'][idioma] }}</h3>
-		<table>
-			<tr>
-				<th>{{ traducciones['ESTRUCTURA'][idioma] }}</th>
-				<td>{{ informacion_juego[15] }}</td>
-			</tr>
-			<tr>
-				<th>{{ traducciones['ASPECTOS'][idioma] }}</th>
-				<td>{{ informacion_juego[16] }}</td>
-			</tr>
-		</table>
-	</div>
-
-	<div class="card_visualizar_juego">
-		<h3>{{ traducciones['TITULO-VALORACION'][idioma] }}</h3>
-		<table>
-			<tr>
-				<th>{{ traducciones['ENTRETENIMIENTO'][idioma] }}</th>
-				<td>{{ informacion_juego[17] }}</td>
-			</tr>
-			<tr>
-				<th>{{ traducciones['APRENDIZAJE'][idioma] }}</th>
-				<td>{{ informacion_juego[18] }}</td>
-			</tr>
-			<tr>
-				<th>{{ traducciones['COMPLEJIDAD_ALUMNO'][idioma] }}</th>
-				<td>{{ informacion_juego[19] }}</td>
-			</tr>
-			<tr>
-				<th>{{ traducciones['COMPLEJIDAD_INSTRUCTORES'][idioma] }}</th>
-				<td>{{ informacion_juego[20] }}</td>
-			</tr>
-		</table>
-	</div>
-
-	{% if informacion_juego[21] %}
-		<h1>{{ traducciones['TITULO-VIDEO'][idioma] }}</h1>
-		<div class="centrar-video">
-			<iframe width="560" height="315" src="https://www.youtube.com/embed/{{ informacion_juego[21].split('v=')[-1] }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <header class="d-flex justify-content-between align-items-center p-3">
+		<a href="solicitud_profesor?idioma={{idioma}}"><button class="btn-acerca">{{ traducciones['ACERCA'][idioma] }}</button></a>
+		<img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" style="max-width: 7%;" class="mx-auto">
+		<div>
+		  <a href="logout" class="btn-cerrar">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
 		</div>
-	{% endif %}
+	  </header>
 
-	<footer>
-        <div class="left-text-footer">{{ traducciones['FOOTER'][idioma] }}</div>
-        <img src="/static/img/escudo-politecnica.gif" alt="Escudo ingeniería informática" class="img-escudo">
-        <div class="right-text-footer">Estela Victoria Ballester Delgado</div>
-    </footer>
+	<main class="container">
+		<div class="py-3 text-center">
+			<h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
+		</div>
+
+		<section class="py-3">
+			<h3>{{ informacion_juego[1] }}</h3>
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<tbody>
+						<tr>
+							<th>{{ traducciones['ENLACE'][idioma] }}</th>
+							<td><a href="{{ informacion_juego[4] }}" target="_blank">{{ informacion_juego[4] }}</a></td>
+						</tr>
+						<tr>
+							<th>{{ traducciones['PUNTUACION'][idioma] }}</th>
+							<td>{{ informacion_juego[5] }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</section>
+
+		<section class="py-3">
+			<h3>{{ traducciones['TITULO-CATEGORIZACION'][idioma] }}</h3>
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<tbody>
+						<tr>
+							<th>{{ traducciones['DISCIPLINA'][idioma] }}</th>
+							<td>{{ informacion_juego[6] }}</td>
+						</tr>
+						<tr>
+							<th>{{ traducciones['NATURALEZA'][idioma] }}</th>
+							<td>{{ informacion_juego[7] }}</td>
+						</tr>
+						<tr>
+							<th>{{ traducciones['IDIOMA'][idioma] }}</th>
+							<td>{{ informacion_juego[3] }}</td>
+						</tr>
+						<tr>
+							<th>{{ traducciones['PRECIO'][idioma] }}</th>
+							<td>{{ informacion_juego[8] }}</td>
+						</tr>
+						<tr>
+							<th>{{ traducciones['ISNTRUCCIONES_JUGADOR'][idioma] }}</th>
+							
+							{% if informacion_juego[9] == "Sí" or informacion_juego[9] == "Yes" %}
+								<td>{{ informacion_juego[9] }} <a href="{{ url_for('descargar_instrucciones', filename=informacion_juego[26]) }}">{{ traducciones['DESCARGAR'][idioma] }}</a></td>
+							{%else%}
+								<td>{{ informacion_juego[9] }}</td>
+							{% endif %}
+						</tr>
+						<tr>
+							<th>{{ traducciones['ISNTRUCCIONES_INSTRUCTOR'][idioma] }}</th>
+							<td>{{ informacion_juego[10] }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</section>
+
+		<section class="py-3">
+			<h3>{{ traducciones['TITULO-DESCRIPCION'][idioma] }}</h3>
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<tbody>
+						<tr>
+							<th>{{ traducciones['DESCRIPCION'][idioma] }}</th>
+							<td>{{ informacion_juego[2] }}</td>
+						</tr>
+						<tr>
+							<th>{{ traducciones['OBJETIVOS'][idioma] }}</th>
+							<td>{{ informacion_juego[11] }}</td>
+						</tr>
+						<tr>
+							<th>{{ traducciones['ESPACIO_CONTROL'][idioma] }}</th>
+							<td>{{ informacion_juego[12] }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</section>
+
+		<section class="py-3">
+			<h3>{{ traducciones['TITULO-APRENDIZAJE'][idioma] }}</h3>
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<tbody>
+						<tr>
+							<th>{{ traducciones['OBJETIVOS_PRINCIPALES'][idioma] }}</th>
+							<td>{{ informacion_juego[13] }}</td>
+						</tr>
+						<tr>
+							<th>{{ traducciones['OBJETIVOS_SECUNDARIOS'][idioma] }}</th>
+							<td>{{ informacion_juego[14] }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</section>
+
+		<section class="py-3">
+			<h3>{{ traducciones['TITULO-ORGANIZACION'][idioma] }}</h3>
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<tbody>
+						<tr>
+							<th>{{ traducciones['ESTRUCTURA'][idioma] }}</th>
+							<td>{{ informacion_juego[15] }}</td>
+						</tr>
+						<tr>
+							<th>{{ traducciones['ASPECTOS'][idioma] }}</th>
+							<td>{{ informacion_juego[16] }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</section>
+
+		<section class="py-3">
+			<h3>{{ traducciones['TITULO-VALORACION'][idioma] }}</h3>
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<tbody>
+						<tr>
+							<th>{{ traducciones['ENTRETENIMIENTO'][idioma] }}</th>
+							<td>{{ informacion_juego[17] }}</td>
+						</tr>
+						<tr>
+							<th>{{ traducciones['APRENDIZAJE'][idioma] }}</th>
+							<td>{{ informacion_juego[18] }}</td>
+						</tr>
+						<tr>
+							<th>{{ traducciones['COMPLEJIDAD_ALUMNO'][idioma] }}</th>
+							<td>{{ informacion_juego[19] }}</td>
+						</tr>
+						<tr>
+							<th>{{ traducciones['COMPLEJIDAD_INSTRUCTORES'][idioma] }}</th>
+							<td>{{ informacion_juego[20] }}</td>
+						</tr>
+					</tbody>
+				</table>
+				<div style="margin-bottom: 100px;"></div>
+			</div>
+		</section>
+
+		{% if informacion_juego[21] %}
+		<h1>{{ traducciones['TITULO-VIDEO'][idioma] }}</h1>
+		<div class="embed-responsive embed-responsive-16by9">
+			<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ informacion_juego[21].split('v=')[-1] }}" allowfullscreen></iframe>
+		</div>
+		<div style="margin-bottom: 100px;"></div>
+	{% endif %}
+	
+	<footer class="bg-light py-1 fixed-bottom">
+		<div class="container-fluid">
+			<div class="row justify-content-between">
+				<div class="col-md-3 col-12 text-left">{{ traducciones['FOOTER'][idioma] }}</div>
+				<div class="col-md-6 col-12 text-center">
+					<img src="/static/img/escudo-politecnica.gif" alt="Escudo ingeniería informática" style="max-width: 7%;">
+				</div>
+				<div class="col-md-3 col-12 text-right">Estela Victoria Ballester Delgado</div>
+			</div>
+		</div>
+	</footer>
 </body>
 </html>

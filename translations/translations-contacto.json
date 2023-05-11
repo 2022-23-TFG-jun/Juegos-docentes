@@ -1,4 +1,8 @@
-{
+{   
+    "INICIO": {
+    "en": "Request",
+    "es": "Solicitud"  
+    },
     "TITULO-INICIO": {
         "en": "Teacher games menu",
         "es": "Menú juegos docentes"
@@ -7,8 +11,16 @@
         "en": "About",
         "es": "Acerca de"
     },
+    "BTN-CERRAR-SESION": {
+        "en": "Log out",
+        "es": "Cerrar sesión"
+    },
+    "BTN-SOLICITAR-PROFESOR": {
+        "en": "Request",
+        "es": "Solicitar"
+    },
     "FOOTER": {
-        "en": "University of Burgos © Final Degree Project - 2023",
-        "es": "Universidad de Burgos © Trabajo de Fin de Grado - 2023"
+        "en": "Final Degree Project © 2023",
+        "es": "Trabajo de Fin de Grado © 2023"
     }
 }

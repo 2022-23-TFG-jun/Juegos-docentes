@@ -243,7 +243,7 @@ def menu_juegos_get():
     pagina_actual = request.args.get('pagina', 1, type=int)
 
     # Número máximo de juegos por página
-    juegos_por_pagina = 4
+    juegos_por_pagina = 3
 
     # Calcular el número de juegos que se deben omitir antes de devolver el resultado
     desplazamiento = (pagina_actual - 1) * juegos_por_pagina
@@ -302,7 +302,7 @@ def menu_juegos_post():
     pagina_actual = request.args.get('pagina', 1, type=int)
 
     # Número máximo de juegos por página
-    juegos_por_pagina = 4
+    juegos_por_pagina = 3
 
     # Calcular el número de juegos que se deben omitir antes de devolver el resultado
     desplazamiento = (pagina_actual - 1) * juegos_por_pagina
