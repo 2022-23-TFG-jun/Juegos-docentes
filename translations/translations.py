@@ -70,3 +70,8 @@ def cargar_traducciones_contacto(idioma):
         traducciones = json.load(f)
     return traducciones
 
+def cargar_traducciones_visualizar_valoracion(idioma):
+    with open('translations/translations-visualizar-valoracion.json', encoding='utf-8') as f:
+        traducciones = json.load(f)
+    return traducciones
+

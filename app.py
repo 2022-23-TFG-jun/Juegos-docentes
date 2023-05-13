@@ -24,7 +24,8 @@ from translations.translations import (
     cargar_traducciones_administracion, 
     cargar_traducciones_administrar_usuarios, 
     cargar_traducciones_administrar_juegos, 
-    cargar_traducciones_contacto
+    cargar_traducciones_contacto,
+    cargar_traducciones_visualizar_valoracion
 )
 
 from flask import session
@@ -249,7 +250,7 @@ def menu_juegos_get():
     desplazamiento = (pagina_actual - 1) * juegos_por_pagina
 
     # Consultar datos de los juegos
-    cur.execute("SELECT id, nombre_juego, descripcion, idioma, enlace, puntuacion FROM schema_juegos_docentes.juegos ORDER BY nombre_juego LIMIT %s OFFSET %s", (juegos_por_pagina, desplazamiento))
+    cur.execute("SELECT id, nombre_juego, descripcion, idioma, enlace, puntuacion, puntuacion_media_usuario, estrellas_general FROM schema_juegos_docentes.juegos ORDER BY nombre_juego LIMIT %s OFFSET %s", (juegos_por_pagina, desplazamiento))
     
     # Obtener el resultado de la consulta
     juegos = cur.fetchall()
@@ -723,6 +724,74 @@ def administrar_juegos_post():
     Juego.eliminar_juego(id_juego)
 
     return redirect(url_for('administrar_juegos_get', idioma=idioma))
+
+@app.route('/añadir_valoracion', methods=['GET'])
+def añadir_valoracion_get():
+
+    # Obtener id del juego elegido
+    #id_juego = request.args.get('id')
+
+    # Obtener idioma elegido
+    #idioma = request.args.get('idioma', 'es')
+
+    #Obtener traducciones para el idioma específico
+    #traducciones = cargar_traducciones_añadir_instrucciones(idioma)
+
+    return render_template('añadir_valoracion.html') #, traducciones=traducciones, idioma=idioma)
+
+@app.route('/añadir_valoracion', methods=['POST'])
+def añadir_valoracion_post():
+
+    # Obtener idioma elegido
+    idioma = request.args.get('idioma', 'es')
+
+    # Obtener los datos del formulario
+    puntuacion = request.form['puntuacion']
+    comentario = request.form['comentario']
+
+    # Obtener datos de la fecha-hora y del usuario que realiza la valoración
+    fecha_valoracion = datetime.now()
+    id_usuario_valoracion = current_user.id
+
+    # Obtener id del juego elegido
+    id_juego = request.args.get('id')
+
+    # Agregar la valoración a la base de datos
+    Juego.añadir_valoraciones(puntuacion, comentario, fecha_valoracion, id_usuario_valoracion, id_juego)
+
+    # Actualizar la puntuación media del juego
+    Juego.actualizar_valoraciones(id_juego)
+
+    return redirect(url_for('menu_juegos_get', idioma=idioma))
+
+@app.route('/visualizar_valoracion', methods=['GET'])
+def visualizar_valoracion_get():
+    # Obtener id del juego elegido
+    id_juego = request.args.get('id')
+
+    # Obtener idioma elegido
+    idioma = request.args.get('idioma', 'es')
+
+    # Obtener traducciones para el idioma específico
+    traducciones = cargar_traducciones_visualizar_valoracion(idioma)
+
+    # Establecer la conexión a la base de datos
+    conn = conectar()
+
+    # Crear un cursor para ejecutar la consulta
+    cur = conn.cursor()
+
+    # Consultar datos del juego
+    cur.execute("SELECT v.puntuacion, v.comentario, v.fecha_valoracion, u.usuario, v.estrellas_individual FROM schema_juegos_docentes.valoraciones v INNER JOIN schema_juegos_docentes.usuarios u ON v.id_usuario_valoracion = u.id WHERE v.id_juego = %s", (id_juego,))
+
+    # Obtener el resultado de la consulta
+    valoraciones = cur.fetchall()
+    
+    # Cerrar el cursor y la conexión a la base de datos
+    cur.close()
+    conn.close()
+
+    return render_template('visualizar_valoracion.html', valoraciones=valoraciones, traducciones=traducciones, idioma=idioma)
 
 @app.route('/logout')
 @login_required

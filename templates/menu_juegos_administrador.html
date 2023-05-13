@@ -76,6 +76,14 @@
                     <li>{{ traducciones['IDIOMA'][idioma] }}: {{ juego[3] }}</li>
                     <li>{{ traducciones['PUNTUACION'][idioma] }}: {{ juego[5] }}</li>
                     <li>{{ traducciones['ENLACE'][idioma] }}: {{ juego[4] }}</li>
+                    {% if juego[7] %}
+                      <div> 
+                        {% for i in range(juego[7]) %}
+                          <i class="fa fa-star estrella"></i>
+                        {% endfor %}
+                        <a href="{{ url_for('visualizar_valoracion_get', id=juego[0], idioma=idioma) }}">{{ juego[6] }}</a>
+                      </div>
+                    {% endif %}
                   </ul>
                   <form method="get" action="{{ url_for('visualizar_juego_get') }}">
                     <input type="hidden" name="idioma" value="{{ idioma }}">
@@ -131,6 +139,14 @@
                     <li>{{ traducciones['IDIOMA'][idioma] }}: {{ juego[3] }}</li>
                     <li>{{ traducciones['PUNTUACION'][idioma] }}: {{ juego[5] }}</li>
                     <li>{{ traducciones['ENLACE'][idioma] }}: {{ juego[4] }}</li>
+                    {% if juego[7] %}
+                      <div> 
+                        {% for i in range(juego[7]) %}
+                          <i class="fa fa-star estrella"></i>
+                        {% endfor %}
+                        <a href="{{ url_for('visualizar_valoracion_get', id=juego[0], idioma=idioma) }}">{{ juego[6] }}</a>
+                      </div>
+                    {% endif %} 
                   </ul>
                   <form method="get" action="{{ url_for('visualizar_juego_get') }}">
                     <input type="hidden" name="idioma" value="{{ idioma }}">

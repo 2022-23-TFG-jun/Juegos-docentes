@@ -241,3 +241,13 @@
     color: #4286f4;
     cursor: pointer;
   }
+
+  .estrella {
+    color: #ffcc00;
+  }
+  
+  .card-grande {
+    width: 80%;
+    margin: 0 auto;
+  }
+  

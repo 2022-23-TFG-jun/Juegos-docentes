@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>Añadir valoración</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h2 class="text-center my-4">Escribir una opinión</h2>
+        <form action="/añadir_valoracion?id={{ request.args.get('id') }}&idioma={{ request.args.get('idioma') }}" method="POST">
+
+          <div class="mb-3">
+            <label for="puntuacion" class="form-label">Puntuación:</label>
+            <div class="estrellas">
+              <input type="radio" id="estrella1" name="puntuacion" value="1">
+              <label for="estrella1">1<i class="fa fa-star estrella"></i></label>
+              <input type="radio" id="estrella2" name="puntuacion" value="2">
+              <label for="estrella2">2<i class="fa fa-star estrella"></i></label>
+              <input type="radio" id="estrella3" name="puntuacion" value="3">
+              <label for="estrella3">3<i class="fa fa-star estrella"></i></label>
+              <input type="radio" id="estrella4" name="puntuacion" value="4">
+              <label for="estrella4">4<i class="fa fa-star estrella"></i></label>
+              <input type="radio" id="estrella5" name="puntuacion" value="5" required>
+              <label for="estrella5">5<i class="fa fa-star estrella"></i></label>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="comentario" class="form-label">Escribe tu reseña:</label>
+            <textarea class="form-control" id="comentario" name="comentario" rows="5"></textarea>
+          </div>
+
+          <div class="d-grid gap-2">
+            <button class="btn btn-primary" type="submit">Enviar</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

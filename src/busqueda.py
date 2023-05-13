@@ -25,7 +25,7 @@ def obtener_resultados_busqueda(busqueda, idiomaF, puntuacion, juegos_por_pagina
     # Si puntuación tiene un valor se asigna a sí misma, si no se le asigna un número decimal
     puntuacion = puntuacion if puntuacion else '[0-5].[0-9]'
  
-    cur.execute("SELECT id, nombre_juego, descripcion, idioma, enlace, puntuacion "
+    cur.execute("SELECT id, nombre_juego, descripcion, idioma, enlace, puntuacion, puntuacion_media_usuario, estrellas_general "
             "FROM schema_juegos_docentes.juegos "
             "WHERE (unaccent(lower(nombre_juego)) LIKE %s "
             "OR unaccent(lower(descripcion)) LIKE %s "
@@ -40,7 +40,7 @@ def obtener_resultados_busqueda(busqueda, idiomaF, puntuacion, juegos_por_pagina
     # Obtener el resultado de la consulta de todos los juegos (4 por página)
     resultados_busqueda = cur.fetchall()
 
-    cur.execute("SELECT nombre_juego, descripcion, idioma, enlace, puntuacion "
+    cur.execute("SELECT nombre_juego, descripcion, idioma, enlace, puntuacion, puntuacion_media_usuario, estrellas_general "
             "FROM schema_juegos_docentes.juegos "
             "WHERE (unaccent(lower(nombre_juego)) LIKE %s "
             "OR unaccent(lower(descripcion)) LIKE %s "
