@@ -793,6 +793,15 @@ def visualizar_valoracion_get():
 
     return render_template('visualizar_valoracion.html', valoraciones=valoraciones, traducciones=traducciones, idioma=idioma)
 
+@app.route('/acerca_de', methods=['GET'])
+def acerca_de_get():
+    # Obtener idioma elegido
+    idioma = request.args.get('idioma', 'es')
+    #Obtener traducciones para el idioma específico
+    traducciones = cargar_traducciones_inicio(idioma)
+
+    return render_template('acerca_de.html', traducciones=traducciones, idioma=idioma)
+
 @app.route('/logout')
 @login_required
 def logout():
