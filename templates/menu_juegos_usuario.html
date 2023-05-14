@@ -70,12 +70,12 @@
             <div class="col-md-6 col-lg-4">
               <div class="card card-sm my-4">
                 <div class="card-body text-center">
-                  <h3 class="card-title">{{ juego[1] }}</h3>
+                  <h5 class="card-title">{{ juego[1] }}</h5>
                   <p class="card-text">{{ juego[2] }}</p>
                   <ul class="list-unstyled">
-                    <li>{{ traducciones['IDIOMA'][idioma] }}: {{ juego[3] }}</li>
-                    <li>{{ traducciones['PUNTUACION'][idioma] }}: {{ juego[5] }}</li>
-                    <li>{{ traducciones['ENLACE'][idioma] }}: {{ juego[4] }}</li>
+                    <li class="li-text">{{ traducciones['IDIOMA'][idioma] }}: {{ juego[3] }}</li>
+                    <li class="li-text">{{ traducciones['PUNTUACION'][idioma] }}: {{ juego[5] }}</li>
+                    <li><a href="{{ juego[4] }}">Enlace</a></li>
                     {% if juego[7] %}
                       <div> 
                         {% for i in range(juego[7]) %}
@@ -88,12 +88,12 @@
                   <form method="get" action="{{ url_for('visualizar_juego_get') }}">
                     <input type="hidden" name="idioma" value="{{ idioma }}">
                     <input type="hidden" name="id" value="{{ juego[0] }}">
-                    <button type="submit" class="btn btn-primary">{{ traducciones['BTN-INFO'][idioma] }}</button>
+                    <button type="submit" class="btn-info-juego">{{ traducciones['BTN-INFO'][idioma] }}</button>
                   </form>
                   <form method="get" action="{{ url_for('añadir_valoracion_get') }}">
                     <input type="hidden" name="idioma" value="{{ idioma}}">
                     <input type="hidden" name="id" value="{{ juego[0] }}">
-                    <button type="submit" class="btn btn-primary">Escribir una opinión</button>
+                    <button type="submit" class="btn-opinion">Escribir una opinión</button>
                   </form>
                 </div>
               </div>
@@ -139,12 +139,12 @@
             <div class="col-md-6 col-lg-4">
               <div class="card card-sm my-4">
                 <div class="card-body text-center">
-                  <h3 class="card-title">{{ juego[1] }}</h3>
+                  <h5 class="card-title">{{ juego[1] }}</h5>
                   <p class="card-text">{{ juego[2] }}</p>
                   <ul class="list-unstyled">
-                    <li>{{ traducciones['IDIOMA'][idioma] }}: {{ juego[3] }}</li>
-                    <li>{{ traducciones['PUNTUACION'][idioma] }}: {{ juego[5] }}</li>
-                    <li>{{ traducciones['ENLACE'][idioma] }}: {{ juego[4] }}</li>
+                    <li class="li-text">{{ traducciones['IDIOMA'][idioma] }}: {{ juego[3] }}</li>
+                    <li class="li-text">{{ traducciones['PUNTUACION'][idioma] }}: {{ juego[5] }}</li>
+                    <li><a href="{{ juego[4] }}">Enlace</a></li>
                     {% if juego[7] %}
                       <div> 
                         {% for i in range(juego[7]) %}
@@ -157,12 +157,12 @@
                   <form method="get" action="{{ url_for('visualizar_juego_get') }}">
                     <input type="hidden" name="idioma" value="{{ idioma }}">
                     <input type="hidden" name="id" value="{{ juego[0] }}">
-                    <button type="submit" class="btn btn-primary">{{ traducciones['BTN-INFO'][idioma] }}</button>
+                    <button type="submit" class="btn-info-juego">{{ traducciones['BTN-INFO'][idioma] }}</button>
                   </form>
                   <form method="get" action="{{ url_for('añadir_valoracion_get') }}">
                     <input type="hidden" name="idioma" value="{{ idioma}}">
                     <input type="hidden" name="id" value="{{ juego[0] }}">
-                    <button type="submit" class="btn btn-primary">Escribir una opinión</button>
+                    <button type="submit" class="btn-opinion">Escribir una opinión</button>
                   </form>
                 </div>
               </div>

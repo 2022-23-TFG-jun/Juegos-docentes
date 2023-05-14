@@ -18,13 +18,13 @@
     <h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
 
     {% if error_usuario_existe %}
-      <p class="error">{{ error_usuario_existe['USUARIO-EXISTE'][idioma] }}</p>
+      <div class="alert alert-danger">{{ error_usuario_existe['USUARIO-EXISTE'][idioma] }}</div>
     {% endif %}
     {% if error_contraseña_condiciones %}
-      <p class="error">{{ error_contraseña_condiciones['CONTRASEÑA'][idioma] }}</p>
+      <div class="alert alert-danger">{{ error_contraseña_condiciones['CONTRASEÑA'][idioma] }}</div>
     {% endif %}
     {% if error_contraseñas_no_coinciden %}
-      <p class="error">{{ error_contraseñas_no_coinciden['NO-COINCIDEN'][idioma] }}</p>
+    <div class="alert alert-danger">{{ error_contraseñas_no_coinciden['NO-COINCIDEN'][idioma] }}</div>
     {% endif %}
 
     <form action="/registro" method="POST">

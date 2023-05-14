@@ -67,44 +67,44 @@
         <div class="col-md-12">
           <div class="row">
             {% for juego in resultados_busqueda %}
-            <div class="col-md-6 col-lg-4">
-              <div class="card card-sm my-4">
-                <div class="card-body text-center">
-                  <h3 class="card-title">{{ juego[1] }}</h3>
-                  <p class="card-text">{{ juego[2] }}</p>
-                  <ul class="list-unstyled">
-                    <li>{{ traducciones['IDIOMA'][idioma] }}: {{ juego[3] }}</li>
-                    <li>{{ traducciones['PUNTUACION'][idioma] }}: {{ juego[5] }}</li>
-                    <li>{{ traducciones['ENLACE'][idioma] }}: {{ juego[4] }}</li>
-                    {% if juego[7] %}
-                      <div> 
-                        {% for i in range(juego[7]) %}
-                          <i class="fa fa-star estrella"></i>
-                        {% endfor %}
-                        <a href="{{ url_for('visualizar_valoracion_get', id=juego[0], idioma=idioma) }}">{{ juego[6] }}</a>
-                      </div>
-                    {% endif %} 
-                  </ul>
-                  <form method="get" action="{{ url_for('visualizar_juego_get') }}">
-                    <input type="hidden" name="idioma" value="{{ idioma }}">
-                    <input type="hidden" name="id" value="{{ juego[0] }}">
-                    <button type="submit" class="btn-info-juego">{{ traducciones['BTN-INFO'][idioma] }}</button>
-                  </form>
-                  
-                  <form method="get" action="{{ url_for('modificar_juego_get') }}">
-                    <input type="hidden" name="idioma" value="{{ idioma}}">
-                    <input type="hidden" name="id" value="{{ juego[0]}}">
-                    <button type="submit" class="btn-modificar-juego">{{ traducciones['BTN-MODIFICAR'][idioma] }}</button>
-                  </form>
+              <div class="col-md-6 col-lg-4">
+                <div class="card card-sm my-4">
+                  <div class="card-body text-center">
+                    <h5 class="card-title">{{ juego[1] }}</h5>
+                    <p class="card-text">{{ juego[2] }}</p>
+                    <ul class="list-unstyled">
+                      <li class="li-text">{{ traducciones['IDIOMA'][idioma] }}: {{ juego[3] }}</li>
+                      <li class="li-text">{{ traducciones['PUNTUACION'][idioma] }}: {{ juego[5] }}</li>
+                      <li><a href="{{ juego[4] }}">Enlace</a></li>
+                      {% if juego[7] %}
+                        <div> 
+                          {% for i in range(juego[7]) %}
+                            <i class="fa fa-star estrella"></i>
+                          {% endfor %}
+                          <a href="{{ url_for('visualizar_valoracion_get', id=juego[0], idioma=idioma) }}">{{ juego[6] }}</a>
+                        </div>
+                      {% endif %}
+                    </ul>
+                    <form method="get" action="{{ url_for('visualizar_juego_get') }}">
+                      <input type="hidden" name="idioma" value="{{ idioma }}">
+                      <input type="hidden" name="id" value="{{ juego[0] }}">
+                      <button type="submit" class="btn-info-juego">{{ traducciones['BTN-INFO'][idioma] }}</button>
+                    </form>
+                    
+                    <form class="form-btns" method="get" action="{{ url_for('modificar_juego_get') }}">
+                      <input type="hidden" name="idioma" value="{{ idioma}}">
+                      <input type="hidden" name="id" value="{{ juego[0]}}">
+                      <button type="submit" class="btn-modificar-juego">{{ traducciones['BTN-MODIFICAR'][idioma] }}</button>
+                    </form>
 
-                  <form  method="get" action="{{ url_for('instrucciones_juego_get') }}">
-                    <input type="hidden" name="idioma" value="{{ idioma}}">
-                    <input type="hidden" name="id" value="{{ juego[0]}}">
-                    <button type="submit" class="btn-instrucciones">{{ traducciones['BTN-INSTRUCCIONES'][idioma] }}</button>
-                  </form>
+                    <form class="form-btns" method="get" action="{{ url_for('instrucciones_juego_get') }}">
+                      <input type="hidden" name="idioma" value="{{ idioma}}">
+                      <input type="hidden" name="id" value="{{ juego[0]}}">
+                      <button type="submit" class="btn-instrucciones">{{ traducciones['BTN-INSTRUCCIONES'][idioma] }}</button>
+                    </form>
+                  </div>
                 </div>
               </div>
-            </div>
             {% endfor %}
           </div>
         </div>
@@ -121,7 +121,6 @@
                   <button type="submit" class="btn btn-primary mr-2"><i class="fa fa-arrow-left"></i></button>
                 </form>
               {% endif %}
-              <!-- <p>{{pagina_actual}}/{{total_paginas}}</p> -->
               {% if pagina_actual < total_paginas %}
                 <form method="post" action="{{ url_for('menu_juegos_post', pagina=pagina_actual+1, busqueda=busqueda, idiomaF=idiomaF, puntuacion=puntuacion, idioma=idioma) }}">
                   <input type="hidden" name="pagina" value="{{ pagina_actual + 1 }}">
@@ -147,12 +146,12 @@
             <div class="col-md-6 col-lg-4">
               <div class="card card-sm my-4">
                 <div class="card-body text-center">
-                  <h3 class="card-title">{{ juego[1] }}</h3>
+                  <h5 class="card-title">{{ juego[1] }}</h5>
                   <p class="card-text">{{ juego[2] }}</p>
                   <ul class="list-unstyled">
-                    <li>{{ traducciones['IDIOMA'][idioma] }}: {{ juego[3] }}</li>
-                    <li>{{ traducciones['PUNTUACION'][idioma] }}: {{ juego[5] }}</li>
-                    <li>{{ traducciones['ENLACE'][idioma] }}: {{ juego[4] }}</li>
+                    <li class="li-text">{{ traducciones['IDIOMA'][idioma] }}: {{ juego[3] }}</li>
+                    <li class="li-text">{{ traducciones['PUNTUACION'][idioma] }}: {{ juego[5] }}</li>
+                    <li><a href="{{ juego[4] }}">Enlace</a></li>
                     {% if juego[7] %}
                       <div> 
                         {% for i in range(juego[7]) %}
@@ -160,7 +159,7 @@
                         {% endfor %}
                         <a href="{{ url_for('visualizar_valoracion_get', id=juego[0], idioma=idioma) }}">{{ juego[6] }}</a>
                       </div>
-                    {% endif %} 
+                    {% endif %}
                   </ul>
                   <form method="get" action="{{ url_for('visualizar_juego_get') }}">
                     <input type="hidden" name="idioma" value="{{ idioma }}">
@@ -168,13 +167,13 @@
                     <button type="submit" class="btn-info-juego">{{ traducciones['BTN-INFO'][idioma] }}</button>
                   </form>
                   
-                  <form method="get" action="{{ url_for('modificar_juego_get') }}">
+                  <form class="form-btns" method="get" action="{{ url_for('modificar_juego_get') }}">
                     <input type="hidden" name="idioma" value="{{ idioma}}">
                     <input type="hidden" name="id" value="{{ juego[0]}}">
                     <button type="submit" class="btn-modificar-juego">{{ traducciones['BTN-MODIFICAR'][idioma] }}</button>
                   </form>
 
-                  <form  method="get" action="{{ url_for('instrucciones_juego_get') }}">
+                  <form class="form-btns" method="get" action="{{ url_for('instrucciones_juego_get') }}">
                     <input type="hidden" name="idioma" value="{{ idioma}}">
                     <input type="hidden" name="id" value="{{ juego[0]}}">
                     <button type="submit" class="btn-instrucciones">{{ traducciones['BTN-INSTRUCCIONES'][idioma] }}</button>
@@ -192,7 +191,6 @@
             <a href="{{ url_for('menu_juegos_get', pagina=pagina_actual-1, idioma=idioma) }}" class="btn btn-primary mr-2"><i class="fa fa-arrow-left"></i></a>
             {% endif %}
 
-            <!-- <h4>Página {{pagina_actual}}</h4> -->
             {% if pagina_actual < total_paginas %}
             <a href="{{ url_for('menu_juegos_get', pagina=pagina_actual+1, idioma=idioma) }}" class="btn btn-primary ml-2"><i class="fa fa-arrow-right"></i></a>
             {% endif %}

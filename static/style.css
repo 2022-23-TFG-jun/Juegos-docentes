@@ -181,7 +181,7 @@
   cursor: pointer;
 }
 
-/*******************************************ESTILOS MENU_JUEGO_PROFESOR.HTML*******************************************/
+  /*******************************************ESTILOS MENU_JUEGO_PROFESOR.HTML*******************************************/
 .btn-info-juego, .btn-modificar-juego, .btn-instrucciones {
   display: inline-block;
   background-color: #ffffff;
@@ -203,7 +203,60 @@
   text-decoration: underline; /* subrayar al pasar el cursor */
   }
 
-/**/
+  .form-btns {
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  /*******************************************ESTILOS MENU_JUEGO_USUARIO.HTML*******************************************/
+.btn-info-juego, .btn-opinion {
+  display: inline-block;
+  background-color: #ffffff;
+  color: #4286f4;
+  border: none; /* eliminar el borde */
+  border-radius: 25px;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  padding: 5px 12px;
+  transition: background-color 0.3s ease;
+  }
+  
+  .btn-info-juego:hover, .btn-opinion:hover {
+  background-color: #4286f4;
+  color: #ffffff;
+  cursor: pointer;
+  text-decoration: underline; /* subrayar al pasar el cursor */
+  }
+  .card {
+    height: 281px;
+    
+  }
+
+  .card-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; /* máximo de líneas que quieres mostrar */
+    font-size: 14px;
+    overflow: hidden;
+  }
+
+  .li-text {
+    font-size: 15px;
+  }
+
+  .estrella {
+    color: #ffcc00;
+  }
+  
+  .card-grande {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+
+ /*******************************************ESTILOS GENERALES*******************************************/
   .btn-cerrar, .btn-acerca {
     display: inline-block;
     background-color: #ffffff;
@@ -241,13 +294,3 @@
     color: #4286f4;
     cursor: pointer;
   }
-
-  .estrella {
-    color: #ffcc00;
-  }
-  
-  .card-grande {
-    width: 80%;
-    margin: 0 auto;
-  }
-  

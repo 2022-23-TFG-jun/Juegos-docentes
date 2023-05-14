@@ -32,8 +32,8 @@
 
 				<div class="form-group">
 					<label for="descripcion">{{ traducciones['DESCRIPCION'][idioma] }}</label>
-					<textarea class="form-control" id="descripcion" name="descripcion" rows="4" cols="50"
-							placeholder="Escriba la descripcion..."></textarea>
+					<textarea class="form-control" id="descripcion" name="descripcion" rows="4" cols="50" 
+						placeholder="Escriba la descripcion..." required></textarea>
 				</div>
 
 				<div class="form-group">
@@ -42,7 +42,6 @@
 						<option value="">{{ traducciones['OPCION'][idioma] }}</option>
 						<option value="{{ traducciones['ES'][idioma] }}">{{ traducciones['ES'][idioma] }}</option>
 						<option value="{{ traducciones['EN'][idioma] }}">{{ traducciones['EN'][idioma] }}</option>
-						<option value="{{ traducciones['FR'][idioma] }}">{{ traducciones['FR'][idioma] }}</option>
 					</select>
 				</div>
 
@@ -221,7 +220,6 @@
 
 				<div class="d-flex justify-content-center">
 					<button type="submit" class="btn-añadir-juego">{{ traducciones['BTN-AÑADIR'][idioma] }}</button>
-					<!-- <input type="submit" name="submit" value="{{ traducciones['BTN-AÑADIR'][idioma] }}"> -->
 				</div>
 				<div style="margin-bottom: 100px;"></div>
 			</form>
