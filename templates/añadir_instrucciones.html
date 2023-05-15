@@ -16,17 +16,47 @@
       <a href="logout">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
     </div>
   </header>
-  
   <div class="container mt-5">
-    <h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
-    <form action="/añadir_instrucciones?id={{ request.args.get('id') }}&idioma={{ request.args.get('idioma') }}" method="POST" enctype="multipart/form-data">
-      <div class="form-group">
-        <label for="archivo_juego">{{ traducciones['ARCHIVO'][idioma] }}</label>
-        <input type="file" name="archivo_juego" id="archivo_juego" class="form-control-file">
+    <div class="d-flex justify-content-center mb-5">
+      <h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <form action="/añadir_instrucciones_jugador?id={{ request.args.get('id') }}&idioma={{ request.args.get('idioma') }}" method="POST" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="instrucciones_jugador">{{ traducciones['ARCHIVO-JUGADOR'][idioma] }}</label>
+            <input type="file" name="instrucciones_jugador" id="instrucciones_jugador" class="form-control-file">
+          </div>
+          <div class="d-flex justify-content-center">
+            <button type="submit" class="btn-cargar">{{ traducciones['BTN-CARGAR'][idioma] }}</button>
+          </div>
+        </form>
       </div>
-      <button type="submit" class="btn btn-primary">{{ traducciones['BTN-CARGAR'][idioma] }}</button>
-    </form>
+      <div class="col-md-4">
+        <form action="/añadir_instrucciones_instructor?id={{ request.args.get('id') }}&idioma={{ request.args.get('idioma') }}" method="POST" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="instrucciones_instructor">{{ traducciones['ARCHIVO-INSTRUCTOR'][idioma] }}</label>
+            <input type="file" name="instrucciones_instructor" id="instrucciones_instructor" class="form-control-file">
+          </div>
+          <div class="d-flex justify-content-center">
+            <button type="submit" class="btn-cargar">{{ traducciones['BTN-CARGAR'][idioma] }}</button>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-4">
+        <form action="/añadir_archivo_juego?id={{ request.args.get('id') }}&idioma={{ request.args.get('idioma') }}" method="POST" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="archivo_juego">{{ traducciones['ARCHIVO-JUEGO'][idioma] }}</label>
+            <input type="file" name="archivo_juego" id="archivo_juego" class="form-control-file">
+          </div>
+          <div class="d-flex justify-content-center">
+            <button type="submit" class="btn-cargar">{{ traducciones['BTN-CARGAR'][idioma] }}</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
+  
 
 	<footer class="bg-light py-1 fixed-bottom">
 		<div class="container-fluid">

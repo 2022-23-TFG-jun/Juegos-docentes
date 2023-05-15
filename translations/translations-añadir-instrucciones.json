@@ -15,9 +15,17 @@
         "en": "Final Degree Project © 2023",
         "es": "Trabajo de Fin de Grado © 2023"
     },
-    "ARCHIVO": {
-        "en": "File",
-        "es": "Archivo"
+    "ARCHIVO-INSTRUCTOR": {
+        "en": "Add instructor instruction file",
+        "es": "Añadir archivo de las instrucciones instructor"
+    },
+    "ARCHIVO-JUGADOR": {
+        "en": "Add player instruction file",
+        "es": "Añadir archivo de las instrucciones jugador"
+    },
+    "ARCHIVO-JUEGO": {
+        "en": "Add game file",
+        "es": "Añadir archivo del juego"
     },
     "BTN-CERRAR-SESION": {
         "en": "Log out",

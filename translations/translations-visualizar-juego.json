@@ -108,9 +108,21 @@
         "en": "Video tutorial",
         "es": "Vídeo tutorial"
     },
-    "DESCARGAR": {
-        "en": "Download instructions",
-        "es": "Descargar instrucciones"
+    "DESCARGAR-INSTRUCTOR": {
+        "en": "Download instructor instructions",
+        "es": "Descargar instrucciones instructor"
+    },
+    "DESCARGAR-JUGADOR": {
+        "en": "Download player instructions",
+        "es": "Descargar instrucciones jugador"
+    },
+    "DESCARGAR-ARCHIVO": {
+        "en": "Download file",
+        "es": "Descargar archivo "
+    },
+    "ARCHIVO": {
+        "en": "File",
+        "es": "Archivo"
     },
     "ACERCA": {
         "en": "About",

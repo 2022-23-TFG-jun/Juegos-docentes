@@ -255,7 +255,25 @@
     margin: 0 auto;
   }
 
+ /*******************************************ESTILOS AÑADIR ARCHIVOS*******************************************/
+ .btn-cargar {
+  display: inline-block;
+  background-color: #4286f4;
+  color: #ffffff;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  padding: 5px 12px;
+  transition: background-color 0.3s ease;
+}
 
+.btn-cargar:hover {
+  background-color: #ffffff;
+  color: #4286f4;
+  cursor: pointer;
+}
  /*******************************************ESTILOS GENERALES*******************************************/
   .btn-cerrar, .btn-acerca {
     display: inline-block;

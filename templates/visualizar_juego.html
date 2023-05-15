@@ -36,6 +36,11 @@
 							<th>{{ traducciones['PUNTUACION'][idioma] }}</th>
 							<td>{{ informacion_juego[5] }}</td>
 						</tr>
+						<tr>
+							<th>{{ traducciones['ARCHIVO'][idioma] }}</th>
+							<td><a href="{{ url_for('descargar_instrucciones', filename=informacion_juego[30]) }}">{{ traducciones['DESCARGAR-ARCHIVO'][idioma] }}</a></td>
+							
+						</tr>
 					</tbody>
 				</table>
 			</div>
@@ -66,14 +71,20 @@
 							<th>{{ traducciones['ISNTRUCCIONES_JUGADOR'][idioma] }}</th>
 							
 							{% if informacion_juego[9] == "Sí" or informacion_juego[9] == "Yes" %}
-								<td>{{ informacion_juego[9] }} <a href="{{ url_for('descargar_instrucciones', filename=informacion_juego[26]) }}">{{ traducciones['DESCARGAR'][idioma] }}</a></td>
+								<td>{{ informacion_juego[9] }} <a href="{{ url_for('descargar_instrucciones', filename=informacion_juego[28]) }}">{{ traducciones['DESCARGAR-JUGADOR'][idioma] }}</a></td>
 							{%else%}
 								<td>{{ informacion_juego[9] }}</td>
 							{% endif %}
 						</tr>
 						<tr>
 							<th>{{ traducciones['ISNTRUCCIONES_INSTRUCTOR'][idioma] }}</th>
-							<td>{{ informacion_juego[10] }}</td>
+														
+							{% if informacion_juego[10] == "Sí" or informacion_juego[10] == "Yes" %}
+								<td>{{ informacion_juego[10] }} <a href="{{ url_for('descargar_instrucciones', filename=informacion_juego[29]) }}">{{ traducciones['DESCARGAR-INSTRUCTOR'][idioma] }}</a></td>
+							{%else%}
+								<td>{{ informacion_juego[10] }}</td>
+							{% endif %}
+							
 						</tr>
 					</tbody>
 				</table>

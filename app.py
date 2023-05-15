@@ -390,7 +390,7 @@ def añadir_juego_post():
 
     return redirect(url_for('menu_juegos_get', idioma=idioma))
 
-@app.route('/añadir_instrucciones', methods=['GET'])
+@app.route('/añadir_instrucciones_jugador', methods=['GET'])
 def instrucciones_juego_get():
 
     idioma = request.args.get('idioma', 'es')
@@ -400,8 +400,52 @@ def instrucciones_juego_get():
 
     return render_template('añadir_instrucciones.html', traducciones=traducciones, idioma=idioma)
 
-@app.route('/añadir_instrucciones', methods=['POST'])
+@app.route('/añadir_instrucciones_jugador', methods=['POST'])
 def instrucciones_juego_post():
+
+    # Obtener idioma elegido
+    idioma = request.args.get('idioma', 'es')
+
+    # Obtener el archivo cargado
+    f = request.files['instrucciones_jugador']
+    
+    # Obtener id del juego elegido
+    id_juego = request.args.get('id')
+    
+    filename = secure_filename(f.filename)
+
+    # Guardar el archivo cargado en la carpeta de carga
+    ruta_archivo = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    f.save(ruta_archivo)
+
+    Juego.añadir_instrucciones_jugador(filename, id_juego)
+
+    return redirect(url_for('menu_juegos_get', idioma=idioma))
+
+@app.route('/añadir_instrucciones_instructor', methods=['POST'])
+def instrucciones_instructor_post():
+
+    # Obtener idioma elegido
+    idioma = request.args.get('idioma', 'es')
+
+    # Obtener el archivo cargado
+    f = request.files['instrucciones_instructor']
+    
+    # Obtener id del juego elegido
+    id_juego = request.args.get('id')
+    
+    filename = secure_filename(f.filename)
+
+    # Guardar el archivo cargado en la carpeta de carga
+    ruta_archivo = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    f.save(ruta_archivo)
+
+    Juego.añadir_instrucciones_instructor(filename, id_juego)
+
+    return redirect(url_for('menu_juegos_get', idioma=idioma))
+
+@app.route('/añadir_archivo_juego', methods=['POST'])
+def archivo_juego_post():
 
     # Obtener idioma elegido
     idioma = request.args.get('idioma', 'es')
@@ -418,9 +462,10 @@ def instrucciones_juego_post():
     ruta_archivo = os.path.join(app.config['UPLOAD_FOLDER'], filename)
     f.save(ruta_archivo)
 
-    Juego.añadir_instrucciones(filename, id_juego)
+    Juego.añadir_archivo_juego(filename, id_juego)
 
     return redirect(url_for('menu_juegos_get', idioma=idioma))
+
 
 @app.route('/descargar_instrucciones')
 def descargar_instrucciones():

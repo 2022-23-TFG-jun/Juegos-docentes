@@ -57,10 +57,24 @@ class Juego():
         db.commit()
     
     @staticmethod
-    def añadir_instrucciones(archivo_instrucciones_jugador, id_juego):
+    def añadir_instrucciones_jugador(archivo_instrucciones_jugador, id_juego):
         db = conectar()
         cursor = db.cursor()
         cursor.execute("UPDATE schema_juegos_docentes.juegos SET archivo_instrucciones_jugador = %s WHERE id = %s", (archivo_instrucciones_jugador, id_juego))
+        db.commit()
+    
+    @staticmethod
+    def añadir_instrucciones_instructor(archivo_instrucciones_instructor, id_juego):
+        db = conectar()
+        cursor = db.cursor()
+        cursor.execute("UPDATE schema_juegos_docentes.juegos SET archivo_instrucciones_instructor = %s WHERE id = %s", (archivo_instrucciones_instructor, id_juego))
+        db.commit()
+
+    @staticmethod
+    def añadir_archivo_juego(archivo_juego, id_juego):
+        db = conectar()
+        cursor = db.cursor()
+        cursor.execute("UPDATE schema_juegos_docentes.juegos SET archivo_juego = %s WHERE id = %s", (archivo_juego, id_juego))
         db.commit()
 
     @staticmethod
