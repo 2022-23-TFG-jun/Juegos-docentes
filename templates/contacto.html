@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Contacto</title>
+    <title>{{ traducciones['INICIO'][idioma] }}</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
@@ -17,7 +17,7 @@
 
     <main class="container mt-5">
         <h1 class="text-center mb-5">{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
-        <p class="text-center text-justify">¡Conviértete en profesor en nuestra plataforma y ayuda a mejorar la educación! Como profesor, podrás agregar tus propios juegos docentes, modificar los existentes y agregar instrucciones. Para solicitar el rol de profesor, por favor pulse el botón de solicitar. Recuerda que tu solicitud será revisada por el administrador antes de ser aprobada.</p>
+        <p class="text-center text-justify">{{ traducciones['TEXTO'][idioma] }}</p>
 
 
         {% if mensaje_solicitud %}

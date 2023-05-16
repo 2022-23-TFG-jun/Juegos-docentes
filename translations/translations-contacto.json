@@ -4,8 +4,8 @@
     "es": "Solicitud"  
     },
     "TITULO-INICIO": {
-        "en": "Teacher games menu",
-        "es": "Menú juegos docentes"
+        "en": "Request the role of teacher",
+        "es": "Solicita el rol de profesor"
     },
     "ACERCA": {
         "en": "About",
@@ -14,6 +14,10 @@
     "BTN-CERRAR-SESION": {
         "en": "Log out",
         "es": "Cerrar sesión"
+    },
+    "TEXTO": {
+        "en": "Become a teacher on our platform and help improve education! As a teacher, you will be able to add your own teaching games, modify existing ones and add instructions. To request the teacher role, please press the request button. Remember that your application will be reviewed by the administrator before being approved.",
+        "es": "¡Conviértete en profesor en nuestra plataforma y ayuda a mejorar la educación! Como profesor, podrás agregar tus propios juegos docentes, modificar los existentes y agregar instrucciones. Para solicitar el rol de profesor, por favor pulse el botón de solicitar. Recuerda que tu solicitud será revisada por el administrador antes de ser aprobada."
     },
     "BTN-SOLICITAR-PROFESOR": {
         "en": "Request",

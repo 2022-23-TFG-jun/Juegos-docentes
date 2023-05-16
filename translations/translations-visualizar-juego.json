@@ -1,4 +1,8 @@
 {
+    "INICIO": {
+        "en": "View game",
+        "es": "Visualizar juego"  
+        },
     "TITULO-INICIO": {
         "en": "Game information",
         "es": "Información del juego"
@@ -21,7 +25,7 @@
         "es": "Disciplina:"
     },
     "NATURALEZA": {
-        "en": "character:",
+        "en": "Character:",
         "es": "Naturaleza:"
     },
     "IDIOMA": {

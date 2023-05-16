@@ -19,6 +19,40 @@
         "en": "Manage Requests",
         "es": "Administrar solicitudes"
     },
+    "SELECCIONA": {
+        "en": "Select a management option:",
+        "es": "Selecciona una opción de administración:"
+    },
+    "USUARIOS": {
+        "en": "Users Management",
+        "es": "Administración de usuarios"
+    },
+    "TXT-USUARIOS": {
+        "en": "In this section you can manage user accounts, allowing the deletion of user accounts.",
+        "es": "En esta sección podrás gestionar las cuentas de usuario, permitiendo la eliminación de las cuentas de los usuarios."
+    },
+    "JUEGOS": {
+        "en": "Game management",
+        "es": "Administración de juegos"
+    },
+    "TXT-JUEGOS": {
+        "en": "Here you can manage the games available on the platform, allowing the removal of games.",
+        "es": "Aquí podrás administrar los juegos disponibles en la plataforma, permitiendo la eliminación de juegos."
+    },
+    "SOLICITUDES": {
+        "en": "Request Management",
+        "es": "Administración de solicitudes"
+    },
+    "TXT-SOLICITUDES": {
+        "en": "This section is dedicated to managing user requests to become teachers. Here you will be able to accept or reject user requests, as well as manage the permissions of existing teachers.",
+        "es": "Esta sección está dedicada a la gestión de las solicitudes de los usuarios para convertirse en profesores. Aquí podrás aceptar o rechazar solicitudes de los usuarios, así como gestionar los permisos de los profesores existentes."
+    },
+
+
+    
+
+
+
     "BTN-CERRAR-SESION": {
         "en": "Log out",
         "es": "Cerrar sesión"

@@ -1,4 +1,8 @@
 {
+    "INICIO": {
+        "en": "Upload files",
+        "es": "Cargar archivos"
+    },
     "TITULO-INICIO": {
         "en": "File Upload",
         "es": "Carga de archivos"

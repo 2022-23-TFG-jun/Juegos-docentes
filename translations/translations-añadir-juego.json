@@ -1,4 +1,8 @@
 {
+    "INICIO": {
+        "en": "Add game",
+        "es": "Añadir juego"
+    },
     "TITULO-INICIO": {
         "en": "Add new game",
         "es": "Añadir nuevo juego"
@@ -23,17 +27,13 @@
         "en": "English",
         "es": "Inglés"
     },
-    "FR": {
-        "en": "French",
-        "es": "Francés"
-    },
     "ENLACE": {
-        "en": "Link",
-        "es": "Enlace"
+        "en": "Link:",
+        "es": "Enlace:"
     },
     "PUNTUACION": {
-        "en": "Punctuation",
-        "es": "Puntuación"
+        "en": "Punctuation:",
+        "es": "Puntuación:"
     },
     "TITULO-CATEGORIZACION": {
         "en": "Game Categorization",
@@ -78,7 +78,7 @@
     },
     "INSTRUCCIONES_INSTRUCTOR": {
         "en": "Instructor instructions:",
-        "es": "Instrucciones instructor"
+        "es": "Instrucciones instructor:"
     },
     "YES": {
         "en": "Yes",
@@ -90,12 +90,12 @@
     },
 
     "OBJETIVOS": {
-        "en": "Goals",
-        "es": "Objetivos"
+        "en": "Goals:",
+        "es": "Objetivos:"
     },
     "ESPACIO_CONTROL": {
-        "en": "Control space",
-        "es": "Espacio de control"
+        "en": "Control space:",
+        "es": "Espacio de control:"
     },
 
     "TITULO-APRENDIZAJE": {
@@ -103,12 +103,12 @@
         "es": "Aprendizaje del juego"
     },
     "OBJETIVOS_PRINCIPALES": {
-        "en": "Main objectives",
-        "es": "Objetivos principales"
+        "en": "Main objectives:",
+        "es": "Objetivos principales:"
     },
     "OBJETIVOS_SECUNDARIOS": {
-        "en": "Secondary objectives",
-        "es": "Objetivos secundarios"
+        "en": "Secondary objectives:",
+        "es": "Objetivos secundarios:"
     },
 
     "TITULO-ORGANIZACION": {
@@ -116,12 +116,12 @@
         "es": "Valoración final del profesor"
     },
     "ESTRUCTURA": {
-        "en": "Proposed structure for the sessions",
-        "es": "Estructura propuesta para las sesiones"
+        "en": "Proposed structure for the sessions:",
+        "es": "Estructura propuesta para las sesiones:"
     },
     "ASPECTOS": {
-        "en": "Additional aspects",
-        "es": "Aspectos adicionales"
+        "en": "Additional aspects:",
+        "es": "Aspectos adicionales:"
     },
 
     "TITULO-VALORACION": {
@@ -129,20 +129,20 @@
         "es": "Valoración final del profesor"
     },
     "ENTRETENIMIENTO": {
-        "en": "Entertainment",
-        "es": "Entretenimiento"
+        "en": "Entertainment:",
+        "es": "Entretenimiento:"
     },
     "APRENDIZAJE": {
-        "en": "Game learning",
-        "es": "Aprendizaje del juego"
+        "en": "Game learning:",
+        "es": "Aprendizaje del juego:"
     },
     "COMPLEJIDAD_ALUMNO": {
-        "en": "Complexity for the student",
-        "es": "Complejidad para el alumno"
+        "en": "Complexity for the student:",
+        "es": "Complejidad para el alumno:"
     },
     "COMPLEJIDAD_INSTRUCTORES": {
-        "en": "Complexity for new instructors",
-        "es": "Complejidad para nuevos instructores"
+        "en": "Complexity for new instructors:",
+        "es": "Complejidad para nuevos instructores:"
     },
 
     "EXCELENTE": {
@@ -162,7 +162,7 @@
         "es": "2 - Regular"
     },
     "MUY_BAJO": {
-        "en": "1 - Very lowh",
+        "en": "1 - Very low",
         "es": "1 - Muy bajo"
     },
 
@@ -183,6 +183,35 @@
         "en": "About",
         "es": "Acerca de"
     },
+    "ESCRIBIR-DESCRIPCION": {
+        "en": "Write the description...",
+        "es": "Escriba la descripcion..."
+    },
+    "ESCRIBIR-OBJETIVOS": {
+        "en": "Write the goals...",
+        "es": "Escriba los objetivos..."
+    },
+    "ESCRIBIR-CONTROL": {
+        "en": "Write the control space...",
+        "es": "Escriba el espacio de control..."
+    },
+    "ESCRIBIR-PRINCIPALES": {
+        "en": "Write down the main goals...",
+        "es": "Escriba los objetivos principales..."
+    },
+    "ESCRIBIR-SECUNDARIOS": {
+        "en": "Write the sub-goals...",
+        "es": "Escriba los objetivos secundarios..."
+    },
+    "ESCRIBIR-SESION": {
+        "en": "Write the proposed structure...",
+        "es": "Escriba la estructura propuesta..."
+    },
+    "ESCRIBIR-ASPECTOS": {
+        "en": "Write the additional aspects...",
+        "es": "Escriba los aspectos adicionales..."
+    },
+
     "BTN-CERRAR-SESION": {
         "en": "Log out",
         "es": "Cerrar sesión"

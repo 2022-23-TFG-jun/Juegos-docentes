@@ -20,12 +20,13 @@ from translations.translations import (
     cargar_traducciones_errores, 
     cargar_traducciones_modificar_juego, 
     cargar_traducciones_administrar_solicitudes, 
-    cargar_traducciones_añadir_instrucciones, 
+    cargar_traducciones_añadir_archivos, 
     cargar_traducciones_administracion, 
     cargar_traducciones_administrar_usuarios, 
     cargar_traducciones_administrar_juegos, 
     cargar_traducciones_contacto,
-    cargar_traducciones_visualizar_valoracion
+    cargar_traducciones_visualizar_valoracion,
+    cargar_traducciones_añadir_valoracion
 )
 
 from flask import session
@@ -396,9 +397,9 @@ def instrucciones_juego_get():
     idioma = request.args.get('idioma', 'es')
 
     #Obtener traducciones para el idioma específico
-    traducciones = cargar_traducciones_añadir_instrucciones(idioma)
+    traducciones = cargar_traducciones_añadir_archivos(idioma)
 
-    return render_template('añadir_instrucciones.html', traducciones=traducciones, idioma=idioma)
+    return render_template('añadir_archivos.html', traducciones=traducciones, idioma=idioma)
 
 @app.route('/añadir_instrucciones_jugador', methods=['POST'])
 def instrucciones_juego_post():
@@ -777,12 +778,12 @@ def añadir_valoracion_get():
     #id_juego = request.args.get('id')
 
     # Obtener idioma elegido
-    #idioma = request.args.get('idioma', 'es')
+    idioma = request.args.get('idioma', 'es')
 
     #Obtener traducciones para el idioma específico
-    #traducciones = cargar_traducciones_añadir_instrucciones(idioma)
+    traducciones = cargar_traducciones_añadir_valoracion(idioma)
 
-    return render_template('añadir_valoracion.html') #, traducciones=traducciones, idioma=idioma)
+    return render_template('añadir_valoracion.html', traducciones=traducciones, idioma=idioma)
 
 @app.route('/añadir_valoracion', methods=['POST'])
 def añadir_valoracion_post():

@@ -55,8 +55,8 @@ def cargar_traducciones_administrar_juegos(idioma):
         traducciones = json.load(f)
     return traducciones
 
-def cargar_traducciones_añadir_instrucciones(idioma):
-    with open('translations/translations-añadir-instrucciones.json', encoding='utf-8') as f:
+def cargar_traducciones_añadir_archivos(idioma):
+    with open('translations/translations-añadir-archivos.json', encoding='utf-8') as f:
         traducciones = json.load(f)
     return traducciones
 
@@ -72,6 +72,11 @@ def cargar_traducciones_contacto(idioma):
 
 def cargar_traducciones_visualizar_valoracion(idioma):
     with open('translations/translations-visualizar-valoracion.json', encoding='utf-8') as f:
+        traducciones = json.load(f)
+    return traducciones
+
+def cargar_traducciones_añadir_valoracion(idioma):
+    with open('translations/translations-añadir-valoracion.json', encoding='utf-8') as f:
         traducciones = json.load(f)
     return traducciones
 

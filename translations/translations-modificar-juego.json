@@ -1,4 +1,8 @@
 {
+    "INICIO": {
+        "en": "Modify game",
+        "es": "Modificar juego"
+    },
     "TITULO-INICIO": {
         "en": "Modify the game",
         "es": "Modificar el juego"
@@ -8,12 +12,12 @@
         "es": "Nombre del juego:"
     },
     "ENLACE": {
-        "en": "Link",
-        "es": "Enlace"
+        "en": "Link:",
+        "es": "Enlace:"
     },
     "PUNTUACION": {
-        "en": "Punctuation",
-        "es": "Puntuación"
+        "en": "Punctuation:",
+        "es": "Puntuación:"
     },
 
     "TITULO-CATEGORIZACION": {
@@ -48,10 +52,7 @@
         "en": "English",
         "es": "Inglés"
     },
-    "FR": {
-        "en": "French",
-        "es": "Francés"
-    },
+
     "OPCION": {
         "en": "Select an option",
         "es": "Seleccione una opción"
@@ -86,16 +87,16 @@
         "es": "Descripción del juego"
     },
     "DESCRIPCION": {
-        "en": "Description",
-        "es": "Descripción"
+        "en": "Description:",
+        "es": "Descripción:"
     },
     "OBJETIVOS": {
-        "en": "Goals",
-        "es": "Objetivos"
+        "en": "Goals:",
+        "es": "Objetivos:"
     },
     "ESPACIO_CONTROL": {
-        "en": "Control space",
-        "es": "Espacio de control"
+        "en": "Control space:",
+        "es": "Espacio de control:"
     },
 
     "TITULO-APRENDIZAJE": {
@@ -103,12 +104,12 @@
         "es": "Aprendizaje del juego"
     },
     "OBJETIVOS_PRINCIPALES": {
-        "en": "Main objectives",
-        "es": "Objetivos principales"
+        "en": "Main objectives:",
+        "es": "Objetivos principales:"
     },
     "OBJETIVOS_SECUNDARIOS": {
-        "en": "Secondary objectives",
-        "es": "Objetivos secundarios"
+        "en": "Secondary objectives:",
+        "es": "Objetivos secundarios:"
     },
 
     "TITULO-ORGANIZACION": {
@@ -116,12 +117,12 @@
         "es": "Valoración final del profesor"
     },
     "ESTRUCTURA": {
-        "en": "Proposed structure for the sessions",
-        "es": "Estructura propuesta para las sesiones"
+        "en": "Proposed structure for the sessions:",
+        "es": "Estructura propuesta para las sesiones:"
     },
     "ASPECTOS": {
-        "en": "Additional aspects",
-        "es": "Aspectos adicionales"
+        "en": "Additional aspects:",
+        "es": "Aspectos adicionales:"
     },
 
     "TITULO-VALORACION": {
@@ -129,20 +130,20 @@
         "es": "Valoración final del profesor"
     },
     "ENTRETENIMIENTO": {
-        "en": "Entertainment",
-        "es": "Entretenimiento"
+        "en": "Entertainment:",
+        "es": "Entretenimiento:"
     },
     "APRENDIZAJE": {
-        "en": "Game learning",
-        "es": "Aprendizaje del juego"
+        "en": "Game learning:",
+        "es": "Aprendizaje del juego:"
     },
     "COMPLEJIDAD_ALUMNO": {
-        "en": "Complexity for the student",
-        "es": "Complejidad para el alumno"
+        "en": "Complexity for the student:",
+        "es": "Complejidad para el alumno:"
     },
     "COMPLEJIDAD_INSTRUCTORES": {
-        "en": "Complexity for new instructors",
-        "es": "Complejidad para nuevos instructores"
+        "en": "Complexity for new instructors:",
+        "es": "Complejidad para nuevos instructores:"
     },
     "EXCELENTE": {
         "en": "5 - Excellent",

@@ -1,0 +1,36 @@
+{
+    "INICIO": {
+        "en": "Administration",
+        "es": "Añadir valoración"  
+        },
+
+    "TITULO-INICIO": {
+        "en": "Write an opinion",
+        "es": "Escribir una opinión"
+        },
+
+    "BTN-CERRAR-SESION": {
+            "en": "Log out",
+            "es": "Cerrar sesión"
+        },
+    "ACERCA": {
+            "en": "About",
+            "es": "Acerca de"
+        },
+    "ESCRIBIR": {
+            "en": "Write a review:",
+            "es": "Escribe una reseña:"
+        },
+    "PUNTUACION": {
+            "en": "Punctuation:",
+            "es": "Puntuación:"
+        },
+    "BTN-ENVIAR": {
+            "en": "Send",
+            "es": "Enviar"
+        },
+    "FOOTER": {
+            "en": "Final Degree Project © 2023",
+            "es": "Trabajo de Fin de Grado © 2023"
+        }
+}

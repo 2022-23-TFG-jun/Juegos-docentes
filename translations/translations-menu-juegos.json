@@ -1,4 +1,8 @@
 {
+    "INICIO": {
+        "en": "Games menu",
+        "es": "Menú de juegos"
+    },
     "TITULO-INICIO": {
         "en": "Teacher games menu",
         "es": "Menú juegos docentes"
@@ -38,6 +42,10 @@
     "BTN-AÑADIR": {
         "en": "Add game",
         "es": "Añadir juego"
+    },
+    "BTN-ESCRIBIR": {
+        "en": "Write a review",
+        "es": "Escribir una opinión"
     },
     "BTN-CERRAR-SESION": {
         "en": "Log out",

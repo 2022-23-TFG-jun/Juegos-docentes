@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Menú juegos</title>
+    <title>{{ traducciones['INICIO'][idioma] }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
@@ -33,7 +33,6 @@
               <option value="">{{ traducciones['IDIOMA'][idioma] }}</option>
               <option value="{{ traducciones['ESPAÑOL'][idioma] }}">{{ traducciones['ESPAÑOL'][idioma] }}</option>
               <option value="{{ traducciones['INGLES'][idioma] }}">{{ traducciones['INGLES'][idioma] }}</option>
-              <option value="Francés">Francés</option>
             </select>
           </div>
           
@@ -75,7 +74,7 @@
                   <ul class="list-unstyled">
                     <li class="li-text">{{ traducciones['IDIOMA'][idioma] }}: {{ juego[3] }}</li>
                     <li class="li-text">{{ traducciones['PUNTUACION'][idioma] }}: {{ juego[5] }}</li>
-                    <li><a href="{{ juego[4] }}">Enlace</a></li>
+                    <li><a href="{{ juego[4] }}">{{ traducciones['ENLACE'][idioma] }}</a></li>
                     {% if juego[7] %}
                       <div> 
                         {% for i in range(juego[7]) %}
@@ -93,7 +92,7 @@
                   <form method="get" action="{{ url_for('añadir_valoracion_get') }}">
                     <input type="hidden" name="idioma" value="{{ idioma}}">
                     <input type="hidden" name="id" value="{{ juego[0] }}">
-                    <button type="submit" class="btn-opinion">Escribir una opinión</button>
+                    <button type="submit" class="btn-opinion">{{ traducciones['BTN-ESCRIBIR'][idioma] }}</button>
                   </form>
                 </div>
               </div>
@@ -115,7 +114,6 @@
                   <button type="submit" class="btn btn-primary mr-2"><i class="fa fa-arrow-left"></i></button>
                 </form>
               {% endif %}
-              <!-- <p>{{pagina_actual}}/{{total_paginas}}</p> -->
               {% if pagina_actual < total_paginas %}
                 <form method="post" action="{{ url_for('menu_juegos_post', pagina=pagina_actual+1, busqueda=busqueda, idiomaF=idiomaF, puntuacion=puntuacion, idioma=idioma) }}">
                   <input type="hidden" name="pagina" value="{{ pagina_actual + 1 }}">
@@ -144,7 +142,7 @@
                   <ul class="list-unstyled">
                     <li class="li-text">{{ traducciones['IDIOMA'][idioma] }}: {{ juego[3] }}</li>
                     <li class="li-text">{{ traducciones['PUNTUACION'][idioma] }}: {{ juego[5] }}</li>
-                    <li><a href="{{ juego[4] }}">Enlace</a></li>
+                    <li><a href="{{ juego[4] }}">{{ traducciones['ENLACE'][idioma] }}</a></li>
                     {% if juego[7] %}
                       <div> 
                         {% for i in range(juego[7]) %}
@@ -162,7 +160,7 @@
                   <form method="get" action="{{ url_for('añadir_valoracion_get') }}">
                     <input type="hidden" name="idioma" value="{{ idioma}}">
                     <input type="hidden" name="id" value="{{ juego[0] }}">
-                    <button type="submit" class="btn-opinion">Escribir una opinión</button>
+                    <button type="submit" class="btn-opinion">{{ traducciones['BTN-ESCRIBIR'][idioma] }}</button>
                   </form>
                 </div>
               </div>

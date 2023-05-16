@@ -75,7 +75,7 @@
                   <ul class="list-unstyled">
                     <li class="li-text">{{ traducciones['IDIOMA'][idioma] }}: {{ juego[3] }}</li>
                     <li class="li-text">{{ traducciones['PUNTUACION'][idioma] }}: {{ juego[5] }}</li>
-                    <li><a href="{{ juego[4] }}">Enlace</a></li>
+                    <li><a href="{{ juego[4] }}">{{ traducciones['ENLACE'][idioma] }}</a></li>
                     {% if juego[7] %}
                       <div> 
                         {% for i in range(juego[7]) %}
@@ -137,7 +137,7 @@
                   <ul class="list-unstyled">
                     <li class="li-text">{{ traducciones['IDIOMA'][idioma] }}: {{ juego[3] }}</li>
                     <li class="li-text">{{ traducciones['PUNTUACION'][idioma] }}: {{ juego[5] }}</li>
-                    <li><a href="{{ juego[4] }}">Enlace</a></li>
+                    <li><a href="{{ juego[4] }}">{{ traducciones['ENLACE'][idioma] }}</a></li>
                     {% if juego[7] %}
                       <div> 
                         {% for i in range(juego[7]) %}

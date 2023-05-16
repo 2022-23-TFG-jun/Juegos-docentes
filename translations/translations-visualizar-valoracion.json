@@ -1,31 +1,19 @@
 {
     "INICIO": {
-        "en": "Administration",
-        "es": "Administración"  
+        "en": "Ratings",
+        "es": "Valoraciones"  
         },
     "TITULO-INICIO": {
-        "en": "Administration panel",
-        "es": "Panel de administración"
-    },
-    "BTN-USUARIOS": {
-        "en": "Manage users",
-        "es": "Administrar usuarios"
-    },
-    "BTN-JUEGOS": {
-        "en": "Manage games",
-        "es": "Administrar juegos"
-    },
-    "BTN-SOLICITUDES": {
-        "en": "Manage Requests",
-        "es": "Administrar solicitudes"
-    },
-    "BTN-CERRAR-SESION": {
-        "en": "Log out",
-        "es": "Cerrar sesión"
+        "en": "Ratings",
+        "es": "Valoraciones"
     },
     "ACERCA": {
         "en": "About",
         "es": "Acerca de"
+    },
+    "BTN-CERRAR-SESION": {
+        "en": "Log out",
+        "es": "Cerrar sesión"
     },
     "FOOTER": {
         "en": "Final Degree Project © 2023",
