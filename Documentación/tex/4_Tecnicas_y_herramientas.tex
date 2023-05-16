@@ -1,9 +1,5 @@
 \capitulo{4}{Técnicas y herramientas}
 
-Esta parte de la memoria tiene como objetivo presentar las técnicas metodológicas y las herramientas de desarrollo que se han utilizado para llevar a cabo el proyecto. Si se han estudiado diferentes alternativas de metodologías, herramientas, bibliotecas se puede hacer un resumen de los aspectos más destacados de cada alternativa, incluyendo comparativas entre las distintas opciones y una justificación de las elecciones realizadas. 
-No se pretende que este apartado se convierta en un capítulo de un libro dedicado a cada una de las alternativas, sino comentar los aspectos más destacados de cada opción, con un repaso somero a los fundamentos esenciales y referencias bibliográficas para que el lector pueda ampliar su conocimiento sobre el tema.
------------------------------------------------------------------------------
-
 En este apartado se muestran las distintas técnicas y herramientas empleadas para el desarrollo del proyecto.
 
 Entre estas técnicas y herramientas se distinguen las utilizadas para la gestión del proyecto, la documentación y los entornos de desarrollo.
@@ -58,8 +54,86 @@ Este procesador de textos se basa en instrucciones, por lo que la principal dife
 \cite{Figma2_bib} La principal ventaja de esta herramienta es la posibilidad que ofrece de usar funcionalidades y librerías de componentes creadas y compartidas por la comunidad, lo cual facilita y agiliza el diseño de las interfaces.
 \imagen{figma-logo}{Figma-logo}{0.1}
 
-\section{Entornos de desarrollo}
- \subsection{Python}
+\section{Desarrollo}
+
+\subsection{Frontend}
+\cite{frontendybackend} El frontend es la parte de la aplicación a la que el usuario puede acceder e interactuar directamente. Se trata de todas las tecnologías de diseño y desarrollo web que se utilizan en el navegador para proporcionar funcionalidad de interacción con los usuarios. Esto incluye elementos como botones, formularios, menús desplegables, imágenes y otros elementos visuales que constituyen la interfaz de usuario.
+
+Algunos de los principales lenguajes que se utilizan para el desarrollo del frontend de una aplicación son HTML5 y CSS3.
+
+HTML5 se utiliza para definir la estructura de la aplicación web, incorporando elementos que se muestran en la interfaz de usuario. 
+
+Por otro lado, CSS3 se encarga del estilo y de la presentación visual de la interfaz. Así, se puede personalizar la apariencia y la distribución de los elementos de la interfaz, proporcionando una experiencia de usuario atractiva y fácil de usar.
+
+\subsection{Backend}
+\cite{frontendybackend} El backend se refiere a la parte de la aplicación que interactúa con la base de datos y el servidor correspondiente. 
+
+Es la capa de acceso a los datos del software que no es accesible directamente por los usuarios. Además, el Backend incluye la programación encargada de manejar los datos y procesar las acciones de la aplicación. 
+
+\cite{backend} El Backend se encarga de comunicarse con el servidor, de forma que el servidor recibe las solicitudes del navegador, y después de que el Backend procese los datos, envía una respuesta al servidor para que este se la devuelva al navegador.
+
+\subsection{Framework}
+\cite{framework} Un framework es una herramienta utilizada en el desarrollo de software que proporciona una estructura que integra diversos componentes básicos para facilitar la creación de nuevos proyectos. 
+
+Existen numerosos frameworks, por lo que dependiendo del lenguaje de programación utilizado y el tipo de proyecto, se debe seleccionar el framework más adecuado.
+
+\subsection{Protocolo HTTP}
+\cite{http} El Protocolo de transferencia de hipertexto (HTTP) es el protocolo utilizado para aprobar la transferencia de información a través de distintos tipos de archivos, como XML o HTML.
+
+HTTP se encarga de establecer las convenciones sintácticas y semánticas utilizadas por los elementos de software en la arquitectura web para la comunicación. 
+
+Se trata de un protocolo orientado a transacciones, que sigue el esquema petición-respuesta entre el cliente y el servidor. En una transacción HTTP, el cliente envía una petición en un formato determinado al servidor, y este le responde con un mensaje.
+
+\imagen{protocolo_http}{Esquema protocolo HTTP}{.8}
+
+\subsubsection{GET}
+\cite{getypost} El método GET se emplea para solicitar recursos del servidor web.
+
+\subsubsection{POST}
+\cite{getypost} El método POST se emplea para enviar datos del cliente al servidor web.
+
+\subsubsection{Diferencias entre el método GET y POST}
+\cite{dif1} \cite{dif2} A continuación se inlcuye una tabla mostrando las diferencias entre los métodos GET y POST.
+\begin{table}[ht!]
+    \centering
+    \resizebox{13cm}{!} {
+    \begin{tabular}{l c c}
+    
+         \textbf{}    & \textbf{GET} & \textbf{POST} \\ \hline
+         \textit{Parámetros} &\parbox[p][0.1\textwidth][c]{5cm}{URI}      & \parbox[p][0.1\textwidth][c]{5cm}{Cuerpo} \\ 
+         \textit{Caché} &\parbox[p][0.1\textwidth][c]{5cm}{Los parámetros URL se guardan sin cifrar.}      & \parbox[p][0.1\textwidth][c]{5cm}{ Los parámetros URL no se guardan automáticamente} \\ 
+         \textit{Marcadores e historiales} &\parbox[p][0.1\textwidth][c]{5cm}{Los parámetros URL se guardan junto al URL}      & \parbox[p][0.1\textwidth][c]{5cm}{Los parámetros URL no se guardan junto al URL} \\ 
+         \textit{Propósito} &\parbox[p][0.1\textwidth][c]{5cm}{Recuperación de documentos}      & \parbox[p][0.1\textwidth][c]{5cm}{Actualización de datos} \\ 
+         \textit{Visibilidad} &\parbox[p][0.1\textwidth][c]{5cm}{Visible en la barra de direcciones para el usuario}      & \parbox[p][0.1\textwidth][c]{5cm}{Invisible para el usuario} \\ 
+         \textit{Tamaño variable} &\parbox[p][0.1\textwidth][c]{5cm}{Hasta 2000 caracteres}      & \parbox[p][0.1\textwidth][c]{5cm}{Hasta 8 Mb} \\ 
+         \textit{Longitud de datos} &\parbox[p][0.1\textwidth][c]{5cm}{Limitado al máximo del URL (2048 caracteres)}      & \parbox[p][0.1\textwidth][c]{5cm}{Ilimitado} \\
+         \textit{Tipo de datos} &\parbox[p][0.1\textwidth][c]{5cm}{Solo caracteres ASCII}      & \parbox[p][0.1\textwidth][c]{5cm}{Caracteres ASCII y datos binarios} \\
+        
+    \end{tabular}}
+    \caption{Diferencias entre los métodos GET y POST}
+    \label{tab:my_label}
+\end{table}
+
+\subsection{Arquitectura MVC}
+\cite{MVC} La arquitectura MVC es un tipo de arquitectura de software que se compone de tres componentes: modelo, vista y controlador. Esta arquitectura tiene como objetivo separar los datos de la aplicación, la interfaz de usuario y la lógica de control.
+\begin{itemize}
+    \item \textbf{Modelo:} se encarga de manejar los datos y la lógica de negocio. En mi aplicación los archivos database.py, juego.py y usuario.py, son los encargados de interactuar con la base de datos, manejando las operaciones de creación, lectura, actualización y eliminación de los datos.
+    \item \textbf{Vista:} es la presentación visual e interacción del sistema con el usuario. De forma que en mi aplicación son los templates HTML los que muestran la información al usuario. 
+    \item \textbf{Controlador:} es el intermediario entre el modelo y la vista, ya que se encarga de recibir las peticiones del usuario y de solicitar los datos al modelo y comunicárselo a la vista. En mi aplicación el controlador es el archivo app.py ya que contiene todos los métodos GET y POST, manejando la interacción entre el modelo y la vista, junto con las solicitudes del usuario y devolviendo las respuestas adecuadas.
+\end{itemize}
+\imagen{MVC}{Arquitectura MVC}{.8}
+
+\subsection{Plataforma de servicios en la nube}
+--------------------------------
+------------------
+------------------
+------------------
+------------------
+------------------
+------------------
+-------------
+
+\subsection{Python}
 \cite{Python1_bib} Es un lenguaje de programación de alto nivel empleado mayoritariamente para el desarrollo de software. \cite{Python2_bib} Al ser un lenguaje interpretado no es necesaria la compilación para la ejecución de las aplicaciones ya que dispone del programa conocido como interpretador, y por lo tanto no requiere la traducción a lenguaje máquina.
 \imagen{Python-logo}{Python-logo}{0.1}
 
@@ -73,5 +147,63 @@ Esta herramienta proporciona utilidades para el desarrollo de aplicaciones web d
 PostgreSQL es conocido por su escalabilidad y la facilidad de administrar grandes cantidades de datos, siendo compatible con herramientas y tecnologías empleados en el proyecto, incluyendo lenguajes de programación como Python y frameworks web, como Flask.
 \imagen{postgreSQL-logo}{PostgreSQL-logo}{0.1}
 
-\section{Librerías}
+\section{Librerías y módulos}
+\subsection{flask}
+Librería empleada para el uso del framework Flask.
+\begin{itemize}
+    \item \textbf{request:} \cite{request} Objeto global que proporciona acceso a los datos enviados por el cliente en una solicitud HTTP.
+    \item \textbf{redirect:} \cite{redirect} Función de Flask que redirige al usuario a otra página en una aplicación Flask.
+    \item \textbf{render template:}
+\cite{render_template} Función Flask que permite renderizar plantillas HTML para visualizarlas en el navegador.
+    \item \textbf{url for:} \cite{url} Función Flask que permite construir URLs para funciones o vistas específicas de una aplicación web Flask.
+    \item \textbf{session:} \cite{session} Objeto que almacena los datos del usuario que inició sesión en la aplicación.
+    \item \textbf{send file:} \cite{send_file} Función de Flask que envía el contenido de un archivo al cliente como respuesta a una solicitud HTTP.
+    \item \textbf{UserMixin:} \cite{UserMixin} Clase que proporciona unas propiedades de un modelo de usuario en una aplicación web.
+\end{itemize}
 
+\subsection{flask login} 
+\cite{flask-login} Librería Flask que se emplea para la gestión de las sesiones de usuarios y su autenticación.
+
+\begin{itemize}
+    \item \textbf{LoginManager:} Clase que maneja la autenticación y la gestión de sesiones de usuario en una aplicación Flask. 
+    \item \textbf{login user:} Función que permite el inicio de sesión de los usuarios en una aplicación Flask.
+    \item \textbf{current user:} Función que permite acceder al usuario que está actualmente autenticado en la sesión de una aplicación Flask. 
+    \item \textbf{login required:} Decorador que se utiliza para restringir el acceso a las vistas solo a usuarios que hayan iniciado sesión en una aplicación Flask. 
+    \item \textbf{logout user:} Función que permite cerrar la sesión de un usuario autenticado en una aplicación Flask.
+\end{itemize}
+
+\subsection{werkzeug.security}
+\cite{Werkzeug2} Módulo de la librería Werkzeug que ofrece distintas herramientas para la seguridad de las aplicaciones.
+\begin{itemize}
+    \item \textbf{check password hash:} Función que permite la comprobación de si una contraseña proporcionada coincide con la hash de la contraseña almacenada.
+    \item \textbf{generate password hash:} Función que genera un hash seguro a partir de una contraseña proporcionada.
+\end{itemize}
+
+\subsection{werkzeug.utils}
+\cite{Werkzeug} Módulo que proporciona distintas funciones para manipular operaciones en una aplicación web.
+\begin{itemize}
+    \item \textbf{secure filename:} Función que convierte un nombre de archivo en un nombre de archivo seguro, de forma que el archivo se puede almacenar de forma segura.
+\end{itemize}
+
+\subsection{datetime}
+\cite{datetime} Librería Python que permite manejar fechas y horas mediante diferentes clases.
+
+\begin{itemize}
+    \item \textbf{datetime:} Clase que representa una fecha y hora.
+    \item \textbf{timedelta:} Clase que representa una duración de tiempo, es decir, la diferencia entre dos instancias de date, time o datetime, con una resolución de microsegundos.
+\end{itemize}
+
+\subsection{unidecode}
+\cite{unidecode} Librería Python que contiene una función para convertir cadenas Unicode en cadenas 
+
+\subsection{math}
+\cite{math} Módulo que permite el uso de funciones matemáticas definidas en el estándar de C.
+
+\subsection{os}
+\cite{os} Módulo que proporciona una forma de interactuar con el sistema operativo en el que se está ejecutando Python, permitiendo el uso de las funcionalidades del sistema operativo.
+
+\subsection{Psycopg2}
+\cite{psycopg2} Librería Python que ofrece una interfaz que permite la conexión con bases de datos PostgreSQL y la realización de distintas operaciones.
+
+\subsection{Font Awesome}
+\cite{font} Librería que proporciona iconos vectoriales y estilos css para su uso en aplicaciones web.
