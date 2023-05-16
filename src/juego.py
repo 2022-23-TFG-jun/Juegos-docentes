@@ -106,6 +106,6 @@ class Juego():
         db = conectar()
         cursor = db.cursor()
         cursor.execute("UPDATE schema_juegos_docentes.juegos SET puntuacion_media_usuario = ROUND((SELECT AVG(puntuacion) FROM schema_juegos_docentes.valoraciones WHERE id_juego = schema_juegos_docentes.juegos.id), 0)")
-        cursor.execute("UPDATE schema_juegos_docentes.juegos SET estrellas_general = CAST(puntuacion_media_usuario AS INTEGER) WHERE id = %s", (id_juego))
-        cursor.execute("UPDATE schema_juegos_docentes.valoraciones SET estrellas_individual = CAST(puntuacion AS INTEGER) WHERE id_juego = %s", (id_juego))
+        cursor.execute("UPDATE schema_juegos_docentes.juegos SET estrellas_general = CAST(puntuacion_media_usuario AS INTEGER) WHERE id = %s", (id_juego,))
+        cursor.execute("UPDATE schema_juegos_docentes.valoraciones SET estrellas_individual = CAST(puntuacion AS INTEGER) WHERE id_juego = %s", (id_juego,))
         db.commit()

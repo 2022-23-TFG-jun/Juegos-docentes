@@ -250,6 +250,11 @@ def menu_juegos_get():
     # Calcular el número de juegos que se deben omitir antes de devolver el resultado
     desplazamiento = (pagina_actual - 1) * juegos_por_pagina
 
+    # Consultar id de los usuarios que valoraron un juego
+    usuario_actual = current_user.id 
+    cur.execute("SELECT id_juego FROM schema_juegos_docentes.valoraciones WHERE id_usuario_valoracion=%s", (usuario_actual,))
+    juegos_valorados_actual = cur.fetchall()
+
     # Consultar datos de los juegos
     cur.execute("SELECT id, nombre_juego, descripcion, idioma, enlace, puntuacion, puntuacion_media_usuario, estrellas_general FROM schema_juegos_docentes.juegos ORDER BY nombre_juego LIMIT %s OFFSET %s", (juegos_por_pagina, desplazamiento))
     
@@ -272,7 +277,7 @@ def menu_juegos_get():
 
     #Comprueba rol de usuario autenticado para obtener funciones específicas
     if rol_usuario_autenticado == 'usuario':
-        return render_template('menu_juegos_usuario.html', juegos=juegos, pagina_actual=pagina_actual, total_paginas=total_paginas, traducciones=traducciones, idioma=idioma)
+        return render_template('menu_juegos_usuario.html', juegos=juegos, pagina_actual=pagina_actual, total_paginas=total_paginas, traducciones=traducciones, idioma=idioma, juegos_valorados_actual=juegos_valorados_actual)
     elif rol_usuario_autenticado == 'administrador':
             return render_template('menu_juegos_administrador.html', juegos=juegos, pagina_actual=pagina_actual, total_paginas=total_paginas, traducciones=traducciones, idioma=idioma)
     else:
@@ -309,6 +314,21 @@ def menu_juegos_post():
     # Calcular el número de juegos que se deben omitir antes de devolver el resultado
     desplazamiento = (pagina_actual - 1) * juegos_por_pagina
 
+    # Establecer la conexión a la base de datos
+    conn = conectar()
+
+    # Crear un cursor para ejecutar la consulta
+    cur = conn.cursor()
+
+    # Consultar id de los usuarios que valoraron un juego
+    usuario_actual = current_user.id 
+    cur.execute("SELECT id_juego FROM schema_juegos_docentes.valoraciones WHERE id_usuario_valoracion=%s", (usuario_actual,))
+    juegos_valorados_actual = cur.fetchall()
+
+    # Cerrar el cursor y la conexión a la base de datos
+    cur.close()
+    conn.close()
+
     # Procesar la consulta y obtener los resultados
     resultados_busqueda, total_juegos = obtener_resultados_busqueda(busqueda, idiomaF, puntuacion, juegos_por_pagina, desplazamiento)
 
@@ -321,7 +341,7 @@ def menu_juegos_post():
     if resultados_busqueda:
         #Comprueba rol de usuario autenticado para obtener funciones específicas
         if rol_usuario_autenticado == 'usuario':
-            return render_template('menu_juegos_usuario.html', resultados_busqueda=resultados_busqueda, pagina_actual=pagina_actual, total_paginas=total_paginas, busqueda=busqueda, idiomaF=idiomaF, puntuacion=puntuacion, traducciones=traducciones, idioma=idioma)
+            return render_template('menu_juegos_usuario.html', resultados_busqueda=resultados_busqueda, pagina_actual=pagina_actual, total_paginas=total_paginas, busqueda=busqueda, idiomaF=idiomaF, puntuacion=puntuacion, traducciones=traducciones, idioma=idioma, juegos_valorados_actual=juegos_valorados_actual)
         elif rol_usuario_autenticado == 'administrador':
             return render_template('menu_juegos_administrador.html', resultados_busqueda=resultados_busqueda, pagina_actual=pagina_actual, total_paginas=total_paginas, busqueda=busqueda, idiomaF=idiomaF, puntuacion=puntuacion, traducciones=traducciones, idioma=idioma)
         else:

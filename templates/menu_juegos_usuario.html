@@ -89,11 +89,13 @@
                     <input type="hidden" name="id" value="{{ juego[0] }}">
                     <button type="submit" class="btn-info-juego">{{ traducciones['BTN-INFO'][idioma] }}</button>
                   </form>
-                  <form method="get" action="{{ url_for('añadir_valoracion_get') }}">
-                    <input type="hidden" name="idioma" value="{{ idioma}}">
-                    <input type="hidden" name="id" value="{{ juego[0] }}">
-                    <button type="submit" class="btn-opinion">{{ traducciones['BTN-ESCRIBIR'][idioma] }}</button>
-                  </form>
+                  {%if (juego[0],) not in juegos_valorados_actual %}
+                    <form method="get" action="{{ url_for('añadir_valoracion_get') }}">
+                      <input type="hidden" name="idioma" value="{{ idioma}}">
+                      <input type="hidden" name="id" value="{{ juego[0] }}">
+                      <button type="submit" class="btn-opinion">{{ traducciones['BTN-ESCRIBIR'][idioma] }}</button>
+                    </form>
+                  {% endif %}
                 </div>
               </div>
             </div>
@@ -157,11 +159,14 @@
                     <input type="hidden" name="id" value="{{ juego[0] }}">
                     <button type="submit" class="btn-info-juego">{{ traducciones['BTN-INFO'][idioma] }}</button>
                   </form>
-                  <form method="get" action="{{ url_for('añadir_valoracion_get') }}">
-                    <input type="hidden" name="idioma" value="{{ idioma}}">
-                    <input type="hidden" name="id" value="{{ juego[0] }}">
-                    <button type="submit" class="btn-opinion">{{ traducciones['BTN-ESCRIBIR'][idioma] }}</button>
-                  </form>
+
+                  {%if (juego[0],) not in juegos_valorados_actual %}
+                    <form method="get" action="{{ url_for('añadir_valoracion_get') }}">
+                      <input type="hidden" name="idioma" value="{{ idioma}}">
+                      <input type="hidden" name="id" value="{{ juego[0] }}">
+                      <button type="submit" class="btn-opinion">{{ traducciones['BTN-ESCRIBIR'][idioma] }}</button>
+                    </form>
+                  {% endif %}
                 </div>
               </div>
             </div>
