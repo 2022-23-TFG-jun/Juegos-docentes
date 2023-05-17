@@ -1,0 +1,477 @@
+\apendice{Especificación de Requisitos}
+
+\section{Introducción}
+En este apartado se definen los objetivos y requisitos que tiene la aplicación, analizando tanto los requisitos funcionales como no funcionales, con sus respectivos casos de uso.
+
+\section{Objetivos generales}
+Los objetivos generales establecidos para el desarrollo del proyecto son los siguientes:
+
+\begin{itemize}
+    \item Desarrollar una aplicación web que permita a los usuarios consultar, puntuar, comentar y añadir juegos docentes, según el rol que tengan en la plataforma.
+    \item Conectarse a una base de datos para almacenar toda la información relacionada con los juegos y los usuarios en ella, lo que permitirá una gestión más eficiente y organizada de los datos, así como un acceso rápido y sencillo a los mismos.
+    \item Implementar un sistema de búsqueda y filtros para facilitar la localización de los juegos docentes dentro de la aplicación.
+    \item Asegurar que la aplicación web tenga una interfaz de usuario intuitiva, fácil de usar y atractiva para los usuarios.
+    \item Realizar pruebas rigurosas para asegurarse de que la aplicación funciona correctamente y cumple con todos los requisitos del proyecto.
+\end{itemize}
+
+\section{Catalogo de requisitos}
+En este apartado se definen los requisitos funcionales y no funcionales del proyecto.
+
+\subsection{Requisitos funcionales}
+Los requisitos funcionales son las tareas y funciones que debe efectuar un sistema para satisfacer las necesidades del usuario.
+
+El proyecto tiene los siguientes requisitos funcionales:
+\begin{itemize}
+\tightlist
+    \item \textbf{RF1-Registro de usuarios:} la aplicación debe permitir a los usuarios registrarse, creando una nueva cuenta y almacenando sus datos de registro en la base de datos del sistema.
+    \item \textbf{RF2-Inicio de sesión de usuarios:} la aplicación debe permitir que un usuario acceda a las funcionalidades del sistema, ingresando sus credenciales de acceso, y detectando el rol del usuario para proporcionar acceso a sus correspondientes funcionalidades.
+    \item \textbf{RF3-Acerca de:} la aplicación debe redireccionar, a través de su respectivo botón, a la página 'Acerca de', donde se mostrará información general sobre la aplicación.
+    \item \textbf{RF4-Menú de juegos:} la aplicación debe proporcionar tarjetas de información de los juegos, mostrando el nombre, idioma, puntuación, enlace y valoración correspondiente de cada juego en el menú de juegos del sistema.
+        \begin{itemize}
+        \tightlist
+            \item \textbf{RF4.1-Visualizar información del juego:} los usuarios deben poder visualizar toda la información de cada juego docente.
+            \item \textbf{RF4.1-Visualizar valoraciones del juego:} los usuarios deben poder visualizar las valoraciones de cada juego docente.
+        \end{itemize}
+     \item \textbf{RF5-Barra de búsqueda y filtrado:} la aplicación debe permitir que los usuarios realicen búsquedas personalizadas por texto o que aplique filtros por idioma y/o puntuación.
+        \begin{itemize}
+        \tightlist
+            \item \textbf{RF5.1-Barra de búsqueda:} los usuarios deben poder introducir texto en el sistema para realizar una búsqueda y ver los resultados correspondientes.
+            \item \textbf{RF5.2-Filtro por idioma del juego:} los usuarios deben poder aplicar un filtro por idioma en la búsqueda de juegos en el sistema.
+            \item\textbf{RF5.3-Filtro por puntuación del juego:} los usuarios deben poder aplicar un filtro por puntuación en la búsqueda de juegos en el sistema.
+        \end{itemize}
+    \item \textbf{RF6-Rol de administrador:} si el usuario identificado tiene asignado el rol de administrador, la aplicación debe proporcionar sus respectivas funcionalidades.
+        \begin{itemize}
+        \tightlist
+            \item \textbf{RF6.1-Eliminar un juego docente:} el administrador debe poder eliminar juegos docentes borrando los datos del juego docente eliminado en la base de datos del sistema.
+            \item \textbf{RF6.2-Eliminar un usuario:} el administrador debe poder eliminar usuarios borrando los datos del usuario eliminado en la base de datos del sistema.
+            \item \textbf{RF6.3-Gestión de peticiones de rol:} el administrador debe poder gestionar las peticiones de rol pendientes, aceptándolas o rechazándolas.
+        \end{itemize}
+    \item \textbf{RF7-Rol de profesor:} si el usuario identificado tiene asignado el rol de profesor, la aplicación debe proporcionar sus respectivas funcionalidades.
+        \begin{itemize}
+        \tightlist
+            \item \textbf{RF7.1-Añadir un juego docente:} el profesor debe poder añadir juegos docentes almacenando los datos del nuevo juego docente en la base de datos del sistema.
+            \item \textbf{RF7.2-Modificar un juego docente:} el profesor debe poder modificar los juegos docentes ya existentes en la base de datos del sistema.
+            \item \textbf{RF7.3-Añadir archivos:} el profesor debe poder añadir archivos.
+        \end{itemize}
+    \item \textbf{RF8-Rol de usuario:}  si el usuario identificado tiene asignado el rol de usuario, la aplicación debe proporcionar sus respectivas funcionalidades.
+         \begin{itemize}
+        \tightlist
+            \item \textbf{RF8.1-Añadir una valoración:} el usuario debe poder agregar una valoración a cada juego, puntuándolo y dejando una reseña.
+            \item \textbf{RF8.2-Contacto:} el usuario debe poder solicitar tener el rol de profesor.
+        \end{itemize}
+        
+    \item \textbf{RF9-Configurar idioma:} el usuario debe poder modificar el idioma de la aplicación.
+    
+    \item \textbf{RF10-Cierre de sesión de usuarios:} el usuario debe poder cerrar la sesión de su cuenta.
+\end{itemize}
+
+\subsection{Requisitos no funcionales}
+Los requisitos no funcionales son las características que no están directamente asociadas con las tareas determinadas del sistema.
+
+El proyecto tiene los siguientes requisitos no funcionales:
+\begin{itemize}
+\tightlist
+    \item \textbf{RNF1-Usabilidad:} la aplicación debe ser fácil de usar para que los usuarios puedan utilizar todas las funcionalidades sin dificultad, proporcionando menús y opciones intuitivas y bien organizadas.
+    \item \textbf{RNF2-Rendimiento:} la aplicación debe
+    \item \textbf{RNF3-Disponibilidad:} la aplicación debe estar disponible para todos los usuarios en todo momento.
+    \item \textbf{RNF4-Seguridad:} la aplicación debe tener el acceso y manejo de datos confidenciales protegido y garantizar que solo los usuarios autorizados tengan acceso al sistema.
+    \item \textbf{RNF5-Escalabilidad:} la aplicación debe garantizar que el sistema se adapte a futuras actualizaciones y mejoras para que pueda evolucionar considerando las necesidades de los usuarios.
+    \item \textbf{RNF6-Compatibilidad:} la aplicación debe ser compatible con diferentes navegadores web y dispositivos permitiendo que los usuarios siempre tengan acceso a ella.
+    \item \textbf{RNF6-Internacionalización:} la aplicación debe soportar varios idiomas, permitiendo a los usuarios seleccionar el idioma en el que desean interactuar con la aplicación. 
+\end{itemize}
+
+\section{Especificación de requisitos}
+En este apartado se definen las tablas de casos de uso que especifican los requerimientos funcionales del sistema para validarlos.
+
+Las tablas de casos de uso del proyecto son las siguientes:
+
+% Caso de Uso 1 -> Registro de usuarios.
+\begin{table}[p]
+	\centering
+	\begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+		\toprule
+		\textbf{CU-01}    & \textbf{Registro de usuarios}\\
+		\toprule
+		\textbf{Versión}              & 1.0    \\
+		\textbf{Autor}                & Usuario \\
+		\textbf{Requisitos asociados} & RF-1\\
+		\textbf{Descripción}          & Permite al usuario registrar su nueva cuenta. \\
+		\textbf{Precondiciones}         & La base de datos debe estar disponible. \\
+		\textbf{Acciones}             &
+		\begin{enumerate}
+			\def\labelenumi{\arabic{enumi}.}
+			\tightlist
+			\item El usuario accede a la opción de registrarse.
+			\item El usuario introduce su nombre de usuario, nombre, apellido, institución y contraseña.
+            \item El usuario pulsa el botón de crear cuenta.
+		\end{enumerate}\\
+         \textbf{Postcondiciones}             &
+		\begin{enumerate}
+			\def\labelenumi{\arabic{enumi}.}
+			\tightlist
+			\item El nombre del usuario no debe existir en la base de datos.
+			\item La contraseña debe contener al menos 8 caracteres, una mayúscula, una minúscula y un símbolo.
+            \item Todos los campos deben ser rellenados excepto el de la institución que es opcional.
+		\end{enumerate}\\
+		\textbf{Excepciones}             &
+		\begin{enumerate}
+			\def\labelenumi{\arabic{enumi}.}
+			\tightlist
+			\item El nombre de usuario ya existe (mensaje).
+			\item El campo es requerido (mensaje).
+            \item La contraseña debe contener al menos 8 caracteres, una mayúscula, una minúscula y un símbolo (mensaje).
+            \item Las contraseñas ingresadas no coinciden (mensaje).
+		\end{enumerate}\\
+		\textbf{Importancia}          & Alta. \\
+		\bottomrule
+	\end{tabularx}
+	\caption{CU-01 Registro de usuarios.}
+\end{table}
+
+% Caso de Uso 2 -> Inicio de sesión.
+\begin{table}[p]
+	\centering
+	\begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+		\toprule
+		\textbf{CU-02}    & \textbf{Inicio de sesión}\\
+		\toprule
+		\textbf{Versión}              & 1.0    \\
+		\textbf{Autor}                & Usuario, profesor y administrador. \\
+		\textbf{Requisitos asociados} & RF-2\\
+		\textbf{Descripción}          & Permite al usuario iniciar sesión de su cuenta. \\
+		\textbf{Precondiciones}         & El usuario debe estar registrado. \\
+		\textbf{Acciones}             &
+		\begin{enumerate}
+			\def\labelenumi{\arabic{enumi}.}
+			\tightlist
+			\item El usuario accede a la opción de iniciar sesión o comenzar.
+			\item El usuario introduce su nombre de usuario y contraseña.
+            \item El usuario pulsa el botón de Iniciar sesión.
+            \item El sistema verifica y autentica las credenciales del usuario.
+		\end{enumerate}\\
+         \textbf{Postcondiciones}             &
+		\begin{enumerate}
+			\def\labelenumi{\arabic{enumi}.}
+			\tightlist
+			\item El nombre del usuario y la contraseña deben existir en la base de datos.
+		\end{enumerate}\\
+		\textbf{Excepciones}             &
+		\begin{enumerate}
+			\def\labelenumi{\arabic{enumi}.}
+			\tightlist
+			\item El nombre de usuario o contraseña no son correctos (mensaje).
+			\item Ha introducido la contraseña incorrecta más de tres veces. Cuenta bloqueada. (mensaje).
+		\end{enumerate}\\
+		\textbf{Importancia}          & Alta. \\
+		\bottomrule
+	\end{tabularx}
+	\caption{CU-02 Inicio de sesión.}
+\end{table}
+
+% Caso de Uso 3 -> Acerca de.
+\begin{table}[p]
+	\centering
+	\begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+		\toprule
+		\textbf{CU-03}    & \textbf{Acerca de}\\
+		\toprule
+		\textbf{Versión}              & 1.0    \\
+		\textbf{Autor}                & Usuario, profesor y administrador. \\
+		\textbf{Requisitos asociados} & RF-3\\
+		\textbf{Descripción}          & Permite al usuario obtener información general acerca de la aplicación. \\
+		\textbf{Precondiciones}         & - \\
+		\textbf{Acciones}             &
+		\begin{enumerate}
+			\def\labelenumi{\arabic{enumi}.}
+			\tightlist
+			\item El usuario pulsa el botón de acerca de en la cabecera.
+		\end{enumerate}\\
+         \textbf{Postcondición}             & - \\
+		\textbf{Excepciones}             & - \\
+		\textbf{Importancia}          & Baja. \\
+		\bottomrule
+	\end{tabularx}
+	\caption{CU-03 Acerca de.}
+\end{table}
+
+% Caso de Uso 4 -> Menú de juegos.
+\begin{table}[p]
+	\centering
+	\begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+		\toprule
+		\textbf{CU-04}    & \textbf{Menú de juegos}\\
+		\toprule
+		\textbf{Versión}              & 1.0    \\
+		\textbf{Autor}                & Usuario, profesor y administrador. \\
+		\textbf{Requisitos asociados} & RF-4, RF-4.1, RF.4.1 \\
+		\textbf{Descripción}          & Permite al usuario navegar por el menú de juegos, permitiéndole hacer búsquedas, aplicar filtros y ver más información y las valoraciones de los juegos.\\
+		\textbf{Precondiciones}         & El usuario debe haber iniciado sesión. \\
+		\textbf{Acciones}             &
+		\begin{enumerate}
+			\def\labelenumi{\arabic{enumi}.}
+			\tightlist
+			\item El usuario inicia sesión.
+            \item El sistema verifica y autentica las credenciales del usuario.
+            \item El usuario es redireccionado al menú de juegos.
+            \item El sistema muestra las tarjetas de información de los juegos disponibles.
+            \item El usuario puede realizar una búsqueda mediante barra de búsqueda o por filtros.
+            \item El sistema puede mostrar los resultados de acuerdo con la búsqueda.
+            \item El usuario pulsa el botón de ver más información del juego.
+            \item El usuario puede visualizar las valoraciones de otros usuarios para el juego seleccionado.
+		\end{enumerate}\\
+         \textbf{Postcondición}             & El resultado de la búsqueda debe existir en la base de datos. \\
+		\textbf{Excepciones}             &
+		\begin{enumerate}
+			\def\labelenumi{\arabic{enumi}.}
+			\tightlist
+			\item No se han encontrado resultados de búsqueda. (mensaje).
+		\end{enumerate}\\
+		\textbf{Importancia}          & Alta. \\
+		\bottomrule
+	\end{tabularx}
+	\caption{CU-04 Menú de juegos.}
+\end{table}
+
+% Caso de Uso 5 -> Barra de búsqueda y filtrado.
+\begin{table}[p]
+	\centering
+	\begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+		\toprule
+		\textbf{CU-05}    & \textbf{Barra de búsqueda y filtrado}\\
+		\toprule
+		\textbf{Versión}              & 1.0    \\
+		\textbf{Autor}                & Usuario, profesor y administrador. \\
+		\textbf{Requisitos asociados} & RF-5, RF-5.1, RF-5.2, RF-5.3 \\
+		\textbf{Descripción}          & Permite al usuario buscar juegos mediante la barra de búsqueda y/o la aplicación de filtros por idioma y puntuación.\\
+		\textbf{Precondiciones}         & El usuario debe haber iniciado sesión. \\
+		\textbf{Acciones}             &
+		\begin{enumerate}
+			\def\labelenumi{\arabic{enumi}.}
+			\tightlist
+			\item El usuario inicia sesión.
+            \item El sistema verifica y autentica las credenciales del usuario.
+            \item El usuario es redireccionado al menú de juegos.
+            \item El sistema muestra una barra de búsqueda y opciones de filtro por idioma y puntuación.
+            \item El usuario puede introducir texto en la barra de búsqueda para realizar una búsqueda personalizada.
+            \item El sistema muestra los resultados correspondientes a la búsqueda realizada.
+            \item El usuario puede aplicar filtros por idioma y/o puntuación para refinar la búsqueda.
+            \item El sistema filtra los juegos según los criterios seleccionados y muestra los resultados actualizados.
+		\end{enumerate}\\
+         \textbf{Postcondición}             & El resultado de la búsqueda debe existir en la base de datos. \\
+		\textbf{Excepciones}             &
+		\begin{enumerate}
+			\def\labelenumi{\arabic{enumi}.}
+			\tightlist
+			\item No se han encontrado resultados de búsqueda. (mensaje).
+		\end{enumerate}\\
+		\textbf{Importancia}          & Media. \\
+		\bottomrule
+	\end{tabularx}
+	\caption{CU-05 Barra de búsqueda y filtrado.}
+\end{table}
+
+% Caso de Uso 6 -> Funcionalidades del rol de administrador.
+\begin{table}[p]
+	\centering
+	\begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+		\toprule
+		\textbf{CU-06}    & \textbf{Funcionalidades del rol de administrador}\\
+		\toprule
+		\textbf{Versión}              & 1.0    \\
+		\textbf{Autor}                & Administrador. \\
+		\textbf{Requisitos asociados} & RF-6, RF-6.1, RF-6.2, RF-6.3 \\
+		\textbf{Descripción}          & Permite al usuario con rol de administrador eliminar un juego, eliminar un usuario o gestionar las peticiones de rol pendientes.\\
+		\textbf{Precondiciones}         & El administrador debe haber iniciado sesión. \\
+		\textbf{Acciones}             &
+\begin{enumerate}
+	\item El administrador inicia sesión.
+	\item El sistema verifica y autentica las credenciales del administrador.
+	\item El administrador puede eliminar un juego docente.
+    	\begin{enumerate}
+    		\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
+    		\item El sistema muestra una lista de juegos docentes existentes.
+    		\item El administrador selecciona un juego docente para eliminar.
+    		\item El sistema borra los datos del juego docente de la base de datos.
+    	\end{enumerate}
+    \item El administrador puede eliminar un usuario.
+    	\begin{enumerate}
+    		\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
+    		\item El sistema muestra una lista de usuarios registrados en el sistema.
+    		\item El administrador selecciona un usuario para eliminar.
+    		\item El sistema borra los datos del usuario de la base de datos.
+    	\end{enumerate}
+    \item El administrador puede gestionar peticiones de rol.
+    	\begin{enumerate}
+    		\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
+    		\item El sistema muestra una lista de peticiones de rol pendientes.
+    		\item El administrador puede aceptar o rechazar cada petición.
+    		\item El sistema actualiza los roles de los usuarios.
+    	\end{enumerate}
+
+		\end{enumerate}\\
+         \textbf{Postcondición}             & - \\
+		\textbf{Excepciones}             & - \\
+		\textbf{Importancia}          & Media. \\
+		\bottomrule
+	\end{tabularx}
+	\caption{CU-06 Funcionalidades del rol de administrador.}
+\end{table}
+
+% Caso de Uso 7 -> Funcionalidades del rol de profesor.
+\begin{table}[p]
+	\centering
+	\begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+		\toprule
+		\textbf{CU-07}    & \textbf{ Funcionalidades del rol de profesor}\\
+		\toprule
+		\textbf{Versión}              & 1.0    \\
+		\textbf{Autor}                & Profesor. \\
+		\textbf{Requisitos asociados} & RF-7, RF-7.1, RF-7.2, RF-7.3 \\
+		\textbf{Descripción}          & Permite al usuario con rol de profesor añadir un nuevo juegos, modificar uno existente o añadir archivos.\\
+		\textbf{Precondiciones}         & El profesor debe haber iniciado sesión. \\
+		\textbf{Acciones}             &
+\begin{enumerate}
+	\item El profesor inicia sesión.
+	\item El sistema verifica y autentica las credenciales del profesor.
+	\item El profesor puede añadir un nuevo juego docente.
+    	\begin{enumerate}
+    		\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
+    		\item El sistema muestra un formulario para ingresar los datos del nuevo juego.
+    		\item El profesor completa los campos del formulario.
+    		\item El sistema almacena los datos del nuevo juego en la base de datos.
+    	\end{enumerate}
+    \item El profesor puede modificar un juego docente.
+    	\begin{enumerate}
+    		\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
+    		\item El profesor selecciona un juego docente para modificar.
+    		\item El sistema muestra el formulario con los datos actuales del juego.
+    		\item El profesor realiza las modificaciones necesarias en el formulario.
+            \item El sistema actualiza los datos del juego docente en la base de datos.
+    	\end{enumerate}
+    \item El profesor puede añadir archivos.
+    	\begin{enumerate}
+    		\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
+    		\item El sistema muestra una interfaz de carga de archivos.
+    		\item El profesor selecciona uno o varios archivos y los sube al sistema.
+    		\item El sistema almacena los archivos en el sistema.
+    	\end{enumerate}
+
+		\end{enumerate}\\
+         \textbf{Postcondición}             & - \\
+		\textbf{Excepciones}             & - \\
+		\textbf{Importancia}          & Alta. \\
+		\bottomrule
+	\end{tabularx}
+	\caption{CU-07  Funcionalidades del rol de profesor.}
+\end{table}
+
+% Caso de Uso 8 -> Funcionalidades del rol de usuario.
+\begin{table}[p]
+	\centering
+	\begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+		\toprule
+		\textbf{CU-08}    & \textbf{ Funcionalidades del rol de usuario}\\
+		\toprule
+		\textbf{Versión}              & 1.0    \\
+		\textbf{Autor}                & Usuario. \\
+		\textbf{Requisitos asociados} & RF-8, RF-8.1, RF-8.2 \\
+		\textbf{Descripción}          & Permite al usuario con rol de usuario añadir una valoración y/o solicitar el rol de profesor.\\
+		\textbf{Precondiciones}         & El usuario debe haber iniciado sesión. \\
+		\textbf{Acciones}             &
+\begin{enumerate}
+	\item El usuario inicia sesión.
+	\item El sistema verifica y autentica las credenciales del usuario.
+	\item El usuario puede añadir una valoración a cada juego.
+    	\begin{enumerate}
+    		\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
+            \item El usuario selecciona un juego al que desea agregar una valoración.
+    		\item El sistema muestra un formulario donde el usuario puede puntuar el juego y dejar una reseña.
+    		\item El sistema almacena la valoración en la base de datos
+    	\end{enumerate}
+    \item El profesor puede solicitar el rol de profesor.
+    	\begin{enumerate}
+    		\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
+    		\item El usuario selecciona la opción para solicitar el rol de profesor.
+    		\item El sistema muestra un formulario de contacto para enviar la solicitud.
+    		\item El usuario envía la solicitud de rol de profesor.
+            \item El sistema registra la solicitud en la base de datos.
+    	\end{enumerate}
+\end{enumerate}\\
+         \textbf{Postcondición}             & - \\
+		\textbf{Excepciones}             & - \\
+		\textbf{Importancia}          & Media. \\
+		\bottomrule
+	\end{tabularx}
+	\caption{CU-08  Funcionalidades del rol de usuario.}
+\end{table}
+
+% Caso de Uso 9 ->  Configurar Idioma de la Aplicación.
+\begin{table}[p]
+	\centering
+	\begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+		\toprule
+		\textbf{CU-09}    & \textbf{ Configurar idioma de la aplicación}\\
+		\toprule
+		\textbf{Versión}              & 1.0    \\
+		\textbf{Autor}                & Usuario, profesor y administrador. \\
+		\textbf{Requisitos asociados} & RF-9\\
+		\textbf{Descripción}          & Permite al usuario cambiar el idioma de la aplicación. \\
+		\textbf{Precondiciones}         & - \\
+		\textbf{Acciones}             &
+		\begin{enumerate}
+			\def\labelenumi{\arabic{enumi}.}
+			\tightlist
+			\item El sistema muestra las opciones de idioma.
+			\item El usuario selecciona el idioma deseado.
+            \item El sistema actualiza el idioma de la aplicación según la selección del usuario.
+		\end{enumerate}\\
+         \textbf{Postcondiciones}             &
+		\begin{enumerate}
+			\def\labelenumi{\arabic{enumi}.}
+			\tightlist
+			\item Si el usuario no selecciona idioma, el idioma por defecto es el español.
+		\end{enumerate}\\
+		\textbf{Excepciones}             & - \\
+		\textbf{Importancia}          & Baja. \\
+		\bottomrule
+	\end{tabularx}
+	\caption{CU-09  Configurar idioma de la aplicación.}
+\end{table}
+
+% Caso de Uso 10 -> Cerrar sesión.
+\begin{table}[p]
+	\centering
+	\begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
+		\toprule
+		\textbf{CU-10}    & \textbf{Cerrar sesión}\\
+		\toprule
+		\textbf{Versión}              & 1.0    \\
+		\textbf{Autor}                & Usuario, profesor y administrador. \\
+		\textbf{Requisitos asociados} & RF-10 \\
+		\textbf{Descripción}          & Permite al usuario cerrar la sesión de su cuenta. \\
+		\textbf{Precondiciones}         & El usuario debe haber iniciado sesión. \\
+		\textbf{Acciones}             &
+		\begin{enumerate}
+			\def\labelenumi{\arabic{enumi}.}
+			\tightlist
+			\item El usuario pulsa el botón de cerrar sesión en la cabecera.
+            \item El sistema cierra la sesión del usuario y redirige a la pantalla de inicio.
+		\end{enumerate}\\
+         \textbf{Postcondición}             & - \\
+		\textbf{Excepciones}             & - \\
+		\textbf{Importancia}          & Alta. \\
+		\bottomrule
+	\end{tabularx}
+	\caption{CU-10 Cerrar sesión.}
+\end{table}
+
+
+\subsection{Diagrama de casos de uso}
+A continuación, se muestra el diagrama de casos de uso resultante.
+
+\begin{figure}[h]
+    \advance\leftskip-4cm \rightskip5cm
+    \includegraphics[scale=0.42]{img/Diagrama- uso.png}
+    \caption{Diagrama de casos de uso}
+\end{figure}
+
