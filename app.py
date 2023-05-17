@@ -6,6 +6,7 @@ from src.database import conectar, crear_tablas, tabla_usuarios_existe
 from src.usuario import Usuario
 from src.juego import Juego
 from src.solicitud import Solicitud
+from src.valoracion import Valoracion
 from src.busqueda import obtener_resultados_busqueda
 from datetime import datetime, timedelta
 from unidecode import unidecode
@@ -63,19 +64,16 @@ def load_user(usuario_id):
 
 @app.route('/', methods=['GET'])
 def inicio_get():
-    # Obtener idioma elegido
+    # Obtener idioma elegido y sus traducciones
     idioma = request.args.get('idioma', 'es')
-    #Obtener traducciones para el idioma específico
     traducciones = cargar_traducciones_inicio(idioma)
 
     return render_template('inicio.html', traducciones=traducciones, idioma=idioma)
 
 @app.route('/login', methods=['GET'])
 def login_get():
-    # Obtener idioma elegido
+    # Obtener idioma elegido y sus traducciones
     idioma = request.args.get('idioma', 'es')
-    
-    #Obtener traducciones para el idioma específico
     traducciones = cargar_traducciones_login(idioma)
 
     if current_user.is_authenticated:
@@ -89,10 +87,8 @@ def login_post():
     usuario = request.form['usuario']
     contraseña = request.form['contraseña']
 
-    # Obtener idioma elegido
+    # Obtener idioma elegido y sus traducciones
     idioma = request.args.get('idioma', 'es')
-
-    #Obtener traducciones para el idioma específico
     traducciones = cargar_traducciones_login(idioma)
 
     # Si se cumple la sanción de tiempo se desbloquea la cuenta del usuario y tiene un intento más de inicio de sesión
@@ -106,19 +102,8 @@ def login_post():
         error_cuenta_bloqueada = f"{time_remaining} s"
         return render_template('login.html', error_cuenta_bloqueada=error_cuenta_bloqueada, idioma=idioma, traducciones=traducciones)
 
-    # Establecer la conexión a la base de datos
-    conn = conectar()
-
-    # Crear un cursor para ejecutar la consulta
-    cur = conn.cursor()
-
     # Consultar un registro que coincida con el nombre del usuario especificado
-    cur.execute("SELECT * FROM schema_juegos_docentes.usuarios WHERE usuario = %s", (usuario,))
-    usuario_db = cur.fetchone()
-
-    # Cerrar el cursor y la conexión a la base de datos
-    cur.close()
-    conn.close()
+    usuario_db = Usuario.obtener_usuario_db(usuario)
 
     # Verificar si se encontró un usuario y si la contraseña es correcta
     if not usuario_db or not check_password_hash(usuario_db[5], contraseña):
@@ -158,10 +143,8 @@ def login_post():
 
 @app.route('/registro', methods=['GET'])
 def registro_get():
-    # Obtener idioma elegido
+    # Obtener idioma elegido y sus traducciones
     idioma = request.args.get('idioma', 'es')
-
-    #Obtener traducciones para el idioma específico
     traducciones = cargar_traducciones_registro(idioma)
     
     return render_template('registro.html', traducciones=traducciones, idioma=idioma)
@@ -176,28 +159,12 @@ def registro_post():
     contraseña = request.form['contraseña']
     confirmar_contraseña = request.form['confirmar_contraseña']
 
-    # Obtener idioma elegido
+    # Obtener idioma elegido y sus traducciones
     idioma = request.args.get('idioma', 'es')
-
-    #Obtener traducciones para el idioma específico
     traducciones = cargar_traducciones_registro(idioma)
 
-    # Establecer la conexión a la base de datos
-    conn = conectar()
-
-    # Crear un cursor para ejecutar la consulta
-    cur = conn.cursor()
-
-    # Consultar si el nombre de usuario ya existe en la tabla de usuarios
-    cur.execute("SELECT * FROM schema_juegos_docentes.usuarios WHERE usuario = %s", (usuario,))
-
-    # Obtener el resultado de la consulta
-    usuario_existe = cur.fetchone()
-
-    # Cerrar el cursor y la conexión a la base de datos
-    cur.close()
-    conn.close()
-
+    usuario_existe = Usuario.obtener_usuario_existe(usuario)  
+  
     # Si el resultado no es None, significa que el nombre de usuario ya existe
     if usuario_existe is not None:
         #Obtener traducciones de errores para el idioma específico
@@ -229,10 +196,8 @@ def registro_post():
 @app.route('/menu_juegos', methods=['GET'])
 @login_required
 def menu_juegos_get():
-    # Obtener idioma elegido
+    # Obtener idioma elegido y sus traducciones
     idioma = request.args.get('idioma', 'es')
-
-    #Obtener traducciones para el idioma específico
     traducciones = cargar_traducciones_menu_juegos(idioma)
     
     # Establecer la conexión a la base de datos
@@ -252,18 +217,13 @@ def menu_juegos_get():
 
     # Consultar id de los usuarios que valoraron un juego
     usuario_actual = current_user.id 
-    cur.execute("SELECT id_juego FROM schema_juegos_docentes.valoraciones WHERE id_usuario_valoracion=%s", (usuario_actual,))
-    juegos_valorados_actual = cur.fetchall()
+    juegos_valorados_actual = Valoracion.obtener_juegos_valorados(usuario_actual)
 
     # Consultar datos de los juegos
-    cur.execute("SELECT id, nombre_juego, descripcion, idioma, enlace, puntuacion, puntuacion_media_usuario, estrellas_general FROM schema_juegos_docentes.juegos ORDER BY nombre_juego LIMIT %s OFFSET %s", (juegos_por_pagina, desplazamiento))
-    
-    # Obtener el resultado de la consulta
-    juegos = cur.fetchall()
+    juegos = Juego.obtener_juegos_menu(juegos_por_pagina, desplazamiento)
 
     # Contar el número total de juegos
-    cur.execute("SELECT COUNT(*) FROM schema_juegos_docentes.juegos")
-    total_juegos = cur.fetchone()[0]
+    total_juegos = Juego.obtener_total_juegos()
 
     # Calcular el número total de páginas
     total_paginas = math.ceil(total_juegos / juegos_por_pagina)
@@ -314,20 +274,9 @@ def menu_juegos_post():
     # Calcular el número de juegos que se deben omitir antes de devolver el resultado
     desplazamiento = (pagina_actual - 1) * juegos_por_pagina
 
-    # Establecer la conexión a la base de datos
-    conn = conectar()
-
-    # Crear un cursor para ejecutar la consulta
-    cur = conn.cursor()
-
     # Consultar id de los usuarios que valoraron un juego
     usuario_actual = current_user.id 
-    cur.execute("SELECT id_juego FROM schema_juegos_docentes.valoraciones WHERE id_usuario_valoracion=%s", (usuario_actual,))
-    juegos_valorados_actual = cur.fetchall()
-
-    # Cerrar el cursor y la conexión a la base de datos
-    cur.close()
-    conn.close()
+    juegos_valorados_actual = Valoracion.obtener_juegos_valorados(usuario_actual)
 
     # Procesar la consulta y obtener los resultados
     resultados_busqueda, total_juegos = obtener_resultados_busqueda(busqueda, idiomaF, puntuacion, juegos_por_pagina, desplazamiento)
@@ -361,10 +310,8 @@ def menu_juegos_post():
 @app.route('/añadir_juego', methods=['GET'])
 @login_required
 def añadir_juego_get():
-    # Obtener idioma elegido
+    # Obtener idioma elegido y sus traducciones
     idioma = request.args.get('idioma', 'es')
-
-    #Obtener traducciones para el idioma específico
     traducciones = cargar_traducciones_añadir_juego(idioma)
 
     return render_template('añadir_juego.html', traducciones=traducciones, idioma=idioma)
@@ -413,17 +360,14 @@ def añadir_juego_post():
 
 @app.route('/añadir_instrucciones_jugador', methods=['GET'])
 def instrucciones_juego_get():
-
+    # Obtener idioma elegido y sus traducciones
     idioma = request.args.get('idioma', 'es')
-
-    #Obtener traducciones para el idioma específico
     traducciones = cargar_traducciones_añadir_archivos(idioma)
 
     return render_template('añadir_archivos.html', traducciones=traducciones, idioma=idioma)
 
 @app.route('/añadir_instrucciones_jugador', methods=['POST'])
 def instrucciones_juego_post():
-
     # Obtener idioma elegido
     idioma = request.args.get('idioma', 'es')
 
@@ -445,7 +389,6 @@ def instrucciones_juego_post():
 
 @app.route('/añadir_instrucciones_instructor', methods=['POST'])
 def instrucciones_instructor_post():
-
     # Obtener idioma elegido
     idioma = request.args.get('idioma', 'es')
 
@@ -467,7 +410,6 @@ def instrucciones_instructor_post():
 
 @app.route('/añadir_archivo_juego', methods=['POST'])
 def archivo_juego_post():
-
     # Obtener idioma elegido
     idioma = request.args.get('idioma', 'es')
 
@@ -487,7 +429,6 @@ def archivo_juego_post():
 
     return redirect(url_for('menu_juegos_get', idioma=idioma))
 
-
 @app.route('/descargar_instrucciones')
 def descargar_instrucciones():
     filename = request.args.get('filename')
@@ -501,27 +442,12 @@ def visualizar_juego_get():
     # Obtener id del juego elegido
     id_juego = request.args.get('id')
 
-    # Obtener idioma elegido
+    # Obtener idioma elegido y sus traducciones
     idioma = request.args.get('idioma', 'es')
-
-    #Obtener traducciones para el idioma específico
     traducciones = cargar_traducciones_visualizar_juego(idioma)
 
-    # Establecer la conexión a la base de datos
-    conn = conectar()
-
-    # Crear un cursor para ejecutar la consulta
-    cur = conn.cursor()
-
-    # Consultar datos del juego
-    cur.execute("SELECT * FROM schema_juegos_docentes.juegos WHERE id = %s", (id_juego,))
-    
     # Obtener el resultado de la consulta
-    informacion_juego = cur.fetchone()
-    
-    # Cerrar el cursor y la conexión a la base de datos
-    cur.close()
-    conn.close()
+    informacion_juego = Juego.obtener_juego_visualizacion(id_juego)
 
     return render_template('visualizar_juego.html', informacion_juego=informacion_juego, traducciones=traducciones, idioma=idioma)
 
@@ -531,28 +457,13 @@ def modificar_juego_get():
     # Obtener id del juego elegido
     id_juego = request.args.get('id')
 
-    # Obtener idioma elegido
+    # Obtener idioma elegido y sus traducciones
     idioma = request.args.get('idioma', 'es')
-
-    #Obtener traducciones para el idioma específico
     traducciones = cargar_traducciones_modificar_juego(idioma)
 
-    # Establecer la conexión a la base de datos
-    conn = conectar()
-
-    # Crear un cursor para ejecutar la consulta
-    cur = conn.cursor()
-
-    # Consultar datos del juego
-    cur.execute("SELECT * FROM schema_juegos_docentes.juegos WHERE id = %s", (id_juego,))
+    # Obtener información del juego a modificar
+    informacion_juego = Juego.obtener_juego_modificacion(id_juego)
     
-    # Obtener el resultado de la consulta
-    informacion_juego = cur.fetchone()
-    
-    # Cerrar el cursor y la conexión a la base de datos
-    cur.close()
-    conn.close()
-
     return render_template('modificar_juego.html', informacion_juego=informacion_juego, traducciones=traducciones, idioma=idioma)
 
 @app.route('/modificar_juego', methods=['POST'])
@@ -601,44 +512,31 @@ def modificar_juego_post():
     return redirect(url_for('menu_juegos_get', idioma=idioma))
 
 @app.route('/solicitud_profesor', methods=['GET'])
+@login_required
 def solicitud_profesor_get():
-    # Obtener idioma elegido
+    # Obtener idioma elegido y sus traducciones
     idioma = request.args.get('idioma', 'es')
-
-    #Obtener traducciones para el idioma específico
     traducciones = cargar_traducciones_contacto(idioma)
 
     # Obtener datos del usuario que realiza la solicitud
     id_usuario_solicitud = current_user.id
 
-    # Establecer la conexión a la base de datos
-    conn = conectar()
-
-    # Crear un cursor para ejecutar la consulta
-    cur = conn.cursor()
-
     # Obtener solicitud pendiente
-    cur.execute("SELECT * FROM schema_juegos_docentes.solicitudes WHERE id_usuario_solicitud = %s AND estado = 'PENDIENTE'", (id_usuario_solicitud,))
-    solicitud = cur.fetchone()
-   
-    # Cerrar el cursor y la conexión a la base de datos
-    cur.close()
-    conn.close()
+    solicitud = Solicitud.obtener_solicitud_pendiente(id_usuario_solicitud)
 
     # Si el usuario no tiene una solicitud pendiente, muestra el botón para la solicitud
     if solicitud is None: 
         return render_template('contacto.html', idioma=idioma, traducciones=traducciones)
     
     # Si el usuario tiene una solicitud pendiente ya no puede solicitar otra vez la solcitud y muestra el mensaje
-    mensaje_solicitud = "La solicitud para el rol de profesor ha sido enviada con éxito."
+    mensaje_solicitud = cargar_traducciones_contacto(idioma)
     return render_template('contacto.html', mensaje_solicitud=mensaje_solicitud, idioma=idioma, traducciones=traducciones)
 
 @app.route('/solicitud_profesor', methods=['POST'])
+@login_required
 def solicitud_profesor_post():
-    # Obtener idioma elegido
+    # Obtener idioma elegido y sus traducciones
     idioma = request.args.get('idioma', 'es')
-
-    # Obtener traducciones para el idioma específico
     traducciones = cargar_traducciones_contacto(idioma)
     
     # Obtener datos de la fecha-hora y del usuario que realiza la psolicitud
@@ -649,17 +547,15 @@ def solicitud_profesor_post():
     Solicitud.rol_profesor(id_usuario_solicitud, fecha_solicitud)
 
     # Mensaje de solicitud exitosa
-    mensaje_solicitud = "La solicitud para el rol de profesor ha sido enviada con éxito."
+    mensaje_solicitud = cargar_traducciones_contacto(idioma)
     
     return render_template('contacto.html', mensaje_solicitud=mensaje_solicitud, idioma=idioma, traducciones=traducciones)
 
 @app.route('/administracion', methods=['GET'])
 @login_required
 def administracion_get():
-    # Obtener idioma elegido
+    # Obtener idioma elegido y sus traducciones
     idioma = request.args.get('idioma', 'es')
-
-    #Obtener traducciones para el idioma específico
     traducciones = cargar_traducciones_administracion(idioma)
 
     return render_template('administracion.html', idioma=idioma, traducciones=traducciones)
@@ -667,28 +563,13 @@ def administracion_get():
 @app.route('/administrar_solicitudes', methods=['GET'])
 @login_required
 def administrar_solicitudes_get():
-    # Obtener idioma elegido
+    # Obtener idioma elegido y sus traducciones
     idioma = request.args.get('idioma', 'es')
-
-    # Obtener traducciones para el idioma específico
     traducciones = cargar_traducciones_administrar_solicitudes(idioma)
 
-    # Establecer la conexión a la base de datos
-    conn = conectar()
-
-    # Crear un cursor para ejecutar la consulta
-    cur = conn.cursor()
-
     # Consultar solicitudes
-    cur.execute("SELECT * FROM schema_juegos_docentes.solicitudes ORDER BY id")
-
-    # Obtener el resultado de la consulta
-    solicitudes = cur.fetchall()
+    solicitudes = Solicitud.obtener_solicitudes()
     
-    # Cerrar el cursor y la conexión a la base de datos
-    cur.close()
-    conn.close()
-
     return render_template('administrar_solicitudes.html', solicitudes=solicitudes, traducciones=traducciones, idioma=idioma)
     
 @app.route('/administrar_solicitudes', methods=['POST'])
@@ -714,28 +595,13 @@ def administrar_solicitudes_post():
 @app.route('/administrar_usuarios', methods=['GET'])
 @login_required
 def administrar_usuarios_get():
-    # Obtener idioma elegido
+    # Obtener idioma elegido y sus traducciones
     idioma = request.args.get('idioma', 'es')
-
-    #Obtener traducciones para el idioma específico
     traducciones = cargar_traducciones_administrar_usuarios(idioma)
  
-    # Establecer la conexión a la base de datos
-    conn = conectar()
-
-    # Crear un cursor para ejecutar la consulta
-    cur = conn.cursor()
-
-    # Consultar datos del juego
-    cur.execute("SELECT id, usuario, nombre, apellido, institucion, rol FROM schema_juegos_docentes.usuarios")
-
-    # Obtener el resultado de la consulta
-    usuarios = cur.fetchall()
+    # Obtener usuarios
+    usuarios = Usuario.obtener_usuarios()
     
-    # Cerrar el cursor y la conexión a la base de datos
-    cur.close()
-    conn.close()
-
     return render_template('administrar_usuarios.html', usuarios=usuarios, traducciones=traducciones, idioma=idioma)
 
 @app.route('/administrar_usuarios', methods=['POST'])
@@ -754,28 +620,13 @@ def administrar_usuarios_post():
 @app.route('/administrar_juegos', methods=['GET'])
 @login_required
 def administrar_juegos_get():
-    # Obtener idioma elegido
+    # Obtener idioma elegido y sus traducciones
     idioma = request.args.get('idioma', 'es')
-
-    #Obtener traducciones para el idioma específico
     traducciones = cargar_traducciones_administrar_juegos(idioma)
 
-    # Establecer la conexión a la base de datos
-    conn = conectar()
-
-    # Crear un cursor para ejecutar la consulta
-    cur = conn.cursor()
-
-    # Consultar datos del juego
-    cur.execute("SELECT id, nombre_juego, idioma, descripcion FROM schema_juegos_docentes.juegos")
-
-    # Obtener el resultado de la consulta
-    juegos = cur.fetchall()
+    # Obtener juegos
+    juegos = Juego.obtener_juegos()
     
-    # Cerrar el cursor y la conexión a la base de datos
-    cur.close()
-    conn.close()
-
     return render_template('administrar_juegos.html', juegos=juegos, traducciones=traducciones, idioma=idioma)
 
 @app.route('/administrar_juegos', methods=['POST'])
@@ -792,22 +643,17 @@ def administrar_juegos_post():
     return redirect(url_for('administrar_juegos_get', idioma=idioma))
 
 @app.route('/añadir_valoracion', methods=['GET'])
+@login_required
 def añadir_valoracion_get():
-
-    # Obtener id del juego elegido
-    #id_juego = request.args.get('id')
-
-    # Obtener idioma elegido
+    # Obtener idioma elegido y sus traducciones
     idioma = request.args.get('idioma', 'es')
-
-    #Obtener traducciones para el idioma específico
     traducciones = cargar_traducciones_añadir_valoracion(idioma)
 
     return render_template('añadir_valoracion.html', traducciones=traducciones, idioma=idioma)
 
 @app.route('/añadir_valoracion', methods=['POST'])
+@login_required
 def añadir_valoracion_post():
-
     # Obtener idioma elegido
     idioma = request.args.get('idioma', 'es')
 
@@ -831,39 +677,24 @@ def añadir_valoracion_post():
     return redirect(url_for('menu_juegos_get', idioma=idioma))
 
 @app.route('/visualizar_valoracion', methods=['GET'])
+@login_required
 def visualizar_valoracion_get():
     # Obtener id del juego elegido
     id_juego = request.args.get('id')
 
-    # Obtener idioma elegido
+    # Obtener idioma elegido y sus traducciones
     idioma = request.args.get('idioma', 'es')
-
-    # Obtener traducciones para el idioma específico
     traducciones = cargar_traducciones_visualizar_valoracion(idioma)
 
-    # Establecer la conexión a la base de datos
-    conn = conectar()
-
-    # Crear un cursor para ejecutar la consulta
-    cur = conn.cursor()
-
-    # Consultar datos del juego
-    cur.execute("SELECT v.puntuacion, v.comentario, v.fecha_valoracion, u.usuario, v.estrellas_individual FROM schema_juegos_docentes.valoraciones v INNER JOIN schema_juegos_docentes.usuarios u ON v.id_usuario_valoracion = u.id WHERE v.id_juego = %s", (id_juego,))
-
-    # Obtener el resultado de la consulta
-    valoraciones = cur.fetchall()
-    
-    # Cerrar el cursor y la conexión a la base de datos
-    cur.close()
-    conn.close()
+    # Obtener valoraciones del juego
+    valoraciones = Juego.obtener_valoraciones(id_juego)
 
     return render_template('visualizar_valoracion.html', valoraciones=valoraciones, traducciones=traducciones, idioma=idioma)
 
 @app.route('/acerca_de', methods=['GET'])
 def acerca_de_get():
-    # Obtener idioma elegido
+    # Obtener idioma elegido y sus traducciones
     idioma = request.args.get('idioma', 'es')
-    #Obtener traducciones para el idioma específico
     traducciones = cargar_traducciones_inicio(idioma)
 
     return render_template('acerca_de.html', traducciones=traducciones, idioma=idioma)
@@ -877,4 +708,3 @@ def logout():
 # Ejecutar la aplicación Flask
 if __name__ == '__main__':
     app.run()
-

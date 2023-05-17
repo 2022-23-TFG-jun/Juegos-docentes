@@ -52,3 +52,33 @@ class Usuario(UserMixin):
         cursor = db.cursor()
         cursor.execute("DELETE FROM schema_juegos_docentes.usuarios WHERE id = %s", (id_usuario,))
         db.commit()
+
+    @staticmethod
+    def obtener_usuarios():
+        db = conectar()
+        cursor = db.cursor()
+        cursor.execute("SELECT id, usuario, nombre, apellido, institucion, rol FROM schema_juegos_docentes.usuarios")
+        usuarios = cursor.fetchall()
+        cursor.close()
+        db.close()
+        return usuarios
+    
+    @staticmethod
+    def obtener_usuario_existe(usuario):
+        db = conectar()
+        cursor = db.cursor()
+        cursor.execute("SELECT * FROM schema_juegos_docentes.usuarios WHERE usuario = %s", (usuario,))
+        usuario_existe = cursor.fetchone()
+        cursor.close()
+        db.close()
+        return usuario_existe
+    
+    @staticmethod
+    def obtener_usuario_db(usuario):
+        db = conectar()
+        cursor = db.cursor()
+        cursor.execute("SELECT * FROM schema_juegos_docentes.usuarios WHERE usuario = %s", (usuario,))
+        usuario_db = cursor.fetchone()
+        cursor.close()
+        db.close()
+        return usuario_db

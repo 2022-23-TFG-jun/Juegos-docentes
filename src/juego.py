@@ -1,4 +1,5 @@
 from src.database import conectar
+import logging
 
 class Juego():
     def __init__(self, id_juego, nombre_juego, descripcion, idiomaN, enlace, puntuacion,
@@ -109,3 +110,89 @@ class Juego():
         cursor.execute("UPDATE schema_juegos_docentes.juegos SET estrellas_general = CAST(puntuacion_media_usuario AS INTEGER) WHERE id = %s", (id_juego,))
         cursor.execute("UPDATE schema_juegos_docentes.valoraciones SET estrellas_individual = CAST(puntuacion AS INTEGER) WHERE id_juego = %s", (id_juego,))
         db.commit()
+
+    @staticmethod
+    def obtener_valoraciones(id_juego):
+        db = conectar()
+        cursor = db.cursor()
+        cursor.execute("SELECT v.puntuacion, v.comentario, v.fecha_valoracion, u.usuario, v.estrellas_individual FROM schema_juegos_docentes.valoraciones v INNER JOIN schema_juegos_docentes.usuarios u ON v.id_usuario_valoracion = u.id WHERE v.id_juego = %s", (id_juego,))
+        valoraciones = cursor.fetchall()
+        cursor.close()
+        db.close()
+        return valoraciones
+    
+    @staticmethod
+    def obtener_juegos():
+        db = conectar()
+        cursor = db.cursor()
+        cursor.execute("SELECT id, nombre_juego, idioma, descripcion FROM schema_juegos_docentes.juegos")
+        juegos = cursor.fetchall()
+        cursor.close()
+        db.close()
+        return juegos
+    
+    @staticmethod
+    def obtener_juego_modificacion(id_juego):
+        db = conectar()
+        cursor = db.cursor()
+        cursor.execute("SELECT * FROM schema_juegos_docentes.juegos WHERE id = %s", (id_juego,))
+        informacion_juego = cursor.fetchone()
+        cursor.close()
+        db.close()
+        return informacion_juego
+    
+    @staticmethod
+    def obtener_juego_visualizacion(id_juego):
+        db = conectar()
+        cursor = db.cursor()
+        cursor.execute("SELECT * FROM schema_juegos_docentes.juegos WHERE id = %s", (id_juego,))
+        informacion_juego = cursor.fetchone()
+        cursor.close()
+        db.close()
+        return informacion_juego
+    
+    @staticmethod
+    def obtener_juegos_menu(juegos_por_pagina, desplazamiento):
+        db = conectar()
+        cursor = db.cursor()
+        cursor.execute("SELECT id, nombre_juego, descripcion, idioma, enlace, puntuacion, puntuacion_media_usuario, estrellas_general FROM schema_juegos_docentes.juegos ORDER BY nombre_juego LIMIT %s OFFSET %s", (juegos_por_pagina, desplazamiento))
+        juegos = cursor.fetchall()
+        cursor.close()
+        db.close()
+        return juegos
+    
+    @staticmethod
+    def obtener_total_juegos():
+        db = conectar()
+        cursor = db.cursor()
+        cursor.execute("SELECT COUNT(*) FROM schema_juegos_docentes.juegos")
+        total_juegos = cursor.fetchone()[0]
+        cursor.close()
+        db.close()
+        return total_juegos
+
+
+
+
+"""
+    @staticmethod
+    def obtener_valoraciones(id_juego):
+        try:
+            db = conectar()
+            cursor = db.cursor()
+            cursor.execute("SELECT v.puntuacion, v.comentario, v.fecha_valoracion, u.usuario, v.estrellas_individual FROM schema_juegos_docentes.valoraciones v INNER JOIN schema_juegos_docentes.usuarios u ON v.id_usuario_valoracion = u.id WHERE v.id_juego = %s", (id_juego,))
+            valoraciones = cursor.fetchall()
+            return valoraciones
+        
+        except Exception as e:
+            # Manejo de excepciones: registra el error, realiza acciones de recuperación o notifica al usuario según sea necesario
+            print("Ocurrió un error al obtener las valoraciones:", str(e))
+        finally:
+            if cursor:
+                cursor.close()
+            if db:
+                db.close()
+except Exception as e:
+# Manejo de excepciones: registra el error, realiza acciones de recuperación o notifica al usuario según sea necesario
+print("Ocurrió un error al obtener las valoraciones:", str(e))
+"""

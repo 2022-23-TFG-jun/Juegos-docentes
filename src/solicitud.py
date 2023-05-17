@@ -49,3 +49,26 @@ class Solicitud():
         cur.execute("UPDATE schema_juegos_docentes.usuarios SET rol=%s WHERE id=%s", ("profesor", id_usuario_solicitud))
         
         conn.commit()
+
+    @staticmethod
+    def obtener_solicitudes():
+        db = conectar()
+        cursor = db.cursor()
+        cursor.execute("SELECT * FROM schema_juegos_docentes.solicitudes ORDER BY id")
+        solicitudes = cursor.fetchall()
+        cursor.close()
+        db.close()
+        return solicitudes
+    
+    @staticmethod
+    def obtener_solicitud_pendiente(id_usuario_solicitud):
+        db = conectar()
+        cursor = db.cursor()
+        cursor.execute("SELECT * FROM schema_juegos_docentes.solicitudes WHERE id_usuario_solicitud = %s AND estado = 'PENDIENTE'", (id_usuario_solicitud,))
+        solicitud = cursor.fetchone()
+        cursor.close()
+        db.close()
+        return solicitud
+    
+
+    
