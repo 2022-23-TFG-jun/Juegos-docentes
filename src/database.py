@@ -32,7 +32,6 @@ def crear_tablas():
     # cursor.execute("DROP TABLE schema_juegos_docentes.valoraciones CASCADE;")
     
     # Tabla de usuarios
-    print("hola")
     cursor.execute(
     "CREATE TABLE IF NOT EXISTS schema_juegos_docentes.usuarios "
     "(id SERIAL PRIMARY KEY, "
