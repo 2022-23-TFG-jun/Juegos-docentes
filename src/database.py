@@ -1,50 +1,38 @@
 import psycopg2
 import os
-#def tabla_usuarios_existe():
-    #conn = conectar()
-    #cursor = conn.cursor()
-    #cursor.execute("""
-        #SELECT EXISTS (
-            #SELECT 1
-            #FROM information_schema.tables
-            #WHERE table_name = 'usuarios'
-            #AND table_schema = 'public'
-        #);
-    #""")
-    #existe = cursor.fetchone()[0]
-    #cursor.close()
-    #conn.close()
-    #return existe
 
 def conectar():
-    """
+    try:
+        # Configuración de la conexión
         conn = psycopg2.connect(
-        host="localhost",
-        database="juegos_docentes",
-        user="admin",
-        password="1234"
-    )
-    """
-    conn = psycopg2.connect(host=os.getenv("Host"),database=os.getenv("Database"),port=os.getenv("Port"),user=os.getenv("User"),password=os.getenv("Password"))
-    return conn
+            host=os.getenv("Host"),
+            dbname=os.getenv("Database"),
+            port=os.getenv("Port"),
+            user=os.getenv("User"),
+            password=os.getenv("Password")
+        )
+        return conn
+    except Exception as e:
+        print("Error al establecer la conexión:", e)
+        return None
 
 def crear_tablas():
-    # Configuración de la conexión
-
-    conn = psycopg2.connect(host=os.getenv("Host"),database=os.getenv("Database"),port=os.getenv("Port"),user=os.getenv("User"),password=os.getenv("Password"))
-    # Crear tabla
-    cursor = conn.cursor()
     
-    # Crear el tipo de datos ENUM
-    # cursor.execute("DROP TYPE IF EXISTS schema_juegos_docentes.genero_enum;")
+    # Crear tablas
+    db = conectar()
+    cursor = db.cursor()
+
+    cursor.execute("DROP SCHEMA IF EXISTS schema_juegos_docentes CASCADE;")
+
+    # Crea
+    # Crear esquema
+    cursor.execute("CREATE SCHEMA IF NOT EXISTS schema_juegos_docentes;")
+
     # cursor.execute("DROP TABLE schema_juegos_docentes.juegos CASCADE;")
     # cursor.execute("DROP TABLE schema_juegos_docentes.valoraciones CASCADE;")
     
-    # cursor.execute("DROP TYPE IF EXISTS schema_juegos_docentes.genero_enum;")
-    # cursor.execute("CREATE TYPE schema_juegos_docentes.genero_enum AS ENUM ('Masculino', 'Femenino', 'Prefiero no contestar');")
-    
     # Tabla de usuarios
-    # cursor.execute("CREATE TABLE IF NOT EXISTS schema_juegos_docentes.usuarios (id SERIAL PRIMARY KEY, usuario VARCHAR(50), contraseña VARCHAR(150), rol VARCHAR(20));")
+    print("hola")
     cursor.execute(
     "CREATE TABLE IF NOT EXISTS schema_juegos_docentes.usuarios "
     "(id SERIAL PRIMARY KEY, "
@@ -57,7 +45,6 @@ def crear_tablas():
     )
 
     # Tabla de juegos
-    # cursor.execute("CREATE TABLE IF NOT EXISTS schema_juegos_docentes.juegos (id SERIAL PRIMARY KEY, nombre_juego VARCHAR(100), enlace VARCHAR(200), id_usuario INTEGER REFERENCES schema_juegos_docentes.usuarios(id), fecha TIMESTAMP);")
     cursor.execute(
         "CREATE TABLE IF NOT EXISTS schema_juegos_docentes.juegos "
         "(id SERIAL PRIMARY KEY, "
@@ -112,7 +99,6 @@ def crear_tablas():
     )
 
     # Tabla de puntuaciones
-    # cursor.execute("CREATE TABLE IF NOT EXISTS schema_juegos_docentes.juegos_puntuaciones (id SERIAL PRIMARY KEY,id_usuario INTEGER REFERENCES schema_juegos_docentes.usuarios(id), id_juego INTEGER REFERENCES schema_juegos_docentes.juegos(id), puntuacion INTEGER,fecha TIMESTAMP DEFAULT NOW());")
     cursor.execute(
     "CREATE TABLE IF NOT EXISTS schema_juegos_docentes.valoraciones "
     "(id SERIAL PRIMARY KEY, "
@@ -124,7 +110,6 @@ def crear_tablas():
     "id_juego INTEGER REFERENCES schema_juegos_docentes.juegos(id)); "
     )
 
-
     # passhash = generate_password_hash('12345')
     # Insertar usuario de prueba
     # cursor.execute("INSERT INTO schema_juegos_docentes.usuarios (usuario, nombre, apellido, institucion, edad, genero, contraseña, rol) VALUES ('usuarioPrueba', 'este', 'este', 'este', '21','Femenino', %s, 'administrador');", (passhash,))
@@ -133,8 +118,8 @@ def crear_tablas():
     # cursor.execute("DELETE FROM schema_juegos_docentes.usuarios WHERE usuario = 'usuarioPrueba';")
     
     # Confirmar cambios y cerrar cursor
-    conn.commit()
+    db.commit()
     cursor.close()
     
     # Cerrar conexión
-    conn.close()
+    db.close()
