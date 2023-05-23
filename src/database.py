@@ -1,35 +1,37 @@
 import psycopg2
-from werkzeug.security import generate_password_hash
-
-def tabla_usuarios_existe():
-    conn = conectar()
-    cursor = conn.cursor()
-    cursor.execute("""
-        SELECT EXISTS (
-            SELECT 1
-            FROM information_schema.tables
-            WHERE table_name = 'usuarios'
-            AND table_schema = 'public'
-        );
-    """)
-    existe = cursor.fetchone()[0]
-    cursor.close()
-    conn.close()
-    return existe
+import os
+#def tabla_usuarios_existe():
+    #conn = conectar()
+    #cursor = conn.cursor()
+    #cursor.execute("""
+        #SELECT EXISTS (
+            #SELECT 1
+            #FROM information_schema.tables
+            #WHERE table_name = 'usuarios'
+            #AND table_schema = 'public'
+        #);
+    #""")
+    #existe = cursor.fetchone()[0]
+    #cursor.close()
+    #conn.close()
+    #return existe
 
 def conectar():
-    conn = psycopg2.connect(
+    """
+        conn = psycopg2.connect(
         host="localhost",
         database="juegos_docentes",
         user="admin",
         password="1234"
     )
+    """
+    conn = psycopg2.connect(host=os.getenv("Host"),database=os.getenv("Database"),port=os.getenv("Port"),user=os.getenv("User"),password=os.getenv("Password"))
     return conn
 
 def crear_tablas():
     # Configuración de la conexión
-    conn = psycopg2.connect(database="juegos_docentes", user="admin", password="1234", host="localhost", port="5432")
-    
+
+    conn = psycopg2.connect(host=os.getenv("Host"),database=os.getenv("Database"),port=os.getenv("Port"),user=os.getenv("User"),password=os.getenv("Password"))
     # Crear tabla
     cursor = conn.cursor()
     
@@ -109,7 +111,7 @@ def crear_tablas():
     "fecha_solicitud TIMESTAMP DEFAULT NOW());"
     )
 
-     # Tabla de puntuaciones
+    # Tabla de puntuaciones
     # cursor.execute("CREATE TABLE IF NOT EXISTS schema_juegos_docentes.juegos_puntuaciones (id SERIAL PRIMARY KEY,id_usuario INTEGER REFERENCES schema_juegos_docentes.usuarios(id), id_juego INTEGER REFERENCES schema_juegos_docentes.juegos(id), puntuacion INTEGER,fecha TIMESTAMP DEFAULT NOW());")
     cursor.execute(
     "CREATE TABLE IF NOT EXISTS schema_juegos_docentes.valoraciones "
@@ -122,27 +124,6 @@ def crear_tablas():
     "id_juego INTEGER REFERENCES schema_juegos_docentes.juegos(id)); "
     )
 
-    # Tabla de puntuaciones
-    # cursor.execute("CREATE TABLE IF NOT EXISTS schema_juegos_docentes.juegos_puntuaciones (id SERIAL PRIMARY KEY,id_usuario INTEGER REFERENCES schema_juegos_docentes.usuarios(id), id_juego INTEGER REFERENCES schema_juegos_docentes.juegos(id), puntuacion INTEGER,fecha TIMESTAMP DEFAULT NOW());")
-    cursor.execute(
-    "CREATE TABLE IF NOT EXISTS schema_juegos_docentes.juegos_puntuaciones "
-    "(id SERIAL PRIMARY KEY, "
-    "puntuacion INTEGER, "
-    "fecha TIMESTAMP DEFAULT NOW(), "
-    "id_usuario INTEGER REFERENCES schema_juegos_docentes.usuarios(id), "
-    "id_juego INTEGER REFERENCES schema_juegos_docentes.juegos(id)); "
-    )
-
-    # Tabla de comentarios
-    # cursor.execute("CREATE TABLE IF NOT EXISTS schema_juegos_docentes.juegos_comentarios (id SERIAL PRIMARY KEY, id_usuario INTEGER REFERENCES schema_juegos_docentes.usuarios(id), id_juego INTEGER REFERENCES schema_juegos_docentes.juegos(id),comentario TEXT,fecha TIMESTAMP));")
-    cursor.execute(
-    "CREATE TABLE IF NOT EXISTS schema_juegos_docentes.juegos_comentarios "
-    "(id SERIAL PRIMARY KEY, "
-    "comentario TEXT, "
-    "fecha TIMESTAMP DEFAULT NOW(), "
-    "id_usuario INTEGER REFERENCES schema_juegos_docentes.usuarios(id), "
-    "id_juego INTEGER REFERENCES schema_juegos_docentes.juegos(id)); "
-    )
 
     # passhash = generate_password_hash('12345')
     # Insertar usuario de prueba
