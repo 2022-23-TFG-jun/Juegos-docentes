@@ -1,5 +1,85 @@
 from src.database import conectar
+import logging
 
+class Solicitud():
+    def rol_profesor(id_usuario_solicitud, fecha_solicitud):
+        try:
+            db = conectar()
+            cursor = db.cursor()
+            cursor.execute("INSERT INTO schema_juegos_docentes.solicitudes (estado, id_usuario_solicitud, fecha_solicitud) VALUES (%s, %s, %s)", ("PENDIENTE", id_usuario_solicitud, fecha_solicitud))
+            db.commit()
+        except Exception as e:
+            logging.error("Ocurrió un error al añadir el archivo de las instrucciones del jugador: %s", str(e))
+        finally:
+            if cursor:
+                cursor.close()
+            if db:
+                db.close()
+
+    def rechazar_solicitud(id_usuario_solicitud):
+        try:
+            db = conectar()
+            cursor = db.cursor()
+            # Actualizar el estado de la solicitud a rechazada
+            cursor.execute("UPDATE schema_juegos_docentes.solicitudes SET estado=%s WHERE id=%s", ("RECHAZADA", id_usuario_solicitud))
+            db.commit()
+        except Exception as e:
+            logging.error("Ocurrió un error al añadir el archivo de las instrucciones del jugador: %s", str(e))
+        finally:
+            if cursor:
+                cursor.close()
+            if db:
+                db.close()
+
+    def aceptar_solicitud(id_usuario_solicitud):
+        try:
+            db = conectar()
+            cursor = db.cursor()
+            # Actualizar el estado de la solicitud a aceptada
+            cursor.execute("UPDATE schema_juegos_docentes.solicitudes SET estado=%s WHERE id=%s", ("ACEPTADA", id_usuario_solicitud))
+            # Actualizar rol del usuario a profesor.
+            cursor.execute("UPDATE schema_juegos_docentes.usuarios SET rol=%s WHERE id=%s", ("profesor", id_usuario_solicitud))
+            db.commit()
+        except Exception as e:
+            logging.error("Ocurrió un error al añadir el archivo de las instrucciones del jugador: %s", str(e))
+        finally:
+            if cursor:
+                cursor.close()
+            if db:
+                db.close()
+
+    def obtener_solicitudes():
+        try:
+            db = conectar()
+            cursor = db.cursor()
+            cursor.execute("SELECT * FROM schema_juegos_docentes.solicitudes ORDER BY id")
+            solicitudes = cursor.fetchall()
+            return solicitudes
+        except Exception as e:
+            logging.error("Ocurrió un error al crear un juego nuevo: %s", str(e))
+        finally:
+            if cursor:
+                cursor.close()
+            if db:
+                db.close()
+    
+    def obtener_solicitud_pendiente(id_usuario_solicitud):
+        try:
+            db = conectar()
+            cursor = db.cursor()
+            cursor.execute("SELECT * FROM schema_juegos_docentes.solicitudes WHERE id_usuario_solicitud = %s AND estado = 'PENDIENTE'", (id_usuario_solicitud,))
+            solicitud = cursor.fetchone()
+            return solicitud
+        except Exception as e:
+            logging.error("Ocurrió un error al crear un juego nuevo: %s", str(e))
+        finally:
+            if cursor:
+                cursor.close()
+            if db:
+                db.close()
+
+
+"""
 class Solicitud():
     def __init__(self, id, estado, mensaje_solicitud, id_usuario_solicitud, fecha_solicitud):
         self.id = id
@@ -70,5 +150,5 @@ class Solicitud():
         db.close()
         return solicitud
     
-
+"""
     

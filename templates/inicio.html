@@ -5,6 +5,7 @@
     <title>{{ traducciones['INICIO'][idioma] }}</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 </head>
 <body class="body-inicio">
     <div class="container-fluid fondo-color">
@@ -24,11 +25,15 @@
             </form>
         </div>
 
+        <div class="d-flex justify-content-center align-items-center mt-4">
+            <img src="/static/img/logo.jpg" alt="Logo aplicación" style="max-width: 13%; height: auto;" class="animate__animated animate__fadeInUp animate__delay-2s">
+        </div>
+          
         <main class="container pb-5" style="margin-bottom: 282px">
 
             <h1 class="text-center color-texto mb-5">{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
         
-            <div class="row justify-content-left">
+            <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <h2 class="color-texto mb-4">{{ traducciones['TITULO-BIENVENIDA'][idioma] }}</h2>
                     <p class="color-texto mb-4">{{ traducciones['MSJ-BIENVENIDA'][idioma] }}</p>
@@ -47,21 +52,14 @@
                     <div class="col-md-3 col-12 text-right">Estela Victoria Ballester Delgado</div>
                 </div>
             </div>
-        </footer>
-        
-        
-        
-        
-          
+        </footer> 
     </div>
-
-    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
 </body>
 </html>
 
 
-
+  <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
 
 
 

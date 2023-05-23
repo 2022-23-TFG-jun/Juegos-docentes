@@ -182,6 +182,10 @@
         "en": "About",
         "es": "Acerca de"
     },
+    "BTN-CERRAR-SESION": {
+        "en": "Log out",
+        "es": "Cerrar sesión"
+    },
     "FOOTER": {
         "en": "Final Degree Project © 2023",
         "es": "Trabajo de Fin de Grado © 2023"
