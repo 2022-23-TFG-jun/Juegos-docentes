@@ -14,7 +14,9 @@
 </header>
 
   <div class="container py-5">
-    <h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
+    <div class="text-center mb-4">
+      <h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
+    </div>
 
     {% if error_usuario_existe %}
       <div class="alert alert-danger">{{ error_usuario_existe['USUARIO-EXISTE'][idioma] }}</div>
@@ -51,13 +53,15 @@
         <label for="confirmar_contraseña">{{ traducciones['CONFIRMAR_CONTRA'][idioma] }}</label>
         <input type="password" id="confirmar_contraseña" name="confirmar_contraseña" class="form-control" required>
       </div>
-
+    <div class="text-center mb-4">
     <button type="submit" class="btn-crear">{{ traducciones['BTN-CREAR'][idioma] }}</button>
+    </div>
     </form>
 
     <p class="mt-3">{{ traducciones['BTN-CUENTA'][idioma] }} <a href="login?idioma={{idioma}}">{{ traducciones['BTN-LOGIN'][idioma] }}</a></p>
-  
-      <footer class="bg-light py-1 fixed-bottom">
+    <div style="margin-bottom: 50px;"></div>
+
+    <footer class="bg-light py-1 fixed-bottom">
         <div class="container-fluid">
             <div class="row justify-content-between">
                 <div class="col-md-3 col-12 text-left">{{ traducciones['FOOTER'][idioma] }}</div>
@@ -70,50 +74,3 @@
     </footer>
 </body>
 </html>
-
-
-
-<!--
-  <body class="body-registro">
-  <header>
-    <button class="btn-header">{{ traducciones['ACERCA'][idioma] }}</button>
-    <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" class="img-UBU-sin-btn">
-  </header>
-
-  <h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
-
-  {% if error_usuario_existe %}
-    <p class="error">{{ error_usuario_existe['USUARIO-EXISTE'][idioma] }}</p>
-  {% endif %}
-  {% if error_contraseña_condiciones %}
-    <p class="error">{{ error_contraseña_condiciones['CONTRASEÑA'][idioma] }}</p>
-  {% endif %}
-  {% if error_contraseñas_no_coinciden %}
-    <p class="error">{{ error_contraseñas_no_coinciden['NO-COINCIDEN'][idioma] }}</p>
-  {% endif %}
-
-  <form action="/registro" method="POST">
-    <label for="usuario">{{ traducciones['USUARIO'][idioma] }}</label>
-    <input type="text" id="usuario" name="usuario" required>
-    <label for="nombre">{{ traducciones['NOMBRE'][idioma] }}</label>
-    <input type="text" id="nombre" name="nombre" required>
-    <label for="apellido">{{ traducciones['APELLIDO'][idioma] }}</label>
-    <input type="text" id="apellido" name="apellido" required>
-    <label for="institucion">{{ traducciones['INSTITUCION'][idioma] }}</label>
-    <input type="text" id="institucion" name="institucion">
-    <label for="contraseña">{{ traducciones['CONTRA'][idioma] }}</label>
-    <input type="password" id="contraseña" name="contraseña" required>
-    <label for="confirmar_contraseña">{{ traducciones['CONFIRMAR_CONTRA'][idioma] }}</label>
-    <input type="password" id="confirmar_contraseña" name="confirmar_contraseña" required>
-    <input type="submit" value="{{ traducciones['BTN-CREAR'][idioma] }}">
-    <p>{{ traducciones['BTN-CUENTA'][idioma] }} <a href="login?idioma={{idioma}}">{{ traducciones['BTN-LOGIN'][idioma] }}</a></p>
-  </form>
-
-  <footer class="footer-registro">
-    <div class="left-text-footer">{{ traducciones['FOOTER'][idioma] }}</div>
-    <img src="/static/img/escudo-politecnica.gif" alt="Escudo ingeniería informática" class="img-escudo">
-    <div class="right-text-footer">Estela Victoria Ballester Delgado</div>
-</footer>
-</body>
-</html>
--->

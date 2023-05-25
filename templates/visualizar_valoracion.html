@@ -12,7 +12,7 @@
       <a href="acerca_de?idioma={{idioma}}"><button class="btn-acerca">{{ traducciones['ACERCA'][idioma] }}</button></a>
       <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" style="max-width: 7%;" class="mx-auto">
       <div>
-        <a href="logout">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
+        <a href="logout" class="btn-cerrar">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
       </div>
     </header>
 
@@ -22,7 +22,7 @@
 
     <div class="container">
       {% for valoracion in valoraciones %}
-        <div class="card">
+      
           <div class="card-header">
             {{ valoracion[3] }}
             {{ valoracion[2] }}
@@ -35,11 +35,10 @@
             </h5>
             <p class="card-text">{{ valoracion[1] }}</p>
           </div>
-        </div>
+        
       {% endfor %}
     </div>
     <div style="margin-bottom: 100px;"></div>
-
 
     <footer class="bg-light py-1 fixed-bottom">
       <div class="container-fluid">

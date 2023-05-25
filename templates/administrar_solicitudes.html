@@ -11,12 +11,15 @@
       <a href="acerca_de?idioma={{idioma}}"><button class="btn-acerca">{{ traducciones['ACERCA'][idioma] }}</button></a>
       <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" style="max-width: 7%;" class="mx-auto">
       <div>
-        <a href="logout">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
+        <a href="logout" class="btn-cerrar">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
       </div>
     </header>
 
     <div class="container">
-      <h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
+      <div class="d-flex justify-content-center">
+        <h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
+      </div>
+      
       <div class="table-responsive">
         <table class="table table-striped">
           <thead>

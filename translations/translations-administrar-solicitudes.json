@@ -4,8 +4,8 @@
         "es": "Administrar solicitudes"
     },
     "ID": {
-        "en": "Request ID",
-        "es": "ID solicitud"
+        "en": "ID",
+        "es": "ID"
     },
     "ESTADO": {
         "en": "State",

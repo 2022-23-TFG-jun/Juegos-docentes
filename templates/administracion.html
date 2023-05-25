@@ -11,7 +11,7 @@
 		<a href="acerca_de?idioma={{idioma}}"><button class="btn-acerca">{{ traducciones['ACERCA'][idioma] }}</button></a>
 		<img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" style="max-width: 7%;" class="mx-auto">
 		<div>
-			<a href="logout">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
+			<a href="logout" class="btn-cerrar">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
 		</div>
 	</header>
 
@@ -19,50 +19,43 @@
 		<div class="d-flex justify-content-center">
 			<h1 class="mb-5">{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
 		</div>
-
-		<h3 class="mb-4">{{ traducciones['SELECCIONA'][idioma] }}</h3>
-
-		<div class="card">
-			<div class="card-header">
-				<div class="d-flex justify-content-center">
-					<h4>{{ traducciones['USUARIOS'][idioma] }}</h4>
-				</div>
+		
+		<div class="card-header">
+			<div class="d-flex justify-content-center">
+				<h4>{{ traducciones['USUARIOS'][idioma] }}</h4>
 			</div>
-			<div class="card-body">
-				<p>{{ traducciones['TXT-USUARIOS'][idioma] }}</p>
-				<div class="d-flex justify-content-center">
-					<a href="administrar_usuarios?idioma={{idioma}}" class="btn btn-primary">{{ traducciones['BTN-USUARIOS'][idioma] }}</a>
-				</div>
+		</div>
+		<div class="card-body">
+			<p>{{ traducciones['TXT-USUARIOS'][idioma] }}</p>
+			<div class="d-flex justify-content-center">
+				<a href="administrar_usuarios?idioma={{idioma}}" class="btn-añadir-juego">{{ traducciones['BTN-USUARIOS'][idioma] }}</a>
+			</div>
+		</div>
+		
+		<div class="card-header">
+			<div class="d-flex justify-content-center">
+				<h4>{{ traducciones['JUEGOS'][idioma] }}</h4>
+			</div>
+		</div>
+		<div class="card-body">
+			<p>{{ traducciones['TXT-JUEGOS'][idioma] }}</p>
+			<div class="d-flex justify-content-center">
+				<a href="administrar_juegos?idioma={{idioma}}" class="btn-añadir-juego">{{ traducciones['BTN-JUEGOS'][idioma] }}</a>
 			</div>
 		</div>
 
-		<div class="card my-3">
-			<div class="card-header">
-				<div class="d-flex justify-content-center">
-					<h4>{{ traducciones['JUEGOS'][idioma] }}</h4>
-				</div>
-			</div>
-			<div class="card-body">
-				<p>{{ traducciones['TXT-JUEGOS'][idioma] }}</p>
-				<div class="d-flex justify-content-center">
-					<a href="administrar_juegos?idioma={{idioma}}" class="btn btn-primary">{{ traducciones['BTN-JUEGOS'][idioma] }}</a>
-				</div>
+		<div class="card-header">
+			<div class="d-flex justify-content-center">
+				<h4>{{ traducciones['SOLICITUDES'][idioma] }}</h4>
 			</div>
 		</div>
-
-		<div class="card my-3">
-			<div class="card-header">
-				<div class="d-flex justify-content-center">
-					<h4>{{ traducciones['SOLICITUDES'][idioma] }}</h4>
-				</div>
-			</div>
-			<div class="card-body">
-				<p>{{ traducciones['TXT-SOLICITUDES'][idioma] }}</p>
-				<div class="d-flex justify-content-center">
-					<a href="administrar_solicitudes?idioma={{idioma}}" class="btn btn-primary">{{ traducciones['BTN-SOLICITUDES'][idioma] }}</a>
-				</div>
+		<div class="card-body">
+			<p>{{ traducciones['TXT-SOLICITUDES'][idioma] }}</p>
+			<div class="d-flex justify-content-center">
+				<a href="administrar_solicitudes?idioma={{idioma}}" class="btn-añadir-juego">{{ traducciones['BTN-SOLICITUDES'][idioma] }}</a>
 			</div>
 		</div>
+		
 		<div style="margin-bottom: 100px;"></div>
 	</main>
 
@@ -80,46 +73,3 @@
 
 </body>
 </html>
-
-
-
-
-<!-- <!DOCTYPE html>
-<html>
-	<head>
-		<title>Administración</title>
-		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-	</head>
-	
-	<body>
-		<header>
-			<button class="btn-header">{{ traducciones['ACERCA'][idioma] }}</button>
-			<img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" class="img-UBU">
-	  	</header>
-
-		<h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
-
-		<h3>Por favor, selecciona una opción de administración:</h3>
-		
-		<div class="card_usuarios">
-			<h4>Administración de usuarios</h4>
-		</div>
-		<a href="administrar_usuarios?idioma={{idioma}}" class="btn-usuarios">{{ traducciones['BTN-USUARIOS'][idioma] }}</a>
-
-		<div class="card_juegos">
-			<h4>Administración de juegos</h4>
-		</div>
-		<a href="administrar_juegos?idioma={{idioma}}" class="btn-juegos">{{ traducciones['BTN-JUEGOS'][idioma] }}</a>
-
-		<div class="card_solicitudes">
-			<h4>Administración de solicitudes</h4>
-		</div>
-		<a href="administrar_solicitudes?idioma={{idioma}}" class="btn-solicitudes">{{ traducciones['BTN-SOLICITUDES'][idioma] }}</a>
-
-		<footer>
-			<div class="left-text-footer">{{ traducciones['FOOTER'][idioma] }}</div>
-			<img src="/static/img/escudo-politecnica.gif" alt="Escudo ingeniería informática" class="img-escudo">
-			<div class="right-text-footer">Estela Victoria Ballester Delgado</div>
-		  </footer>
-	</body>
-</html> -->

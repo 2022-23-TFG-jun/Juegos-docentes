@@ -13,7 +13,7 @@
 		<a href="acerca_de?idioma={{idioma}}"><button class="btn-acerca">{{ traducciones['ACERCA'][idioma] }}</button></a>
 		<img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" style="max-width: 7%;" class="mx-auto">
 		<div>
-			<a href="logout">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
+      <a href="logout" class="btn-cerrar">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
 		</div>
 	</header>
 
@@ -24,7 +24,7 @@
         <form action="/añadir_valoracion?id={{ request.args.get('id') }}&idioma={{ request.args.get('idioma') }}" method="POST">
 
           <div class="mb-3">
-            <label for="puntuacion" class="form-label">{{ traducciones['PUNTUACION'][idioma] }}</label>
+            <label for="puntuacion">{{ traducciones['PUNTUACION'][idioma] }}</label>
             <div class="estrellas">
               <input type="radio" id="estrella1" name="puntuacion" value="1">
               <label for="estrella1">1<i class="fa fa-star estrella"></i></label>
@@ -40,12 +40,12 @@
           </div>
 
           <div class="mb-3">
-            <label for="comentario" class="form-label">{{ traducciones['ESCRIBIR'][idioma] }}</label>
+            <label for="comentario">{{ traducciones['ESCRIBIR'][idioma] }}</label>
             <textarea class="form-control" id="comentario" name="comentario" rows="5"></textarea>
           </div>
 
-          <div class="d-grid gap-2">
-            <button class="btn btn-primary" type="submit">{{ traducciones['BTN-ENVIAR'][idioma] }}</button>
+          <div class="d-flex justify-content-center">
+            <button type="submit" class="btn-añadir-juego" >{{ traducciones['BTN-ENVIAR'][idioma] }}</button>
           </div>
 
         </form>

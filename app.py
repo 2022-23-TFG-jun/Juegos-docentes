@@ -2,14 +2,12 @@ import psycopg2
 from flask import Flask, request, redirect, render_template, url_for
 from flask_login import LoginManager, login_user, current_user, login_required, logout_user
 from werkzeug.security import check_password_hash
-from src.database import conectar
 from src.usuario import Usuario
 from src.juego import Juego
 from src.solicitud import Solicitud
 from src.valoracion import Valoracion
 from src.busqueda import obtener_resultados_busqueda
 from datetime import datetime, timedelta
-#from unidecode import unidecode
 import math
 from translations.translations import (
     cargar_traducciones_inicio, 

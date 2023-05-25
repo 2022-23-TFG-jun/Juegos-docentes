@@ -47,7 +47,6 @@
         "en": "Select an option",
         "es": "Seleccione una opción"
     },
-
     "ONLINE": {
         "en": "Online",
         "es": "Online"
@@ -88,7 +87,6 @@
         "en": "Game Description",
         "es": "Descripción del juego"
     },
-
     "OBJETIVOS": {
         "en": "Goals:",
         "es": "Objetivos:"
@@ -97,7 +95,6 @@
         "en": "Control space:",
         "es": "Espacio de control:"
     },
-
     "TITULO-APRENDIZAJE": {
         "en": "Game learning",
         "es": "Aprendizaje del juego"
@@ -110,10 +107,9 @@
         "en": "Secondary objectives:",
         "es": "Objetivos secundarios:"
     },
-
     "TITULO-ORGANIZACION": {
-        "en": "Final assessment of the teacher",
-        "es": "Valoración final del profesor"
+        "en": "Game organization",
+        "es": "Organización del juego"
     },
     "ESTRUCTURA": {
         "en": "Proposed structure for the sessions:",
@@ -123,7 +119,6 @@
         "en": "Additional aspects:",
         "es": "Aspectos adicionales:"
     },
-
     "TITULO-VALORACION": {
         "en": "Final assessment of the teacher",
         "es": "Valoración final del profesor"
@@ -144,7 +139,6 @@
         "en": "Complexity for new instructors:",
         "es": "Complejidad para nuevos instructores:"
     },
-
     "EXCELENTE": {
         "en": "5 - Excellent",
         "es": "5 - Excelente"
@@ -165,7 +159,6 @@
         "en": "1 - Very low",
         "es": "1 - Muy bajo"
     },
-
     "TITULO-VIDEO": {
         "en": "Add video tutorial",
         "es": "Agregar video tutorial"
@@ -174,7 +167,6 @@
         "en": "YouTube URL:",
         "es": "URL de YouTube:"
     },
-
     "BTN-AÑADIR": {
         "en": "Add game",
         "es": "Añadir juego"
@@ -211,7 +203,6 @@
         "en": "Write the additional aspects...",
         "es": "Escriba los aspectos adicionales..."
     },
-
     "BTN-CERRAR-SESION": {
         "en": "Log out",
         "es": "Cerrar sesión"

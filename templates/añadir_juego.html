@@ -14,7 +14,7 @@
 			<a href="acerca_de?idioma={{idioma}}"><button class="btn-acerca">{{ traducciones['ACERCA'][idioma] }}</button></a>
 			<img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" style="max-width: 7%;" class="mx-auto">
 			<div>
-			<a href="logout">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
+				<a href="logout" class="btn-cerrar">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
 			</div>
 		</header>
 
@@ -53,7 +53,7 @@
 				<div class="form-group">
 					<label for="puntuacion">{{ traducciones['PUNTUACION'][idioma] }}</label>
 					<select class="form-control" id="puntuacion" name="puntuacion" required>
-						<option value="">{{ traducciones['PUNTUACION'][idioma] }}</option>
+						<option value="">{{ traducciones['OPCION'][idioma] }}</option>
 						<option value="5.0">5.0</option>
 						<option value="4.0">4.0</option>
 						<option value="3.0">3.0</option>

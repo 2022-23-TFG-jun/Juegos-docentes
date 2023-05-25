@@ -13,12 +13,14 @@
       <a href="acerca_de?idioma={{idioma}}"><button class="btn-acerca">{{ traducciones['ACERCA'][idioma] }}</button></a>
       <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" style="max-width: 7%;" class="mx-auto">
       <div>
-        <a href="logout">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
+        <a href="logout" class="btn-cerrar">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
       </div>
     </header>
 
     <div class="container">
-      <h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
+      <div class="d-flex justify-content-center">
+       <h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
+      </div>
       <div class="table-responsive">
         <table class="table table-striped">
           <thead>
@@ -64,56 +66,3 @@
   </footer>
     </body>
   </html>
-
-
-<!-- <!DOCTYPE html>
-<html>
-  <head>
-    <title>Administrar juegos</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-  </head>
-
-  <body>
-    <header>
-      <button class="btn-header">{{ traducciones['ACERCA'][idioma] }}</button>
-      <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" class="img-UBU">
-    </header>
-
-    <h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
-    <div class="card_visualizar_juego">
-      <table>
-        <thead>
-          <tr>
-            <th>{{ traducciones['ID-JUEGO'][idioma] }}</th>
-            <th>{{ traducciones['NOMBRE'][idioma] }}</th>
-            <th>{{ traducciones['IDIOMA'][idioma] }}</th>
-            <th>{{ traducciones['DESCRIPCION'][idioma] }}</th>
-            <th>{{ traducciones['ACCIONES'][idioma] }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for juego in juegos %}
-            <tr>
-              <td>{{ juego[0] }}</td>
-              <td>{{ juego[1] }}</td>
-              <td>{{ juego[2] }}</td>
-              <td>{{ juego[3] }}</td>
-              <td>
-                <form class="form-flecha" action="/administrar_juegos?idioma={{ request.args.get('idioma') }}" method="POST">
-                  <input type="hidden" name="id_juego" value="{{ juego[0] }}">
-                  <button class="boton-eliminar-juego" type="submit">{{ traducciones['ELIMINAR'][idioma] }}</button>
-                </form>
-              </td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-    <footer>
-      <div class="left-text-footer">{{ traducciones['FOOTER'][idioma] }}</div>
-      <img src="/static/img/escudo-politecnica.gif" alt="Escudo ingeniería informática" class="img-escudo">
-      <div class="right-text-footer">Estela Victoria Ballester Delgado</div>
-    </footer>
-  </body>
-</html>
--->

@@ -13,7 +13,7 @@
     <a href="acerca_de?idioma={{idioma}}"><button class="btn-acerca">{{ traducciones['ACERCA'][idioma] }}</button></a>
     <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" style="max-width: 7%;" class="mx-auto">
     <div>
-      <a href="logout">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
+      <a href="logout" class="btn-cerrar">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
     </div>
   </header>
   <div class="container mt-5">
@@ -25,18 +25,7 @@
         <form action="/añadir_instrucciones_jugador?id={{ request.args.get('id') }}&idioma={{ request.args.get('idioma') }}" method="POST" enctype="multipart/form-data">
           <div class="form-group">
             <label for="instrucciones_jugador">{{ traducciones['ARCHIVO-JUGADOR'][idioma] }}</label>
-
-            
-<!-- HTML -->
-<div class="file-upload">
-  <input type="file" name="instrucciones_jugador" id="instrucciones_jugador" class="form-control-file">
-  <label for="instrucciones_jugador" class="upload-button">
-    <span class="icon"></span> Seleccionar archivo
-  </label>
-  <span class="selected-file">Ningún archivo seleccionado</span>
-</div>
-
-
+            <input type="file" name="instrucciones_jugador" id="instrucciones_jugador" class="form-control-file">
           </div>
           <div class="d-flex justify-content-center">
             <button type="submit" class="btn-cargar">{{ traducciones['BTN-CARGAR'][idioma] }}</button>

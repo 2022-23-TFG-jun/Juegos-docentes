@@ -13,7 +13,7 @@
       <a href="administracion?idioma={{idioma}}" class="btn-login">{{ traducciones['BTN-ADMINISTRACION'][idioma] }}</a>
       <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" style="max-width: 7%;" class="mx-auto">
       <div>
-        <a href="logout">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
+        <a href="logout" class="btn-cerrar">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
       </div>
     </header>
 
@@ -32,7 +32,6 @@
               <option value="">{{ traducciones['IDIOMA'][idioma] }}</option>
               <option value="{{ traducciones['ESPAÑOL'][idioma] }}">{{ traducciones['ESPAÑOL'][idioma] }}</option>
               <option value="{{ traducciones['INGLES'][idioma] }}">{{ traducciones['INGLES'][idioma] }}</option>
-              <option value="Francés">Francés</option>
             </select>
           </div>
           

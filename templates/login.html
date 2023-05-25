@@ -39,7 +39,9 @@
                         <label for="contraseña">{{ traducciones['CONTRASEÑA'][idioma] }}</label>
                         <input type="password" id="contraseña" name="contraseña" class="form-control" required>
                     </div>
-                    <button type="submit" class="btn-iniciar  btn-block">{{ traducciones['BTN-LOGIN'][idioma] }}</button>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn-iniciar">{{ traducciones['BTN-LOGIN'][idioma] }}</button>
+                    </div>
                 </form>
 
                 <div class="mt-3">
@@ -62,47 +64,3 @@
     </footer>
 </body>
 </html>
-
-
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <title>Iniciar sesión</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-</head>
-
-<body>
-    <header>
-        <button>{{ traducciones['ACERCA'][idioma] }}</button>
-        <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos">
-    </header>
-
-    <h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
-
-    {% if error_login_incorrecto %}
-    <p class="error">{{ error_login_incorrecto['LOGIN-INCORRECTO'][idioma] }}</p>
-    {% endif %}
-    {% if error_login_repetido %}
-    <p class="error">{{ error_login_repetido['LOGIN-REPETIDO'][idioma] }}</p>
-    {% endif %}
-    {% if error_cuenta_bloqueada %}
-    <p class="error">{{ error_cuenta_bloqueada }}</p>
-    {% endif %}
-    
-    <form method="POST" action="{{ url_for('login_post', idioma=idioma) }}">
-        <label for="usuario">{{ traducciones['USUARIO'][idioma] }}</label>
-        <input type="text" id="usuario" name="usuario">
-        <label for="contraseña">{{ traducciones['CONTRASEÑA'][idioma] }}</label>
-        <input type="password" id="contraseña" name="contraseña" style="margin-bottom: 10px;">
-        <input type="submit" value="{{ traducciones['BTN-LOGIN'][idioma] }}">
-        <p>{{ traducciones['BTN-CUENTA'][idioma] }} <a href="registro?idioma={{idioma}}">{{ traducciones['BTN-REGISTRARSE'][idioma] }}</a></p>
-    </form>
-    
-    <footer>
-        <div>{{ traducciones['FOOTER'][idioma] }}</div>
-        <img src="/static/img/escudo-politecnica.gif" alt="Escudo ingeniería informática">
-        <div>Estela Victoria Ballester Delgado</div>
-    </footer>
-</body>
-</html>
--->
