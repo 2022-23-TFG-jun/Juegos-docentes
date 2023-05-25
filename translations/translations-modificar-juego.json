@@ -37,7 +37,7 @@
         "es": "Descargable"
     },
     "NATURALEZA": {
-        "en": "character:",
+        "en": "Character:",
         "es": "Naturaleza:"
     },
     "IDIOMA": {
@@ -162,7 +162,7 @@
         "es": "2 - Regular"
     },
     "MUY_BAJO": {
-        "en": "1 - Very lowh",
+        "en": "1 - Very low",
         "es": "1 - Muy bajo"
     },
 
