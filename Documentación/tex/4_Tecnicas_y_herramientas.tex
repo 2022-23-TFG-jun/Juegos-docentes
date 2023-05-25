@@ -54,6 +54,10 @@ Este procesador de textos se basa en instrucciones, por lo que la principal dife
 \cite{Figma2_bib} La principal ventaja de esta herramienta es la posibilidad que ofrece de usar funcionalidades y librerías de componentes creadas y compartidas por la comunidad, lo cual facilita y agiliza el diseño de las interfaces.
 \imagen{figma-logo}{Figma-logo}{0.1}
 
+\subsection{Draw.io}
+\cite{drawio_bib} Es un software gratuito y de código abierto que permite el dibujo de gráficos, incluyendo la creación de diagramas como diagramas de flujo, diagramas de casos de uso, diagramas de secuencia, entre otros.
+\imagen{drawio-logo}{Draw.io-logo}{0.1}
+
 \section{Desarrollo}
 
 \subsection{Frontend}
@@ -114,6 +118,7 @@ Se trata de un protocolo orientado a transacciones, que sigue el esquema petici�
     \label{tab:my_label}
 \end{table}
 
+\newpage
 \subsection{Arquitectura MVC}
 \cite{MVC} La arquitectura MVC es un tipo de arquitectura de software que se compone de tres componentes: modelo, vista y controlador. Esta arquitectura tiene como objetivo separar los datos de la aplicación, la interfaz de usuario y la lógica de control.
 \begin{itemize}
@@ -122,16 +127,6 @@ Se trata de un protocolo orientado a transacciones, que sigue el esquema petici�
     \item \textbf{Controlador:} es el intermediario entre el modelo y la vista, ya que se encarga de recibir las peticiones del usuario y de solicitar los datos al modelo y comunicárselo a la vista. En mi aplicación el controlador es el archivo app.py ya que contiene todos los métodos GET y POST, manejando la interacción entre el modelo y la vista, junto con las solicitudes del usuario y devolviendo las respuestas adecuadas.
 \end{itemize}
 \imagen{MVC}{Arquitectura MVC}{.8}
-
-\subsection{Plataforma de servicios en la nube}
---------------------------------
-------------------
-------------------
-------------------
-------------------
-------------------
-------------------
--------------
 
 \subsection{Python}
 \cite{Python1_bib} Es un lenguaje de programación de alto nivel empleado mayoritariamente para el desarrollo de software. \cite{Python2_bib} Al ser un lenguaje interpretado no es necesaria la compilación para la ejecución de las aplicaciones ya que dispone del programa conocido como interpretador, y por lo tanto no requiere la traducción a lenguaje máquina.
@@ -146,6 +141,10 @@ Esta herramienta proporciona utilidades para el desarrollo de aplicaciones web d
 \cite{PostgreSQL_bib} Es un sistema de gestión de bases de datos relacionales de código abierto y gratuito.
 PostgreSQL es conocido por su escalabilidad y la facilidad de administrar grandes cantidades de datos, siendo compatible con herramientas y tecnologías empleados en el proyecto, incluyendo lenguajes de programación como Python y frameworks web, como Flask.
 \imagen{postgreSQL-logo}{PostgreSQL-logo}{0.1}
+
+\subsection{Heroku} 
+\cite{heroku_bib} Es una plataforma en la nube que admite distintos lenguajes de programación. Proporciona un servidor para el despliegue de la aplicación y la posibilidad de subir la base de datos a la nube, permitiendo así el acceso a la aplicación de forma online.
+\imagen{heroku-logo}{Heroku-logo}{0.2}
 
 \section{Librerías y módulos}
 \subsection{flask}
@@ -207,3 +206,6 @@ Librería empleada para el uso del framework Flask.
 
 \subsection{Font Awesome}
 \cite{font} Librería que proporciona iconos vectoriales y estilos css para su uso en aplicaciones web.
+
+\subsection{Dotenv}
+\cite{dotenv} Librería que permite cargar las variables de entorno desde el archivo .env en el programa.
