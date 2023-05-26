@@ -34,6 +34,7 @@ def obtener_resultados_busqueda(busqueda, idiomaF, puntuacion, juegos_por_pagina
                         "OR unaccent(lower(idioma)) LIKE %s) "
                         "AND (unaccent(lower(idioma)) LIKE %s "
                         "AND (CAST(puntuacion as VARCHAR) SIMILAR TO %s)) "
+                        "AND borrado='N'"
                         "ORDER BY nombre_juego "
                         "LIMIT %s OFFSET %s ",
 
@@ -49,6 +50,7 @@ def obtener_resultados_busqueda(busqueda, idiomaF, puntuacion, juegos_por_pagina
                         "OR unaccent(lower(idioma)) LIKE %s) "
                         "AND (unaccent(lower(idioma)) LIKE %s "
                         "AND (CAST(puntuacion as VARCHAR) SIMILAR TO %s)) "
+                        "AND borrado='N'"
                         "ORDER BY nombre_juego",
 
                         (f"%{busqueda}%", f"%{busqueda}%", f"%{busqueda}%", idiomaF, puntuacion))

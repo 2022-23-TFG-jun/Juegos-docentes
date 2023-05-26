@@ -24,7 +24,7 @@
             <div class="alert alert-success">{{ traducciones['EXITO'][idioma] }}</div>
         {% else %}
             <form class="text-center" action="/solicitud_profesor?idioma={{ request.args.get('idioma') }}" method="POST">
-                <button class="btn btn-primary" type="submit">{{ traducciones['BTN-SOLICITAR-PROFESOR'][idioma] }}</button>
+                <button class="btn-añadir-juego" type="submit">{{ traducciones['BTN-SOLICITAR-PROFESOR'][idioma] }}</button>
             </form>
         {% endif %}
     </main>

@@ -312,3 +312,43 @@
     color: #4286f4;
     cursor: pointer;
   }
+
+  /* Estilos para el botón de Aceptar */
+  .btn-aceptar {
+    display: inline-block;
+    background-color: #1ca509;
+    color: #ffffff;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    padding: 5px 12px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-aceptar:hover {
+    background-color: #ffffff;
+    color: #1ca509;
+    cursor: pointer;
+  }
+
+  /* Estilos para el botón de Rechazar */
+  .btn-rechazar {
+    display: inline-block;
+    background-color: #e12312;
+    color: #ffffff;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    padding: 5px 12px;
+    transition: background-color 0.3s ease;
+  }
+    
+  .btn-rechazar:hover {
+    background-color: #ffffff;
+    color: #e12312;
+    cursor: pointer;
+  }

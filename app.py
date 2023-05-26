@@ -49,7 +49,7 @@ with app.app_context():
 """
 
 
-# crear_tablas()
+#crear_tablas()
 
 # Configurar el registro de errores
 logging.basicConfig(

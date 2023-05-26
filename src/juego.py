@@ -82,7 +82,7 @@ class Juego():
         try:
             db = conectar()
             cursor = db.cursor()
-            cursor.execute("DELETE FROM schema_juegos_docentes.juegos WHERE id = %s", (id_juego,))
+            cursor.execute("UPDATE schema_juegos_docentes.juegos SET borrado='S' WHERE id = %s", (id_juego,))
             db.commit()
         except Exception as e:
             logging.error("Ocurrió un error al eliminar un juego: %s", str(e))
@@ -92,13 +92,11 @@ class Juego():
             if db:
                 db.close()
 
-    
-    
     def obtener_juegos():
         try:
             db = conectar()
             cursor = db.cursor()
-            cursor.execute("SELECT id, nombre_juego, idioma, descripcion FROM schema_juegos_docentes.juegos")
+            cursor.execute("SELECT id, nombre_juego, idioma, descripcion FROM schema_juegos_docentes.juegos WHERE borrado='N'")
             juegos = cursor.fetchall()
             return juegos
         except Exception as e:
@@ -143,7 +141,7 @@ class Juego():
         try:
             db = conectar()
             cursor = db.cursor()
-            cursor.execute("SELECT id, nombre_juego, descripcion, idioma, enlace, puntuacion, puntuacion_media_usuario, estrellas_general FROM schema_juegos_docentes.juegos ORDER BY nombre_juego LIMIT %s OFFSET %s", (juegos_por_pagina, desplazamiento))
+            cursor.execute("SELECT id, nombre_juego, descripcion, idioma, enlace, puntuacion, puntuacion_media_usuario, estrellas_general FROM schema_juegos_docentes.juegos WHERE borrado='N' ORDER BY nombre_juego LIMIT %s OFFSET %s", (juegos_por_pagina, desplazamiento))
             juegos = cursor.fetchall()
             return juegos
         except Exception as e:
@@ -158,7 +156,7 @@ class Juego():
         try:
             db = conectar()
             cursor = db.cursor()
-            cursor.execute("SELECT COUNT(*) FROM schema_juegos_docentes.juegos")
+            cursor.execute("SELECT COUNT(*) FROM schema_juegos_docentes.juegos WHERE borrado='N'")
             total_juegos = cursor.fetchone()[0]
             return total_juegos
         except Exception as e:

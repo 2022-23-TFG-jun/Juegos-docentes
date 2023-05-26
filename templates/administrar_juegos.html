@@ -42,7 +42,7 @@
                 <td>
                   <form action="/administrar_juegos?idioma={{ request.args.get('idioma') }}" method="POST">
                     <input type="hidden" name="id_juego" value="{{ juego[0] }}">
-                    <button type="submit" class="btn btn-danger">{{ traducciones['ELIMINAR'][idioma] }}</button>
+                    <button type="submit" class="btn-rechazar">{{ traducciones['ELIMINAR'][idioma] }}</button>
                   </form>
                 </td>
               </tr>

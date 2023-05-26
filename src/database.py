@@ -17,19 +17,18 @@ def conectar():
         return None
 
 def crear_tablas():
-    
     # Crear tablas
     db = conectar()
     cursor = db.cursor()
 
-    cursor.execute("DROP SCHEMA IF EXISTS schema_juegos_docentes CASCADE;")
-
-    # Crea
     # Crear esquema
     cursor.execute("CREATE SCHEMA IF NOT EXISTS schema_juegos_docentes;")
 
-    # cursor.execute("DROP TABLE schema_juegos_docentes.juegos CASCADE;")
-    # cursor.execute("DROP TABLE schema_juegos_docentes.valoraciones CASCADE;")
+    # cursor.execute("DROP SCHEMA IF EXISTS schema_juegos_docentes CASCADE;")
+    # cursor.execute("DROP TABLE IF EXISTS schema_juegos_docentes.solicitudes CASCADE;")
+    # cursor.execute("DROP TABLE IF EXISTS schema_juegos_docentes.valoraciones CASCADE;")
+    # cursor.execute("DROP TABLE IF EXISTS schema_juegos_docentes.juegos CASCADE;")
+    # cursor.execute("DROP TABLE IF EXISTS schema_juegos_docentes.usuarios CASCADE;")
     
     # Tabla de usuarios
     cursor.execute(
@@ -40,7 +39,8 @@ def crear_tablas():
     "apellido VARCHAR(50) NOT NULL, "
     "institucion VARCHAR(100) NOT NULL, "
     "contraseña VARCHAR(150), "
-    "rol TEXT DEFAULT 'usuario'); "
+    "rol TEXT DEFAULT 'usuario', "
+    "borrado VARCHAR(5) DEFAULT 'N');"
     )
 
     # Tabla de juegos
@@ -85,7 +85,9 @@ def crear_tablas():
     
         "archivo_instrucciones_jugador VARCHAR(50), "
         "archivo_instrucciones_instructor VARCHAR(50), "
-        "archivo_juego VARCHAR(50));"
+        "archivo_juego VARCHAR(50), "
+
+        "borrado VARCHAR(5) DEFAULT 'N');"
     )
 
     # Tabla de solicitudes para obtener el rol de profesor

@@ -39,16 +39,18 @@
                 <td>{{ solicitud[2] }}</td>
                 <td>{{ solicitud[3] }}</td>
                 <td>
-                  <form action="/administrar_solicitudes?idioma={{ request.args.get('idioma') }}" method="POST">
-                    <input type="hidden" name="id_usuario_solicitud" value="{{ solicitud[0] }}">
-                    <input type="hidden" name="accion" value="aceptar">
-                    <button class="btn btn-success" type="submit">{{ traducciones['ACEPTAR'][idioma] }}</button>
-                  </form>
-                  <form action="/administrar_solicitudes?idioma={{ request.args.get('idioma') }}" method="POST">
-                    <input type="hidden" name="id_usuario_solicitud" value="{{ solicitud[0] }}">
-                    <input type="hidden" name="accion" value="rechazar">
-                    <button class="btn btn-danger" type="submit">{{ traducciones['RECHAZAR'][idioma] }}</button>
-                  </form>
+                  <div class="btn-group">
+                    <form action="/administrar_solicitudes?idioma={{ request.args.get('idioma') }}" method="POST">
+                      <input type="hidden" name="id_usuario_solicitud" value="{{ solicitud[0] }}">
+                      <input type="hidden" name="accion" value="aceptar">
+                      <button class="btn-aceptar" type="submit">{{ traducciones['ACEPTAR'][idioma] }}</button>
+                    </form>
+                    <form action="/administrar_solicitudes?idioma={{ request.args.get('idioma') }}" method="POST">
+                      <input type="hidden" name="id_usuario_solicitud" value="{{ solicitud[0] }}">
+                      <input type="hidden" name="accion" value="rechazar">
+                      <button class="btn-rechazar" type="submit">{{ traducciones['RECHAZAR'][idioma] }}</button>
+                    </form>
+                  </div>
                 </td>
               </tr>
             {% endfor %}

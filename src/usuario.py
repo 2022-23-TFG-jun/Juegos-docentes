@@ -54,12 +54,11 @@ class Usuario(UserMixin):
     def comprobar_contraseña(self, contraseña):
         return check_password_hash(self.contraseña, contraseña)
     """
-
     def obtener_usuarios():
         try:
             db = conectar()
             cursor = db.cursor()
-            cursor.execute("SELECT id, usuario, nombre, apellido, institucion, rol FROM schema_juegos_docentes.usuarios")
+            cursor.execute("SELECT id, usuario, nombre, apellido, institucion, rol FROM schema_juegos_docentes.usuarios WHERE borrado='N'")
             usuarios = cursor.fetchall()
             return usuarios
         except Exception as e:
@@ -104,7 +103,7 @@ class Usuario(UserMixin):
         try:
             db = conectar()
             cursor = db.cursor()
-            cursor.execute("DELETE FROM schema_juegos_docentes.usuarios WHERE id = %s", (id_usuario,))
+            cursor.execute("UPDATE schema_juegos_docentes.usuarios SET borrado='S' WHERE id = %s", (id_usuario,))
             db.commit()
         except Exception as e:
             logging.error("Ocurrió un error al eliminar a un usuario: %s", str(e))
