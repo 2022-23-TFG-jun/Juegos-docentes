@@ -1,3 +1,4 @@
 .env
-.errores.log
-.uploads
+uploads
+errores.log
+venv/
