@@ -2,64 +2,65 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>{{ traducciones['INICIO'][idioma] }}</title>
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	</head>
-<body>
+	<body class="fondos">
 	<header class="d-flex justify-content-between align-items-center p-3">
-		<a href="acerca_de?idioma={{idioma}}"><button class="btn-acerca">{{ traducciones['ACERCA'][idioma] }}</button></a>
-		<img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" style="max-width: 7%;" class="mx-auto">
+		<a href="acerca_de?idioma={{idioma}}"><button class="btn-mn">{{ traducciones['ACERCA'][idioma] }}</button></a>
+		<img src="/static/img/logo_UBU.png" alt="Logo de la Universidad de Burgos" style="max-width: 7%;" class="mx-auto">
 		<div>
-			<a href="logout" class="btn-cerrar">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
+			<a href="logout" class="btn-mn">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
 		</div>
 	</header>
 
 	<main class="container my-5">
 		<div class="d-flex justify-content-center">
-			<h1 class="mb-5">{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
+			<h1 class="mb-5 color-texto">{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
 		</div>
 		
 		<div class="card-header">
 			<div class="d-flex justify-content-center">
-				<h4>{{ traducciones['USUARIOS'][idioma] }}</h4>
+				<h4 class="color-texto">{{ traducciones['USUARIOS'][idioma] }}</h4>
 			</div>
 		</div>
 		<div class="card-body">
-			<p>{{ traducciones['TXT-USUARIOS'][idioma] }}</p>
+			<p class="color-texto">{{ traducciones['TXT-USUARIOS'][idioma] }}</p>
 			<div class="d-flex justify-content-center">
-				<a href="administrar_usuarios?idioma={{idioma}}" class="btn-añadir-juego">{{ traducciones['BTN-USUARIOS'][idioma] }}</a>
+				<a href="administrar_usuarios?idioma={{idioma}}" class="btn-mn">{{ traducciones['BTN-USUARIOS'][idioma] }}</a>
 			</div>
 		</div>
 		
 		<div class="card-header">
 			<div class="d-flex justify-content-center">
-				<h4>{{ traducciones['JUEGOS'][idioma] }}</h4>
+				<h4 class="color-texto">{{ traducciones['JUEGOS'][idioma] }}</h4>
 			</div>
 		</div>
 		<div class="card-body">
-			<p>{{ traducciones['TXT-JUEGOS'][idioma] }}</p>
+			<p class="color-texto">{{ traducciones['TXT-JUEGOS'][idioma] }}</p>
 			<div class="d-flex justify-content-center">
-				<a href="administrar_juegos?idioma={{idioma}}" class="btn-añadir-juego">{{ traducciones['BTN-JUEGOS'][idioma] }}</a>
+				<a href="administrar_juegos?idioma={{idioma}}" class="btn-mn">{{ traducciones['BTN-JUEGOS'][idioma] }}</a>
 			</div>
 		</div>
 
 		<div class="card-header">
 			<div class="d-flex justify-content-center">
-				<h4>{{ traducciones['SOLICITUDES'][idioma] }}</h4>
+				<h4 class="color-texto">{{ traducciones['SOLICITUDES'][idioma] }}</h4>
 			</div>
 		</div>
 		<div class="card-body">
-			<p>{{ traducciones['TXT-SOLICITUDES'][idioma] }}</p>
+			<p class="color-texto">{{ traducciones['TXT-SOLICITUDES'][idioma] }}</p>
 			<div class="d-flex justify-content-center">
-				<a href="administrar_solicitudes?idioma={{idioma}}" class="btn-añadir-juego">{{ traducciones['BTN-SOLICITUDES'][idioma] }}</a>
+				<a href="administrar_solicitudes?idioma={{idioma}}" class="btn-mn">{{ traducciones['BTN-SOLICITUDES'][idioma] }}</a>
 			</div>
 		</div>
 		
 		<div style="margin-bottom: 100px;"></div>
 	</main>
 
-	<footer class="bg-light py-1 fixed-bottom">
+	<!-- <footer class="bg-light py-1 fixed-bottom">
 		<div class="container-fluid">
 			<div class="row justify-content-between">
 				<div class="col-md-3 col-12 text-left">{{ traducciones['FOOTER'][idioma] }}</div>
@@ -69,7 +70,7 @@
 				<div class="col-md-3 col-12 text-right">Estela Victoria Ballester Delgado</div>
 			</div>
 		</div>
-	</footer>
+	</footer> -->
 
 </body>
 </html>

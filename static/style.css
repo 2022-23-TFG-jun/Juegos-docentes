@@ -1,37 +1,66 @@
 /*******************************************ESTILOS INICIO.HTML*******************************************/
-.fondo-color {
-    background: #373B44;
+.fondo-inicio {
+  /*
+  background: #373B44;
 	background: -webkit-linear-gradient(to right, #4286f4, #373B44);
 	background: linear-gradient(to right, #4286f4, #373B44);
-    background-size: cover;
+  background-size: cover;
+  min-height: 100%;
+  */
+  background-image: url('img/fondo3.png');
+  background-size: cover;
+  min-height: 100%;
+}
 
-    min-height: 100%;
-  
+.fondo-login {
+  /*
+  background: #373B44;
+	background: -webkit-linear-gradient(to right, #4286f4, #373B44);
+	background: linear-gradient(to right, #4286f4, #373B44);
+  background-size: cover;
+  min-height: 100%;
+  */
+  background-image: url('img/fondo1.png');
+  background-size: cover;
+  min-height: 100%;
+}
+
+.fondos {
+  /*
+  background: #373B44;
+	background: -webkit-linear-gradient(to right, #4286f4, #373B44);
+	background: linear-gradient(to right, #4286f4, #373B44);
+  background-size: cover;
+  min-height: 100%;
+  */
+  background-image: url('img/f1.jpg');
+  background-size: cover;
+  min-height: 100%;
+}
+
+
+.fondo-tarjeta {
+  /*
+  background: #373B44;
+	background: -webkit-linear-gradient(to right, #4286f4, #373B44);
+	background: linear-gradient(to right, #4286f4, #373B44);
+  background-size: cover;
+  min-height: 100%;
+  */
+  background-image: url('img/fdddd.jpg');
+  background-size: 350px;
+  background-position: center bottom;
+
 }
   
 .html-inicio, .body-inicio {
   height: 100%;
 }
 
-.acerca-inicio {
-	background-color: transparent;
-	border: none;
-	color: #ffffff;
-	cursor: pointer;
-	font-size: 16px;
-	text-align: center;
-	text-transform: uppercase;
-}
-
-.acerca-inicio:hover {
-    color:#373B44;
-    cursor: pointer;
-}
-
 .btn-login {
     display: inline-block;
     background-color: #ffffff;
-    color: #4286f4;
+    color: #fdaa04;
     border-radius: 25px;
     font-size: 14px;
     font-weight: bold;
@@ -42,14 +71,14 @@
   }
   
   .btn-login:hover {
-    background-color: #4286f4;
+    background-color: #fdaa04;
     color:#ffffff;
     cursor: pointer;
   }
 
   .btn-registro {
     display: inline-block;
-    background-color: #4286f4;
+    background-color: #fdaa04;
     color: #ffffff;
     border-radius: 25px;
     font-size: 14px;
@@ -62,14 +91,14 @@
   
   .btn-registro:hover {
     background-color: #ffffff;
-    color: #4286f4;
+    color: #fdaa04;
     cursor: pointer;
   }
 
   .btn-comenzar {
     display: inline-block;
     background-color: #ffffff;
-    color: #4286f4;
+    color: #fdaa04;
     border-radius: 25px;
     font-size: 14px;
     font-weight: bold;
@@ -80,7 +109,7 @@
   }
   
   .btn-comenzar:hover {
-    background-color: #4286f4;
+    background-color: #fdaa04;
     color:#ffffff;
     cursor: pointer;
   }
@@ -103,14 +132,24 @@
 }
 
 .color-texto {
-    color: white;
+    color: white !important;
+}
+
+
+.color-amarillo {
+  color: #fdaa04;
+}
+
+.color-amarillo:hover {
+  color:#ffffff;
+  cursor: pointer;
 }
 
 /*******************************************ESTILOS LOGIN.HTML*******************************************/
 .acerca-login{
 	background-color: transparent;
 	border: none;
-	color: #4286f4;
+	color: #fdaa04;
 	cursor: pointer;
 	font-size: 16px;
 	text-align: center;
@@ -124,7 +163,7 @@
 
 .btn-iniciar {
     display: inline-block;
-    background-color: #4286f4;
+    background-color: #fdaa04;
     color: #ffffff;
     border-radius: 25px;
     font-size: 14px;
@@ -137,14 +176,14 @@
   
   .btn-iniciar:hover {
     background-color: #ffffff;
-    color: #4286f4;
+    color: #fdaa04;
     cursor: pointer;
   }
 
 /*******************************************ESTILOS REGISTRO.HTML*******************************************/
 .btn-crear {
     display: inline-block;
-    background-color: #4286f4;
+    background-color: #fdaa04;
     color: #ffffff;
     border-radius: 25px;
     font-size: 14px;
@@ -157,14 +196,14 @@
   
 .btn-crear:hover {
     background-color: #ffffff;
-    color: #4286f4;
+    color: #fdaa04;
     cursor: pointer;
 }
 
 /*******************************************ESTILOS AÑADIR_JUEGO.HTML*******************************************/
 .btn-añadir-juego {
   display: inline-block;
-  background-color: #4286f4;
+  background-color: #fdaa04;
   color: #ffffff;
   border-radius: 25px;
   font-size: 14px;
@@ -177,15 +216,15 @@
 
 .btn-añadir-juego:hover {
   background-color: #ffffff;
-  color: #4286f4;
+  color: #fdaa04;
   cursor: pointer;
 }
 
   /*******************************************ESTILOS MENU_JUEGO_PROFESOR.HTML*******************************************/
 .btn-info-juego, .btn-modificar-juego, .btn-instrucciones {
   display: inline-block;
-  background-color: #ffffff;
-  color: #4286f4;
+  background-color: #020014;
+  color: #ffffff;
   border: none; /* eliminar el borde */
   border-radius: 25px;
   font-size: 12px;
@@ -197,8 +236,8 @@
   }
   
   .btn-info-juego:hover, .btn-modificar-juego:hover, .btn-instrucciones:hover {
-  background-color: #4286f4;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #020014;
   cursor: pointer;
   text-decoration: underline; /* subrayar al pasar el cursor */
   }
@@ -211,8 +250,8 @@
   /*******************************************ESTILOS MENU_JUEGO_USUARIO.HTML*******************************************/
 .btn-info-juego, .btn-opinion {
   display: inline-block;
-  background-color: #ffffff;
-  color: #4286f4;
+  background-color: #020014;
+  color: #ffffff;
   border: none; /* eliminar el borde */
   border-radius: 25px;
   font-size: 12px;
@@ -224,8 +263,8 @@
   }
   
   .btn-info-juego:hover, .btn-opinion:hover {
-  background-color: #4286f4;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #020014;
   cursor: pointer;
   text-decoration: underline; /* subrayar al pasar el cursor */
   }
@@ -258,7 +297,7 @@
  /*******************************************ESTILOS AÑADIR ARCHIVOS*******************************************/
  .btn-cargar {
   display: inline-block;
-  background-color: #4286f4;
+  background-color: #fdaa04;
   color: #ffffff;
   border-radius: 25px;
   font-size: 14px;
@@ -271,14 +310,14 @@
 
 .btn-cargar:hover {
   background-color: #ffffff;
-  color: #4286f4;
+  color: #fdaa04;
   cursor: pointer;
 }
  /*******************************************ESTILOS GENERALES*******************************************/
-  .btn-cerrar, .btn-acerca {
+  .btn-cerrar, .btn-acerca, .help {
     display: inline-block;
     background-color: #ffffff;
-    color: #4286f4;
+    color: #fdaa04;
     border-radius: 25px;
     font-size: 14px;
     font-weight: bold;
@@ -288,15 +327,19 @@
     transition: background-color 0.3s ease;
   }
   
-  .btn-cerrar:hover, .btn-acerca:hover {
-    background-color: #4286f4;
+  .btn-cerrar:hover, .btn-acerca:hover, .help:hover {
+    background-color: #fdaa04;
     color: #ffffff;
     cursor: pointer;
+  }
+  
+  .help i {
+    margin-right: 5px; /* margen entre el icono y el texto */
   }
 
   .btn-contacto{
     display: inline-block;
-    background-color: #4286f4;
+    background-color: #fdaa04;
     color: #ffffff;
     border-radius: 25px;
     font-size: 14px;
@@ -309,7 +352,7 @@
   
   .btn-contacto:hover {
     background-color: #ffffff;
-    color: #4286f4;
+    color: #fdaa04;
     cursor: pointer;
   }
 
@@ -352,3 +395,33 @@
     color: #e12312;
     cursor: pointer;
   }
+
+.custom-select:hover,
+.custom-select:focus {
+    background-color: #002267 !important;
+    /* Otros estilos adicionales */
+}
+.color-texto::placeholder {
+  color: white !important;
+}
+
+
+.btn-mn{
+  display: inline-block;
+  background-color: #ffffff;
+  color: #002267 ;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  padding: 5px 12px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-mn:hover {
+  background-color: #40fefe;
+  color: #ffffff;
+  cursor: pointer;
+}
+

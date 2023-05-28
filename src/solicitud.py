@@ -22,6 +22,8 @@ class Solicitud():
             cursor = db.cursor()
             # Actualizar el estado de la solicitud a rechazada
             cursor.execute("UPDATE schema_juegos_docentes.solicitudes SET estado=%s WHERE id=%s", ("RECHAZADA", id_usuario_solicitud))
+            # Actualizar rol a usuario.
+            cursor.execute("UPDATE schema_juegos_docentes.usuarios SET rol=%s WHERE id=%s", ("usuario", id_usuario_solicitud))
             db.commit()
         except Exception as e:
             logging.error("Ocurrió un error al añadir el archivo de las instrucciones del jugador: %s", str(e))

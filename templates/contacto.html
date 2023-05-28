@@ -3,32 +3,34 @@
 <head>
     <title>{{ traducciones['INICIO'][idioma] }}</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
-<body>
+<body class="fondos">
     <header class="d-flex justify-content-between align-items-center p-3">
-        <a href="acerca_de?idioma={{idioma}}"><button class="btn-acerca">{{ traducciones['ACERCA'][idioma] }}</button></a>
-        <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" style="max-width: 7%;" class="mx-auto">
+        <a href="acerca_de?idioma={{idioma}}"><button class="btn-mn">{{ traducciones['ACERCA'][idioma] }}</button></a>
+        <img src="/static/img/logo_UBU.png" alt="Logo de la Universidad de Burgos" style="max-width: 7%;" class="mx-auto">
         <div>
-          <a href="logout" class="btn-cerrar">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
+          <a href="logout" class="btn-mn">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
         </div>
       </header>
 
     <main class="container mt-5">
-        <h1 class="text-center mb-5">{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
-        <p class="text-center text-justify">{{ traducciones['TEXTO'][idioma] }}</p>
+        <h1 class="text-center color-texto mb-5">{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
+        <p class="text-center color-texto text-justify">{{ traducciones['TEXTO'][idioma] }}</p>
 
 
         {% if mensaje_solicitud %}
-            <div class="alert alert-success">{{ traducciones['EXITO'][idioma] }}</div>
+            <div class="alert alert-success text-center">{{ traducciones['EXITO'][idioma] }}</div>
         {% else %}
             <form class="text-center" action="/solicitud_profesor?idioma={{ request.args.get('idioma') }}" method="POST">
-                <button class="btn-añadir-juego" type="submit">{{ traducciones['BTN-SOLICITAR-PROFESOR'][idioma] }}</button>
+                <button class="btn-mn" type="submit">{{ traducciones['BTN-SOLICITAR-PROFESOR'][idioma] }}</button>
             </form>
         {% endif %}
     </main>
-  
+ <!-- 
 	<footer class="bg-light py-1 fixed-bottom">
 		<div class="container-fluid">
 			<div class="row justify-content-between">
@@ -40,7 +42,7 @@
 			</div>
 		</div>
 	</footer>
-
+-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

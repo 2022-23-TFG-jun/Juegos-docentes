@@ -3,42 +3,43 @@
   <head>
     <title>Administrar solicitudes</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   </head>
 
-  <body>
+	<body class="fondos">
     <header class="d-flex justify-content-between align-items-center p-3">
-      <a href="acerca_de?idioma={{idioma}}"><button class="btn-acerca">{{ traducciones['ACERCA'][idioma] }}</button></a>
-      <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" style="max-width: 7%;" class="mx-auto">
+      <a href="acerca_de?idioma={{idioma}}"><button class="btn-mn">{{ traducciones['ACERCA'][idioma] }}</button></a>
+      <img src="/static/img/logo_UBU.png" alt="Logo de la Universidad de Burgos" style="max-width: 7%;" class="mx-auto">
       <div>
-        <a href="logout" class="btn-cerrar">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
+        <a href="logout" class="btn-mn">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
       </div>
     </header>
 
-    <div class="container">
+    <main class="container my-5">
       <div class="d-flex justify-content-center">
-        <h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
+        <h1 class="mb-5 color-texto">{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
       </div>
       
       <div class="table-responsive">
         <table class="table table-striped">
           <thead>
             <tr>
-              <th>{{ traducciones['ID'][idioma] }}</th>
-              <th>{{ traducciones['ESTADO'][idioma] }}</th>
-              <th>{{ traducciones['ID-USUARIO'][idioma] }}</th>
-              <th>{{ traducciones['FECHA'][idioma] }}</th>
-              <th>{{ traducciones['ACCION'][idioma] }}</th>
+              <th class="color-texto">{{ traducciones['ID'][idioma] }}</th>
+              <th class="color-texto">{{ traducciones['ESTADO'][idioma] }}</th>
+              <th class="color-texto">{{ traducciones['ID-USUARIO'][idioma] }}</th>
+              <th class="color-texto">{{ traducciones['FECHA'][idioma] }}</th>
+              <th class="color-texto">{{ traducciones['ACCION'][idioma] }}</th>
             </tr>
           </thead>
           <tbody>
             {% for solicitud in solicitudes %}
               <tr>
-                <td>{{ solicitud[0] }}</td>
-                <td>{{ solicitud[1] }}</td>
-                <td>{{ solicitud[2] }}</td>
-                <td>{{ solicitud[3] }}</td>
+                <td class="color-texto">{{ solicitud[0] }}</td>
+                <td class="color-texto">{{ solicitud[1] }}</td>
+                <td class="color-texto">{{ solicitud[2] }}</td>
+                <td class="color-texto">{{ solicitud[3] }}</td>
                 <td>
                   <div class="btn-group">
                     <form action="/administrar_solicitudes?idioma={{ request.args.get('idioma') }}" method="POST">
@@ -59,8 +60,8 @@
         </table>
       </div>
       <div style="margin-bottom: 100px;"></div>
-    </div>
-    
+    </main>
+    <!--
     <footer class="bg-light py-1 fixed-bottom">
       <div class="container-fluid">
         <div class="row justify-content-between">
@@ -71,7 +72,7 @@
           <div class="col-md-3 col-12 text-right">Estela Victoria Ballester Delgado</div>
         </div>
       </div>
-    </footer>
+    </footer>-->
 
 <!--
 <!DOCTYPE html>

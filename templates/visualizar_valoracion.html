@@ -3,28 +3,30 @@
   <head>
     <title>{{ traducciones['INICIO'][idioma] }}</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
 
-  <body>
+	<body class="fondos">
     <header class="d-flex justify-content-between align-items-center p-3">
       <a href="acerca_de?idioma={{idioma}}"><button class="btn-acerca">{{ traducciones['ACERCA'][idioma] }}</button></a>
-      <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" style="max-width: 7%;" class="mx-auto">
+      <img src="/static/img/logo_UBU.png" alt="Logo de la Universidad de Burgos" style="max-width: 7%;" class="mx-auto">
       <div>
         <a href="logout" class="btn-cerrar">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
       </div>
     </header>
 
+    <main class="container my-5">
     <div class="d-flex justify-content-center">
-      <h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
+      <h1 class="mb-5 color-texto">{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
     </div>
 
     <div class="container">
       {% for valoracion in valoraciones %}
       
-          <div class="card-header">
+          <div class="card-header color-texto">
             {{ valoracion[3] }}
             {{ valoracion[2] }}
           </div>
@@ -34,13 +36,14 @@
                 <i class="fa fa-star estrella"></i>
               {% endfor %}
             </h5>
-            <p class="card-text">{{ valoracion[1] }}</p>
+            <p class="card-text color-texto">{{ valoracion[1] }}</p>
           </div>
         
       {% endfor %}
     </div>
+  </main>
     <div style="margin-bottom: 100px;"></div>
-
+<!--
     <footer class="bg-light py-1 fixed-bottom">
       <div class="container-fluid">
         <div class="row justify-content-between">
@@ -51,7 +54,7 @@
           <div class="col-md-3 col-12 text-right">Estela Victoria Ballester Delgado</div>
         </div>
       </div>
-    </footer>
+    </footer>-->
   </body>
   
 </html>

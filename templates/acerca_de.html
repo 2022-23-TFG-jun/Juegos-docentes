@@ -1,39 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
     <title>Trabajo de Fin de Grado del grado de Ingeniería Informática</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   </head>
-  <body>
-    <header>
-        <img src="/static/img/logo_UBU.png" alt="Logo de la Universidad de Burgos" style="max-width: 7%; margin: 0 auto;">
-      </header>
-
-    <div class="container">
-      <h1 class="text-center">Bienvenidos al repositorio de juegos docentes</h1>
+	<body class="fondos">
+    <div class="container my-5">
+      <div class="d-flex justify-content-center">
+        <h1 class="mb-5 color-texto">Bienvenidos al repositorio de juegos docentes</h1>
+      </div>
       <div class="row">
         <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-          <p class="lead">Esta aplicación web ha sido desarrollada con Python Flask y PostgreSQL, y está diseñada para proporcionar una plataforma fácil y segura para encontrar juegos educativos.</p>
-          <p>Contamos con tres roles distintos: usuario, profesor y administrador. Cada uno de ellos tiene distintas funcionalidades para acceder a la información que necesitan. Si eres un usuario, puedes acceder al menú de juegos, donde podrás buscar juegos a través de una barra de búsqueda o por filtros. También puedes solicitar el rol de profesor para acceder a más opciones.</p>
-          <p>Si eres un profesor, además de acceder al menú de juegos, podrás añadir nuevos juegos, modificar los juegos existentes y añadir instrucciones para los juegos ya existentes.</p>
-          <p>En definitiva, nuestro objetivo es proporcionar una plataforma segura y fácil de usar para que los usuarios puedan encontrar juegos educativos que se ajusten a sus necesidades. Si tienes alguna pregunta o sugerencia, no dudes en ponerte en contacto con nosotros.</p>
+          <p class="lead color-texto">TeachMePlay es un repositorio de juegos docentes que permite buscar, puntuar y añadir juegos a la plataforma.</p>
+          <p class="color-texto">Contamos con tres roles distintos: usuario, profesor y administrador. Cada uno de ellos tiene distintas funcionalidades para acceder a la información que necesitan. Si eres un usuario, puedes acceder al menú de juegos, donde podrás buscar juegos a través de una barra de búsqueda o por filtros. También puedes solicitar el rol de profesor para acceder a más opciones.</p>
+          <p class="color-texto">Si eres un profesor, además de acceder al menú de juegos, podrás añadir nuevos juegos, modificar los juegos existentes y añadir instrucciones para los juegos ya existentes.</p>
+          <p class="color-texto">En definitiva, nuestro objetivo es proporcionar una plataforma segura y fácil de usar para que los usuarios puedan encontrar juegos educativos que se ajusten a sus necesidades. Si tienes alguna pregunta o sugerencia, no dudes en ponerte en contacto con nosotros.</p>
         </div>
       </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-    <footer class="bg-light py-1 fixed-bottom">
-        <div class="container-fluid">
-            <div class="row justify-content-between">
-                <div class="col-md-3 col-12 text-left">{{ traducciones['FOOTER'][idioma] }}</div>
-                <div class="col-md-6 col-12 text-center">
-                    <img src="/static/img/escudo-politecnica.gif" alt="Escudo ingeniería informática" style="max-width: 7%;">
-                </div>
-                <div class="col-md-3 col-12 text-right">Estela Victoria Ballester Delgado</div>
-            </div>
-        </div>
-    </footer>
   </body>
 </html>

@@ -1,43 +1,44 @@
 <head>
 	<title>{{ traducciones['INICIO'][idioma] }}</title>
 	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
-<body>
+<body class="fondos">
     <header class="d-flex justify-content-between align-items-center p-3">
-		<a href="acerca_de?idioma={{idioma}}"><button class="btn-acerca">{{ traducciones['ACERCA'][idioma] }}</button></a>
-		<img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" style="max-width: 7%;" class="mx-auto">
+		<a href="acerca_de?idioma={{idioma}}"><button class="btn-mn">{{ traducciones['ACERCA'][idioma] }}</button></a>
+		<img src="/static/img/logo_UBU.png" alt="Logo de la Universidad de Burgos" style="max-width: 7%;" class="mx-auto">
 		<div>
-		  <a href="logout" class="btn-cerrar">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
+		  <a href="logout" class="btn-mn">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
 		</div>
 	  </header>
 
 	<main class="container">
 		<div class="py-3 text-center">
-			<h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
+			<h1 class="color-texto">{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
 		</div>
 
 		<section class="py-3">
 			<div class="d-flex justify-content-center">
-				<h3>{{ informacion_juego[1] }}</h3>
+				<h3 class="color-texto">{{ informacion_juego[1] }}</h3>
 			</div>
 			<div class="table-responsive">
 				<table class="table table-bordered">
 					<tbody>
 						<tr>
-							<th>{{ traducciones['ENLACE'][idioma] }}</th>
-							<td><a href="{{ informacion_juego[4] }}" target="_blank">{{ informacion_juego[4] }}</a></td>
+							<th class="color-texto">{{ traducciones['ENLACE'][idioma] }}</th>
+							<td class="color-texto"><a href="{{ informacion_juego[4] }}" target="_blank">{{ informacion_juego[4] }}</a></td>
 						</tr>
 						<tr>
-							<th>{{ traducciones['PUNTUACION'][idioma] }}</th>
-							<td>{{ informacion_juego[5] }}</td>
+							<th class="color-texto">{{ traducciones['PUNTUACION'][idioma] }}</th>
+							<td class="color-texto">{{ informacion_juego[5] }}</td>
 						</tr>
 						{% if informacion_juego[30] != None %}
 							<tr>
 								<th>{{ traducciones['ARCHIVO'][idioma] }}</th>
-									<td><a href="{{ url_for('descargar_instrucciones', filename=informacion_juego[30]) }}">{{ traducciones['DESCARGAR-ARCHIVO'][idioma] }}</a></td>
+									<td class="color-texto"><a href="{{ url_for('descargar_instrucciones', filename=informacion_juego[30]) }}">{{ traducciones['DESCARGAR-ARCHIVO'][idioma] }}</a></td>
 							</tr>
 						{%endif%}
 					</tbody>
@@ -47,49 +48,49 @@
 
 		<section class="py-3">
 			<div class="d-flex justify-content-center">
-				<h3>{{ traducciones['TITULO-CATEGORIZACION'][idioma] }}</h3>
+				<h3 class="color-texto">{{ traducciones['TITULO-CATEGORIZACION'][idioma] }}</h3>
 			</div>
 			<div class="table-responsive">
 				<table class="table table-bordered">
 					<tbody>
 						<tr>
-							<th>{{ traducciones['DISCIPLINA'][idioma] }}</th>
-							<td>{{ informacion_juego[6] }}</td>
+							<th class="color-texto">{{ traducciones['DISCIPLINA'][idioma] }}</th>
+							<td class="color-texto">{{ informacion_juego[6] }}</td>
 						</tr>
 						<tr>
-							<th>{{ traducciones['NATURALEZA'][idioma] }}</th>
-							<td>{{ informacion_juego[7] }}</td>
+							<th class="color-texto">{{ traducciones['NATURALEZA'][idioma] }}</th>
+							<td class="color-texto">{{ informacion_juego[7] }}</td>
 						</tr>
 						<tr>
-							<th>{{ traducciones['IDIOMA'][idioma] }}</th>
-							<td>{{ informacion_juego[3] }}</td>
+							<th class="color-texto">{{ traducciones['IDIOMA'][idioma] }}</th>
+							<td class="color-texto">{{ informacion_juego[3] }}</td>
 						</tr>
 						<tr>
-							<th>{{ traducciones['PRECIO'][idioma] }}</th>
-							<td>{{ informacion_juego[8] }}</td>
+							<th class="color-texto">{{ traducciones['PRECIO'][idioma] }}</th>
+							<td class="color-texto">{{ informacion_juego[8] }}</td>
 						</tr>
 						<tr>
-							<th>{{ traducciones['ISNTRUCCIONES_JUGADOR'][idioma] }}</th>	
+							<th class="color-texto">{{ traducciones['ISNTRUCCIONES_JUGADOR'][idioma] }}</th>	
 							{% if informacion_juego[9] == "Sí" or informacion_juego[9] == "Yes" %}
 								{% if informacion_juego[28] != None %}
-									<td>{{ informacion_juego[9] }} <a href="{{ url_for('descargar_instrucciones', filename=informacion_juego[28]) }}">{{ traducciones['DESCARGAR-JUGADOR'][idioma] }}</a></td>
+									<td class="color-texto">{{ informacion_juego[9] }} <a href="{{ url_for('descargar_instrucciones', filename=informacion_juego[28]) }}">{{ traducciones['DESCARGAR-JUGADOR'][idioma] }}</a></td>
 								{%else%}
-									<td>{{ informacion_juego[9] }} </td>
+									<td class="color-texto">{{ informacion_juego[9] }} </td>
 								{% endif %}
 							{%else%}
-								<td>{{ informacion_juego[9] }}</td>
+								<td class="color-texto">{{ informacion_juego[9] }}</td>
 							{% endif %}
 						</tr>
 						<tr>
-							<th>{{ traducciones['ISNTRUCCIONES_INSTRUCTOR'][idioma] }}</th>
+							<th class="color-texto">{{ traducciones['ISNTRUCCIONES_INSTRUCTOR'][idioma] }}</th>
 							{% if informacion_juego[10] == "Sí" or informacion_juego[10] == "Yes" %}
 								{% if informacion_juego[29] != None %}
-									<td>{{ informacion_juego[10] }} <a href="{{ url_for('descargar_instrucciones', filename=informacion_juego[29]) }}">{{ traducciones['DESCARGAR-INSTRUCTOR'][idioma] }}</a></td>
+									<td class="color-texto">{{ informacion_juego[10] }} <a href="{{ url_for('descargar_instrucciones', filename=informacion_juego[29]) }}">{{ traducciones['DESCARGAR-INSTRUCTOR'][idioma] }}</a></td>
 								{%else%}
-									<td>{{ informacion_juego[10] }} </td>
+									<td class="color-texto">{{ informacion_juego[10] }} </td>
 								{% endif %}
 							{%else%}
-								<td>{{ informacion_juego[10] }}</td>
+								<td class="color-texto">{{ informacion_juego[10] }}</td>
 							{% endif %}
 							
 						</tr>
@@ -100,22 +101,22 @@
 
 		<section class="py-3">
 			<div class="d-flex justify-content-center">
-			<h3>{{ traducciones['TITULO-DESCRIPCION'][idioma] }}</h3>
+			<h3 class="color-texto">{{ traducciones['TITULO-DESCRIPCION'][idioma] }}</h3>
 			</div>
 			<div class="table-responsive">
 				<table class="table table-bordered">
 					<tbody>
 						<tr>
-							<th>{{ traducciones['DESCRIPCION'][idioma] }}</th>
-							<td>{{ informacion_juego[2] }}</td>
+							<th class="color-texto">{{ traducciones['DESCRIPCION'][idioma] }}</th>
+							<td class="color-texto">{{ informacion_juego[2] }}</td>
 						</tr>
 						<tr>
-							<th>{{ traducciones['OBJETIVOS'][idioma] }}</th>
-							<td>{{ informacion_juego[11] }}</td>
+							<th class="color-texto">{{ traducciones['OBJETIVOS'][idioma] }}</th>
+							<td class="color-texto">{{ informacion_juego[11] }}</td>
 						</tr>
 						<tr>
-							<th>{{ traducciones['ESPACIO_CONTROL'][idioma] }}</th>
-							<td>{{ informacion_juego[12] }}</td>
+							<th class="color-texto">{{ traducciones['ESPACIO_CONTROL'][idioma] }}</th>
+							<td class="color-texto">{{ informacion_juego[12] }}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -124,18 +125,18 @@
 
 		<section class="py-3">
 			<div class="d-flex justify-content-center">
-				<h3>{{ traducciones['TITULO-APRENDIZAJE'][idioma] }}</h3>
+				<h3 class="color-texto">{{ traducciones['TITULO-APRENDIZAJE'][idioma] }}</h3>
 			</div>
 			<div class="table-responsive">
 				<table class="table table-bordered">
 					<tbody>
 						<tr>
-							<th>{{ traducciones['OBJETIVOS_PRINCIPALES'][idioma] }}</th>
-							<td>{{ informacion_juego[13] }}</td>
+							<th class="color-texto">{{ traducciones['OBJETIVOS_PRINCIPALES'][idioma] }}</th>
+							<td class="color-texto">{{ informacion_juego[13] }}</td>
 						</tr>
 						<tr>
-							<th>{{ traducciones['OBJETIVOS_SECUNDARIOS'][idioma] }}</th>
-							<td>{{ informacion_juego[14] }}</td>
+							<th class="color-texto">{{ traducciones['OBJETIVOS_SECUNDARIOS'][idioma] }}</th>
+							<td class="color-texto">{{ informacion_juego[14] }}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -144,18 +145,18 @@
 
 		<section class="py-3">
 			<div class="d-flex justify-content-center">
-				<h3>{{ traducciones['TITULO-ORGANIZACION'][idioma] }}</h3>
+				<h3 class="color-texto">{{ traducciones['TITULO-ORGANIZACION'][idioma] }}</h3>
 			</div>
 			<div class="table-responsive">
 				<table class="table table-bordered">
 					<tbody>
 						<tr>
-							<th>{{ traducciones['ESTRUCTURA'][idioma] }}</th>
-							<td>{{ informacion_juego[15] }}</td>
+							<th class="color-texto">{{ traducciones['ESTRUCTURA'][idioma] }}</th>
+							<td class="color-texto">{{ informacion_juego[15] }}</td>
 						</tr>
 						<tr>
-							<th>{{ traducciones['ASPECTOS'][idioma] }}</th>
-							<td>{{ informacion_juego[16] }}</td>
+							<th class="color-texto">{{ traducciones['ASPECTOS'][idioma] }}</th>
+							<td class="color-texto">{{ informacion_juego[16] }}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -164,26 +165,26 @@
 
 		<section class="py-3">
 			<div class="d-flex justify-content-center">
-				<h3>{{ traducciones['TITULO-VALORACION'][idioma] }}</h3>
+				<h3 class="color-texto">{{ traducciones['TITULO-VALORACION'][idioma] }}</h3>
 			</div>
 			<div class="table-responsive">
 				<table class="table table-bordered">
 					<tbody>
 						<tr>
-							<th>{{ traducciones['ENTRETENIMIENTO'][idioma] }}</th>
-							<td>{{ informacion_juego[17] }}</td>
+							<th class="color-texto">{{ traducciones['ENTRETENIMIENTO'][idioma] }}</th>
+							<td class="color-texto">{{ informacion_juego[17] }}</td>
 						</tr>
 						<tr>
-							<th>{{ traducciones['APRENDIZAJE'][idioma] }}</th>
-							<td>{{ informacion_juego[18] }}</td>
+							<th class="color-texto">{{ traducciones['APRENDIZAJE'][idioma] }}</th>
+							<td class="color-texto">{{ informacion_juego[18] }}</td>
 						</tr>
 						<tr>
-							<th>{{ traducciones['COMPLEJIDAD_ALUMNO'][idioma] }}</th>
-							<td>{{ informacion_juego[19] }}</td>
+							<th class="color-texto">{{ traducciones['COMPLEJIDAD_ALUMNO'][idioma] }}</th>
+							<td class="color-texto">{{ informacion_juego[19] }}</td>
 						</tr>
 						<tr>
-							<th>{{ traducciones['COMPLEJIDAD_INSTRUCTORES'][idioma] }}</th>
-							<td>{{ informacion_juego[20] }}</td>
+							<th class="color-texto">{{ traducciones['COMPLEJIDAD_INSTRUCTORES'][idioma] }}</th>
+							<td class="color-texto">{{ informacion_juego[20] }}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -192,13 +193,15 @@
 		</section>
 
 		{% if informacion_juego[21] %}
-		<h1>{{ traducciones['TITULO-VIDEO'][idioma] }}</h1>
+		<div class="d-flex justify-content-center">
+			<h1 class="color-texto">{{ traducciones['TITULO-VIDEO'][idioma] }}</h1>
+		</div>
 		<div class="embed-responsive embed-responsive-16by9">
 			<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ informacion_juego[21].split('v=')[-1] }}" allowfullscreen></iframe>
 		</div>
 		<div style="margin-bottom: 100px;"></div>
 	{% endif %}
-	
+	<!--
 	<footer class="bg-light py-1 fixed-bottom">
 		<div class="container-fluid">
 			<div class="row justify-content-between">
@@ -209,6 +212,6 @@
 				<div class="col-md-3 col-12 text-right">Estela Victoria Ballester Delgado</div>
 			</div>
 		</div>
-	</footer>
+	</footer>-->
 </body>
 </html>

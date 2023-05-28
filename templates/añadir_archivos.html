@@ -3,59 +3,62 @@
 <head>
   <title>{{ traducciones['INICIO'][idioma] }}</title>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<body>
+<body class="fondos">
   <header class="d-flex justify-content-between align-items-center p-3">
-    <a href="acerca_de?idioma={{idioma}}"><button class="btn-acerca">{{ traducciones['ACERCA'][idioma] }}</button></a>
-    <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" style="max-width: 7%;" class="mx-auto">
+    <a href="acerca_de?idioma={{idioma}}"><button class="btn-mn">{{ traducciones['ACERCA'][idioma] }}</button></a>
+    <img src="/static/img/logo_UBU.png" alt="Logo de la Universidad de Burgos" style="max-width: 7%;" class="mx-auto">
     <div>
-      <a href="logout" class="btn-cerrar">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
+      <a href="logout" class="btn-mn">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
     </div>
   </header>
   <div class="container mt-5">
     <div class="d-flex justify-content-center mb-5">
-      <h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
+      <h1 class="mb-5 color-texto">{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
     </div>
     <div class="row">
       <div class="col-md-4">
         <form action="/añadir_instrucciones_jugador?id={{ request.args.get('id') }}&idioma={{ request.args.get('idioma') }}" method="POST" enctype="multipart/form-data">
           <div class="form-group">
-            <label for="instrucciones_jugador">{{ traducciones['ARCHIVO-JUGADOR'][idioma] }}</label>
-            <input type="file" name="instrucciones_jugador" id="instrucciones_jugador" class="form-control-file">
+            <label class="color-texto" for="instrucciones_jugador">{{ traducciones['ARCHIVO-JUGADOR'][idioma] }}</label>
+            <input class="color-texto" type="file" name="instrucciones_jugador" id="instrucciones_jugador" class="form-control-file">
           </div>
           <div class="d-flex justify-content-center">
-            <button type="submit" class="btn-cargar">{{ traducciones['BTN-CARGAR'][idioma] }}</button>
+            <button type="submit" class="btn-mn">{{ traducciones['BTN-CARGAR'][idioma] }}</button>
           </div>
         </form>
       </div>
       <div class="col-md-4">
         <form action="/añadir_instrucciones_instructor?id={{ request.args.get('id') }}&idioma={{ request.args.get('idioma') }}" method="POST" enctype="multipart/form-data">
           <div class="form-group">
-            <label for="instrucciones_instructor">{{ traducciones['ARCHIVO-INSTRUCTOR'][idioma] }}</label>
-            <input type="file" name="instrucciones_instructor" id="instrucciones_instructor" class="form-control-file">
+            <label class="color-texto" for="instrucciones_instructor">{{ traducciones['ARCHIVO-INSTRUCTOR'][idioma] }}</label>
+            <input class="color-texto" type="file" name="instrucciones_instructor" id="instrucciones_instructor" class="form-control-file">
           </div>
           <div class="d-flex justify-content-center">
-            <button type="submit" class="btn-cargar">{{ traducciones['BTN-CARGAR'][idioma] }}</button>
+            <button type="submit" class="btn-mn">{{ traducciones['BTN-CARGAR'][idioma] }}</button>
           </div>
         </form>
       </div>
       <div class="col-md-4">
         <form action="/añadir_archivo_juego?id={{ request.args.get('id') }}&idioma={{ request.args.get('idioma') }}" method="POST" enctype="multipart/form-data">
           <div class="form-group">
-            <label for="archivo_juego">{{ traducciones['ARCHIVO-JUEGO'][idioma] }}</label>
-            <input type="file" name="archivo_juego" id="archivo_juego" class="form-control-file">
+            <label class="color-texto" for="archivo_juego">{{ traducciones['ARCHIVO-JUEGO'][idioma] }}</label>
+            <input class="color-texto" type="file" name="archivo_juego" id="archivo_juego" class="form-control-file">
           </div>
           <div class="d-flex justify-content-center">
-            <button type="submit" class="btn-cargar">{{ traducciones['BTN-CARGAR'][idioma] }}</button>
+            <button type="submit" class="btn-mn">{{ traducciones['BTN-CARGAR'][idioma] }}</button>
           </div>
         </form>
       </div>
     </div>
   </div>
+  
+<!--
   
 
 	<footer class="bg-light py-1 fixed-bottom">
@@ -68,11 +71,7 @@
 				<div class="col-md-3 col-12 text-right">Estela Victoria Ballester Delgado</div>
 			</div>
 		</div>
-	</footer>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	</footer>-->
 </body>
 </html>
 

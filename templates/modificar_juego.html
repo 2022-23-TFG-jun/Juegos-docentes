@@ -3,38 +3,39 @@
 	<head>
 		<title>{{ traducciones['TITULO-INICIO'][idioma] }}</title>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	</head>
 
-<body>
+    <body class="fondos">
     <header class="d-flex justify-content-between align-items-center p-3">
-		<a href="acerca_de?idioma={{idioma}}"><button class="btn-acerca">{{ traducciones['ACERCA'][idioma] }}</button></a>
-		<img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" style="max-width: 7%;" class="mx-auto">
+		<a href="acerca_de?idioma={{idioma}}"><button class="btn-mn">{{ traducciones['ACERCA'][idioma] }}</button></a>
+		<img src="/static/img/logo_UBU.png" alt="Logo de la Universidad de Burgos" style="max-width: 7%;" class="mx-auto">
 		<div>
-		  <a href="logout" class="btn-cerrar">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
+		  <a href="logout" class="btn-mn">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
 		</div>
 	  </header>
 
         <div class="container my-5">
 			<div class="d-flex justify-content-center">
-				<h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
+				<h1 class="color-texto">{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
 		</div>
 
     <form action="/modificar_juego?id={{ request.args.get('id') }}&idioma={{ request.args.get('idioma') }}" class="card_visualizar_juego" method="POST">
         <div class="form-group">
-        <label for="nombre_juego">{{ traducciones['NOMBRE-JUEGO'][idioma] }}</label>
-        <input type="text" class="form-control" id="nombre_juego" name="nombre_juego" required value="{{ informacion_juego[1] }}">
+        <label class="color-texto" for="nombre_juego">{{ traducciones['NOMBRE-JUEGO'][idioma] }}</label>
+        <input type="text" class="form-control shadow bg-transparent color-texto" id="nombre_juego" name="nombre_juego" required value="{{ informacion_juego[1] }}">
 		</div>
 		
         <div class="form-group">
-            <label for="enlace">{{ traducciones['ENLACE'][idioma] }}</label>
-			<input type="text" class="form-control" id="enlace" name="enlace" required value="{{ informacion_juego[4] }}">
+            <label class="color-texto" for="enlace">{{ traducciones['ENLACE'][idioma] }}</label>
+			<input type="text" class="form-control shadow bg-transparent color-texto" id="enlace" name="enlace" required value="{{ informacion_juego[4] }}">
 		</div>
 
 		<div class="form-group">
-            <label for="puntuacion">{{ traducciones['PUNTUACION'][idioma] }}</label>
-            <select class="form-control" id="puntuacion" name="puntuacion" required>
+            <label class="color-texto" for="puntuacion">{{ traducciones['PUNTUACION'][idioma] }}</label>
+            <select class="form-control shadow bg-transparent color-texto custom-select" id="puntuacion" name="puntuacion" required>
                     <option value="{{ informacion_juego[5] }}">{{ informacion_juego[5] }}</option>
                     <option value="5.0">5.0</option>
                     <option value="4.0">4.0</option>
@@ -44,16 +45,16 @@
             </select>
         </div>
         <div class="d-flex justify-content-center">
-		    <h3>{{ traducciones['TITULO-CATEGORIZACION'][idioma] }}</h3>
+		    <h3 class="color-texto">{{ traducciones['TITULO-CATEGORIZACION'][idioma] }}</h3>
         </div>
 		
         <div class="form-group">
-			<label for="disciplina">{{ traducciones['DISCIPLINA'][idioma] }}</label>
-            <input type="text" class="form-control" id="disciplina" name="disciplina" required value="{{ informacion_juego[6] }}">
+			<label class="color-texto" for="disciplina">{{ traducciones['DISCIPLINA'][idioma] }}</label>
+            <input type="text" class="form-control shadow bg-transparent color-texto" id="disciplina" name="disciplina" required value="{{ informacion_juego[6] }}">
 		</div>		
         <div class="form-group">
-            <label for="naturaleza">{{ traducciones['NATURALEZA'][idioma] }}</label></th>
-            <select class="form-control" id="naturaleza" name="naturaleza" required>
+            <label class="color-texto" for="naturaleza">{{ traducciones['NATURALEZA'][idioma] }}</label></th>
+            <select class="form-control shadow bg-transparent color-texto custom-select" id="naturaleza" name="naturaleza" required>
                     <option value="{{ informacion_juego[7] }}">{{ informacion_juego[7] }}</option>
                     <option value="{{ traducciones['ONLINE'][idioma] }}">{{ traducciones['ONLINE'][idioma] }}</option>
                     <option value="{{ traducciones['DESCARGABLE'][idioma] }}">{{ traducciones['DESCARGABLE'][idioma] }}</option>
@@ -61,8 +62,8 @@
         </div>
 
         <div class="form-group">
-            <label for="idiomaN">{{ traducciones['IDIOMA'][idioma] }}</label></th>
-            <select class="form-control" id="idiomaN" name="idiomaN" required>
+            <label class="color-texto" for="idiomaN">{{ traducciones['IDIOMA'][idioma] }}</label></th>
+            <select class="form-control shadow bg-transparent color-texto custom-select" id="idiomaN" name="idiomaN" required>
                     <option value="{{ informacion_juego[3] }}">{{ informacion_juego[3] }}</option>
                     <option value="{{ traducciones['ES'][idioma] }}">{{ traducciones['ES'][idioma] }}</option>
                     <option value="{{ traducciones['EN'][idioma] }}">{{ traducciones['EN'][idioma] }}</option>
@@ -70,8 +71,8 @@
         </div>
 			
         <div class="form-group">
-            <label for="precio">{{ traducciones['PRECIO'][idioma] }}</label></th>
-            <select class="form-control" id="precio" name="precio" required>
+            <label class="color-texto" for="precio">{{ traducciones['PRECIO'][idioma] }}</label></th>
+            <select class="form-control shadow bg-transparent color-texto custom-select" id="precio" name="precio" required>
                     <option value="{{ informacion_juego[8] }}">{{ informacion_juego[8] }}</option>
                     <option value="{{ traducciones['PAGO'][idioma] }}">{{ traducciones['PAGO'][idioma] }}</option>
 			        <option value="{{ traducciones['GRATUITO'][idioma] }}">{{ traducciones['GRATUITO'][idioma] }}</option>
@@ -80,8 +81,8 @@
 	    </div>
 
         <div class="form-group">
-            <label for="instrucciones">{{ traducciones['ISNTRUCCIONES_JUGADOR'][idioma] }}</label></th>
-            <select class="form-control" id="instrucciones" name="instrucciones" required>
+            <label class="color-texto" for="instrucciones">{{ traducciones['ISNTRUCCIONES_JUGADOR'][idioma] }}</label></th>
+            <select class="form-control shadow bg-transparent color-texto custom-select" id="instrucciones" name="instrucciones" required>
                     <option value="{{ informacion_juego[9] }}">{{ informacion_juego[9] }}</option>
                     <option value="{{ traducciones['YES'][idioma] }}">{{ traducciones['YES'][idioma] }}</option>
                     <option value="no">No</option>
@@ -89,8 +90,8 @@
         </div>
 
         <div class="form-group">
-            <label for="notas_instructor">{{ traducciones['ISNTRUCCIONES_INSTRUCTOR'][idioma] }}</label></th>
-            <select class="form-control" id="notas_instructor" name="notas_instructor" required>
+            <label class="color-texto" for="notas_instructor">{{ traducciones['ISNTRUCCIONES_INSTRUCTOR'][idioma] }}</label></th>
+            <select class="form-control shadow bg-transparent color-texto custom-select" id="notas_instructor" name="notas_instructor" required>
                     <option value="{{ informacion_juego[10] }}">{{ informacion_juego[10] }}</option>
                     <option value="{{ traducciones['YES'][idioma] }}">{{ traducciones['YES'][idioma] }}</option>
                     <option value="no">No</option>
@@ -98,57 +99,57 @@
 	    </div>
 
         <div class="d-flex justify-content-center">
-		    <h3>{{ traducciones['TITULO-DESCRIPCION'][idioma] }}</h3>
+		    <h3 class="color-texto">{{ traducciones['TITULO-DESCRIPCION'][idioma] }}</h3>
         </div>
 		
         <div class="form-group">
-			<label for="descripcion">{{ traducciones['DESCRIPCION'][idioma] }}</label><br>
-				<textarea class="form-control" id="descripcion" name="descripcion">{{ informacion_juego[2] }}</textarea>
+			<label class="color-texto" for="descripcion">{{ traducciones['DESCRIPCION'][idioma] }}</label><br>
+				<textarea class="form-control shadow bg-transparent color-texto" id="descripcion" name="descripcion">{{ informacion_juego[2] }}</textarea>
 		</div>
         <div class="form-group">
-			<label for="objetivos">{{ traducciones['OBJETIVOS'][idioma] }}</label><br>
-				<textarea class="form-control" id="objetivos" name="objetivos">{{ informacion_juego[11] }}</textarea>
+			<label class="color-texto" for="objetivos">{{ traducciones['OBJETIVOS'][idioma] }}</label><br>
+				<textarea class="form-control shadow bg-transparent color-texto" id="objetivos" name="objetivos">{{ informacion_juego[11] }}</textarea>
 		</div>
         <div class="form-group">
-			<label for="espacio_control">{{ traducciones['ESPACIO_CONTROL'][idioma] }}</label><br>
-				<textarea class="form-control" id="espacio_control" name="espacio_control">{{ informacion_juego[12] }}</textarea>
+			<label class="color-texto" for="espacio_control">{{ traducciones['ESPACIO_CONTROL'][idioma] }}</label><br>
+				<textarea class="form-control shadow bg-transparent color-texto" id="espacio_control" name="espacio_control">{{ informacion_juego[12] }}</textarea>
 		</div>
         
         <div class="d-flex justify-content-center">
-		    <h3>{{ traducciones['TITULO-APRENDIZAJE'][idioma] }}</h3>
+		    <h3 class="color-texto">{{ traducciones['TITULO-APRENDIZAJE'][idioma] }}</h3>
         </div>
 
         <div class="form-group">
-			<label for="objetivos_principales">{{ traducciones['OBJETIVOS_PRINCIPALES'][idioma] }}</label><br>
-				<textarea class="form-control" id="objetivos_principales" name="objetivos_principales">{{ informacion_juego[13] }}</textarea>
+			<label class="color-texto" for="objetivos_principales">{{ traducciones['OBJETIVOS_PRINCIPALES'][idioma] }}</label><br>
+				<textarea class="form-control shadow bg-transparent color-texto" id="objetivos_principales" name="objetivos_principales">{{ informacion_juego[13] }}</textarea>
 		</div>
 
         <div class="form-group">
-			<label for="objetivos_secundarios">{{ traducciones['OBJETIVOS_SECUNDARIOS'][idioma] }}</label><br>
-				<textarea class="form-control" id="objetivos_secundarios" name="objetivos_secundarios">{{ informacion_juego[14] }}</textarea>
+			<label class="color-texto" for="objetivos_secundarios">{{ traducciones['OBJETIVOS_SECUNDARIOS'][idioma] }}</label><br>
+				<textarea class="form-control shadow bg-transparent color-texto" id="objetivos_secundarios" name="objetivos_secundarios">{{ informacion_juego[14] }}</textarea>
 		</div>
 
         <div class="d-flex justify-content-center">
-		    <h3>{{ traducciones['TITULO-ORGANIZACION'][idioma] }}</h3>
+		    <h3 class="color-texto">{{ traducciones['TITULO-ORGANIZACION'][idioma] }}</h3>
         </div>
 
         <div class="form-group">
-			<label for="estructura_sesiones">{{ traducciones['ESTRUCTURA'][idioma] }}</label><br>
-				<textarea class="form-control" id="estructura_sesiones" name="estructura_sesiones">{{ informacion_juego[15] }}</textarea>
+			<label class="color-texto" for="estructura_sesiones">{{ traducciones['ESTRUCTURA'][idioma] }}</label><br>
+				<textarea class="form-control shadow bg-transparent color-texto" id="estructura_sesiones" name="estructura_sesiones">{{ informacion_juego[15] }}</textarea>
 		</div>
 
         <div class="form-group">
-			<label for="aspectos_adicionales">{{ traducciones['ASPECTOS'][idioma] }}</label><br>
-				<textarea class="form-control" id="aspectos_adicionales" name="aspectos_adicionales">{{ informacion_juego[15] }}</textarea>
+			<label class="color-texto" for="aspectos_adicionales">{{ traducciones['ASPECTOS'][idioma] }}</label><br>
+				<textarea class="form-control shadow bg-transparent color-texto" id="aspectos_adicionales" name="aspectos_adicionales">{{ informacion_juego[15] }}</textarea>
 		</div>
 
         <div class="d-flex justify-content-center">
-		    <h3>{{ traducciones['TITULO-VALORACION'][idioma] }}</h3>
+		    <h3 class="color-texto">{{ traducciones['TITULO-VALORACION'][idioma] }}</h3>
         </div>
 
         <div class="form-group">
-            <label for="entretenimiento">{{ traducciones['ENTRETENIMIENTO'][idioma] }}</label>
-            <select class="form-control" id="entretenimiento" name="entretenimiento" required>
+            <label class="color-texto" for="entretenimiento">{{ traducciones['ENTRETENIMIENTO'][idioma] }}</label>
+            <select class="form-control shadow bg-transparent color-texto custom-select" id="entretenimiento" name="entretenimiento" required>
                     <option value="{{ informacion_juego[17] }}">{{ informacion_juego[17] }}</option>
                     <option value="{{ traducciones['EXCELENTE'][idioma] }}">{{ traducciones['EXCELENTE'][idioma] }}</option>
                     <option value="{{ traducciones['MUY_ALTO'][idioma] }}">{{ traducciones['MUY_ALTO'][idioma] }}</option>
@@ -159,8 +160,8 @@
         </div>
 
         <div class="form-group">
-            <label for="aprendizaje">{{ traducciones['APRENDIZAJE'][idioma] }}</label>
-            <select class="form-control" id="aprendizaje" name="aprendizaje" required>
+            <label class="color-texto" for="aprendizaje">{{ traducciones['APRENDIZAJE'][idioma] }}</label>
+            <select class="form-control shadow bg-transparent color-texto custom-select" id="aprendizaje" name="aprendizaje" required>
                     <option value="{{ informacion_juego[18] }}">{{ informacion_juego[18] }}</option>
                     <option value="{{ traducciones['EXCELENTE'][idioma] }}">{{ traducciones['EXCELENTE'][idioma] }}</option>
                     <option value="{{ traducciones['MUY_ALTO'][idioma] }}">{{ traducciones['MUY_ALTO'][idioma] }}</option>
@@ -171,8 +172,8 @@
         </div>
 
         <div class="form-group">
-            <label for="complejidad_alumno">{{ traducciones['COMPLEJIDAD_ALUMNO'][idioma] }}</label>
-            <select class="form-control" id="complejidad_alumno" name="complejidad_alumno" required>
+            <label class="color-texto" for="complejidad_alumno">{{ traducciones['COMPLEJIDAD_ALUMNO'][idioma] }}</label>
+            <select class="form-control shadow bg-transparent color-texto custom-select" id="complejidad_alumno" name="complejidad_alumno" required>
                     <option value="{{ informacion_juego[19] }}">{{ informacion_juego[19] }}</option>
                     <option value="{{ traducciones['EXCELENTE'][idioma] }}">{{ traducciones['EXCELENTE'][idioma] }}</option>
                     <option value="{{ traducciones['MUY_ALTO'][idioma] }}">{{ traducciones['MUY_ALTO'][idioma] }}</option>
@@ -183,15 +184,16 @@
         </div>
 			
         <div class="form-group">
-            <label for="complejidad_instructores">{{ traducciones['COMPLEJIDAD_INSTRUCTORES'][idioma] }}</label>
-            <select class="form-control" id="complejidad_instructores" name="complejidad_instructores" required>
-                    <option value="{{ informacion_juego[20] }}">{{ informacion_juego[20] }}</option>
+            <label class="color-texto" for="complejidad_instructores">{{ traducciones['COMPLEJIDAD_INSTRUCTORES'][idioma] }}</label>
+            <select class="form-control shadow bg-transparent color-texto custom-select" id="complejidad_instructores" name="complejidad_instructores" required>
+                <option value="{{ informacion_juego[20] }}">{{ informacion_juego[20] }}</option>
                     <option value="{{ traducciones['EXCELENTE'][idioma] }}">{{ traducciones['EXCELENTE'][idioma] }}</option>
                     <option value="{{ traducciones['MUY_ALTO'][idioma] }}">{{ traducciones['MUY_ALTO'][idioma] }}</option>
                     <option value="{{ traducciones['SENCILLO'][idioma] }}">{{ traducciones['SENCILLO'][idioma] }}</option>
                     <option value="{{ traducciones['REGULAR'][idioma] }}">{{ traducciones['REGULAR'][idioma] }}</option>
                     <option value="{{ traducciones['MUY_BAJO'][idioma] }}">{{ traducciones['MUY_BAJO'][idioma] }}</option>
             </select>
+            
         </div>
 	<!--
     <h3>{{ traducciones['TITULO-VIDEO'][idioma] }}</h3>
@@ -202,17 +204,17 @@
 -->
     <div class="form-group">
         <div class="d-flex justify-content-center">
-            <h3>{{ traducciones['TITULO-VIDEO'][idioma] }}</h3>
+            <h3 class="color-texto">{{ traducciones['TITULO-VIDEO'][idioma] }}</h3>
         </div>
-        <label for="youtube_url">{{ traducciones['URL'][idioma] }}</label>
-        <input type="text" id="youtube_url" name="youtube_url" value="{{ informacion_juego[21] }}" class="form-control">
+        <label class="color-texto" for="youtube_url">{{ traducciones['URL'][idioma] }}</label>
+        <input type="text" id="youtube_url" name="youtube_url" value="{{ informacion_juego[21] }}" class="form-control shadow bg-transparent color-texto">
       </div>
       <div class="d-flex justify-content-center">
-        <button type="submit" class="btn-añadir-juego">{{ traducciones['BTON-MODIFICAR'][idioma] }}</button>
+        <button type="submit" class="btn-mn">{{ traducciones['BTON-MODIFICAR'][idioma] }}</button>
         </div>
       <div style="margin-bottom: 100px;"></div>
       
-
+<!--
       <footer class="bg-light py-1 fixed-bottom">
         <div class="container-fluid">
             <div class="row justify-content-between">
@@ -223,6 +225,6 @@
                 <div class="col-md-3 col-12 text-right">Estela Victoria Ballester Delgado</div>
             </div>
         </div>
-    </footer>
+    </footer> -->
 </body>
 </html> 
