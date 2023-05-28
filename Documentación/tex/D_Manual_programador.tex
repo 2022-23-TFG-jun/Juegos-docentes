@@ -1,0 +1,171 @@
+\apendice{Documentación técnica de programación}
+
+\section{Introducción}
+En esta sección, se proporcionará una explicación y una muestra de la estructura organizativa del proyecto, así como el manual del programador y los pasos necesarios para ejecutar el proyecto.
+
+\section{Estructura de directorios}
+La estructura del proyecto se divide en diferentes directorios:
+
+\begin{itemize}
+    \item \textbf{Documentación:} carpeta que contiene los documentos de la memoria y anexos del proyecto.
+    \item \textbf{/env:} contiene los directorios con ejecutables que determinan que se trata de un entorno virtual.
+    \item \textbf{/src:} carpeta que contiene todos los archivos Python relacionados con el funcionamiento del backend de la aplicación.
+    \item \textbf{/static:} carpeta que contiene los archivos estáticos relacionados con el frontend, incluyendo el archivo de los estilos aplicados y la carpeta con las imágenes usadas en la aplicación
+    \item \textbf{/templates:} carpeta que contiene todos los archivos HTML que forman la parte visual de la aplicación.
+    \item \textbf{/translations:} carpeta que contiene los archivos JSON empleados para almacenar las traducciones de los HTMLs, y el archivo que se encarga de cargar las traducciones desde los archivos JSON correspondientes.
+    \item \textbf{/uploads:}: carpeta oculta que contiene los archivos que subieron los usuarios durante el uso de la aplicación.
+    \item \textbf{.env:}: archivo oculto que contiene las contraseñas necesarias para la conexión a la base de datos.
+    \item \textbf{.gitignore:}: archivo que contiene el nombre de los archivos que se encuentran ocultos en GitHub.
+    \item \textbf{/app.py:} archivo principal de Python que contiene todos los métodos GET y POST de la aplicación. 
+    \item \textbf{errores.log:} archivo oculto que contiene todos los errores que se generaron durante la ejecución de la aplicación.
+    \item \textbf{/LICENSE:} licencia de la aplicación.
+    \item \textbf{/Procfile:} archivo en el que se determina el archivo principal de la aplicación para el despliegue en Heroku. 
+    \item \textbf{/README.md:} archivo que contiene la descripción del proyecto junto con los pasos necesarios para su uso.
+    \item \textbf{/requirements.txt:} archivo que contiene las herramientas junto con sus versiones, para ejecutar el despliegue en Heroku.
+   
+\end{itemize}
+
+\section{Manual del programador}
+En este manual se van a indicar los diferentes procedimientos que debe seguir el programador para la correcta preparación y ejecución del proyecto.
+
+El proyecto ha sido desarrollado inicialmente de forma local en el equipo y posteriormente se ha desplegado en Heroku.
+
+\subsection{Visual Studio Code}
+Visual Studio Code se emplea para el desarrollo de la aplicación web y la creación de todos los archivos y métodos necesarios para el correcto uso y funcionamiento del proyecto.
+
+Para descargar Visual Studio Code, se debe acceder a la página web oficial en \url{https://code.visualstudio.com/download}. Después, se debe seleccionar la versión adecuada para el sistema operativo, en este caso, la versión utilizada es la de Windows.
+
+Una vez completada la descarga, se procede a instalar Visual Studio Code siguiendo los pasos correspondientes.
+
+\subsection{Python}
+Como lenguaje de programación se ha utilizado Python. Para descargar Python, se debe acceder a la página web oficial en \url{https://www.python.org/downloads/} y pulsar el botón de descargar la última versión disponible. En este caso, la versión descargada es Python 3.11.3.
+
+Una vez completada la descarga, se procede a instalar Python siguiendo los pasos correspondientes.
+
+\subsection{PostgreSQL}
+Para la gestión de la base de datos se ha utilizado PostgreSQL. Para descargar PostgreSQL, se debe acceder a la página web oficial en \url{https://www.postgresql.org/download/} y seleccionar la versión adecuada para el sistema operativo. En este caso, la versión utilizada es la de Windows y la última versión disponible es la versión 15 de 64 bits.
+
+Una vez completada la descarga, se procede a instalar PostgreSQL siguiendo los pasos correspondientes.
+
+Cuando ya se tiene instalado se debe configurar para poder acceder a la base de datos de Heroku. 
+
+Para ello, se debe crear un nuevo servidor.
+    \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{server}
+    \caption{Crear nuevo servidor.}
+    \label{fig:server}
+    \end{figure}
+
+Este se configura con los datos que obtenemos del Add-on de Heroku. Se debe rellenar el nombre del servidor en la pestaña general.
+\newpage
+    \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.3\textwidth]{server1}
+    \caption{Crear nuevo servidor: general.}
+    \label{fig:server1}
+    \end{figure}
+    
+Se debe rellenar el nombre del host, el puerto, el nombre de usuario, base de datos y la contraseña en la pestaña connection.
+    \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.3\textwidth]{server2}
+    \caption{Crear nuevo servidor: connection.}
+    \label{fig:server2}
+    \end{figure}
+    
+Y, por último, se debe rellenado el campo de DB restriction en la pestaña advanced.
+\newpage
+    \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.3\textwidth]{server3}
+    \caption{Crear nuevo servidor: advanced.}
+    \label{fig:server3}
+    \end{figure}
+
+\section{Compilación, instalación y ejecución del proyecto}
+Para la ejecución del proyecto, se debe descargar el proyecto del repositorio de
+GitHub, que se encuentra en  \url{https://github.com/ebd1004alu/Juegos-docentes},
+se descomprime y ya se puede empezar.
+
+\subsection{Ejecución en local}
+Para la ejecución del proyecto en local es necesario tener instalados como se mencionó anteriormente Visual Studio Code, Python y PostgreSQL. En terminal de Visual Studio Code la primera vez que se vaya a compilar el proyecto se debe ejecutar los siguientes comandos para crear el entorno virtual, activarlo e instalar las dependencias de flask en el entorno:
+\begin{itemize}
+    \item python3 -m venv env
+    \item source env/bin/activate
+    \item pip install flask
+\end{itemize}
+
+Además, se deben tener instaladas las librerías que forman el archivo
+requirements.txt, que son las que se utilizan en el código.
+
+Si no aparecen errores se puede ejecutar la aplicación en la dirección web \url{http://127.0.0.1:5000} mediante el comando:
+\begin{itemize}
+    \item flask run
+\end{itemize}
+
+\subsection{Despliegue en Heroku}
+Para desplegar la aplicación en Heroku es necesario obtener el paquete de desarrollo para estudiantes de GitHub para obtener beneficios por ser estudiante, lo cual permite obtener unos créditos para usar dentro de Heroku ya que se van a usar funcionalidades de pago.
+
+Para desplegar el proyecto en Heroku, lo primero que se debe hacer es
+registrarse en su página web en el siguiente enlace: \url{https://www.heroku.com/home}
+
+Después de haberse registrado e iniciado sesión, para crear una aplicación se debe pulsar el botón New, donde habrá que establecer un nombre para la aplicación y elegir una región.
+    \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{new-app}
+    \caption{Crear nueva aplicación en Heroku.}
+    \label{fig:new-app}
+    \end{figure}
+
+Una vez creada la nueva aplicación, en la pestaña deploy, se muestran las opciones y los pasos a seguir para ejecutar el proyecto. Para ello, se debe elegir el método de despliegue en nuestro caso será con GitHub.
+\newpage
+    \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{deploy}
+    \caption{Despliegue aplicación en Heroku.}
+    \label{fig:deploy}
+    \end{figure}
+
+
+Para el acceso a la base de datos se debe incluir en Heroku un add-ond de Heroku-PostreSQL y así poder desplegar la base de datos en la nube. 
+\imagen{add-on}{Add-on Heroku Postgres}
+
+Tras obtener las credenciales de Heroku-PostgreSQL se deberán configurar las variables de entorno de Heroku.
+    \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{vars}
+    \caption{Configuración variables de entorno.}
+    \label{fig:vars}
+    \end{figure}
+
+Una vez se ha configurado todo, ya se puede desplegar el
+proyecto pulsando sobre el botón de Deploy Branch.
+    \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{deploy-branch}
+    \caption{Despliegue aplicación en Heroku.}
+    \label{fig:deploy-branch}
+    \end{figure}
+    
+\section{Pruebas del sistema}
+
+Para comprobar que la aplicación funciona correctamente, se han realizado una serie de pruebas:
+
+\begin{enumerate}
+    \item Se introdujo incorrectamente los credenciales al iniciar sesión para verificar que no permite iniciar sesión y muestra un mensaje de error.
+    \item Se introdujo incorrectamente los credenciales al iniciar sesión tres veces para comprobar que no permite iniciar sesión y bloquea al usuario durante 1 minuto, mostrando un mensaje de error.
+    \item Se introdujo un nombre de usuario que ya existe al registrarse para comprobar que no permite el registro y muestra un mensaje de error.
+    \item Se introdujo una contraseña que no cumple con los requisitos al registrarse para comprobar que no permite el registro y muestra un mensaje de error.
+    \item Se introdujo una contraseña distinta a la de confirmación al registrarse para comprobar que no permite el registro y muestra un mensaje de error.
+    \item No se introdujo uno de los campos requeridos al registrarse para comprobar que no permite el registro y muestra un mensaje de error.
+    \item Se realizó una búsqueda que no existe para comprobar que no muestra resultados y muestra un mensaje de error.
+    \item Se probó que los resultados buscados se encontraban correctamente tanto por la barra de búsqueda como por los filtros.
+    \item Se probó que se visualizaba correctamente la información de cada juego.
+    \item Se probó que el usuario podía valorar correctamente los juegos una vez.
+    \item Se probó que el usuario podía solicitar el rol de profesor una vez y que el administrador podía aprobarlo.
+    \item Se probó que el profesor pudiera añadir un juego, modificarlo y añadir archivos al juego.
+    \item Se probó que el administrador pudiera borrar juegos y usuarios.
+\end{enumerate}
+
+
