@@ -37,34 +37,18 @@ Una vez finalizado el sprint se realizaba una reunión con los tutores en la que
 \section{Formación}
 Para llevar a cabo el desarrollo del proyecto se ha realizado la investigación, y por tanto la familiarización de distintos conceptos y herramientas. 
 \subsection{Flask}
+Para la creación de la aplicación se empleó Flask como framework, ya que se consideró que su instalación era sencilla y su uso también. Python fue elegido como el lenguaje de programación para el desarrollo, lo que permitió crear rápidamente un servidor y facilitó la implementación del patrón de diseño MVC.
 
-\subsection{HTML Y CSS}
+Para la familiarización con su funcionamiento, se investigó y se consultaron tutoriales sobre cómo utilizarlo \cite{formacion_flask}.
 
 \subsection{Bootstrap}
+Para el diseño de las interfaces, se utilizó Bootstrap, ya que uno de los objetivos de la aplicación era que fuera responsive y se visualizara correctamente en distintos dispositivos. 
 
+Para comprender su funcionamiento, se consultó la documentación oficial de Bootstrap\cite{doc-bootstrap}, que proporciona información sobre cómo comenzar con la herramienta, además de mostrar ejemplos de código de diferentes componentes ya predefinidos. Esto facilitó considerablemente su modo de empleo.
 \section{Desarrollo del proyecto}
 Durante las primeras semanas se determinó el entorno de desarrollo del proyecto, eligiendo las distintas herramientas que se iban a utilizar para el desarrollo del proyecto.
 
 Una vez determinado todo el entorno se comenzó con el desarrollo, empezando con la creación del entorno virtual y la creación y conexión con la base de datos.
-
-\subsection{Creación del entorno virtual}
-Lo primero fue crear el entorno virtual con Flask en Visual Studio Code. Para ello, se creó una carpeta llamada 'env'
-En el terminal de Visual Studio Code, una vez ubicado en la raíz del proyecto, se
-ejecutó el comando: python3 -m venv env
-
- para crear el entorno virtual llamado 'env'.
-
-Después de crear el entorno virtual al estar usando Windows se debía activar con el comando:
-source env/bin/activate
-
-Una vez se tenía el entorno virtual activado se instalaron las dependencias de flask en el entorno:
-pip install Flask
-
-De esta forma ya se podía iniciar la aplicación Flask con el comando: flask run.
-
-\subsection{Creación y conexión de la base de datos}
-La creación y conexión de la base de datos se hizo a través de la terminal de Visual Studio Code.
-Para ello, lo primero fue:
 
 \subsection{Creación del frontend}
 Para crear el frontend, lo primero que se hizo fue desarrollar un prototipo de las interfaces de la aplicación, con el objetivo de diseñar una primera versión de cómo serían las interfaces. Este primer diseño, como se trataba de un prototipo, constó de interfaces sencillas e intuitivas para facilitar la comprensión y la navegación del usuario.
@@ -75,38 +59,38 @@ En un primer momento, se implementaron las interfaces de inicio de sesión y reg
 
 La interfaz para el menú de juegos del profesor, además de la barra de búsqueda y filtros, y las tarjetas con información de cada juego, incluía tres botones adicionales para añadir nuevos juegos, modificar juegos existentes y agregar archivos a cada juego. Esta interfaz se diferenciaba de la del usuario y la del administrador.
 
-Por su parte, la interfaz del administrador también incluía un botón para la administración,lo que la diferenciaba de la del menú de juegos del usuario. En esta interfaz, el administrador podía realizar diferentes tareas de gestión.
+Por su parte, la interfaz del administrador también incluía un botón para la administración, lo que la diferenciaba de la del menú de juegos del usuario. En esta interfaz, el administrador podía realizar diferentes tareas de gestión.
 
 Después, se trabajó en el desarrollo de interfaces específicas para la visualización y modificación de cada juego, con el fin de proporcionar una experiencia más detallada y personalizada para los usuarios.
 
 Por último, se crearon interfaces para los usuarios con rol de administrador que les permitían gestionar usuarios, juegos y solicitudes en general. Además, se incluyeron las interfaces vara la valoración de los juegos por parte de los usuarios y una interfaz adicional para proporcionar información general sobre la aplicación y sus funcionalidades.
-
-Una vez que se terminaron todos los templates junto con sus diseños, surgió un inconveniente con los estilos diseñados. El problema radicaba en que estos estilos no eran responsive y solo se veían correctamente cuando la pantalla estaba maximizada. Si el usuario reducía la ventana del navegador, todos los elementos se sobreponían unos encima de otros, lo que impedía la correcta visualización y usabilidad de la aplicación. Esto también significaba que la aplicación no era adecuada para su ejecución en distintos tipos de dispositivos.
-
-Por ello, se empleó la librería de Bootstrap para lograr que la aplicación fuera responsive y que todos los elementos se visualizaran correctamente, ya fuera reduciendo la ventana del navegador, haciendo zoom o en otros tipos de dispositivos.
-    
-    (FOTO DE VISUALIZACION EN DISTINTOS DISPOSITIVOS)
     
 \subsection{Creación del backend}
 Para crear el backend, lo primero que se hizo fue establecer la conexión con la base de datos y crear las tablas necesarias, lo cual se llevó a cabo en el archivo database.py. 
 
 Se crearon cuatro tablas que forman parte de la base de datos: 
 \begin{enumerate}
-    \item \textbf{Tabla de usuarios:} almacena los datos de los usuarios registrados en la aplicación, incluyendo su nombre de usuario, nombre, apellido, institución, contraseña y rol.
-    \item \textbf{Tabla de juegos:} almacena los datos de los juegos registrados en la aplicación, incluyendo su nombre, descripción, idioma, enlace, puntuación, disciplina, naturaleza, precio, instrucciones para el jugador, instrucciones para el instructor, objetivo, espacio de control, objetivos principales y secundarios, estructura de sesiones, aspectos adicionales, la valoración del docente respecto al entretenimiento, aprendizaje, complejidad para el alumno, complejidad para el instructor, la URL del vídeo tutorial, los datos del usuario que añade o modifica el juego y los archivos de instrucciones y juego.
+    \item \textbf{Tabla de usuarios:} almacena los datos de los usuarios registrados en la aplicación, incluyendo su nombre de usuario, nombre, apellido, institución, contraseña, rol y borrado.
+    \item \textbf{Tabla de juegos:} almacena los datos de los juegos registrados en la aplicación, incluyendo su nombre, descripción, idioma, enlace, puntuación, disciplina, naturaleza, precio, instrucciones para el jugador, instrucciones para el instructor, objetivo, espacio de control, objetivos principales y secundarios, estructura de sesiones, aspectos adicionales, la valoración del docente respecto al entretenimiento, aprendizaje, complejidad para el alumno, complejidad para el instructor, la URL del vídeo tutorial, los datos del usuario que añade o modifica el juego, los archivos de instrucciones y juego y borrado.
     \item \textbf{Tabla de solicitudes:} almacena los datos de las solicitudes para obtener el rol de profesor, incluyendo el estado de la solicitud, la fecha y el usuario que la realizó.
     \item \textbf{Tabla de valoraciones:} almacena los datos de las valoraciones que realizan los usuarios de los juegos, incluyendo la puntuación, el comentario, la fecha y los datos del usuario y juego al que se refiere la valoración.
 \end{enumerate}
 
-Después, se comenzó a desarrollar en el archivo app.py los diferentes métodos GET y POST para manejar las solicitudes y respuestas, así como los archivos juego.py y usuario.py para manejar las operaciones de inserción, eliminación y actualización de datos en la base de datos.
+Después, se comenzó a desarrollar en el archivo app.py los diferentes métodos GET y POST para manejar las solicitudes y respuestas, así como los archivos juego.py, usuario.py, valoracion.py y solicitud.py para manejar las operaciones de inserción y actualización de datos en la base de datos.
 
 Para el desarrollo del login se utilizaron varios módulos de la librería Flask-Login, ya que esto facilitó toda la implementación. La clase LoginManager permitió gestionar la sesión del usuario en la aplicación, permitiendo a los usuarios iniciar sesión y mantenerse autenticados. Para ello, se creó una instancia de la clase LoginManager en la aplicación, lo que permitió usar sus métodos y atributos para configurar la autenticación y el inicio de sesión.
 
 Además, en el caso de que un usuario intentara acceder a una ruta protegida sin estar autenticado, Flask redireccionaría al usuario a la vista de inicio de sesión, gracias a que se definió la propiedad login-view de la instancia de LoginManager creada anteriormente. 
-
-        (FOTO DE lineas 54,55,56 -> App-py)
+\imagen{login-cod}{Captura de código}{.4}
 
 Con el módulo check-password-hash de la librería Werkzeug se permitía comprobar si la contraseña introducida para el inicio de sesión era correcta. En caso de que el usuario introdujera la contraseña de forma incorrecta durante 3 intentos consecutivos, se bloqueaba su cuenta durante 60 segundos para evitar ataques de fuerza bruta o intentos de acceso no autorizados. Este mecanismo de seguridad se implementó mediante la configuración de dos parámetros en el objeto app.config de Flask: MAX-LOGIN-ATTEMPTS, que establece el número máximo de intentos de inicio de sesión permitidos, y LOGIN-BLOCK-DURATION, que define la duración del bloqueo de la cuenta en segundos.
+
+Una vez terminadas las funciones que se encargaban del registro de usuarios y de su inicio de sesión, se desarrollaron los diferentes menús de los juegos. Para ello, lo primero que se hizo fue la creación de las tarjetas que iban a contener información sobre los juegos del menú. Para una mejor visualización se desarrolló la paginación del menú, de forma que en cada página solo se iban a mostrar tres tarjetas de juego.
+
+Después, en el archivo busqueda.py se desarrolló la funcionalidad de la barra de búsqueda y aplicación de filtros. Para asegurar el correcto funcionamiento de las búsquedas personalizadas y únicas de los usuarios, se empleó la combinación de la librería unicode y el método .lower() para garantizar que las búsquedas coincidieran con la información almacenada en la base de datos.
+\imagen{busqueda-filtros}{Captura de código}{.8}
+
+Una vez terminados los menús generales de cada rol, se fueron implementando las diferentes funcionalidades de cada rol.
 
 \subsection{Internacionalización}
 Para implementar la internacionalización en mi aplicación, consideré dos opciones: el uso de la librería Flask-Babel o la inclusión de todas las traducciones en distintos archivos JSON.
@@ -114,14 +98,24 @@ Para implementar la internacionalización en mi aplicación, consideré dos opci
 Finalmente, opté por la segunda opción ya que me resultó más sencilla de implementar y gestionar debido a que solo necesitaba dos opciones de idioma. Flask-Babel ofrece características avanzadas, como la detección automática del idioma y de los formatos de fecha y hora, la funcionalidad de pluralización para la correcta traducción de los textos, y la capacidad de generar formularios de selección de idioma de forma automática, entre otras, por lo que consideré que era una solución más adecuada para proyectos más complejos.
 
 Para cada template HTML se creó un archivo JSON, lo que permitió mantener todas las traducciones de cada página en un solo archivo, facilitando su llamado en el código.
-
-    (FOTO DE LOS ARCHIVOS)
+\imagen{archivos-JSON}{Archivos JSON}{.4}
 
 La aplicación ofrecía la posibilidad de visualizar el contenido en español o inglés, y se proporcionaron botones para que los usuarios seleccionen el idioma en la página de inicio. Si el usuario no seleccionaba un idioma, se utilizaba el español por defecto.
 
-    (FOTO DE LOS BOTONES DE IDIOMAS)
+\imagen{botones-idioma}{Botones para cambiar de idioma}{.1}
 
-\subsection{Despliegue con }
+\subsection{Despliegue con Heroku}
+Una vez la aplicación estaba terminada en local, se empezó con el proceso de despliegue en Heroku. Tras el alta en la plataforma, se tuvo que realizar la conexión y configuración con el repositorio de GitHub que contenía el proyecto.
+\imagen{heroku-github}{Conexión con repositorio de GitHub}{1.0}
+
+Debido a que el despliegue de la base de datos en la nube era de pago, se tuvo que obtener el paquete de desarrollo para estudiantes de GitHub para así obtener beneficios por ser estudiante, lo cual iba a permitir obtener unos créditos para usar dentro de Heroku.
+
+Para el acceso a la base de datos se incluyó en Heroku un add-ond de Heroku-PostreSQL y así poder desplegar la base de datos en la nube. 
+\imagen{add-on}{Add-on Heroku Postgres}{.9}
+
+Se obtuvieron las credenciales de Heroku-PostgreSQL y se modificaron en la aplicación los anteriores credenciales que estaban establecidos en la base de datos local.
+
+Una vez desplegado el proyecto en Heroku, era posible utilizar la aplicación de manera web a través del enlace que facilitaba la plataforma.
 
 \section{Resolución de problemas}
 Durante el desarrollo del proyecto, surgieron varios problemas que fueron resueltos con éxito.
@@ -131,4 +125,8 @@ El primer problema que surgió fue con la plataforma de gestión de proyectos Ze
 
 Busqué alternativas que proporcionasen funcionalidades similares a las de ZenHub y finalmente opté por Zube, un sistema de gestión de proyectos gratuito integrado en GitHub que ofrece la planificación de sprints, la creación de tareas, la estimación de story points y la generación de gráficos e informes estadísticos de manera similar a ZenHub.
 
-\subsection{Problemas con la máquina virtual}
+
+\subsection{Problemas con la visualización de las interfaces}
+Una vez que se terminaron todos los templates junto con sus diseños, surgió un inconveniente con los estilos diseñados. El problema radicaba en que estos estilos no eran responsive y solo se veían correctamente cuando la pantalla estaba maximizada. Si el usuario reducía la ventana del navegador, todos los elementos se sobreponían unos encima de otros, lo que impedía la correcta visualización y usabilidad de la aplicación. Esto también significaba que la aplicación no era adecuada para su ejecución en distintos tipos de dispositivos.
+
+Por ello, se empleó la librería de Bootstrap para lograr que la aplicación fuera responsive y que todos los elementos se visualizaran correctamente, ya fuera reduciendo la ventana del navegador, haciendo zoom o en otros tipos de dispositivos.
