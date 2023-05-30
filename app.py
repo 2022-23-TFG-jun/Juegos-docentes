@@ -34,11 +34,17 @@ from werkzeug.utils import secure_filename
 from flask import send_file
 import logging
 
+from werkzeug.exceptions import RequestEntityTooLarge
+
 app = Flask(__name__)
 app.secret_key = 'mysecretkey'
 
 # Carpeta para guardar archivos subidos
 app.config['UPLOAD_FOLDER'] = './uploads'
+
+
+app.config['MAX_CONTENT_LENGTH'] = 2048 * 1024 * 1024  # Establece el límite a 100 MB
+
 
 """
 # Configuración de la conexión a la base de datos
@@ -93,7 +99,7 @@ def login_get():
         return render_template('login.html', traducciones=traducciones, idioma=idioma)
     except Exception as e:
         logging.error("Ocurrió un error en la función login_get: %s", str(e))
-        return redirect(url_for('inicio_get'), idioma=idioma)
+        return redirect(url_for('inicio_get'))
 
 @app.route('/login', methods=['POST'])
 def login_post():
@@ -157,7 +163,7 @@ def login_post():
         return redirect(url_for('menu_juegos_get', idioma=idioma))
     except Exception as e:
         logging.error("Ocurrió un error en la función login_post: %s", str(e))
-        return redirect(url_for('inicio_get'), idioma=idioma)
+        return redirect(url_for('inicio_get'))
 
 @app.route('/registro', methods=['GET'])
 def registro_get():
@@ -169,7 +175,7 @@ def registro_get():
         return render_template('registro.html', traducciones=traducciones, idioma=idioma)
     except Exception as e:
         logging.error("Ocurrió un error en la función registro_get: %s", str(e))
-        return redirect(url_for('inicio_get'), idioma=idioma)
+        return redirect(url_for('inicio_get'))
 
 @app.route('/registro', methods=['POST'])
 def registro_post():
@@ -261,7 +267,7 @@ def menu_juegos_get():
             return render_template('menu_juegos_profesor.html', juegos=juegos, pagina_actual=pagina_actual, total_paginas=total_paginas, traducciones=traducciones, idioma=idioma)
     except Exception as e:
         logging.error("Ocurrió un error en la función menu_juegos_get: %s", str(e))
-        return redirect(url_for('inicio_get'), idioma=idioma)
+        return redirect(url_for('inicio_get'))
       
 @app.route('/menu_juegos', methods=['POST'])
 @login_required
@@ -329,7 +335,7 @@ def menu_juegos_post():
                 return render_template('menu_juegos_profesor.html', error_busqueda=error_busqueda, pagina_actual=pagina_actual, total_paginas=total_paginas, idioma=idioma, traducciones=traducciones)
     except Exception as e:
         logging.error("Ocurrió un error en la función menu_juegos_post: %s", str(e))
-        return redirect(url_for('inicio_get'), idioma=idioma)
+        return redirect(url_for('inicio_get'))
     
 @app.route('/añadir_juego', methods=['GET'])
 @login_required
@@ -342,7 +348,7 @@ def añadir_juego_get():
         return render_template('añadir_juego.html', traducciones=traducciones, idioma=idioma)
     except Exception as e:
         logging.error("Ocurrió un error en la función añadir_juego_get: %s", str(e))
-        return redirect(url_for('inicio_get'), idioma=idioma) 
+        return redirect(url_for('inicio_get')) 
     
 @app.route('/añadir_juego', methods=['POST'])
 @login_required
@@ -388,7 +394,7 @@ def añadir_juego_post():
         return redirect(url_for('menu_juegos_get', idioma=idioma))
     except Exception as e:
         logging.error("Ocurrió un error en la función añadir_juego_post: %s", str(e))
-        return redirect(url_for('inicio_get'), idioma=idioma)
+        return redirect(url_for('inicio_get'))
 
 @app.route('/añadir_instrucciones_jugador', methods=['GET'])
 def instrucciones_juego_get():
@@ -400,13 +406,14 @@ def instrucciones_juego_get():
         return render_template('añadir_archivos.html', traducciones=traducciones, idioma=idioma)
     except Exception as e:
         logging.error("Ocurrió un error en la función instrucciones_juego_get: %s", str(e))
-        return redirect(url_for('inicio_get'), idioma=idioma)
+        return redirect(url_for('inicio_get'))
 
 @app.route('/añadir_instrucciones_jugador', methods=['POST'])
 def instrucciones_juego_post():
     try:
-        # Obtener idioma elegido
+        # Obtener idioma elegido y sus traducciones
         idioma = request.args.get('idioma', 'es')
+        traducciones = cargar_traducciones_añadir_archivos(idioma)
 
         # Obtener el archivo cargado
         f = request.files['instrucciones_jugador']
@@ -416,6 +423,10 @@ def instrucciones_juego_post():
         
         filename = secure_filename(f.filename)
 
+        if f.filename == '':
+            error = 'No se seleccionó ningún archivo.'
+            return render_template('añadir_archivos.html', error=error, idioma=idioma, traducciones=traducciones)
+
         # Guardar el archivo cargado en la carpeta de carga
         ruta_archivo = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         f.save(ruta_archivo)
@@ -423,15 +434,22 @@ def instrucciones_juego_post():
         Juego.añadir_instrucciones_jugador(filename, id_juego)
 
         return redirect(url_for('menu_juegos_get', idioma=idioma))
+    
+    except RequestEntityTooLarge:
+        logging.error("Ocurrió un error en la función instrucciones_juego_post: el archivo es demasiado grande")
+        error = 'El archivo supera el tamaño máximo permitido'
+        return render_template('añadir_archivos.html', error=error, idioma=idioma, traducciones=traducciones)
+    
     except Exception as e:
         logging.error("Ocurrió un error en la función instrucciones_juego_post: %s", str(e))
-        return redirect(url_for('inicio_get'), idioma=idioma)
+        return redirect(url_for('inicio_get'))
 
 @app.route('/añadir_instrucciones_instructor', methods=['POST'])
 def instrucciones_instructor_post():
     try:
-        # Obtener idioma elegido
+        # Obtener idioma elegido y sus traducciones
         idioma = request.args.get('idioma', 'es')
+        traducciones = cargar_traducciones_añadir_archivos(idioma)
 
         # Obtener el archivo cargado
         f = request.files['instrucciones_instructor']
@@ -441,6 +459,10 @@ def instrucciones_instructor_post():
         
         filename = secure_filename(f.filename)
 
+        if f.filename == '':
+            error = 'No se seleccionó ningún archivo.'
+            return render_template('añadir_archivos.html', error=error, idioma=idioma, traducciones=traducciones)
+
         # Guardar el archivo cargado en la carpeta de carga
         ruta_archivo = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         f.save(ruta_archivo)
@@ -448,15 +470,22 @@ def instrucciones_instructor_post():
         Juego.añadir_instrucciones_instructor(filename, id_juego)
 
         return redirect(url_for('menu_juegos_get', idioma=idioma))
+    
+    except RequestEntityTooLarge:
+        logging.error("Ocurrió un error en la función instrucciones_juego_post: el archivo es demasiado grande")
+        error = 'El archivo supera el tamaño máximo permitido'
+        return render_template('añadir_archivos.html', error=error, idioma=idioma, traducciones=traducciones)
+    
     except Exception as e:
         logging.error("Ocurrió un error en la instrucciones_instructor_post: %s", str(e))
-        return redirect(url_for('inicio_get'), idioma=idioma)
+        return redirect(url_for('inicio_get'))
 
 @app.route('/añadir_archivo_juego', methods=['POST'])
 def archivo_juego_post():
     try:
-        # Obtener idioma elegido
+        # Obtener idioma elegido y sus traducciones
         idioma = request.args.get('idioma', 'es')
+        traducciones = cargar_traducciones_añadir_archivos(idioma)
 
         # Obtener el archivo cargado
         f = request.files['archivo_juego']
@@ -466,6 +495,10 @@ def archivo_juego_post():
         
         filename = secure_filename(f.filename)
 
+        if f.filename == '':
+            error = 'No se seleccionó ningún archivo.'
+            return render_template('añadir_archivos.html', error=error, idioma=idioma, traducciones=traducciones)
+
         # Guardar el archivo cargado en la carpeta de carga
         ruta_archivo = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         f.save(ruta_archivo)
@@ -473,9 +506,15 @@ def archivo_juego_post():
         Juego.añadir_archivo_juego(filename, id_juego)
 
         return redirect(url_for('menu_juegos_get', idioma=idioma))
+    
+    except RequestEntityTooLarge:
+        logging.error("Ocurrió un error en la función instrucciones_juego_post: el archivo es demasiado grande")
+        error = 'El archivo supera el tamaño máximo permitido'
+        return render_template('añadir_archivos.html', error=error, idioma=idioma, traducciones=traducciones)
+    
     except Exception as e:
         logging.error("Ocurrió un error en la función archivo_juego_post: %s", str(e))
-        return redirect(url_for('inicio_get'), idioma=idioma)
+        return redirect(url_for('inicio_get'))
 
 @app.route('/descargar_instrucciones')
 def descargar_instrucciones():
@@ -505,7 +544,7 @@ def visualizar_juego_get():
         return render_template('visualizar_juego.html', informacion_juego=informacion_juego, traducciones=traducciones, idioma=idioma)
     except Exception as e:
         logging.error("Ocurrió un error en la función visualizar_juego_get: %s", str(e))
-        return redirect(url_for('inicio_get'), idioma=idioma)
+        return redirect(url_for('inicio_get'))
     
 @app.route('/modificar_juego', methods=['GET'])
 @login_required
@@ -524,7 +563,7 @@ def modificar_juego_get():
         return render_template('modificar_juego.html', informacion_juego=informacion_juego, traducciones=traducciones, idioma=idioma)
     except Exception as e:
         logging.error("Ocurrió un error en la función modificar_juego_get: %s", str(e))
-        return redirect(url_for('inicio_get'), idioma=idioma)
+        return redirect(url_for('inicio_get'))
     
 @app.route('/modificar_juego', methods=['POST'])
 @login_required
@@ -573,7 +612,7 @@ def modificar_juego_post():
         return redirect(url_for('menu_juegos_get', idioma=idioma))
     except Exception as e:
         logging.error("Ocurrió un error en la función modificar_juego_post: %s", str(e))
-        return redirect(url_for('inicio_get'), idioma=idioma)
+        return redirect(url_for('inicio_get'))
     
 @app.route('/solicitud_profesor', methods=['GET'])
 @login_required
@@ -598,7 +637,7 @@ def solicitud_profesor_get():
         return render_template('contacto.html', mensaje_solicitud=mensaje_solicitud, idioma=idioma, traducciones=traducciones)
     except Exception as e:
         logging.error("Ocurrió un error en la función solicitud_profesor_get: %s", str(e))
-        return redirect(url_for('inicio_get'), idioma=idioma)
+        return redirect(url_for('inicio_get'))
     
 @app.route('/solicitud_profesor', methods=['POST'])
 @login_required
@@ -621,7 +660,7 @@ def solicitud_profesor_post():
         return render_template('contacto.html', mensaje_solicitud=mensaje_solicitud, idioma=idioma, traducciones=traducciones)
     except Exception as e:
         logging.error("Ocurrió un error en la función solicitud_profesor_post: %s", str(e))
-        return redirect(url_for('inicio_get'), idioma=idioma)
+        return redirect(url_for('inicio_get'))
     
 @app.route('/administracion', methods=['GET'])
 @login_required
@@ -634,7 +673,7 @@ def administracion_get():
         return render_template('administracion.html', idioma=idioma, traducciones=traducciones)
     except Exception as e:
         logging.error("Ocurrió un error en la función administracion_get: %s", str(e))
-        return redirect(url_for('inicio_get'), idioma=idioma)
+        return redirect(url_for('inicio_get'))
     
 @app.route('/administrar_solicitudes', methods=['GET'])
 @login_required
@@ -650,7 +689,7 @@ def administrar_solicitudes_get():
         return render_template('administrar_solicitudes.html', solicitudes=solicitudes, traducciones=traducciones, idioma=idioma)
     except Exception as e:
         logging.error("Ocurrió un error en la función administrr_solicitudes_get: %s", str(e))
-        return redirect(url_for('inicio_get'), idioma=idioma)
+        return redirect(url_for('inicio_get'))
        
 @app.route('/administrar_solicitudes', methods=['POST'])
 @login_required
@@ -674,7 +713,7 @@ def administrar_solicitudes_post():
         return redirect(url_for('administrar_solicitudes_get', idioma=idioma))
     except Exception as e:
         logging.error("Ocurrió un error en la función administrar_solicitudes_post: %s", str(e))
-        return redirect(url_for('inicio_get'), idioma=idioma)
+        return redirect(url_for('inicio_get'))
     
 @app.route('/administrar_usuarios', methods=['GET'])
 @login_required
@@ -690,7 +729,7 @@ def administrar_usuarios_get():
         return render_template('administrar_usuarios.html', usuarios=usuarios, traducciones=traducciones, idioma=idioma)
     except Exception as e:
         logging.error("Ocurrió un error en la función administrar_usuarios_get: %s", str(e))
-        return redirect(url_for('inicio_get'), idioma=idioma)
+        return redirect(url_for('inicio_get'))
     
 @app.route('/administrar_usuarios', methods=['POST'])
 @login_required
@@ -707,7 +746,7 @@ def administrar_usuarios_post():
         return redirect(url_for('administrar_usuarios_get', idioma=idioma))
     except Exception as e:
         logging.error("Ocurrió un error en la función administrar_usuarios_post: %s", str(e))
-        return redirect(url_for('inicio_get'), idioma=idioma)
+        return redirect(url_for('inicio_get'))
     
 @app.route('/administrar_juegos', methods=['GET'])
 @login_required
@@ -723,7 +762,7 @@ def administrar_juegos_get():
         return render_template('administrar_juegos.html', juegos=juegos, traducciones=traducciones, idioma=idioma)
     except Exception as e:
         logging.error("Ocurrió un error en la función administrar_juegos_get: %s", str(e))
-        return redirect(url_for('inicio_get'), idioma=idioma)
+        return redirect(url_for('inicio_get'))
 
 @app.route('/administrar_juegos', methods=['POST'])
 @login_required
@@ -740,7 +779,7 @@ def administrar_juegos_post():
         return redirect(url_for('administrar_juegos_get', idioma=idioma))
     except Exception as e:
         logging.error("Ocurrió un error en la función administrar_juegos_post: %s", str(e))
-        return redirect(url_for('inicio_get'), idioma=idioma)
+        return redirect(url_for('inicio_get'))
     
 @app.route('/añadir_valoracion', methods=['GET'])
 @login_required
@@ -753,7 +792,7 @@ def añadir_valoracion_get():
         return render_template('añadir_valoracion.html', traducciones=traducciones, idioma=idioma)
     except Exception as e:
         logging.error("Ocurrió un error en la función añadir_valoracion_get: %s", str(e))
-        return redirect(url_for('inicio_get'), idioma=idioma)
+        return redirect(url_for('inicio_get'))
     
 @app.route('/añadir_valoracion', methods=['POST'])
 @login_required
@@ -782,7 +821,7 @@ def añadir_valoracion_post():
         return redirect(url_for('menu_juegos_get', idioma=idioma))
     except Exception as e:
         logging.error("Ocurrió un error en la función añadir_valoracion_post: %s", str(e))
-        return redirect(url_for('inicio_get'), idioma=idioma)
+        return redirect(url_for('inicio_get'))
     
 @app.route('/visualizar_valoracion', methods=['GET'])
 @login_required
@@ -801,7 +840,7 @@ def visualizar_valoracion_get():
         return render_template('visualizar_valoracion.html', valoraciones=valoraciones, traducciones=traducciones, idioma=idioma)
     except Exception as e:
         logging.error("Ocurrió un error en la función visualizar_valoracion_get: %s", str(e))
-        return redirect(url_for('inicio_get'), idioma=idioma)
+        return redirect(url_for('inicio_get'))
     
 @app.route('/acerca_de', methods=['GET'])
 def acerca_de_get():
@@ -813,7 +852,7 @@ def acerca_de_get():
         return render_template('acerca_de.html', traducciones=traducciones, idioma=idioma)
     except Exception as e:
         logging.error("Ocurrió un error en la función acerca_de_get: %s", str(e))
-        return redirect(url_for('inicio_get'), idioma=idioma)
+        return redirect(url_for('inicio_get'))
     
 @app.route('/logout')
 @login_required

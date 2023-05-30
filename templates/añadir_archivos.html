@@ -21,6 +21,14 @@
     <div class="d-flex justify-content-center mb-5">
       <h1 class="mb-5 color-texto">{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
     </div>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-8">
+        {% if error %}
+          <div class="alert alert-danger text-center">{{error}}</div>
+        {%endif%}
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-4">
         <form action="/añadir_instrucciones_jugador?id={{ request.args.get('id') }}&idioma={{ request.args.get('idioma') }}" method="POST" enctype="multipart/form-data">
