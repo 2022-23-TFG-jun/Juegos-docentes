@@ -35,6 +35,7 @@ from flask import send_file
 import logging
 
 from werkzeug.exceptions import RequestEntityTooLarge
+from werkzeug.exceptions import HTTPException, RequestTimeout, RequestEntityTooLarge
 
 app = Flask(__name__)
 app.secret_key = 'mysecretkey'
@@ -43,7 +44,7 @@ app.secret_key = 'mysecretkey'
 app.config['UPLOAD_FOLDER'] = './uploads'
 
 
-app.config['MAX_CONTENT_LENGTH'] = 2048 * 1024 * 1024  # Establece el límite a 100 MB
+app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024  # Establece el límite a 100 MB
 
 
 """
@@ -407,6 +408,18 @@ def instrucciones_juego_get():
     except Exception as e:
         logging.error("Ocurrió un error en la función instrucciones_juego_get: %s", str(e))
         return redirect(url_for('inicio_get'))
+    
+@app.errorhandler(HTTPException)
+def handle_exception(e):
+    # Obtener idioma elegido y sus traducciones
+    # idioma = request.args.get('idioma', 'es')
+    # traducciones = cargar_traducciones_añadir_archivos(idioma)
+    if isinstance(e, RequestTimeout):
+        # Se produjo un timeout
+        error_message = 'Error: Se produjo un timeout en la aplicación.'
+        # return render_template('añadir_archivos.html', error=error_message, idioma=idioma, traducciones=traducciones), 500
+        return redirect(url_for('inicio_get'))
+
 
 @app.route('/añadir_instrucciones_jugador', methods=['POST'])
 def instrucciones_juego_post():
