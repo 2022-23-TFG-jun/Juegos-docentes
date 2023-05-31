@@ -410,7 +410,7 @@ def instrucciones_juego_get():
         return redirect(url_for('inicio_get'))
     
 @app.errorhandler(Exception)
-def handle_generic_error():
+def handle_generic_error(error):
         return '<script>alert("Error de servidor");</script>', 500
 
 @app.route('/añadir_instrucciones_jugador', methods=['POST'])
