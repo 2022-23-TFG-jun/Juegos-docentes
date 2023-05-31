@@ -409,16 +409,9 @@ def instrucciones_juego_get():
         logging.error("Ocurrió un error en la función instrucciones_juego_get: %s", str(e))
         return redirect(url_for('inicio_get'))
     
-@app.errorhandler(HTTPException)
-def handle_exception(e):
-    # Obtener idioma elegido y sus traducciones
-    # idioma = request.args.get('idioma', 'es')
-    # traducciones = cargar_traducciones_añadir_archivos(idioma)
-    if isinstance(e, RequestTimeout):
-        # Se produjo un timeout
-        # return render_template('añadir_archivos.html', error=error_message, idioma=idioma, traducciones=traducciones), 500
-        return redirect(url_for('inicio_get'))
-
+@app.errorhandler(Exception)
+def handle_generic_error():
+        return '<script>alert("Error de servidor");</script>', 500
 
 @app.route('/añadir_instrucciones_jugador', methods=['POST'])
 def instrucciones_juego_post():
