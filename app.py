@@ -44,7 +44,7 @@ app.secret_key = 'mysecretkey'
 app.config['UPLOAD_FOLDER'] = './uploads'
 
 
-app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024  # Establece el límite a 100 MB
+app.config['MAX_CONTENT_LENGTH'] = 2048 * 1024 * 1024  # Establece el límite a 100 MB
 
 
 """
@@ -427,6 +427,17 @@ def instrucciones_juego_post():
         id_juego = request.args.get('id')
         
         filename = secure_filename(f.filename)
+
+        # Leer los datos del archivo y obtener su tamaño
+        f.seek(0, os.SEEK_END)
+        tamaño = f.tell()
+        f.seek(0)
+
+        print(tamaño)
+
+        if tamaño > 2*1024*1024:
+            error = 'El archivo es demasiado grande, no se permite su subida en la aplicación.'
+            return render_template('añadir_archivos.html', error=error, idioma=idioma, traducciones=traducciones)
 
         if f.filename == '':
             error = 'No se seleccionó ningún archivo.'
