@@ -403,15 +403,11 @@ def instrucciones_juego_get():
         # Obtener idioma elegido y sus traducciones
         idioma = request.args.get('idioma', 'es')
         traducciones = cargar_traducciones_añadir_archivos(idioma)
-
+    
         return render_template('añadir_archivos.html', traducciones=traducciones, idioma=idioma)
     except Exception as e:
         logging.error("Ocurrió un error en la función instrucciones_juego_get: %s", str(e))
         return redirect(url_for('inicio_get'))
-    
-@app.errorhandler(Exception)
-def handle_generic_error(error):
-        return '<script>alert("Error de servidor");</script>', 500
 
 @app.route('/añadir_instrucciones_jugador', methods=['POST'])
 def instrucciones_juego_post():
@@ -427,17 +423,18 @@ def instrucciones_juego_post():
         id_juego = request.args.get('id')
         
         filename = secure_filename(f.filename)
+        #print("obtengo filename", filename)
 
         # Leer los datos del archivo y obtener su tamaño
-        f.seek(0, os.SEEK_END)
-        tamaño = f.tell()
-        f.seek(0)
+        #f.seek(0, os.SEEK_END)
+        #tamaño = f.tell()
+        #f.seek(0)
 
-        print(tamaño)
+        #print(tamaño)
 
-        if tamaño > 2*1024*1024:
-            error = 'El archivo es demasiado grande, no se permite su subida en la aplicación.'
-            return render_template('añadir_archivos.html', error=error, idioma=idioma, traducciones=traducciones)
+        #if tamaño > 2*1024*1024:
+           # error = 'El archivo es demasiado grande, no se permite su subida en la aplicación.'
+            #return render_template('añadir_archivos.html', error=error, idioma=idioma, traducciones=traducciones)
 
         if f.filename == '':
             error = 'No se seleccionó ningún archivo.'

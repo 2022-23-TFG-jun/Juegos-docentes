@@ -31,7 +31,7 @@
     </div>
     <div class="row">
       <div class="col-md-4">
-        <form action="/añadir_instrucciones_jugador?id={{ request.args.get('id') }}&idioma={{ request.args.get('idioma') }}" method="POST" enctype="multipart/form-data">
+        <form action="/añadir_instrucciones_jugador?id={{ request.args.get('id') }}&idioma={{ request.args.get('idioma') }}" method="POST" enctype="multipart/form-data" onsubmit="return validarArchivo()">
           <div class="form-group">
             <label class="color-texto" for="instrucciones_jugador">{{ traducciones['ARCHIVO-JUGADOR'][idioma] }}</label>
             <input class="color-texto" type="file" name="instrucciones_jugador" id="instrucciones_jugador" class="form-control-file">
@@ -40,9 +40,24 @@
             <button type="submit" class="btn-mn">{{ traducciones['BTN-CARGAR'][idioma] }}</button>
           </div>
         </form>
+        
+        <script>
+        function validarArchivo() {
+          var archivo = document.getElementById("instrucciones_jugador").files[0];
+          var tamanoMaximo = 500 * 1024 * 1024;  // Límite a 200 MB
+        
+          if (archivo && archivo.size > tamanoMaximo) {
+            alert("El archivo es demasiado grande, no se permite su subida en la aplicación.");
+            return false;  // Si el archivo es demasiado grande no se envía el formulario
+          }
+        
+          return true;  // Si el archivo tiene un tamaño válido permite enviar el formulario 
+        }
+        </script>
+        
       </div>
       <div class="col-md-4">
-        <form action="/añadir_instrucciones_instructor?id={{ request.args.get('id') }}&idioma={{ request.args.get('idioma') }}" method="POST" enctype="multipart/form-data">
+        <form action="/añadir_instrucciones_instructor?id={{ request.args.get('id') }}&idioma={{ request.args.get('idioma') }}" method="POST" enctype="multipart/form-data" onsubmit="return validarArchivo()">
           <div class="form-group">
             <label class="color-texto" for="instrucciones_instructor">{{ traducciones['ARCHIVO-INSTRUCTOR'][idioma] }}</label>
             <input class="color-texto" type="file" name="instrucciones_instructor" id="instrucciones_instructor" class="form-control-file">
@@ -51,9 +66,24 @@
             <button type="submit" class="btn-mn">{{ traducciones['BTN-CARGAR'][idioma] }}</button>
           </div>
         </form>
+        <script>
+          function validarArchivo() {
+            var archivo = document.getElementById("instrucciones_jugador").files[0];
+            var tamanoMaximo = 500 * 1024 * 1024; 
+          
+            if (archivo && archivo.size > tamanoMaximo) {
+              alert("El archivo es demasiado grande, no se permite su subida en la aplicación.");
+              return false;  
+            }
+          
+            return true;  
+          }
+          </script>
       </div>
+  
+      
       <div class="col-md-4">
-        <form action="/añadir_archivo_juego?id={{ request.args.get('id') }}&idioma={{ request.args.get('idioma') }}" method="POST" enctype="multipart/form-data">
+        <form action="/añadir_archivo_juego?id={{ request.args.get('id') }}&idioma={{ request.args.get('idioma') }}" method="POST" enctype="multipart/form-data" onsubmit="return validarArchivo()">
           <div class="form-group">
             <label class="color-texto" for="archivo_juego">{{ traducciones['ARCHIVO-JUEGO'][idioma] }}</label>
             <input class="color-texto" type="file" name="archivo_juego" id="archivo_juego" class="form-control-file">
@@ -62,6 +92,20 @@
             <button type="submit" class="btn-mn">{{ traducciones['BTN-CARGAR'][idioma] }}</button>
           </div>
         </form>
+        <script>
+          function validarArchivo() {
+            var archivo = document.getElementById("instrucciones_jugador").files[0];
+            var tamanoMaximo = 500 * 1024 * 1024;
+          
+            if (archivo && archivo.size > tamanoMaximo) {
+              alert("El archivo es demasiado grande, no se permite su subida en la aplicación.");
+              return false;  
+            }
+          
+            return true; 
+          }
+          </script>
+        
       </div>
     </div>
   </div>
