@@ -416,7 +416,6 @@ def handle_exception(e):
     # traducciones = cargar_traducciones_añadir_archivos(idioma)
     if isinstance(e, RequestTimeout):
         # Se produjo un timeout
-        error_message = 'Error: Se produjo un timeout en la aplicación.'
         # return render_template('añadir_archivos.html', error=error_message, idioma=idioma, traducciones=traducciones), 500
         return redirect(url_for('inicio_get'))
 
