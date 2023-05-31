@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>{{ traducciones['INICIO'][idioma] }}</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+  <head>
+    <title>{{ traducciones['INICIO'][idioma] }}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
 
-<body class="fondos">
-  <header class="d-flex justify-content-between align-items-center p-3">
-    <a href="acerca_de?idioma={{idioma}}"><button class="btn-mn">{{ traducciones['ACERCA'][idioma] }}</button></a>
-    <img src="/static/img/logo_UBU.png" alt="Logo de la Universidad de Burgos" style="max-width: 7%;" class="mx-auto">
-    <div>
-      <a href="logout" class="btn-mn">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
-    </div>
-  </header>
-  <div class="container mt-5">
-    <div class="d-flex justify-content-center mb-5">
-      <h1 class="mb-5 color-texto">{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
-    </div>
+  <body class="fondos">
+    <header class="d-flex justify-content-between align-items-center p-3">
+      <a href="acerca_de?idioma={{idioma}}"><button class="btn-mn">{{ traducciones['ACERCA'][idioma] }}</button></a>
+      <img src="/static/img/logo_UBU.png" alt="Logo de la Universidad de Burgos" style="max-width: 7%;" class="mx-auto">
+      <div>
+        <a href="logout" class="btn-mn">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
+      </div>
+    </header>
+
+    <div class="container mt-5">
+      <div class="d-flex justify-content-center mb-5">
+        <h1 class="mb-5 color-texto">{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
+      </div>
 
     <div class="row justify-content-center">
       <div class="col-lg-6 col-md-8">
@@ -29,6 +30,7 @@
         {%endif%}
       </div>
     </div>
+
     <div class="row">
       <div class="col-md-4">
         <form action="/añadir_instrucciones_jugador?id={{ request.args.get('id') }}&idioma={{ request.args.get('idioma') }}" method="POST" enctype="multipart/form-data" onsubmit="return validarArchivo()">
@@ -39,25 +41,24 @@
           <div class="d-flex justify-content-center">
             <button type="submit" class="btn-mn">{{ traducciones['BTN-CARGAR'][idioma] }}</button>
           </div>
+    
+          <script>
+            function validarArchivo() {
+              var archivo = document.getElementById("instrucciones_jugador").files[0];
+              var tamanoMaximo = 200 * 1024 * 1024;  // Límite a 200 MB
+    
+              if (archivo && archivo.size > tamanoMaximo) {
+                alert("El archivo es demasiado grande, no se permite su subida en la aplicación.");
+                return false;  // Si el archivo es demasiado grande no se envía el formulario
+              }
+    
+              return true;  // Si el archivo tiene un tamaño válido permite enviar el formulario 
+            }
+          </script>
         </form>
-        
-        <script>
-        function validarArchivo() {
-          var archivo = document.getElementById("instrucciones_jugador").files[0];
-          var tamanoMaximo = 500 * 1024 * 1024;  // Límite a 200 MB
-        
-          if (archivo && archivo.size > tamanoMaximo) {
-            alert("El archivo es demasiado grande, no se permite su subida en la aplicación.");
-            return false;  // Si el archivo es demasiado grande no se envía el formulario
-          }
-        
-          return true;  // Si el archivo tiene un tamaño válido permite enviar el formulario 
-        }
-        </script>
-        
       </div>
       <div class="col-md-4">
-        <form action="/añadir_instrucciones_instructor?id={{ request.args.get('id') }}&idioma={{ request.args.get('idioma') }}" method="POST" enctype="multipart/form-data" onsubmit="return validarArchivo()">
+        <form action="/añadir_instrucciones_instructor?id={{ request.args.get('id') }}&idioma={{ request.args.get('idioma') }}" method="POST" enctype="multipart/form-data" onsubmit="return validarArchivoI()">
           <div class="form-group">
             <label class="color-texto" for="instrucciones_instructor">{{ traducciones['ARCHIVO-INSTRUCTOR'][idioma] }}</label>
             <input class="color-texto" type="file" name="instrucciones_instructor" id="instrucciones_instructor" class="form-control-file">
@@ -65,25 +66,25 @@
           <div class="d-flex justify-content-center">
             <button type="submit" class="btn-mn">{{ traducciones['BTN-CARGAR'][idioma] }}</button>
           </div>
-        </form>
-        <script>
-          function validarArchivo() {
-            var archivo = document.getElementById("instrucciones_jugador").files[0];
-            var tamanoMaximo = 500 * 1024 * 1024; 
-          
-            if (archivo && archivo.size > tamanoMaximo) {
-              alert("El archivo es demasiado grande, no se permite su subida en la aplicación.");
-              return false;  
+    
+          <script>
+            function validarArchivoI() {
+              var archivo = document.getElementById("instrucciones_instructor").files[0];
+              var tamanoMaximo = 200 * 1024 * 1024;  // Límite a 200 MB
+    
+              if (archivo && archivo.size > tamanoMaximo) {
+                alert("El archivo es demasiado grande, no se permite su subida en la aplicación.");
+                return false;  // Si el archivo es demasiado grande no se envía el formulario
+              }
+    
+              return true;  // Si el archivo tiene un tamaño válido permite enviar el formulario 
             }
-          
-            return true;  
-          }
           </script>
+        </form>
       </div>
-  
-      
+
       <div class="col-md-4">
-        <form action="/añadir_archivo_juego?id={{ request.args.get('id') }}&idioma={{ request.args.get('idioma') }}" method="POST" enctype="multipart/form-data" onsubmit="return validarArchivo()">
+        <form action="/añadir_archivo_juego?id={{ request.args.get('id') }}&idioma={{ request.args.get('idioma') }}" method="POST" enctype="multipart/form-data" onsubmit="return validarArchivoA()">
           <div class="form-group">
             <label class="color-texto" for="archivo_juego">{{ traducciones['ARCHIVO-JUEGO'][idioma] }}</label>
             <input class="color-texto" type="file" name="archivo_juego" id="archivo_juego" class="form-control-file">
@@ -91,71 +92,24 @@
           <div class="d-flex justify-content-center">
             <button type="submit" class="btn-mn">{{ traducciones['BTN-CARGAR'][idioma] }}</button>
           </div>
-        </form>
-        <script>
-          function validarArchivo() {
-            var archivo = document.getElementById("instrucciones_jugador").files[0];
-            var tamanoMaximo = 500 * 1024 * 1024;
-          
-            if (archivo && archivo.size > tamanoMaximo) {
-              alert("El archivo es demasiado grande, no se permite su subida en la aplicación.");
-              return false;  
+    
+          <script>
+            function validarArchivoA() {
+              var archivo = document.getElementById("archivo_juego").files[0];
+              var tamanoMaximo = 200 * 1024 * 1024;  // Límite a 200 MB
+    
+              if (archivo && archivo.size > tamanoMaximo) {
+                alert("El archivo es demasiado grande, no se permite su subida en la aplicación.");
+                return false;  // Si el archivo es demasiado grande no se envía el formulario
+              }
+    
+              return true;  // Si el archivo tiene un tamaño válido permite enviar el formulario 
             }
-          
-            return true; 
-          }
           </script>
-        
+        </form>
       </div>
     </div>
-  </div>
-  
-<!--
-  
-
-	<footer class="bg-light py-1 fixed-bottom">
-		<div class="container-fluid">
-			<div class="row justify-content-between">
-				<div class="col-md-3 col-12 text-left">{{ traducciones['FOOTER'][idioma] }}</div>
-				<div class="col-md-6 col-12 text-center">
-					<img src="/static/img/escudo-politecnica.gif" alt="Escudo ingeniería informática" style="max-width: 7%;">
-				</div>
-				<div class="col-md-3 col-12 text-right">Estela Victoria Ballester Delgado</div>
-			</div>
-		</div>
-	</footer>-->
-</body>
+    </div>
+  </body>
 </html>
-
-
-
-<!--
-  <!DOCTYPE html>
-<html>
-<head>
-  <title>Menú juegos</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-
-<body>
-  <header>
-    <button class="btn-header">{{ traducciones['ACERCA'][idioma] }}</button>
-    <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" class="img-UBU">
-  </header>
   
-<h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
-<form action="/añadir_instrucciones?id={{ request.args.get('id') }}&idioma={{ request.args.get('idioma') }}" method="POST" enctype="multipart/form-data">
-    <input type="file" name="archivo_juego" multiple>
-    <button type="submit">{{ traducciones['BTN-CARGAR'][idioma] }}</button>
-</form>
-
-<footer>
-  <div class="left-text-footer">{{ traducciones['FOOTER'][idioma] }}</div>
-    <img src="/static/img/escudo-politecnica.gif" alt="Escudo ingeniería informática" class="img-escudo">
-    <div class="right-text-footer">Estela Victoria Ballester Delgado</div>
-  </footer>
-</body>
-</html>
-
--->
