@@ -38,5 +38,21 @@
     "SELECCIONAR-ARCHIVO": {
         "en": "Select file",
         "es": "Seleccionar archivo"
+    },
+    "SUBIDA-EXITO": {
+        "en": "The file has been uploaded successfully",
+        "es": "El archivo se ha subido con éxito"
+    },
+    "SIN-ARCHIVO": {
+        "en": "No file selected",
+        "es": "No se seleccionó ningún archivo"
+    },
+    "ERROR-TAMAÑO": {
+        "en": "The file exceeds the maximum size allowed",
+        "es": "El archivo supera el tamaño máximo permitido"
+    },
+    "TIPO-ARCHIVO": {
+        "en": "File type not allowed",
+        "es": "Tipo de archivo no permitido"
     }
 }

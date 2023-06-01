@@ -45,6 +45,8 @@ app.config['UPLOAD_FOLDER'] = './uploads'
 
 app.config['MAX_CONTENT_LENGTH'] = 2048 * 1024 * 1024  # Establece el límite a 100 MB
 
+# Lista de extensiones permitidas
+extensiones_permitidas = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'exe', 'bat', 'docx'}
 
 """
 # Configuración de la conexión a la base de datos
@@ -423,22 +425,29 @@ def instrucciones_juego_post():
         
         filename = secure_filename(f.filename)
 
+        # Verificar si hay archivo
         if f.filename == '':
-            error = 'No se seleccionó ningún archivo.'
-            return render_template('añadir_archivos.html', error=error, idioma=idioma, traducciones=traducciones)
+            sinArchivo = cargar_traducciones_añadir_archivos(idioma)
+            return render_template('añadir_archivos.html', sinArchivo=sinArchivo, idioma=idioma, traducciones=traducciones)
 
-        # Guardar el archivo cargado en la carpeta de carga
-        ruta_archivo = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        f.save(ruta_archivo)
+        # Verificar la extensión del archivo
+        if '.' in filename and filename.rsplit('.', 1)[1].lower() in extensiones_permitidas:
+            # Guardar el archivo cargado en la carpeta de carga
+            ruta_archivo = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            f.save(ruta_archivo)
 
-        Juego.añadir_instrucciones_jugador(filename, id_juego)
+            Juego.añadir_instrucciones_jugador(filename, id_juego)
 
-        return redirect(url_for('menu_juegos_get', idioma=idioma))
+            subidaExito = cargar_traducciones_añadir_archivos(idioma)
+            return render_template('añadir_archivos.html', subidaExito=subidaExito, idioma=idioma, traducciones=traducciones)
+        else:
+            errorTipoArchivo = cargar_traducciones_añadir_archivos(idioma)
+            return render_template('añadir_archivos.html', errorTipoArchivo=errorTipoArchivo, idioma=idioma, traducciones=traducciones)
     
     except RequestEntityTooLarge:
         logging.error("Ocurrió un error en la función instrucciones_juego_post: el archivo es demasiado grande")
-        error = 'El archivo supera el tamaño máximo permitido'
-        return render_template('añadir_archivos.html', error=error, idioma=idioma, traducciones=traducciones)
+        errorTamaño = cargar_traducciones_añadir_archivos(idioma)
+        return render_template('añadir_archivos.html', errorTamaño=errorTamaño, idioma=idioma, traducciones=traducciones)
     
     except Exception as e:
         logging.error("Ocurrió un error en la función instrucciones_juego_post: %s", str(e))
@@ -460,21 +469,27 @@ def instrucciones_instructor_post():
         filename = secure_filename(f.filename)
 
         if f.filename == '':
-            error = 'No se seleccionó ningún archivo.'
+            sinArchivo = cargar_traducciones_añadir_archivos(idioma)
+            return render_template('añadir_archivos.html', sinArchivo=sinArchivo, idioma=idioma, traducciones=traducciones)
+
+        # Verificar la extensión del archivo
+        if '.' in filename and filename.rsplit('.', 1)[1].lower() in extensiones_permitidas:
+            
+            # Guardar el archivo cargado en la carpeta de carga
+            ruta_archivo = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            f.save(ruta_archivo)
+
+            Juego.añadir_instrucciones_jugador(filename, id_juego)
+
+            return redirect(url_for('menu_juegos_get', idioma=idioma))
+        else:
+            error = cargar_traducciones_añadir_archivos(idioma)
             return render_template('añadir_archivos.html', error=error, idioma=idioma, traducciones=traducciones)
 
-        # Guardar el archivo cargado en la carpeta de carga
-        ruta_archivo = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        f.save(ruta_archivo)
-
-        Juego.añadir_instrucciones_instructor(filename, id_juego)
-
-        return redirect(url_for('menu_juegos_get', idioma=idioma))
-    
     except RequestEntityTooLarge:
         logging.error("Ocurrió un error en la función instrucciones_juego_post: el archivo es demasiado grande")
-        error = 'El archivo supera el tamaño máximo permitido'
-        return render_template('añadir_archivos.html', error=error, idioma=idioma, traducciones=traducciones)
+        errorTamaño = cargar_traducciones_añadir_archivos(idioma)
+        return render_template('añadir_archivos.html', errorTamaño=errorTamaño, idioma=idioma, traducciones=traducciones)
     
     except Exception as e:
         logging.error("Ocurrió un error en la instrucciones_instructor_post: %s", str(e))
@@ -496,21 +511,27 @@ def archivo_juego_post():
         filename = secure_filename(f.filename)
 
         if f.filename == '':
-            error = 'No se seleccionó ningún archivo.'
+            sinArchivo = cargar_traducciones_añadir_archivos(idioma)
+            return render_template('añadir_archivos.html', sinArchivo=sinArchivo, idioma=idioma, traducciones=traducciones)
+
+        # Verificar la extensión del archivo
+        if '.' in filename and filename.rsplit('.', 1)[1].lower() in extensiones_permitidas:
+            
+            # Guardar el archivo cargado en la carpeta de carga
+            ruta_archivo = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            f.save(ruta_archivo)
+
+            Juego.añadir_instrucciones_jugador(filename, id_juego)
+
+            return redirect(url_for('menu_juegos_get', idioma=idioma))
+        else:
+            error = cargar_traducciones_añadir_archivos(idioma)
             return render_template('añadir_archivos.html', error=error, idioma=idioma, traducciones=traducciones)
-
-        # Guardar el archivo cargado en la carpeta de carga
-        ruta_archivo = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        f.save(ruta_archivo)
-
-        Juego.añadir_archivo_juego(filename, id_juego)
-
-        return redirect(url_for('menu_juegos_get', idioma=idioma))
     
     except RequestEntityTooLarge:
         logging.error("Ocurrió un error en la función instrucciones_juego_post: el archivo es demasiado grande")
-        error = 'El archivo supera el tamaño máximo permitido'
-        return render_template('añadir_archivos.html', error=error, idioma=idioma, traducciones=traducciones)
+        errorTamaño = cargar_traducciones_añadir_archivos(idioma)
+        return render_template('añadir_archivos.html', errorTamaño=errorTamaño, idioma=idioma, traducciones=traducciones)
     
     except Exception as e:
         logging.error("Ocurrió un error en la función archivo_juego_post: %s", str(e))

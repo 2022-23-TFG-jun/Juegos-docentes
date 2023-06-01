@@ -25,8 +25,17 @@
 
     <div class="row justify-content-center">
       <div class="col-lg-6 col-md-8">
-        {% if error %}
-          <div class="alert alert-danger text-center">{{error}}</div>
+        {% if sinArchivo %}
+          <div class="alert alert-danger text-center">{{sinArchivo['SIN-ARCHIVO'][idioma]}}</div>
+        {%endif%}
+        {% if errorTamaño %}
+        <div class="alert alert-danger text-center">{{ errorTamaño['SUBIDA-EXITO'][idioma] }}</div>
+        {%endif%}
+        {% if errorTipoArchivo %}
+        <div class="alert alert-danger text-center">{{ errorTipoArchivo['TIPO-ARCHIVO'][idioma] }}</div>
+        {%endif%}
+        {% if subidaExito %}
+          <div class="alert alert-success text-center">{{ subidaExito['SUBIDA-EXITO'][idioma] }}</div>
         {%endif%}
       </div>
     </div>
