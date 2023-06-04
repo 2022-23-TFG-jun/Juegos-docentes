@@ -30,7 +30,7 @@ def crear_tablas():
         "nombre VARCHAR(50) NOT NULL, "
         "apellido VARCHAR(50) NOT NULL, "
         "institucion VARCHAR(50) NOT NULL, "
-        "contraseña VARCHAR(50), "
+        "contraseña VARCHAR(200), "
         "rol TEXT DEFAULT 'usuario', "
         "borrado VARCHAR(5) DEFAULT 'N');"
         )
