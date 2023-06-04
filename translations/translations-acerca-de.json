@@ -1,0 +1,26 @@
+{
+    "INICIO": {
+        "en": "About",
+        "es": "Acerca de"  
+        },
+    "TITULO-INICIO": {
+            "en": "Welcome to the educational games repository",
+            "es": "Bienvenidos al repositorio de juegos docentes"
+        },
+    "TEXTO-1": {
+            "en": "TeachMePlay is a repository for teaching games that allows you to search, rate and add games to the platform.",
+            "es": "TeachMePlay es un repositorio de juegos docentes que permite buscar, puntuar y añadir juegos a la plataforma."
+        },
+    "TEXTO-2": {
+            "en": "We have three different roles: user, teacher and administrator. Each of them has different functionalities to access the information they need. If you are a user, you can access the games menu, where you can search for games through a search bar or filters. You can also request the teacher role to access more options.",
+            "es": "Contamos con tres roles distintos: usuario, profesor y administrador. Cada uno de ellos tiene distintas funcionalidades para acceder a la información que necesitan. Si eres un usuario, puedes acceder al menú de juegos, donde podrás buscar juegos a través de una barra de búsqueda o por filtros. También puedes solicitar el rol de profesor para acceder a más opciones."
+        },
+    "TEXTO-3": {
+            "en": "If you are a teacher, in addition to accessing the games menu, you will be able to add new games, modify existing games and add instructions for existing games.",
+            "es": "Si eres un profesor, además de acceder al menú de juegos, podrás añadir nuevos juegos, modificar los juegos existentes y añadir instrucciones para los juegos ya existentes."
+        },
+    "TEXTO-4": {
+            "en": "Ultimately, our goal is to provide a safe and easy-to-use platform for users to find educational games that fit their needs. If you have any questions or suggestions, please do not hesitate to contact us.",
+            "es": "En definitiva, nuestro objetivo es proporcionar una plataforma segura y fácil de usar para que los usuarios puedan encontrar juegos educativos que se ajusten a sus necesidades. Si tienes alguna pregunta o sugerencia, no dudes en ponerte en contacto con nosotros."
+        } 
+}

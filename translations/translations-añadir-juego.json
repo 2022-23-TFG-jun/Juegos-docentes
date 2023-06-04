@@ -27,6 +27,10 @@
         "en": "English",
         "es": "Inglés"
     },
+    "ES-EN": {
+        "en": "Spanish or English",
+        "es": "Español o inglés"
+    },
     "ENLACE": {
         "en": "Link:",
         "es": "Enlace:"

@@ -1,89 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>{{ traducciones['INICIO'][idioma] }}</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body class="fondos">
-    <header class="d-flex justify-content-between align-items-center p-3">
-        <a href="acerca_de?idioma={{idioma}}"><button class="btn-mn">{{ traducciones['ACERCA'][idioma] }}</button></a>
-        <img src="/static/img/logo_UBU.png" alt="Logo de la Universidad de Burgos" style="max-width: 7%;" class="mx-auto">
-        <div>
-          <a href="logout" class="btn-mn">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
-        </div>
-      </header>
-
-    <main class="container mt-5">
-        <h1 class="text-center color-texto mb-5">{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
-        <p class="text-center color-texto text-justify">{{ traducciones['TEXTO'][idioma] }}</p>
-
-
-        {% if mensaje_solicitud %}
-            <div class="alert alert-success text-center">{{ traducciones['EXITO'][idioma] }}</div>
-        {% else %}
-            <form class="text-center" action="/solicitud_profesor?idioma={{ request.args.get('idioma') }}" method="POST">
-                <button class="btn-mn" type="submit">{{ traducciones['BTN-SOLICITAR-PROFESOR'][idioma] }}</button>
-            </form>
-        {% endif %}
-    </main>
- <!-- 
-	<footer class="bg-light py-1 fixed-bottom">
-		<div class="container-fluid">
-			<div class="row justify-content-between">
-				<div class="col-md-3 col-12 text-left">{{ traducciones['FOOTER'][idioma] }}</div>
-				<div class="col-md-6 col-12 text-center">
-					<img src="/static/img/escudo-politecnica.gif" alt="Escudo ingeniería informática" style="max-width: 7%;">
-				</div>
-				<div class="col-md-3 col-12 text-right">Estela Victoria Ballester Delgado</div>
-			</div>
-		</div>
-	</footer>
--->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-</body>
+<html>
+    <head>
+        <title>{{ traducciones['INICIO'][idioma] }}</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    </head>
+    <body class="fondos">
+        <header class="d-flex justify-content-between align-items-center p-3">
+            <a href="acerca_de?idioma={{idioma}}"><button class="btn-mn">{{ traducciones['ACERCA'][idioma] }}</button></a>
+            <img src="/static/img/logo_UBU.png" alt="Logo de la Universidad de Burgos" style="max-width: 7%;" class="mx-auto">
+            <div>
+            <a href="logout" class="btn-mn">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
+            </div>
+        </header>
+        <main class="container mt-5">
+            <h1 class="text-center color-texto mb-5">{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
+            <p class="text-center color-texto text-justify">{{ traducciones['TEXTO'][idioma] }}</p>
+            {% if mensaje_solicitud %}
+                <div class="alert alert-success text-center">{{ traducciones['EXITO'][idioma] }}</div>
+            {% else %}
+                <form class="text-center" action="/solicitud_profesor?idioma={{ request.args.get('idioma') }}" method="POST">
+                    <button class="btn-mn" type="submit">{{ traducciones['BTN-SOLICITAR-PROFESOR'][idioma] }}</button>
+                </form>
+            {% endif %}
+        </main>
+    </body>
 </html>
-
-
-<!--
-
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Contacto</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <header>
-        <button class="btn-header">{{ traducciones['ACERCA'][idioma] }}</button>
-        <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" class="img-UBU">
-    </header>
-
-    <main>
-        <h1>¿Eres profesor? Solicita el rol de profesor para poder gestionar los juegos
-        </h1>
-
-    </main>
-
-    {% if mensaje_solicitud %}
-        <p>{{ mensaje_solicitud }}</p>
-    {% else %}
-        <form action="/solicitud_profesor?idioma={{ request.args.get('idioma') }}" method="POST">
-            <input type="submit" value="Solicitar rol de profesor">
-        </form>
-    {% endif %}
-  
-    <footer>
-        <div class="left-text-footer">{{ traducciones['FOOTER'][idioma] }}</div>
-        <img src="/static/img/escudo-politecnica.gif" alt="Escudo ingeniería informática" class="img-escudo">
-        <div class="right-text-footer">Estela Victoria Ballester Delgado</div>
-    </footer>
-</body>
-</html>
--->

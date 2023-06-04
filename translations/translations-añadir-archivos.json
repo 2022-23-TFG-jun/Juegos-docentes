@@ -41,18 +41,22 @@
     },
     "SUBIDA-EXITO": {
         "en": "The file has been uploaded successfully",
-        "es": "El archivo se ha subido con éxito"
+        "es": "El archivo se ha subido con éxito."
     },
     "SIN-ARCHIVO": {
         "en": "No file selected",
-        "es": "No se seleccionó ningún archivo"
-    },
-    "ERROR-TAMAÑO": {
-        "en": "The file exceeds the maximum size allowed",
-        "es": "El archivo supera el tamaño máximo permitido"
+        "es": "No se seleccionó ningún archivo."
     },
     "TIPO-ARCHIVO": {
-        "en": "File type not allowed",
-        "es": "Tipo de archivo no permitido"
+        "en": "File type not allowed. Only file types are allowed: 'txt', 'pdf', 'png', 'jpg', 'jpeg', 'exe', 'bat' and 'docx'.",
+        "es": "Tipo de archivo no permitido. Solo se permiten archivos tipo: 'txt', 'pdf', 'png', 'jpg', 'jpeg', 'exe', 'bat' y 'docx'."
+    },
+    "NOMBRE-ARCHIVO": {
+        "en": "File name not allowed. It's too long.",
+        "es": "Nombre de archivo no permitido. Es demasiado largo."
+    },
+    "ARCHIVO-GRANDE": {
+        "en": "The file is too big, it is not allowed to be uploaded in the application.",
+        "es": "El archivo es demasiado grande, no se permite su subida en la aplicación."
     }
 }

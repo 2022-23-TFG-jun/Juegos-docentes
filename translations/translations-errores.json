@@ -1,26 +1,26 @@
 {
     "USUARIO-EXISTE": {
-        "en": "Username already exist",
-        "es": "El nombre de usuario ya existe"
+        "en": "Username already exist.",
+        "es": "El nombre de usuario ya existe."
     },
     "CONTRASEÑA": {
-        "en": "The password must have at least 8 characters, a number, a capital letter and a symbol",
-        "es": "La contraseña debe tener al menos 8 caracteres, un número, una mayúscula y un símbolo"
+        "en": "The password must have at least 8 characters, a number, a capital letter and a symbol.",
+        "es": "La contraseña debe tener al menos 8 caracteres, un número, una mayúscula y un símbolo."
     },
     "NO-COINCIDEN": {
-        "en": "Passwords do not match",
-        "es": "Las contraseñas no coinciden"
+        "en": "Passwords do not match.",
+        "es": "Las contraseñas no coinciden."
     },
     "LOGIN-INCORRECTO": {
-        "en": "Username or password incorrect",
-        "es": "Nombre de usuario o contraseña incorrectos"
+        "en": "Username or password incorrect.",
+        "es": "Nombre de usuario o contraseña incorrectos."
     },
     "LOGIN-REPETIDO": {
-        "en": "Username or password incorrect. Several consecutive failed attempts. Account locked for 60 seconds",
-        "es": "Nombre de usuario o contraseña incorrectos. Varios intentos consecutivos fallidos. Cuenta bloqueada durante 60 segundos"
+        "en": "Username or password incorrect. Several consecutive failed attempts. Account locked for 60 seconds.",
+        "es": "Nombre de usuario o contraseña incorrectos. Varios intentos consecutivos fallidos. Cuenta bloqueada durante 60 segundos."
     },
     "NO-BUSQUEDA": {
-        "en": "No search results found",
-        "es": "No se encontraron resultados de la búsqueda"
+        "en": "No search results found.",
+        "es": "No se encontraron resultados de la búsqueda."
     }
 }

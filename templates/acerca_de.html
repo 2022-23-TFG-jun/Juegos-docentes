@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Trabajo de Fin de Grado del grado de Ingeniería Informática</title>
+    <title>{{ traducciones['INICIO'][idioma] }}</title>
     <meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
@@ -10,14 +10,14 @@
 	<body class="fondos">
     <div class="container my-5">
       <div class="d-flex justify-content-center">
-        <h1 class="mb-5 color-texto">Bienvenidos al repositorio de juegos docentes</h1>
+        <h1 class="mb-5 color-texto">{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
       </div>
       <div class="row">
         <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-          <p class="lead color-texto">TeachMePlay es un repositorio de juegos docentes que permite buscar, puntuar y añadir juegos a la plataforma.</p>
-          <p class="color-texto">Contamos con tres roles distintos: usuario, profesor y administrador. Cada uno de ellos tiene distintas funcionalidades para acceder a la información que necesitan. Si eres un usuario, puedes acceder al menú de juegos, donde podrás buscar juegos a través de una barra de búsqueda o por filtros. También puedes solicitar el rol de profesor para acceder a más opciones.</p>
-          <p class="color-texto">Si eres un profesor, además de acceder al menú de juegos, podrás añadir nuevos juegos, modificar los juegos existentes y añadir instrucciones para los juegos ya existentes.</p>
-          <p class="color-texto">En definitiva, nuestro objetivo es proporcionar una plataforma segura y fácil de usar para que los usuarios puedan encontrar juegos educativos que se ajusten a sus necesidades. Si tienes alguna pregunta o sugerencia, no dudes en ponerte en contacto con nosotros.</p>
+          <p class="lead color-texto">{{ traducciones['TEXTO-1'][idioma] }}</p>
+          <p class="color-texto">{{ traducciones['TEXTO-2'][idioma] }}</p>
+          <p class="color-texto">{{ traducciones['TEXTO-3'][idioma] }}</p>
+          <p class="color-texto">{{ traducciones['TEXTO-4'][idioma] }}</p>
         </div>
       </div>
     </div>

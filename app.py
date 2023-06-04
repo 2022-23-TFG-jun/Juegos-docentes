@@ -1,16 +1,21 @@
-import psycopg2
 from flask import Flask, request, redirect, render_template, url_for
 from flask_login import LoginManager, login_user, current_user, login_required, logout_user
 from werkzeug.security import check_password_hash
+from datetime import datetime, timedelta
+import math
+from flask import session
+import os
+from werkzeug.utils import secure_filename
+from flask import send_file
+import logging
 from src.usuario import Usuario
 from src.juego import Juego
 from src.solicitud import Solicitud
 from src.valoracion import Valoracion
 from src.busqueda import obtener_resultados_busqueda
-from datetime import datetime, timedelta
-import math
 from translations.translations import (
-    cargar_traducciones_inicio, 
+    cargar_traducciones_inicio,
+    cargar_traducciones_acerca_de,  
     cargar_traducciones_login, 
     cargar_traducciones_registro, 
     cargar_traducciones_menu_juegos, 
@@ -28,36 +33,14 @@ from translations.translations import (
     cargar_traducciones_añadir_valoracion
 )
 
-from flask import session
-import os
-from werkzeug.utils import secure_filename
-from flask import send_file
-import logging
-
-from werkzeug.exceptions import RequestEntityTooLarge
-
 app = Flask(__name__)
-app.secret_key = 'mysecretkey'
+app.secret_key = os.urandom(20)
 
 # Carpeta para guardar archivos subidos
 app.config['UPLOAD_FOLDER'] = './uploads'
 
-
-app.config['MAX_CONTENT_LENGTH'] = 2048 * 1024 * 1024  # Establece el límite a 100 MB
-
 # Lista de extensiones permitidas
 extensiones_permitidas = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'exe', 'bat', 'docx'}
-
-"""
-# Configuración de la conexión a la base de datos
-with app.app_context():
-    if not tabla_usuarios_existe():
-        crear_tablas()
-    conectar()
-"""
-
-
-#crear_tablas()
 
 # Configurar el registro de errores
 logging.basicConfig(
@@ -66,8 +49,8 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
-app.config['MAX_LOGIN_ATTEMPTS'] = 3 # Número máximo de intentos de login
-app.config['LOGIN_BLOCK_DURATION'] = 60  # Bloqueo de 1 minuto
+app.config['MAX_INTENTOS_LOGIN'] = 3 # Número máximo de intentos de login
+app.config['DURACION_BLOQUEO_LOGIN'] = 60  # Bloqueo de 1 minuto
 intentos_login = {}  # Diccionario para llevar el registro de intentos de inicio de sesión
 usuarios_bloqueados = {} # Diccionario para llevar el registro de usuarios y el tiempo de inicio del bloqueo de cuenta
 
@@ -76,8 +59,9 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login_get' # Vista para usuarios no autenticados
 
+# Mantener sesión del usuario
 @login_manager.user_loader
-def load_user(usuario_id):
+def cargar_usuario(usuario_id):
     return Usuario.get(usuario_id)
 
 @app.route('/', methods=['GET'])
@@ -139,11 +123,11 @@ def login_post():
             intentos_login[usuario] += 1
 
             # Si se supera el número máximo de intentos fallidos, bloqueamos al usuario
-            if intentos_login[usuario] >= app.config['MAX_LOGIN_ATTEMPTS']:
-                usuarios_bloqueados[usuario] = datetime.now() + timedelta(seconds=app.config['LOGIN_BLOCK_DURATION'])
+            if intentos_login[usuario] >= app.config['MAX_INTENTOS_LOGIN']:
+                usuarios_bloqueados[usuario] = datetime.now() + timedelta(seconds=app.config['DURACION_BLOQUEO_LOGIN'])
 
             if intentos_login[usuario] > 2:
-                #Obtener traducciones de errores para el idioma específico
+                # Obtener traducciones de errores para el idioma específico
                 error_login_repetido = cargar_traducciones_errores(idioma)
                 return render_template('login.html', error_login_repetido=error_login_repetido, idioma=idioma, traducciones=traducciones)
             
@@ -235,7 +219,7 @@ def menu_juegos_get():
         idioma = request.args.get('idioma', 'es')
         traducciones = cargar_traducciones_menu_juegos(idioma)
 
-        # Obtener el número de página actual de la consulta de la cadena de consulta
+        # Obtener el número de página actual
         pagina_actual = request.args.get('pagina', 1, type=int)
 
         # Número máximo de juegos por página
@@ -260,7 +244,7 @@ def menu_juegos_get():
         # Obtener el rol del usuario autenticado desde la sesión
         rol_usuario_autenticado = session['rol_usuario']
 
-        #Comprueba rol de usuario autenticado para obtener funciones específicas
+        # Comprueba rol de usuario autenticado para obtener funciones específicas
         if rol_usuario_autenticado == 'usuario':
             return render_template('menu_juegos_usuario.html', juegos=juegos, pagina_actual=pagina_actual, total_paginas=total_paginas, traducciones=traducciones, idioma=idioma, juegos_valorados_actual=juegos_valorados_actual)
         elif rol_usuario_autenticado == 'administrador':
@@ -280,10 +264,8 @@ def menu_juegos_post():
         idiomaF = request.form['idiomaF']
         puntuacion = request.form['puntuacion']
 
-        # Obtener idioma elegido
+        # Obtener idioma elegido y sus traducciones
         idioma = request.args.get('idioma', 'es')
-
-        #Obtener traducciones para el idioma específico
         traducciones = cargar_traducciones_menu_juegos(idioma)
 
         if busqueda == "" and idiomaF == "" and puntuacion == "":
@@ -294,7 +276,7 @@ def menu_juegos_post():
             if(request.args.get('puntuacion')):
                 puntuacion = request.args.get('puntuacion')
 
-        # Obtener el número de página actual de la consulta de la cadena de consulta
+        # Obtener el número de página actual
         pagina_actual = request.args.get('pagina', 1, type=int)
 
         # Número máximo de juegos por página
@@ -362,29 +344,22 @@ def añadir_juego_post():
         idiomaN = request.form['idiomaN']
         enlace = request.form['enlace']
         puntuacion = request.form['puntuacion']
-
         disciplina = request.form['disciplina']
         naturaleza = request.form['naturaleza']
         precio = request.form['precio']
         instrucciones = request.form['instrucciones']
         notas_instructor = request.form['notas_instructor']
-
         objetivos = request.form['objetivos']
         espacio_control = request.form['espacio_control']
-
         objetivos_principales = request.form['objetivos_principales']
         objetivos_secundarios = request.form['objetivos_secundarios']
-
         estructura_sesiones = request.form['estructura_sesiones']
         aspectos_adicionales = request.form['aspectos_adicionales']
-
         entretenimiento = request.form['entretenimiento']
         aprendizaje = request.form['aprendizaje']
         complejidad_alumno = request.form['complejidad_alumno']
         complejidad_instructores = request.form['complejidad_instructores']
-        
         youtube_url = request.form['youtube_url']
-
         fecha_creacion = datetime.now()
         id_usuario_creacion = current_user.id
 
@@ -409,7 +384,7 @@ def instrucciones_juego_get():
     except Exception as e:
         logging.error("Ocurrió un error en la función instrucciones_juego_get: %s", str(e))
         return redirect(url_for('inicio_get'))
-
+    
 @app.route('/añadir_instrucciones_jugador', methods=['POST'])
 def instrucciones_juego_post():
     try:
@@ -424,7 +399,7 @@ def instrucciones_juego_post():
         id_juego = request.args.get('id')
         
         filename = secure_filename(f.filename)
-
+    
         # Verificar si hay archivo
         if f.filename == '':
             sinArchivo = cargar_traducciones_añadir_archivos(idioma)
@@ -432,26 +407,27 @@ def instrucciones_juego_post():
 
         # Verificar la extensión del archivo
         if '.' in filename and filename.rsplit('.', 1)[1].lower() in extensiones_permitidas:
-            # Guardar el archivo cargado en la carpeta de carga
-            ruta_archivo = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            f.save(ruta_archivo)
+            if len(filename) < 50:
+                # Guardar el archivo cargado en la carpeta de carga
+                ruta_archivo = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                f.save(ruta_archivo)
+                Juego.añadir_instrucciones_jugador(filename, id_juego)
 
-            Juego.añadir_instrucciones_jugador(filename, id_juego)
-
-            subidaExito = cargar_traducciones_añadir_archivos(idioma)
-            return render_template('añadir_archivos.html', subidaExito=subidaExito, idioma=idioma, traducciones=traducciones)
+                subidaExito = cargar_traducciones_añadir_archivos(idioma)
+                return render_template('añadir_archivos.html', subidaExito=subidaExito, idioma=idioma, traducciones=traducciones)
+            else:
+                errorNombreArchivo = cargar_traducciones_añadir_archivos(idioma)
+                return render_template('añadir_archivos.html', errorNombreArchivo=errorNombreArchivo, idioma=idioma, traducciones=traducciones)
+        
         else:
-            errorTipoArchivo = cargar_traducciones_añadir_archivos(idioma)
-            return render_template('añadir_archivos.html', errorTipoArchivo=errorTipoArchivo, idioma=idioma, traducciones=traducciones)
-    
-    except RequestEntityTooLarge:
-        logging.error("Ocurrió un error en la función instrucciones_juego_post: el archivo es demasiado grande")
-        errorTamaño = cargar_traducciones_añadir_archivos(idioma)
-        return render_template('añadir_archivos.html', errorTamaño=errorTamaño, idioma=idioma, traducciones=traducciones)
-    
+                errorTipoArchivo = cargar_traducciones_añadir_archivos(idioma)
+                return render_template('añadir_archivos.html', errorTipoArchivo=errorTipoArchivo, idioma=idioma, traducciones=traducciones)
     except Exception as e:
+        # Obtener idioma elegido y sus traducciones
+        idioma = request.args.get('idioma', 'es')
+        traducciones = cargar_traducciones_inicio(idioma)
         logging.error("Ocurrió un error en la función instrucciones_juego_post: %s", str(e))
-        return redirect(url_for('inicio_get'))
+        return render_template('inicio.html', errorAplicacion="Error", traducciones=traducciones, idioma=idioma)
 
 @app.route('/añadir_instrucciones_instructor', methods=['POST'])
 def instrucciones_instructor_post():
@@ -468,33 +444,35 @@ def instrucciones_instructor_post():
         
         filename = secure_filename(f.filename)
 
+        # Verificar si hay archivo
         if f.filename == '':
             sinArchivo = cargar_traducciones_añadir_archivos(idioma)
             return render_template('añadir_archivos.html', sinArchivo=sinArchivo, idioma=idioma, traducciones=traducciones)
 
         # Verificar la extensión del archivo
         if '.' in filename and filename.rsplit('.', 1)[1].lower() in extensiones_permitidas:
-            
-            # Guardar el archivo cargado en la carpeta de carga
-            ruta_archivo = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            f.save(ruta_archivo)
+            if len(filename) < 50:
+                # Guardar el archivo cargado en la carpeta de carga
+                ruta_archivo = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                f.save(ruta_archivo)
+                Juego.añadir_instrucciones_instructor(filename, id_juego)
 
-            Juego.añadir_instrucciones_jugador(filename, id_juego)
-
-            return redirect(url_for('menu_juegos_get', idioma=idioma))
+                subidaExito = cargar_traducciones_añadir_archivos(idioma)
+                return render_template('añadir_archivos.html', subidaExito=subidaExito, idioma=idioma, traducciones=traducciones)
+            else:
+                errorNombreArchivo = cargar_traducciones_añadir_archivos(idioma)
+                return render_template('añadir_archivos.html', errorNombreArchivo=errorNombreArchivo, idioma=idioma, traducciones=traducciones)
+        
         else:
-            error = cargar_traducciones_añadir_archivos(idioma)
-            return render_template('añadir_archivos.html', error=error, idioma=idioma, traducciones=traducciones)
-
-    except RequestEntityTooLarge:
-        logging.error("Ocurrió un error en la función instrucciones_juego_post: el archivo es demasiado grande")
-        errorTamaño = cargar_traducciones_añadir_archivos(idioma)
-        return render_template('añadir_archivos.html', errorTamaño=errorTamaño, idioma=idioma, traducciones=traducciones)
-    
+                errorTipoArchivo = cargar_traducciones_añadir_archivos(idioma)
+                return render_template('añadir_archivos.html', errorTipoArchivo=errorTipoArchivo, idioma=idioma, traducciones=traducciones)
     except Exception as e:
-        logging.error("Ocurrió un error en la instrucciones_instructor_post: %s", str(e))
-        return redirect(url_for('inicio_get'))
-
+        # Obtener idioma elegido y sus traducciones
+        idioma = request.args.get('idioma', 'es')
+        traducciones = cargar_traducciones_inicio(idioma)
+        logging.error("Ocurrió un error en la función instrucciones_instructor_post: %s", str(e))
+        return render_template('inicio.html', errorAplicacion="Error", traducciones=traducciones, idioma=idioma)
+    
 @app.route('/añadir_archivo_juego', methods=['POST'])
 def archivo_juego_post():
     try:
@@ -510,32 +488,34 @@ def archivo_juego_post():
         
         filename = secure_filename(f.filename)
 
+        # Verificar si hay archivo
         if f.filename == '':
             sinArchivo = cargar_traducciones_añadir_archivos(idioma)
             return render_template('añadir_archivos.html', sinArchivo=sinArchivo, idioma=idioma, traducciones=traducciones)
 
         # Verificar la extensión del archivo
         if '.' in filename and filename.rsplit('.', 1)[1].lower() in extensiones_permitidas:
-            
-            # Guardar el archivo cargado en la carpeta de carga
-            ruta_archivo = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            f.save(ruta_archivo)
+            if len(filename) < 50:
+                # Guardar el archivo cargado en la carpeta de carga
+                ruta_archivo = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                f.save(ruta_archivo)
+                Juego.añadir_archivo_juego(filename, id_juego)
 
-            Juego.añadir_instrucciones_jugador(filename, id_juego)
-
-            return redirect(url_for('menu_juegos_get', idioma=idioma))
+                subidaExito = cargar_traducciones_añadir_archivos(idioma)
+                return render_template('añadir_archivos.html', subidaExito=subidaExito, idioma=idioma, traducciones=traducciones)
+            else:
+                errorNombreArchivo = cargar_traducciones_añadir_archivos(idioma)
+                return render_template('añadir_archivos.html', errorNombreArchivo=errorNombreArchivo, idioma=idioma, traducciones=traducciones)
+        
         else:
-            error = cargar_traducciones_añadir_archivos(idioma)
-            return render_template('añadir_archivos.html', error=error, idioma=idioma, traducciones=traducciones)
-    
-    except RequestEntityTooLarge:
-        logging.error("Ocurrió un error en la función instrucciones_juego_post: el archivo es demasiado grande")
-        errorTamaño = cargar_traducciones_añadir_archivos(idioma)
-        return render_template('añadir_archivos.html', errorTamaño=errorTamaño, idioma=idioma, traducciones=traducciones)
-    
+                errorTipoArchivo = cargar_traducciones_añadir_archivos(idioma)
+                return render_template('añadir_archivos.html', errorTipoArchivo=errorTipoArchivo, idioma=idioma, traducciones=traducciones)
     except Exception as e:
+        # Obtener idioma elegido y sus traducciones
+        idioma = request.args.get('idioma', 'es')
+        traducciones = cargar_traducciones_inicio(idioma)
         logging.error("Ocurrió un error en la función archivo_juego_post: %s", str(e))
-        return redirect(url_for('inicio_get'))
+        return render_template('inicio.html', errorAplicacion="Error", traducciones=traducciones, idioma=idioma)
 
 @app.route('/descargar_instrucciones')
 def descargar_instrucciones():
@@ -545,8 +525,11 @@ def descargar_instrucciones():
         
         return send_file(PATH, as_attachment=True)
     except Exception as e:
+        # Obtener idioma elegido y sus traducciones
+        idioma = request.args.get('idioma', 'es')
+        traducciones = cargar_traducciones_inicio(idioma)
         logging.error("Ocurrió un error en la función descargar_instrucciones: %s", str(e))
-        return redirect(url_for('inicio_get'))
+        return render_template('inicio.html', errorAplicacion="Error", traducciones=traducciones, idioma=idioma)
 
 @app.route('/visualizar_juego', methods=['GET'])
 @login_required
@@ -596,27 +579,21 @@ def modificar_juego_post():
         idiomaN = request.form['idiomaN']
         enlace = request.form['enlace']
         puntuacion = request.form['puntuacion']
-
         disciplina = request.form['disciplina']
         naturaleza = request.form['naturaleza']
         precio = request.form['precio']
         instrucciones = request.form['instrucciones']
         notas_instructor = request.form['notas_instructor']
-
         objetivos = request.form['objetivos']
         espacio_control = request.form['espacio_control']
-
         objetivos_principales = request.form['objetivos_principales']
         objetivos_secundarios = request.form['objetivos_secundarios']
-
         estructura_sesiones = request.form['estructura_sesiones']
         aspectos_adicionales = request.form['aspectos_adicionales']
-
         entretenimiento = request.form['entretenimiento']
         aprendizaje = request.form['aprendizaje']
         complejidad_alumno = request.form['complejidad_alumno']
         complejidad_instructores = request.form['complejidad_instructores']
-        
         youtube_url = request.form['youtube_url']
 
         # Obtener id del juego elegido
@@ -730,7 +707,6 @@ def administrar_solicitudes_post():
         elif accion == 'rechazar':
             Solicitud.rechazar_solicitud(id_usuario_solicitud)
         
-        # return render_template('administrar_solicitudes.html') #, traducciones=traducciones, idioma=idioma)
         return redirect(url_for('administrar_solicitudes_get', idioma=idioma))
     except Exception as e:
         logging.error("Ocurrió un error en la función administrar_solicitudes_post: %s", str(e))
@@ -868,7 +844,7 @@ def acerca_de_get():
     try:
         # Obtener idioma elegido y sus traducciones
         idioma = request.args.get('idioma', 'es')
-        traducciones = cargar_traducciones_inicio(idioma)
+        traducciones = cargar_traducciones_acerca_de(idioma)
 
         return render_template('acerca_de.html', traducciones=traducciones, idioma=idioma)
     except Exception as e:
@@ -888,4 +864,3 @@ def logout():
 # Ejecutar la aplicación Flask
 if __name__ == '__main__':
     app.run()
-

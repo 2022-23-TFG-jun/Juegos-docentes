@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Administrar solicitudes</title>
+    <title>{{ traducciones['TITULO-INICIO'][idioma] }}</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   </head>
-
 	<body class="fondos">
     <header class="d-flex justify-content-between align-items-center p-3">
       <a href="acerca_de?idioma={{idioma}}"><button class="btn-mn">{{ traducciones['ACERCA'][idioma] }}</button></a>
@@ -16,7 +15,6 @@
         <a href="logout" class="btn-mn">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
       </div>
     </header>
-
     <main class="container my-5">
       <div class="d-flex justify-content-center">
         <h1 class="mb-5 color-texto">{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
@@ -43,12 +41,12 @@
                 <td>
                   <div class="btn-group">
                     <form action="/administrar_solicitudes?idioma={{ request.args.get('idioma') }}" method="POST">
-                      <input type="hidden" name="id_usuario_solicitud" value="{{ solicitud[0] }}">
+                      <input type="hidden" name="id_usuario_solicitud" value="{{ solicitud[2] }}">
                       <input type="hidden" name="accion" value="aceptar">
                       <button class="btn-aceptar" type="submit">{{ traducciones['ACEPTAR'][idioma] }}</button>
                     </form>
                     <form action="/administrar_solicitudes?idioma={{ request.args.get('idioma') }}" method="POST">
-                      <input type="hidden" name="id_usuario_solicitud" value="{{ solicitud[0] }}">
+                      <input type="hidden" name="id_usuario_solicitud" value="{{ solicitud[2] }}">
                       <input type="hidden" name="accion" value="rechazar">
                       <button class="btn-rechazar" type="submit">{{ traducciones['RECHAZAR'][idioma] }}</button>
                     </form>
@@ -61,75 +59,5 @@
       </div>
       <div style="margin-bottom: 100px;"></div>
     </main>
-    <!--
-    <footer class="bg-light py-1 fixed-bottom">
-      <div class="container-fluid">
-        <div class="row justify-content-between">
-          <div class="col-md-3 col-12 text-left">{{ traducciones['FOOTER'][idioma] }}</div>
-          <div class="col-md-6 col-12 text-center">
-            <img src="/static/img/escudo-politecnica.gif" alt="Escudo ingeniería informática" style="max-width: 7%;">
-          </div>
-          <div class="col-md-3 col-12 text-right">Estela Victoria Ballester Delgado</div>
-        </div>
-      </div>
-    </footer>-->
-
-<!--
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Administrar solicitudes</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-  </head>
-
-  <body>
-    <header>
-      <button class="btn-header">{{ traducciones['ACERCA'][idioma] }}</button>
-      <img src="/static/img/UBU-logo.jpg" alt="Logo de la Universidad de Burgos" class="img-UBU">
-    </header>
-
-    <h1>{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
-    <div class="card_visualizar_juego">
-      <table>
-        <thead>
-          <tr>
-            <th>{{ traducciones['ID'][idioma] }}</th>
-            <th>{{ traducciones['ESTADO'][idioma] }}</th>
-            <th>{{ traducciones['ID-USUARIO'][idioma] }}</th>
-            <th>{{ traducciones['FECHA'][idioma] }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for solicitud in solicitudes %}
-            <tr>
-              <td>{{ solicitud[0] }}</td>
-              <td>{{ solicitud[1] }}</td>
-              <td>{{ solicitud[2] }}</td>
-              <td>{{ solicitud[3] }}</td>
-              <td>
-                <form class="form-flecha" action="/administrar_solicitudes?idioma={{ request.args.get('idioma') }}" method="POST">
-                  <input type="hidden" name="id_usuario_solicitud" value="{{ solicitud[0] }}">
-                  <input type="hidden" name="accion" value="aceptar">
-                  <button class="boton-aceptar" type="submit">{{ traducciones['ACEPTAR'][idioma] }}</button>
-                </form>
-                
-                <form class="form-flecha" action="/administrar_solicitudes?idioma={{ request.args.get('idioma') }}" method="POST">
-                  <input type="hidden" name="id_usuario_solicitud" value="{{ solicitud[0] }}">
-                  <input type="hidden" name="accion" value="rechazar">
-                  <button class="boton-rechazar" type="submit">{{ traducciones['RECHAZAR'][idioma] }}</button>
-                </form>
-              </td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-    <footer>
-      <div class="left-text-footer">{{ traducciones['FOOTER'][idioma] }}</div>
-      <img src="/static/img/escudo-politecnica.gif" alt="Escudo ingeniería informática" class="img-escudo">
-      <div class="right-text-footer">Estela Victoria Ballester Delgado</div>
-  </footer>
   </body>
 </html>
-
--->

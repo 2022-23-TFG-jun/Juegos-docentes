@@ -34,6 +34,13 @@
     "FOOTER": {
         "en": "Final Degree Project © 2023",
         "es": "Trabajo de Fin de Grado © 2023"
+    },
+    "ERROR-APLICACION": {
+        "en": "There was an error in the application.",
+        "es": "Se ha producido un error en la aplicación."
+    },
+    "AYUDA": {
+        "en": "Help",
+        "es": "Ayuda"
     }
-  }
-  
+}

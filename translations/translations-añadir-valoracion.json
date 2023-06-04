@@ -29,6 +29,10 @@
             "en": "Send",
             "es": "Enviar"
         },
+    "ESCRIBIR-RESEÑA": {
+            "en": "Write a review...",
+            "es": "Escribe una reseña..."
+        },
     "FOOTER": {
             "en": "Final Degree Project © 2023",
             "es": "Trabajo de Fin de Grado © 2023"

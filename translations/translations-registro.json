@@ -1,7 +1,7 @@
 {
     "TITULO-INICIO": {
-        "en": "Log in",
-        "es": "Crea una cuenta"
+        "en": "Sign up",
+        "es": "Crear cuenta"
     },
     "USUARIO": {
         "en": "Username:",
@@ -46,5 +46,9 @@
     "FOOTER": {
         "en": "Final Degree Project © 2023",
         "es": "Trabajo de Fin de Grado © 2023"
+    },
+    "ERROR-APLICACION": {
+        "en": "There was an error in the application. Cannot upload file.",
+        "es": "Se ha producido un error en la aplicación. No se puede subir el archivo."
     }
   }

@@ -7,7 +7,6 @@
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	</head>
-
 	<body class="fondos">
 		<header class="d-flex justify-content-between align-items-center p-3">
 			<a href="acerca_de?idioma={{idioma}}"><button class="btn-mn">{{ traducciones['ACERCA'][idioma] }}</button></a>
@@ -16,39 +15,33 @@
 				<a href="logout" class="btn-mn">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
 			</div>
 		</header>
-
 		<div class="container my-5">
 			<div class="d-flex justify-content-center">
 				<h1 class="mb-5 color-texto">{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
 			</div>
-
 			<form action="/añadir_juego?idioma={{ request.args.get('idioma') }}" method="POST">
-
 				<div class="form-group">
 					<label class="color-texto" for="nombre_juego">{{ traducciones['NOMBRE_JUEGO'][idioma] }}</label>
-					<input type="text" class="form-control shadow bg-transparent color-texto" id="nombre_juego" name="nombre_juego" required>
+					<input type="text" class="form-control shadow bg-transparent color-texto" id="nombre_juego" name="nombre_juego" maxlength="40" required>
 				</div>			
-
 				<div class="form-group">
 					<label  class="color-texto"for="descripcion">{{ traducciones['DESCRIPCION'][idioma] }}</label>
 					<textarea class="form-control shadow bg-transparent color-texto" id="descripcion" name="descripcion" rows="4" cols="50" 
 						placeholder="{{ traducciones['ESCRIBIR-DESCRIPCION'][idioma] }}" required></textarea>
 				</div>
-
 				<div class="form-group">
 					<label class="color-texto" for="idiomaN">{{ traducciones['IDIOMA'][idioma] }}</label>
 					<select class="form-control shadow bg-transparent color-texto custom-select" id="idiomaN" name="idiomaN" required>
 						<option value="">{{ traducciones['OPCION'][idioma] }}</option>
 						<option value="{{ traducciones['ES'][idioma] }}">{{ traducciones['ES'][idioma] }}</option>
 						<option value="{{ traducciones['EN'][idioma] }}">{{ traducciones['EN'][idioma] }}</option>
+						<option value="{{ traducciones['ES-EN'][idioma] }}">{{ traducciones['ES-EN'][idioma] }}</option>
 					</select>
 				</div>
-
 				<div class="form-group">
 					<label class="color-texto" for="enlace">{{ traducciones['ENLACE'][idioma] }}</label>
 					<input type="text" class="form-control shadow bg-transparent color-texto" id="enlace" name="enlace" required>
 				</div>
-				
 				<div class="form-group">
 					<label class="color-texto" for="puntuacion">{{ traducciones['PUNTUACION'][idioma] }}</label>
 					<select class="form-control shadow bg-transparent color-texto custom-select" id="puntuacion" name="puntuacion" required>
@@ -60,17 +53,13 @@
 						<option value="1.0">1.0</option>
 					</select>
 				</div>
-				
 				<div class="d-flex justify-content-center">
 					<h3 class="color-texto">{{ traducciones['TITULO-CATEGORIZACION'][idioma] }}</h3>
 				</div>
-
 				<div class="form-group">
 					<label class="color-texto" for="disciplina">{{ traducciones['DISCIPLINA'][idioma] }}</label>
-					<input type="text" class="form-control shadow bg-transparent color-texto" id="disciplina" name="disciplina" required>
+					<input type="text" class="form-control shadow bg-transparent color-texto" id="disciplina" name="disciplina" maxlength="50" required>
 				</div>
-
-
 				<div class="form-group">
 					<label class="color-texto" for="naturaleza">{{ traducciones['NATURALEZA'][idioma] }}</label>
 					<select class="form-control shadow bg-transparent color-texto custom-select" id="naturaleza" name="naturaleza" required>
@@ -79,7 +68,6 @@
 					<option value="{{ traducciones['DESCARGABLE'][idioma] }}">{{ traducciones['DESCARGABLE'][idioma] }}</option>
 					</select>
 				</div>
-
 				<div class="form-group">
 					<label class="color-texto" for="precio">{{ traducciones['PRECIO'][idioma] }}</label>
 					<select class="form-control shadow bg-transparent color-texto custom-select" id="precio" name="precio" required>
@@ -88,7 +76,6 @@
 					<option value="{{ traducciones['GRATUITO'][idioma] }}">{{ traducciones['GRATUITO'][idioma] }}</option>
 					</select>
 				</div>
-			
 				<div class="form-group">
 					<label class="color-texto" for="instrucciones">{{ traducciones['ISNTRUCCIONES_JUGADOR'][idioma] }}</label>
 					<select class="form-control shadow bg-transparent color-texto custom-select" id="instrucciones" name="instrucciones" required>
@@ -97,7 +84,6 @@
 						<option value="no">No</option>
 					</select>
 				</div>
-
 				<div class="form-group">
 					<label class="color-texto" for="notas_instructor">{{ traducciones['INSTRUCCIONES_INSTRUCTOR'][idioma] }}</label>
 					<select class="form-control shadow bg-transparent color-texto custom-select" id="notas_instructor" name="notas_instructor" required>
@@ -106,60 +92,48 @@
 						<option value="no">No</option>
 					</select>
 				</div>
-
 				<div class="d-flex justify-content-center">
 					<h3 class="color-texto">{{ traducciones['TITULO-DESCRIPCION'][idioma] }}</h3>
 				</div>
-
 				<div class="form-group">
 					<label class="color-texto" for="objetivos">{{ traducciones['OBJETIVOS'][idioma] }}</label><br>
 					<textarea class="form-control shadow bg-transparent  color-texto" id="objetivos" name="objetivos" rows="4" cols="50"
 					placeholder="{{ traducciones['ESCRIBIR-OBJETIVOS'][idioma] }}"></textarea>
 				</div>
-
 				<div class="form-group">
 					<label class="color-texto" for="espacio_control">{{ traducciones['ESPACIO_CONTROL'][idioma] }}</label><br>
 					<textarea class="form-control shadow bg-transparent  color-texto" id="espacio_control" name="espacio_control" rows="4" cols="50"
 					placeholder="{{ traducciones['ESCRIBIR-CONTROL'][idioma] }}"></textarea>
 				</div>
-
-
 				<div class="d-flex justify-content-center">
 					<h3 class="color-texto">{{ traducciones['TITULO-APRENDIZAJE'][idioma] }}</h3>
 				</div>
-
 				<div class="form-group">
 					<label class="color-texto" for="objetivos_principales">{{ traducciones['OBJETIVOS_PRINCIPALES'][idioma] }}</label><br>
 					<textarea class="form-control shadow bg-transparent  color-texto" id="objetivos_principales" name="objetivos_principales" rows="4" cols="50"
 					placeholder="{{ traducciones['ESCRIBIR-PRINCIPALES'][idioma] }}"></textarea>
 				</div>
-
 				<div class="form-group">
 					<label class="color-texto" for="objetivos_secundarios">{{ traducciones['OBJETIVOS_SECUNDARIOS'][idioma] }}</label><br>
 					<textarea class="form-control shadow bg-transparent  color-texto" id="objetivos_secundarios" name="objetivos_secundarios" rows="4" cols="50"
 					placeholder="{{ traducciones['ESCRIBIR-SECUNDARIOS'][idioma] }}"></textarea>
 				</div>
-
 				<div class="d-flex justify-content-center">
 					<h3 class="color-texto">{{ traducciones['TITULO-ORGANIZACION'][idioma] }}</h3>
 				</div>
-				
 				<div class="form-group">
 					<label class="color-texto" for="estructura_sesiones">{{ traducciones['ESTRUCTURA'][idioma] }}</label><br>
 					<textarea class="form-control shadow bg-transparent  color-texto" id="estructura_sesiones" name="estructura_sesiones" rows="4" cols="50"
 					placeholder="{{ traducciones['ESCRIBIR-SESION'][idioma] }}"></textarea>
 				</div>
-
 				<div class="form-group">
 					<label class="color-texto" for="aspectos_adicionales">{{ traducciones['ASPECTOS'][idioma] }}</label><br>
 					<textarea class="form-control shadow bg-transparent  color-texto" id="aspectos_adicionales" name="aspectos_adicionales" rows="4" cols="50"
 					placeholder="{{ traducciones['ESCRIBIR-ASPECTOS'][idioma] }}"></textarea>
 				</div>
-
 				<div class="d-flex justify-content-center">
 					<h3 class="color-texto">{{ traducciones['TITULO-VALORACION'][idioma] }}</h3>
 				</div>
-
 				<div class="form-group">
 					<label class="color-texto" for="entretenimiento">{{ traducciones['ENTRETENIMIENTO'][idioma] }}</label>
 					<select class="form-control shadow bg-transparent color-texto custom-select" id="entretenimiento" name="entretenimiento" required>
@@ -171,7 +145,6 @@
 						<option value="{{ traducciones['MUY_BAJO'][idioma] }}">{{ traducciones['MUY_BAJO'][idioma] }}</option>
 					</select>
 				</div>
-
 				<div class="form-group">
 					<label class="color-texto" for="aprendizaje">{{ traducciones['APRENDIZAJE'][idioma] }}</label>
 					<select class="form-control shadow bg-transparent color-texto custom-select" id="aprendizaje" name="aprendizaje" required>
@@ -183,7 +156,6 @@
 						<option value="{{ traducciones['MUY_BAJO'][idioma] }}">{{ traducciones['MUY_BAJO'][idioma] }}</option>
 					</select>
 				</div>
-				
 				<div class="form-group">
 					<label class="color-texto" for="complejidad_alumno">{{ traducciones['COMPLEJIDAD_ALUMNO'][idioma] }}</label>
 					<select class="form-control shadow bg-transparent color-texto custom-select" id="complejidad_alumno" name="complejidad_alumno" required>
@@ -195,7 +167,6 @@
 						<option value="{{ traducciones['MUY_BAJO'][idioma] }}">{{ traducciones['MUY_BAJO'][idioma] }}</option>
 					</select>
 				</div>
-
 				<div class="form-group">
 					<label class="color-texto" for="complejidad_instructores">{{ traducciones['COMPLEJIDAD_INSTRUCTORES'][idioma] }}</label>
 					<select class="form-control shadow bg-transparent color-texto custom-select" id="complejidad_instructores" name="complejidad_instructores" required>
@@ -207,33 +178,18 @@
 						<option value="{{ traducciones['MUY_BAJO'][idioma] }}">{{ traducciones['MUY_BAJO'][idioma] }}</option>
 					</select>
 				</div>
-
 				<div class="d-flex justify-content-center">
 					<h3 class="color-texto">{{ traducciones['TITULO-VIDEO'][idioma] }}</h3>
 				</div>
-
 				<div class="form-group">
 					<label class="color-texto" for="youtube_url">{{ traducciones['URL'][idioma] }}</label>
 					<input type="text" class="form-control shadow bg-transparent color-texto" id="youtube_url" name="youtube_url">
 				</div>
-
 				<div class="d-flex justify-content-center">
 					<button type="submit" class="btn-mn">{{ traducciones['BTN-AÑADIR'][idioma] }}</button>
 				</div>
 				<div style="margin-bottom: 100px;"></div>
 			</form>
 		</div>
-		<!--
-		<footer class="bg-light py-1 fixed-bottom">
-			<div class="container-fluid">
-				<div class="row justify-content-between">
-					<div class="col-md-3 col-12 text-left">{{ traducciones['FOOTER'][idioma] }}</div>
-					<div class="col-md-6 col-12 text-center">
-						<img src="/static/img/escudo-politecnica.gif" alt="Escudo ingeniería informática" style="max-width: 7%;">
-					</div>
-					<div class="col-md-3 col-12 text-right">Estela Victoria Ballester Delgado</div>
-				</div>
-			</div>
-		</footer>-->
 	</body>
 </html>

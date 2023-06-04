@@ -80,3 +80,7 @@ def cargar_traducciones_añadir_valoracion(idioma):
         traducciones = json.load(f)
     return traducciones
 
+def cargar_traducciones_acerca_de(idioma):
+    with open('translations/translations-acerca-de.json', encoding='utf-8') as f:
+        traducciones = json.load(f)
+    return traducciones

@@ -23,6 +23,10 @@
         "en": "English",
         "es": "Inglés"
     },
+    "ES-EN": {
+        "en": "Spanish or English",
+        "es": "Español o inglés"
+    },
     "PUNTUACION": {
         "en": "Punctuation",
         "es": "Puntuación"

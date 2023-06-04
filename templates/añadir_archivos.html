@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
-
   <body class="fondos">
     <header class="d-flex justify-content-between align-items-center p-3">
       <a href="acerca_de?idioma={{idioma}}"><button class="btn-mn">{{ traducciones['ACERCA'][idioma] }}</button></a>
@@ -17,29 +16,32 @@
         <a href="logout" class="btn-mn">{{ traducciones['BTN-CERRAR-SESION'][idioma] }}</a>
       </div>
     </header>
-
     <div class="container mt-5">
       <div class="d-flex justify-content-center mb-5">
         <h1 class="mb-5 color-texto">{{ traducciones['TITULO-INICIO'][idioma] }}</h1>
       </div>
-
     <div class="row justify-content-center">
       <div class="col-lg-6 col-md-8">
         {% if sinArchivo %}
           <div class="alert alert-danger text-center">{{sinArchivo['SIN-ARCHIVO'][idioma]}}</div>
         {%endif%}
         {% if errorTamaño %}
-        <div class="alert alert-danger text-center">{{ errorTamaño['SUBIDA-EXITO'][idioma] }}</div>
+          <div class="alert alert-danger text-center">{{ errorTamaño['SUBIDA-EXITO'][idioma] }}</div>
         {%endif%}
         {% if errorTipoArchivo %}
-        <div class="alert alert-danger text-center">{{ errorTipoArchivo['TIPO-ARCHIVO'][idioma] }}</div>
+          <div class="alert alert-danger text-center">{{ errorTipoArchivo['TIPO-ARCHIVO'][idioma] }}</div>
         {%endif%}
         {% if subidaExito %}
           <div class="alert alert-success text-center">{{ subidaExito['SUBIDA-EXITO'][idioma] }}</div>
         {%endif%}
+        {% if errorSubida %}
+          <div class="alert alert-success text-center">{{ errorSubida['ERROR-APLICACION'][idioma] }}</div>
+        {%endif%}
+        {% if errorNombreArchivo %}
+          <div class="alert alert-danger text-center">{{ errorNombreArchivo['NOMBRE-ARCHIVO'][idioma] }}</div>
+        {%endif%}
       </div>
     </div>
-
     <div class="row">
       <div class="col-md-4">
         <form action="/añadir_instrucciones_jugador?id={{ request.args.get('id') }}&idioma={{ request.args.get('idioma') }}" method="POST" enctype="multipart/form-data" onsubmit="return validarArchivo()">
@@ -50,17 +52,14 @@
           <div class="d-flex justify-content-center">
             <button type="submit" class="btn-mn">{{ traducciones['BTN-CARGAR'][idioma] }}</button>
           </div>
-    
           <script>
             function validarArchivo() {
               var archivo = document.getElementById("instrucciones_jugador").files[0];
               var tamanoMaximo = 200 * 1024 * 1024;  // Límite a 200 MB
-    
               if (archivo && archivo.size > tamanoMaximo) {
-                alert("El archivo es demasiado grande, no se permite su subida en la aplicación.");
+                alert('{{ traducciones["ARCHIVO-GRANDE"][idioma] }}');
                 return false;  // Si el archivo es demasiado grande no se envía el formulario
               }
-    
               return true;  // Si el archivo tiene un tamaño válido permite enviar el formulario 
             }
           </script>
@@ -75,23 +74,19 @@
           <div class="d-flex justify-content-center">
             <button type="submit" class="btn-mn">{{ traducciones['BTN-CARGAR'][idioma] }}</button>
           </div>
-    
           <script>
             function validarArchivoI() {
               var archivo = document.getElementById("instrucciones_instructor").files[0];
               var tamanoMaximo = 200 * 1024 * 1024;  // Límite a 200 MB
-    
               if (archivo && archivo.size > tamanoMaximo) {
-                alert("El archivo es demasiado grande, no se permite su subida en la aplicación.");
+                alert('{{ traducciones["ARCHIVO-GRANDE"][idioma] }}');
                 return false;  // Si el archivo es demasiado grande no se envía el formulario
               }
-    
               return true;  // Si el archivo tiene un tamaño válido permite enviar el formulario 
             }
           </script>
         </form>
       </div>
-
       <div class="col-md-4">
         <form action="/añadir_archivo_juego?id={{ request.args.get('id') }}&idioma={{ request.args.get('idioma') }}" method="POST" enctype="multipart/form-data" onsubmit="return validarArchivoA()">
           <div class="form-group">
@@ -101,17 +96,14 @@
           <div class="d-flex justify-content-center">
             <button type="submit" class="btn-mn">{{ traducciones['BTN-CARGAR'][idioma] }}</button>
           </div>
-    
           <script>
             function validarArchivoA() {
               var archivo = document.getElementById("archivo_juego").files[0];
               var tamanoMaximo = 200 * 1024 * 1024;  // Límite a 200 MB
-    
               if (archivo && archivo.size > tamanoMaximo) {
-                alert("El archivo es demasiado grande, no se permite su subida en la aplicación.");
+                alert('{{ traducciones["ARCHIVO-GRANDE"][idioma] }}');
                 return false;  // Si el archivo es demasiado grande no se envía el formulario
               }
-    
               return true;  // Si el archivo tiene un tamaño válido permite enviar el formulario 
             }
           </script>
@@ -121,4 +113,3 @@
     </div>
   </body>
 </html>
-  

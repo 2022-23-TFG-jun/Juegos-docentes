@@ -52,6 +52,10 @@
         "en": "English",
         "es": "Inglés"
     },
+    "ES-EN": {
+        "en": "Spanish or English",
+        "es": "Español o inglés"
+    },
 
     "OPCION": {
         "en": "Select an option",

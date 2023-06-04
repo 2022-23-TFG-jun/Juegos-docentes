@@ -24,8 +24,8 @@
         "es": "Solicitar"
     },
     "EXITO": {
-        "en": "The application for the role of teacher has been sent successfully",
-        "es": "La solicitud para el rol de profesor ha sido enviada con éxito"
+        "en": "The application for the role of teacher has been sent successfully.",
+        "es": "La solicitud para el rol de profesor ha sido enviada con éxito."
     },
     "FOOTER": {
         "en": "Final Degree Project © 2023",
