@@ -1,43 +1,21 @@
 /*******************************************ESTILOS INICIO.HTML*******************************************/
 .fondo-inicio {
-  /*
-  background: #373B44;
-	background: -webkit-linear-gradient(to right, #4286f4, #373B44);
-	background: linear-gradient(to right, #4286f4, #373B44);
-  background-size: cover;
-  min-height: 100%;
-  */
   background-image: url('img/fondo3.png');
   background-size: cover;
   min-height: 100%;
 }
 
 .fondo-login {
-  /*
-  background: #373B44;
-	background: -webkit-linear-gradient(to right, #4286f4, #373B44);
-	background: linear-gradient(to right, #4286f4, #373B44);
-  background-size: cover;
-  min-height: 100%;
-  */
   background-image: url('img/fondo1.png');
   background-size: cover;
   min-height: 100%;
 }
 
 .fondos {
-  /*
-  background: #373B44;
-	background: -webkit-linear-gradient(to right, #4286f4, #373B44);
-	background: linear-gradient(to right, #4286f4, #373B44);
-  background-size: cover;
-  min-height: 100%;
-  */
   background-image: url('img/f1.jpg');
   background-size: cover;
   min-height: 100%;
 }
-
 
 .fondo-tarjeta {
   /*
@@ -134,7 +112,6 @@
 .color-texto {
     color: white !important;
 }
-
 
 .color-amarillo {
   color: #fdaa04;
@@ -405,7 +382,6 @@
   color: white !important;
 }
 
-
 .btn-mn{
   display: inline-block;
   background-color: #ffffff;
@@ -424,4 +400,3 @@
   color: #ffffff;
   cursor: pointer;
 }
-
