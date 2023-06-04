@@ -34,7 +34,8 @@ from translations.translations import (
 )
 
 app = Flask(__name__)
-app.secret_key = os.urandom(20)
+# app.secret_key = os.urandom(20)
+app.secret_key = 'clavesecretadeaplicacion'
 
 # Carpeta para guardar archivos subidos
 app.config['UPLOAD_FOLDER'] = './uploads'
