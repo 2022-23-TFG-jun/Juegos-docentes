@@ -48,7 +48,8 @@ El manual de usuario se encuentra disponible tanto en español como en inglés.
 
 El manual en español está accesible a través del enlace: https://ebd1004alu.gitbook.io/teachmeplay-es/
 
-Y, el manual en inglés está accesible a través del enlace: https://ebd1004alu.gitbook.io/teachmeplay-en/
+El manual en inglés está accesible a través del enlace: https://ebd1004alu.gitbook.io/teachmeplay-en/
+
 
 <p align="center">
   <img src="videos/video.gif" alt="Texto alternativo" />
