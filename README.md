@@ -42,3 +42,6 @@ $ flask run
 Tanto la aplicación como la base de datos se encuentran desplegadas en Heroku. 
 
 Para visualizar la página web, simplemente se debe acceder al siguiente enlace: https://teachmeplay.herokuapp.com/ 
+
+![Texto alternativo](videos/video.gif)
+
