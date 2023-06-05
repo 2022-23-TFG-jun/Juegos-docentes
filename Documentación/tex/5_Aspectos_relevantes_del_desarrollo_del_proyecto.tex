@@ -11,7 +11,7 @@ La primera propuesta fue la creación de una base de datos que se desplegase en 
 \section {Primeros pasos}
 En la siguiente reunión que tuve con mis tutores me propusieron los primeros pasos a realizar. 
 
-Inicialmente me plantearon gestionar el proyecto mediante la metodología ágil. Para ello, se creó un repositorio en GitHub para llevar el seguimiento del proyecto a través de sprints de dos semanas de duración.
+Inicialmente me plantearon gestionar el proyecto mediante la metodología ágil. Para ello, se creó un repositorio en GitHub para llevar el seguimiento del proyecto a través de sprints de dos semanas de duración, el cual es accesible a través del enlace: \url{https://github.com/ebd1004alu/Juegos-docentes}.
 
 Durante este período se empezó con la búsqueda, selección y familiarización de las distintas herramientas que se iban a utilizar para el desarrollo del proyecto. 
 
@@ -20,6 +20,8 @@ Algunas de las recomendaciones iniciales que me propusieron mis tutores fueron e
 Respecto a la propuesta inicial de desarrollar el proyecto usando JavaScript, me decanté por usar como lenguaje de programación Python, ya que era el lenguaje aprendido durante los últimos años del grado, y por tanto iba a facilitar el desarrollo del proyecto puesto que JavaScript era un lenguaje de programación que no había usado por el momento.
 
 Los frameworks que mis tutores me recomendaron fueros varios, como Flask o Django. Al ser Python el lenguaje de programación elegido para el desarrollo decidí usar Flask como framework. Aunque son parecidos se considera que es más conveniente Flask al facilitar el desarrollo de aplicaciones web en proyectos de menor escala como este.
+
+Después de crear el repositorio, también se decidió usar la licencia MIT para el proyecto, ya que se trataba de una licencia que permitía a los usuarios la modificación, la distribución y el uso privado y comercial, siendo compatible con las herramientas que se iban a emplear en el proyecto.
 
 \section{Metodologías}
 Para la gestión del proyecto se ha empleado la metodología conocida como SCRUM, ya que fue la aprendida en el curso anterior en la asignatura de gestión de proyectos. 
@@ -63,34 +65,49 @@ Por su parte, la interfaz del administrador también incluía un botón para la 
 
 Después, se trabajó en el desarrollo de interfaces específicas para la visualización y modificación de cada juego, con el fin de proporcionar una experiencia más detallada y personalizada para los usuarios.
 
-Por último, se crearon interfaces para los usuarios con rol de administrador que les permitían gestionar usuarios, juegos y solicitudes en general. Además, se incluyeron las interfaces vara la valoración de los juegos por parte de los usuarios y una interfaz adicional para proporcionar información general sobre la aplicación y sus funcionalidades.
+Por último, se crearon interfaces para los usuarios con rol de administrador que les permitían gestionar usuarios, juegos y solicitudes en general. Además, se incluyeron las interfaces para la valoración de los juegos por parte de los usuarios y una interfaz adicional para proporcionar información general sobre la aplicación y sus funcionalidades.
     
 \subsection{Creación del backend}
 Para crear el backend, lo primero que se hizo fue establecer la conexión con la base de datos y crear las tablas necesarias, lo cual se llevó a cabo en el archivo database.py. 
 
-Se crearon cuatro tablas que forman parte de la base de datos: 
+Se crearon cuatro tablas que formaban parte de la base de datos: 
 \begin{enumerate}
     \item \textbf{Tabla de usuarios:} almacena los datos de los usuarios registrados en la aplicación, incluyendo su nombre de usuario, nombre, apellido, institución, contraseña, rol y borrado.
-    \item \textbf{Tabla de juegos:} almacena los datos de los juegos registrados en la aplicación, incluyendo su nombre, descripción, idioma, enlace, puntuación, disciplina, naturaleza, precio, instrucciones para el jugador, instrucciones para el instructor, objetivo, espacio de control, objetivos principales y secundarios, estructura de sesiones, aspectos adicionales, la valoración del docente respecto al entretenimiento, aprendizaje, complejidad para el alumno, complejidad para el instructor, la URL del vídeo tutorial, los datos del usuario que añade o modifica el juego, los archivos de instrucciones y juego y borrado.
+    \item \textbf{Tabla de juegos:} almacena los datos de los juegos registrados en la aplicación, incluyendo su nombre, descripción, idioma, enlace, puntuación, disciplina, naturaleza, precio, instrucciones para el jugador, instrucciones para el instructor, objetivo, espacio de control, objetivos principales y secundarios, estructura de sesiones, aspectos adicionales, la valoración del docente respecto al entretenimiento, aprendizaje, complejidad para el alumno, complejidad para el instructor, la URL del vídeo tutorial, los datos del usuario que añade o modifica el juego, la puntuación media junto con las estrellas asignadas por los usuarios, los archivos de instrucciones y juego y borrado.
     \item \textbf{Tabla de solicitudes:} almacena los datos de las solicitudes para obtener el rol de profesor, incluyendo el estado de la solicitud, la fecha y el usuario que la realizó.
-    \item \textbf{Tabla de valoraciones:} almacena los datos de las valoraciones que realizan los usuarios de los juegos, incluyendo la puntuación, el comentario, la fecha y los datos del usuario y juego al que se refiere la valoración.
+    \item \textbf{Tabla de valoraciones:} almacena los datos de las valoraciones que realizan los usuarios de los juegos, incluyendo la puntuación, las estrellas asignadas por cada usuario al juego, el comentario, la fecha y los datos del usuario y juego al que se refiere la valoración.
 \end{enumerate}
 
 Después, se comenzó a desarrollar en el archivo app.py los diferentes métodos GET y POST para manejar las solicitudes y respuestas, así como los archivos juego.py, usuario.py, valoracion.py y solicitud.py para manejar las operaciones de inserción y actualización de datos en la base de datos.
 
 Para el desarrollo del login se utilizaron varios módulos de la librería Flask-Login, ya que esto facilitó toda la implementación. La clase LoginManager permitió gestionar la sesión del usuario en la aplicación, permitiendo a los usuarios iniciar sesión y mantenerse autenticados. Para ello, se creó una instancia de la clase LoginManager en la aplicación, lo que permitió usar sus métodos y atributos para configurar la autenticación y el inicio de sesión.
-
-Además, en el caso de que un usuario intentara acceder a una ruta protegida sin estar autenticado, Flask redireccionaría al usuario a la vista de inicio de sesión, gracias a que se definió la propiedad login-view de la instancia de LoginManager creada anteriormente. 
 \imagen{login-cod}{Captura de código}{.4}
 
-Con el módulo check-password-hash de la librería Werkzeug se permitía comprobar si la contraseña introducida para el inicio de sesión era correcta. En caso de que el usuario introdujera la contraseña de forma incorrecta durante 3 intentos consecutivos, se bloqueaba su cuenta durante 60 segundos para evitar ataques de fuerza bruta o intentos de acceso no autorizados. Este mecanismo de seguridad se implementó mediante la configuración de dos parámetros en el objeto app.config de Flask: MAX-LOGIN-ATTEMPTS, que establece el número máximo de intentos de inicio de sesión permitidos, y LOGIN-BLOCK-DURATION, que define la duración del bloqueo de la cuenta en segundos.
+Además, en el caso de que un usuario intentara acceder a una ruta protegida sin estar autenticado, Flask redireccionaría al usuario a la vista de inicio de sesión, gracias a que se definió la propiedad login-view de la instancia de LoginManager creada anteriormente. 
+
+
+Con el módulo check\_password\_hash de la librería Werkzeug se permitía comprobar si la contraseña introducida para el inicio de sesión era correcta. En caso de que el usuario introdujera la contraseña de forma incorrecta durante 3 intentos consecutivos, se bloqueaba su cuenta durante 60 segundos para evitar ataques de fuerza bruta o intentos de acceso no autorizados. Este mecanismo de seguridad se implementó mediante la configuración de dos parámetros en el objeto app.config de Flask: MAX\_INTENTOS\_LOGIN, que establece el número máximo de intentos de inicio de sesión permitidos, y DURACION\_BLOQUEO\_LOGIN, que define la duración del bloqueo de la cuenta en segundos.
 
 Una vez terminadas las funciones que se encargaban del registro de usuarios y de su inicio de sesión, se desarrollaron los diferentes menús de los juegos. Para ello, lo primero que se hizo fue la creación de las tarjetas que iban a contener información sobre los juegos del menú. Para una mejor visualización se desarrolló la paginación del menú, de forma que en cada página solo se iban a mostrar tres tarjetas de juego.
 
 Después, en el archivo busqueda.py se desarrolló la funcionalidad de la barra de búsqueda y aplicación de filtros. Para asegurar el correcto funcionamiento de las búsquedas personalizadas y únicas de los usuarios, se empleó la combinación de la librería unicode y el método .lower() para garantizar que las búsquedas coincidieran con la información almacenada en la base de datos.
 \imagen{busqueda-filtros}{Captura de código}{.8}
 
-Una vez terminados los menús generales de cada rol, se fueron implementando las diferentes funcionalidades de cada rol.
+Una vez finalizados los menús generales de cada rol, se procedió a implementar las diferentes funcionalidades correspondientes a cada rol.
+
+En el caso de los usuarios con el rol de profesor, se les permitía subir archivos que contenían las instrucciones para el jugador, las instrucciones del instructor y los archivos del propio juego. Para lograr esto, se incluyeron varias verificaciones con el fin de evitar errores en el funcionamiento de la aplicación.
+
+Se estableció una limitación en cuanto al tipo de archivos que se podían subir a la aplicación, aceptando únicamente aquellos de tipo 'txt', 'pdf', 'png', 'jpg', 'jpeg', 'exe', 'bat' y 'docx'.
+
+Antes de proceder con la subida, se verificaba el tipo y longitud del nombre del archivo que el profesor deseaba cargar. En caso de que no cumpliera con los formatos permitidos, se mostraba un mensaje de error.
+
+Si el profesor intentaba cargar un archivo que excediera el límite establecido, se le mostraría una alerta indicando que el archivo es demasiado grande y no se permitiría su subida en la aplicación.
+
+\imagen{error-tamaño}{Alerta archivo demasiado grande.}{.5}
+
+Sin embargo, debido a las limitaciones de almacenamiento en Heroku, no será posible subir archivos en la aplicación desplegada. Para comprobar su funcionamiento, se dispondrá de una máquina virtual donde sí se permitirá la carga de archivos.
+
+Además, debido al tiempo de ejecución que puede requerirse en algunos casos al intentar subir un archivo, no podrán utilizarse en la página desplegada debido a las limitaciones de Heroku, por lo que se producirá un error.
 
 \subsection{Internacionalización}
 Para implementar la internacionalización en mi aplicación, consideré dos opciones: el uso de la librería Flask-Babel o la inclusión de todas las traducciones en distintos archivos JSON.

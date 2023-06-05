@@ -9,7 +9,7 @@ Entre estas técnicas y herramientas se distinguen las utilizadas para la gesti�
 \cite{Scrum1_bib} Es un marco de trabajo colaborativo que permite trabajar en equipo el desarrollo de un proyecto sistematizado en entregas organizadas parcialmente del producto final, en función de la utilidad que ofrecen al destinatario del proyecto. 
 
 \cite{Scrum2_bib} Esta técnica de metodología ágil permite el avance de los requisitos establecidos del proyecto en planes temporales de duración corta y fija, de manera que a los requisitos se les establece una prioridad según su importancia. De esta forma, permite al equipo organizarse y sincronizarse para alcanzar sus objetivos y mostrar al cliente los resultados obtenidos al finalizar cada sprint.
-\imagen{scrum}{Metodología ágil: Scrum}{0.7}
+\imagen{scrum}{Metodología ágil: Scrum}{0.9}
 
 \subsection{GitHub}
 \cite{GitHub1_bib} Es una plataforma que permite la creación de repositorios de código con el fin de almacenarlos en la nube mediante un sistema de control de versiones conocido como Git. Permite la gestión de proyectos de forma cooperativa en tiempo real.
@@ -21,11 +21,11 @@ Entre estas técnicas y herramientas se distinguen las utilizadas para la gesti�
 \cite{GitHubDesktop_bib} Es una aplicación que posibilita la interacción con GitHub proporcionando una interfaz gráfica de usuario en sustitución a la línea de comandos o buscadores web.
 
 Se trata de la versión de escritorio de GitHub y permite la subida, extracción y clonación de repositorios empleando mecanismos colaborativos.
-\imagen{GitHub Dektop-logo}{GitHub Desktop-logo}{0.1}
+\imagen{GitHub Dektop-logo}{GitHub Desktop-logo}{0.2}
 
 \subsection{ZenHub}
 \cite{ZenHub_bib} Es una plataforma de gestión de proyectos integrada en GitHub que permite la conexión de repositorios y la organización de los proyectos mediante tableros de trabajo que facilitan la planificación de sprints, la creación de tareas, la estimación de story points y la generación de gráficos e informes estadísticos.
-\imagen{zenhub-logo}{ZenHub-logo}{0.1}
+\imagen{zenhub-logo}{ZenHub-logo}{0.05}
 
 \subsection{Zube}
 \cite{Zube_bib} Es un sistema de gestión de proyectos gratuito integrado en GitHub que facilita la asignación y gestión de tareas, permitiendo especificar la prioridad de cada una y promoviendo la colaboración entre los miembros del equipo. Además, su funcionalidad de actualización en tiempo real permite que los cambios realizados se reflejen instantáneamente en el proyecto. Por otra parte, esta plataforma se enfoca en la detección y corrección de errores, contribuyendo a garantizar la calidad y eficiencia del proyecto en todo momento.
@@ -47,6 +47,7 @@ Este procesador de textos se basa en instrucciones, por lo que la principal dife
 \cite{Zotero_bib} Es un gestor de referencias bibliográficas gratuito y de código abierto que permite la recopilación y organización de distintos recursos, incluyendo su citación, sincronización y colaboración. 
 \imagen{zotero-logo}{Zotero-logo}{0.1}
 
+\newpage
 \subsection{Gitbook}
 \cite{gitbook} Es una herramienta que permite la creación de la documentación de proyectos y libros técnicos.
 \imagen{gitbook-logo}{Gitbook-logo}{0.1}
@@ -55,13 +56,13 @@ Este procesador de textos se basa en instrucciones, por lo que la principal dife
 \subsection{Figma}
 \cite{Figma1_bib} Es una herramienta de prototipado principalmente web que permite el diseño de las interfaces de usuario y el diseño de experiencia de las aplicaciones, posibilitando la colaboración en tiempo real.
 
-\cite{Figma2_bib} La principal ventaja de esta herramienta es la posibilidad que ofrece de usar funcionalidades y librerías de componentes creadas y compartidas por la comunidad, lo cual facilita y agiliza el diseño de las interfaces.
+\cite{Figma2_bib} La principal ventaja de esta herramienta es la posibilidad que ofrece de usar funcionalidades y librerías de componentes creadas y compartidas por la comunidad, lo cual facilita y agiliza el diseño de las interfaces de la aplicación.
 \imagen{figma-logo}{Figma-logo}{0.1}
 
 \subsection{Draw.io}
-\cite{drawio_bib} Es un software gratuito y de código abierto que permite el dibujo de gráficos, incluyendo la creación de diagramas como diagramas de flujo, diagramas de casos de uso, diagramas de secuencia, entre otros.
+\cite{drawio_bib} Es un software gratuito y de código abierto que permite el dibujo de gráficos, lo que va a permitir la creación de diagramas como diagramas de flujo, diagramas de casos de uso, diagramas de secuencia, entre otros.
 \imagen{drawio-logo}{Draw.io-logo}{0.1}
-
+\newpage
 \section{Desarrollo}
 
 \subsection{Frontend}
@@ -83,7 +84,7 @@ Es la capa de acceso a los datos del software que no es accesible directamente p
 \subsection{Framework}
 \cite{framework} Un framework es una herramienta utilizada en el desarrollo de software que proporciona una estructura que integra diversos componentes básicos para facilitar la creación de nuevos proyectos. 
 
-Existen numerosos frameworks, por lo que dependiendo del lenguaje de programación utilizado y el tipo de proyecto, se debe seleccionar el framework más adecuado.
+Existen numerosos frameworks, por lo que dependiendo del lenguaje de programación utilizado y el tipo de proyecto, se debe seleccionar el framework más adecuado, en este caso al usar Python como lenguaje de programación se usa como framework Flask.
 
 \subsection{Protocolo HTTP}
 \cite{http} El Protocolo de transferencia de hipertexto (HTTP) es el protocolo utilizado para aprobar la transferencia de información a través de distintos tipos de archivos, como XML o HTML.
@@ -122,7 +123,6 @@ Se trata de un protocolo orientado a transacciones, que sigue el esquema petici�
     \label{tab:my_label}
 \end{table}
 
-\newpage
 \subsection{Arquitectura MVC}
 \cite{MVC} La arquitectura MVC es un tipo de arquitectura de software que se compone de tres componentes: modelo, vista y controlador. Esta arquitectura tiene como objetivo separar los datos de la aplicación, la interfaz de usuario y la lógica de control.
 \begin{itemize}
@@ -156,11 +156,11 @@ Librería empleada para el uso del framework Flask.
 \begin{itemize}
     \item \textbf{request:} \cite{request} Objeto global que proporciona acceso a los datos enviados por el cliente en una solicitud HTTP.
     \item \textbf{redirect:} \cite{redirect} Función de Flask que redirige al usuario a otra página en una aplicación Flask.
-    \item \textbf{render template:}
+    \item \textbf{render\_template:}
 \cite{render_template} Función Flask que permite renderizar plantillas HTML para visualizarlas en el navegador.
-    \item \textbf{url for:} \cite{url} Función Flask que permite construir URLs para funciones o vistas específicas de una aplicación web Flask.
+    \item \textbf{url\_for:} \cite{url} Función Flask que permite construir URLs para funciones o vistas específicas de una aplicación web Flask.
     \item \textbf{session:} \cite{session} Objeto que almacena los datos del usuario que inició sesión en la aplicación.
-    \item \textbf{send file:} \cite{send_file} Función de Flask que envía el contenido de un archivo al cliente como respuesta a una solicitud HTTP.
+    \item \textbf{send\_file:} \cite{send_file} Función de Flask que envía el contenido de un archivo al cliente como respuesta a una solicitud HTTP.
     \item \textbf{UserMixin:} \cite{UserMixin} Clase que proporciona unas propiedades de un modelo de usuario en una aplicación web.
 \end{itemize}
 
@@ -169,23 +169,23 @@ Librería empleada para el uso del framework Flask.
 
 \begin{itemize}
     \item \textbf{LoginManager:} Clase que maneja la autenticación y la gestión de sesiones de usuario en una aplicación Flask. 
-    \item \textbf{login user:} Función que permite el inicio de sesión de los usuarios en una aplicación Flask.
-    \item \textbf{current user:} Función que permite acceder al usuario que está actualmente autenticado en la sesión de una aplicación Flask. 
-    \item \textbf{login required:} Decorador que se utiliza para restringir el acceso a las vistas solo a usuarios que hayan iniciado sesión en una aplicación Flask. 
-    \item \textbf{logout user:} Función que permite cerrar la sesión de un usuario autenticado en una aplicación Flask.
+    \item \textbf{login\_user:} Función que permite el inicio de sesión de los usuarios en una aplicación Flask.
+    \item \textbf{current\_user:} Función que permite acceder al usuario que está actualmente autenticado en la sesión de la aplicación Flask. 
+    \item \textbf{login\_required:} Decorador que se utiliza para impedir el acceso a las vistas protegidas, permitiendo solo a usuarios que hayan iniciado sesión en la aplicación Flask acceder a estas. 
+    \item \textbf{logout\_user:} Función que permite cerrar la sesión de un usuario autenticado en una aplicación Flask.
 \end{itemize}
 
 \subsection{werkzeug.security}
 \cite{Werkzeug2} Módulo de la librería Werkzeug que ofrece distintas herramientas para la seguridad de las aplicaciones.
 \begin{itemize}
-    \item \textbf{check password hash:} Función que permite la comprobación de si una contraseña proporcionada coincide con la hash de la contraseña almacenada.
-    \item \textbf{generate password hash:} Función que genera un hash seguro a partir de una contraseña proporcionada.
+    \item \textbf{check\_password\_hash:} Función que permite la comprobación de si una contraseña proporcionada coincide con la hash de la contraseña almacenada.
+    \item \textbf{generate\_password\_hash:} Función que genera un hash seguro a partir de una contraseña proporcionada.
 \end{itemize}
 
 \subsection{werkzeug.utils}
 \cite{Werkzeug} Módulo que proporciona distintas funciones para manipular operaciones en una aplicación web.
 \begin{itemize}
-    \item \textbf{secure filename:} Función que convierte un nombre de archivo en un nombre de archivo seguro, de forma que el archivo se puede almacenar de forma segura.
+    \item \textbf{secure\_filename:} Función que convierte un nombre de archivo en un nombre de archivo seguro, de forma que el archivo se puede almacenar de forma segura.
 \end{itemize}
 
 \subsection{datetime}
@@ -197,10 +197,10 @@ Librería empleada para el uso del framework Flask.
 \end{itemize}
 
 \subsection{unidecode}
-\cite{unidecode} Librería Python que contiene una función para convertir cadenas Unicode en cadenas 
+\cite{unidecode} Librería Python que contiene una función para convertir cadenas Unicode en cadenas  ASCII.
 
 \subsection{math}
-\cite{math} Módulo que permite el uso de funciones matemáticas definidas en el estándar de C.
+\cite{math} Módulo que permite el uso de funciones matemáticas definidas en el estándar de C, usado para el redondeo para realizar la paginación del menú de la aplicación.
 
 \subsection{os}
 \cite{os} Módulo que proporciona una forma de interactuar con el sistema operativo en el que se está ejecutando Python, permitiendo el uso de las funcionalidades del sistema operativo.
@@ -209,13 +209,17 @@ Librería empleada para el uso del framework Flask.
 \cite{psycopg2} Librería Python que ofrece una interfaz que permite la conexión con bases de datos PostgreSQL y la realización de distintas operaciones.
 
 \subsection{Font Awesome}
-\cite{font} Librería que proporciona iconos vectoriales y estilos css para su uso en aplicaciones web.
+\cite{font} Librería que proporciona iconos vectoriales y estilos CSS para su uso en aplicaciones web, por lo que va a permitir disponer de una interfaz más atractiva visualmente.
 
 \subsection{Dotenv}
 \cite{dotenv} Librería que permite cargar las variables de entorno desde el archivo .env en el programa.
 
+\subsection{logging}
+\cite{logging} Librería que permite registrar los mensajes mostrados durante la ejecución de un programa.
+
+
 \subsection{Bootstrap}
-\cite{bootstrap} Librería que facilita el desarrollo de aplicaciones web mediante estándares de diseño, por lo que permite la adaptabilidad a dispositivos móviles.
+\cite{bootstrap} Librería que facilita el desarrollo de aplicaciones web mediante estándares de diseño, por lo que permite la adaptabilidad a dispositivos móviles, lo que va a permitir que la aplicación sea responsive.
 
 \subsection{Animate CSS}
-Librería de animaciones para usar en aplicaciones web. 
+Librería de animaciones para usar en aplicaciones web que permite incluir la animación del logo de la aplicación.

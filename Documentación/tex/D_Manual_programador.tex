@@ -7,28 +7,28 @@ En esta sección, se proporcionará una explicación y una muestra de la estruct
 La estructura del proyecto se divide en diferentes directorios:
 
 \begin{itemize}
-    \item \textbf{Documentación:} carpeta que contiene los documentos de la memoria y anexos del proyecto.
+    \item \textbf{/Documentación:} carpeta que contiene los documentos de la memoria y anexos del proyecto.
     \item \textbf{/env:} contiene los directorios con ejecutables que determinan que se trata de un entorno virtual.
     \item \textbf{/src:} carpeta que contiene todos los archivos Python relacionados con el funcionamiento del backend de la aplicación.
     \item \textbf{/static:} carpeta que contiene los archivos estáticos relacionados con el frontend, incluyendo el archivo de los estilos aplicados y la carpeta con las imágenes usadas en la aplicación
     \item \textbf{/templates:} carpeta que contiene todos los archivos HTML que forman la parte visual de la aplicación.
     \item \textbf{/translations:} carpeta que contiene los archivos JSON empleados para almacenar las traducciones de los HTMLs, y el archivo que se encarga de cargar las traducciones desde los archivos JSON correspondientes.
-    \item \textbf{/uploads:}: carpeta oculta que contiene los archivos que subieron los usuarios durante el uso de la aplicación.
-    \item \textbf{.env:}: archivo oculto que contiene las contraseñas necesarias para la conexión a la base de datos.
-    \item \textbf{.gitignore:}: archivo que contiene el nombre de los archivos que se encuentran ocultos en GitHub.
-    \item \textbf{/app.py:} archivo principal de Python que contiene todos los métodos GET y POST de la aplicación. 
-    \item \textbf{errores.log:} archivo oculto que contiene todos los errores que se generaron durante la ejecución de la aplicación.
-    \item \textbf{/LICENSE:} licencia de la aplicación.
-    \item \textbf{/Procfile:} archivo en el que se determina el archivo principal de la aplicación para el despliegue en Heroku. 
-    \item \textbf{/README.md:} archivo que contiene la descripción del proyecto junto con los pasos necesarios para su uso.
-    \item \textbf{/requirements.txt:} archivo que contiene las herramientas junto con sus versiones, para ejecutar el despliegue en Heroku.
+    \item \textbf{/uploads:} carpeta oculta que contiene los archivos que subieron los usuarios durante el uso de la aplicación.
+    \item \textbf{.env:} archivo oculto que contiene las contraseñas necesarias para la conexión a la base de datos.
+    \item \textbf{.gitignore:} archivo que contiene el nombre de los archivos que se encuentran ocultos en GitHub.
+    \item \textbf{app.py:} archivo principal de Python que contiene todos los métodos GET y POST de la aplicación. 
+    \item \textbf{errores.log:} archivo oculto que contiene el registro de los errores que se generan durante la ejecución de la aplicación.
+    \item \textbf{LICENSE:} licencia de la aplicación.
+    \item \textbf{Procfile:} archivo en el que se determina el archivo principal de la aplicación para el despliegue en Heroku. 
+    \item \textbf{README.md:} archivo que contiene la descripción del proyecto junto con los pasos necesarios para su uso.
+    \item \textbf{requirements.txt:} archivo que contiene las herramientas junto con sus versiones, para ejecutar el despliegue en Heroku.
    
 \end{itemize}
 
 \section{Manual del programador}
 En este manual se van a indicar los diferentes procedimientos que debe seguir el programador para la correcta preparación y ejecución del proyecto.
 
-El proyecto ha sido desarrollado inicialmente de forma local en el equipo y posteriormente se ha desplegado en Heroku.
+El proyecto ha sido desarrollado inicialmente de forma local en el equipo y posteriormente se ha desplegado en Heroku, por lo que se encuentra disponible en este enlace: \url {https://teachmeplay.herokuapp.com/}. Para la realización de pruebas para cargar correctamente los archivos de los juegos se dispondrá de una máquina virtual como simulación del equipo local.
 
 \subsection{Visual Studio Code}
 Visual Studio Code se emplea para el desarrollo de la aplicación web y la creación de todos los archivos y métodos necesarios para el correcto uso y funcionamiento del proyecto.
@@ -50,6 +50,7 @@ Una vez completada la descarga, se procede a instalar PostgreSQL siguiendo los p
 Cuando ya se tiene instalado se debe configurar para poder acceder a la base de datos de Heroku. 
 
 Para ello, se debe crear un nuevo servidor.
+\newpage
     \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.7\textwidth]{server}
@@ -57,8 +58,7 @@ Para ello, se debe crear un nuevo servidor.
     \label{fig:server}
     \end{figure}
 
-Este se configura con los datos que obtenemos del Add-on de Heroku. Se debe rellenar el nombre del servidor en la pestaña general.
-\newpage
+Este se configura con los datos que obtenemos del Add-on de Heroku. Se debe rellenar el nombre del servidor en la pestaña ``General``.
     \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.3\textwidth]{server1}
@@ -66,7 +66,8 @@ Este se configura con los datos que obtenemos del Add-on de Heroku. Se debe rell
     \label{fig:server1}
     \end{figure}
     
-Se debe rellenar el nombre del host, el puerto, el nombre de usuario, base de datos y la contraseña en la pestaña connection.
+Se debe rellenar el nombre del host, el puerto, el nombre de usuario, base de datos y la contraseña en la pestaña ``Connection``.
+\newpage
     \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.3\textwidth]{server2}
@@ -74,8 +75,7 @@ Se debe rellenar el nombre del host, el puerto, el nombre de usuario, base de da
     \label{fig:server2}
     \end{figure}
     
-Y, por último, se debe rellenado el campo de DB restriction en la pestaña advanced.
-\newpage
+Y, por último, se debe rellenado el campo de DB restriction en la pestaña ``Advanced``.
     \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.3\textwidth]{server3}
@@ -83,26 +83,50 @@ Y, por último, se debe rellenado el campo de DB restriction en la pestaña adva
     \label{fig:server3}
     \end{figure}
 
+\subsection{Virtual Box}
+El proyecto está disponible en una máquina virtual para poder realizar pruebas en local. De esta forma se permite cargar los distintos archivos de los juegos que se admiten en la aplicación, que debido a las limitaciones de Heroku, no se permite comprobar su funcionamiento en la aplicación desplegada.
+
+Para ello, se empleará VirtualBox, que ha sido utilizado en diversas asignaturas del grado. Esta herramienta ofrece una interfaz de usuario sencilla y un buen rendimiento.
+
+Para su instalación se debe acceder a la página oficial disponible en \url{https://www.virtualbox.org/}, en la sección de descargas,  seleccionar la versión y paquete deseado siguiendo los pasos que se indican.
+
+Como sistema operativo se ha usado Windows 10 Pro obtenido mediante la compra de una licencia OEM. La descarga de la ISO se realiza a través de la página oficial \url{https://www.microsoft.com/es-es/software-download/windows10} seleccionando la última versión disponible.
+
+Una vez se tiene todo instalado se debe crear una máquina dentro del VirtualBox a través del botón de ``Nueva``, asignado el nombre de la máquina virtual y el sistema operativo que se va a instalar.
+    \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{vb}
+    \caption{Creación de máquina virtual.}
+    \label{fig:vb}
+    \end{figure}
+    
+Posteriormente se deben seguir los pasos seleccionando la RAM que se desea y la creación de un disco duro VDI. Para instalar el sistema operativo de Windows 10 en la máquina creada, se debe hacer a través de la configuración añadiendo una unidad óptica y seleccionando el archivo ISO que se obtuvo anteriormente.
+
+Por último, cuando se inicie la máquina virtual creada aparecerá la instalación de Windows, por lo que será necesario introducir la clave de la licencia comprada.
+
+Cuando la máquina virtual ya está lista para su uso, se procede a la instalación de Python, Visual Studio Code y PostgreSQL, siguiendo los pasos descritos anteriormente. Después, se importan todos los archivos necesarios en la máquina y se configura la base de datos.
+
+Finalmente, se exporta la máquina virtual mediante la opción de ``Exportar servicio virtualizado``.
+
 \section{Compilación, instalación y ejecución del proyecto}
-Para la ejecución del proyecto, se debe descargar el proyecto del repositorio de
-GitHub, que se encuentra en  \url{https://github.com/ebd1004alu/Juegos-docentes},
-se descomprime y ya se puede empezar.
+Para la ejecución del proyecto, se puede realizar de dos formas.
+El proyecto puede ejecutarse en local desde la máquina virtual que se proporciona, o mediante el enlace de la página web en el que se encuentra desplegado en Heroku.
 
 \subsection{Ejecución en local}
-Para la ejecución del proyecto en local es necesario tener instalados como se mencionó anteriormente Visual Studio Code, Python y PostgreSQL. En terminal de Visual Studio Code la primera vez que se vaya a compilar el proyecto se debe ejecutar los siguientes comandos para crear el entorno virtual, activarlo e instalar las dependencias de flask en el entorno:
-\begin{itemize}
-    \item python3 -m venv env
-    \item source env/bin/activate
-    \item pip install flask
-\end{itemize}
+Para la ejecución en local se proporciona una máquina virtual de VirtualBox con sistema operativo Windows 10 y con todas la herramientas necesarias instaladas.
 
-Además, se deben tener instaladas las librerías que forman el archivo
-requirements.txt, que son las que se utilizan en el código.
+El objetivo de la máquina virtual es que se pueda ejecutar de forma rápida en local para probar todas las funcionalidades de la aplicación, ya que debido a las restricciones de Heroku no se permite ni cargar ni descargar los archivos de los juegos en la aplicación desplegada.
 
-Si no aparecen errores se puede ejecutar la aplicación en la dirección web \url{http://127.0.0.1:5000} mediante el comando:
+Para acceder a la sesión de la máquina virtual se debe introducir el PIN: ``0806``.
+Una vez iniciada la sesión para ejecutar la aplicación se debe abrir Visual Studio Code e ingresar en el terminal los comandos:
 \begin{itemize}
+    \item env\textbackslash Scripts\textbackslash activate
     \item flask run
 \end{itemize}
+
+También, en el escritorio de la máquina se dispone de un archivo ``ejecutable.bat``, para que al acceder a éste, se ejecuten los comandos necesarios para activar tanto el entorno virtual como para ejecutar el proyecto.
+
+El acceso a la aplicación web está disponible a través del siguiente enlace \url{http://127.0.0.1:5000/}
 
 \subsection{Despliegue en Heroku}
 Para desplegar la aplicación en Heroku es necesario obtener el paquete de desarrollo para estudiantes de GitHub para obtener beneficios por ser estudiante, lo cual permite obtener unos créditos para usar dentro de Heroku ya que se van a usar funcionalidades de pago.
@@ -118,7 +142,7 @@ Después de haberse registrado e iniciado sesión, para crear una aplicación se
     \label{fig:new-app}
     \end{figure}
 
-Una vez creada la nueva aplicación, en la pestaña deploy, se muestran las opciones y los pasos a seguir para ejecutar el proyecto. Para ello, se debe elegir el método de despliegue en nuestro caso será con GitHub.
+Una vez creada la nueva aplicación, en la pestaña ``Deploy``, se muestran las opciones y los pasos a seguir para ejecutar el proyecto. Para ello, se debe elegir el método de despliegue en nuestro caso será con GitHub.
 \newpage
     \begin{figure}[htbp]
     \centering
@@ -140,7 +164,7 @@ Tras obtener las credenciales de Heroku-PostgreSQL se deberán configurar las va
     \end{figure}
 
 Una vez se ha configurado todo, ya se puede desplegar el
-proyecto pulsando sobre el botón de Deploy Branch.
+proyecto pulsando sobre el botón de ``Deploy Branch``.
     \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.9\textwidth]{deploy-branch}
@@ -165,6 +189,7 @@ Para comprobar que la aplicación funciona correctamente, se han realizado una s
     \item Se probó que el usuario podía valorar correctamente los juegos una vez.
     \item Se probó que el usuario podía solicitar el rol de profesor una vez y que el administrador podía aprobarlo.
     \item Se probó que el profesor pudiera añadir un juego, modificarlo y añadir archivos al juego.
+    \item Se probó a cargar archivos que excedieran el límite de tamaño, tuviesen un nombre demasiado largo y un tipo no admitido.
     \item Se probó que el administrador pudiera borrar juegos y usuarios.
 \end{enumerate}
 

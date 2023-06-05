@@ -4,6 +4,8 @@
 En este apartado se incluye la explicación del desarrollo del proyecto a través de la planificación temporal mediante metodología ágil, el estudio de viabilidad y las viabilidades tanto económicas como legales del proyecto.
 
 \section{Planificación temporal}
+La planificación temporal se ha llevado a cabo a través de un repositorio creado en Github: \url{https://github.com/ebd1004alu/Juegos-docentes}.
+
 Para planificación temporal del desarrollo del proyecto se emplea la metodología ágil realizando sprints de una o dos semanas de duración, con el fin de realizar reuniones para el seguimiento del cumplimento de los objetivos establecidos en cada sprint, y la propuesta de las tareas a realizar en los siguientes sprints.
 
 Para la gestión del proyecto se ha utilizado la herramienta Zube de GitHub lo que ha permitido la organización, la asignación y estimación de las tareas del proyecto de una forma sencilla y visual.
@@ -253,11 +255,11 @@ En el siguiente gráfico se puede ver el progreso del trabajo durante el sprint.
 La primera semana del sprint 6 se empleó para realizar la implementación que permitiese a los usuarios modificar la información de los juegos de la plataforma y la comprobación de roles. De esta manera, se diferenciaban las funcionalidades según el rol del usuario que se identificaba en la sesión, lo que significaba que solo los usuarios con rol de profesor podían editar y añadir un juego.
 
 Después se implementó la funcionalidad para que un usuario pudiera solicitar el rol de profesor. Para ello, fue necesario crear otra tabla para facilitar el manejo de las solicitudes de los usuarios. De esta manera, los usuarios podían solicitar el rol si aún no lo habían hecho antes, y era el administrador quien tenía la capacidad de administrar las solicitudes pendientes, aceptándolas o rechazándolas, por lo que se implementó el rol de administrador y sus funcionalidades, incluyendo las traducciones de estas para la internacionalización de la aplicación.
-Después, se desarrolló la capacidad para que los usuarios pudieran subir y descargar archivos, lo que les permitió incluir instrucciones de los juegos y descargar los juegos en sí mismo.
+Después, se desarrolló la capacidad para que los usuarios pudieran subir y descargar archivos, lo que les permitió incluir instrucciones de los juegos y descargar los juegos en sí mismos.
 
 Posteriormente, se implementó la adaptabilidad de pantalla para que la aplicación pudiera visualizarse correctamente en cualquier dispositivo, junto con el ajuste de los estilos para mejorar la visualización de las interfaces. Además, se implementó que los usuarios pudiesen interactuar con la aplicación a través de valoraciones que incluían añadir una puntuación al juego y una reseña.
 
-Por último, se desarrolló la ventana Acerca de de la aplicación, se documentaron los aspectos relevantes del desarrollo del proyecto y se registraron las tareas realizadas durante el sprint.
+Por último, se desarrolló la ventana ``Acerca de`` de la aplicación, se documentaron los aspectos relevantes del desarrollo del proyecto y se registraron las tareas realizadas durante el sprint.
 
 En este sprint se ha realizado un conjunto de tareas estimadas de 68 story points, y por tanto equivalente a 99 horas.
 
@@ -310,7 +312,7 @@ El segundo error estaba relacionado con la funcionalidad de valoración de los j
 
 Posteriormente, se llevaron a cabo los diferentes apartados de los anexos, entre ellos el plan del proyecto, la especificación de requisitos, el diseño, el manual de usuario y el manual del programador.
 
-Por último, se desplegó la aplaicación en Heroku, se realizó el manual de ayuda y se documentaron las tareas realizadas en el sprint.
+Por último, se desplegó la aplicación en Heroku, la cual es accesible a través del enlace: \url{https://teachmeplay.herokuapp.com/}. Y, se realizó el manual de ayuda y se documentaron las tareas realizadas en el sprint.
 
 En este sprint se ha realizado un conjunto de tareas estimadas de 58 story points, y por tanto equivalente a 90 horas.
 
@@ -354,8 +356,6 @@ En el siguiente gráfico se puede ver el progreso del trabajo durante el sprint.
     \label{fig:burndown_7}
 \end{figure}
 
-\subsection{Sprint 8: 28/05/2023 - 03/06/2023}
-
 \section{Estudio de viabilidad}
 El estudio de la viabilidad del proyecto es fundamental para determinar su factibilidad y asegurar su éxito.
 Este incluye un estudio de la viabilidad económica y de la viabilidad legal bajo un supuesto desarrollo en el mercado real.
@@ -373,7 +373,7 @@ Se estima que el sueldo del alumno va a ser 17€/hora, por lo que el salario me
 
 $$ 31\frac{horas}{semana}\times17\frac{\text{\euro}}{hora}\times4\frac{semanas}{mes}=2108\text{\euro}\hspace{0.5em}al\hspace{0.5em}mes  $$
 
-Además, se deben pagar una serie de impuestos a la seguridad social que se pueden consultar en la página oficial de la Seguridad Social: \url{https://www.seg-social.es/wps/portal/wss/internet/Trabajadores/CotizacionRecaudacionTrabajadores/36537}
+Además, se deben pagar una serie de impuestos a la seguridad social que se pueden consultar en la página oficial de la Seguridad Social\cite{ss}.
 
 \begin{enumerate}
     \item Contingencias comunes: costes asociados con circunstancias de incapacidad temporal o permanente debido a enfermedad común, accidentes no laborales y lesiones.
@@ -522,7 +522,7 @@ El valor contable al final del proyecto se ha calculado de la siguiente forma:
 
 \item \textbf{Costes de software:} para el desarrollo del proyecto se utilizó Heroku tanto para el despliegue de la aplicación web como para la base de datos. Al disponer de la cuenta de estudiante de GitHub se obtuvieron unos créditos para usar en la plataforma de Heroku de forma gratuita por lo que no se tuvieron costes.
 
-La mayoría de herramientas que se han empleado son de código abierto y gratuitas, por lo que no se consideran coste de software.
+La mayoría de herramientas que se han empleado son de código abierto y gratuitas, por lo que no se consideran costes de software, salvo el de la licencia OEM de Windows 10 Pro empleado para la máquina virtual.
 
 \item \textbf{Costes totales:} los costes totales se calculan sumando el total de los costes de hardware, software y personal.
     \begin{table}[h]
@@ -533,9 +533,9 @@ La mayoría de herramientas que se han empleado son de código abierto y gratuit
         \hline
         Costes del personal & 11.081,32€ \\
         Costes del hardware & 700€ \\
-        Costes del software & 0€ \\
+        Costes del software & 1€ \\
         \hline
-        Total  & {\textbf{11.781,32€}}\\
+        Total  & {\textbf{11.782,32€}}\\
         \hline
     \end{tabular}
     \caption{Costes totales.}
@@ -558,15 +558,20 @@ Las licencias y versiones de las herramientas usadas son las siguientes:
          \textbf{Herramienta/Librería}     &  \textbf{Versión}   &\textbf{Licencia} \\ \hline
          {Flask}       & {2.2.3 }  &{BSD-3-Clause} \\ \hline
          {Flask-Login}       & {0.6.2}  &{MIT} \\ \hline
-         {GitHub}       & {3.1.2}    &{GNU} \\ \hline 
+         {click}       & {8.1.3}  &{BSD-3-Clause} \\ \hline
+         {colorama}       & {0.4.6}    &{ } \\ \hline 
          {Heroku}       & {-}    &{ISC} \\ \hline 
          {PostgreSQL}       & {6.18 }    &{PostgreSQL License} \\ \hline 
          {Bootstrap}       & {12.16.1}    &{MIT} \\ \hline 
          {Werkzeug}       & {2.3.3}    &{BSD-3-Clause} \\ \hline 
-         {psycopg2-binary}       & {2.9.5 }    &{LGPL} \\ \hline 
-         {Dotenv}       & {0.21.0 }    &{BSD-2-Clause Simplified} \\ \hline 
+         {psycopg2-binary}       & {2.9.5}    &{LGPL} \\ \hline 
+         {python-dotenv}       & {0.21.1}    &{BSD-2-Clause Simplified} \\ \hline 
          {Unidecode}       & {1.3.6}    &{GNU} \\ \hline 
          {gunicorn}       & {20.1.0}    &{MIT} \\ \hline 
+         {itsdangerous}       & {2.1.2}    &{BSD-3-Clause} \\ \hline 
+         {Jinja2}       & {3.1.2}    &{BSD-3-Clause} \\ \hline 
+         {MarkupSafe}       & {2.1.2}    &{BSD-3-Clause} \\ \hline 
+         {requests}       & {2.31.0}    &{ } \\ \hline 
     \end{tabular}}
     \caption{Tabla de licencias}
     \label{tab:licencias}
@@ -585,12 +590,20 @@ A continuación se detallan las características y la función de las licencias 
     \item \textbf{BSD-3-Clause} \textit{(Berkeley Source Distribution 3)} \cite{bsd-3}
 licencia de código abierto que permite a los usuarios el uso, la distribución y modificación del software. Las distribuciones deben disponer del aviso de derechos del autor anterior y la lista de condiciones de responsabilidad en la documentación y/o en otros materiales.
 
-    \item \textbf{ISC} \textit{(Internet Systems Consortium)} licencia de código abierto que permite a los usuarios usar, modificar y distribuir el software sin restricciones, aunque en las distribuciones se requiere el aviso de los derechos del autor original.
+    \item \textbf{ISC} \textit{(Internet Systems Consortium)} \cite{isc} licencia de código abierto que permite a los usuarios usar, modificar y distribuir el software sin restricciones, aunque en las distribuciones se requiere el aviso de los derechos del autor original.
      
     \item \textbf{PostgreSQL License} \cite{postgresql-license} licencia de código abierto que permite a los usuarios usar, modificar y distribuir el software de PostgreSQL.
     
     \item \textbf{MIT} \textit{(Massachusetts Institute of Technology)}  \cite{mit} licencia que concede el permiso, a cualquier usuario que obtenga una copia del software y de los archivos de documentación asociados, los derechos de usar, copiar, publicar, modificar, fusionar, distribuir y/o vender copias del software.
     
     \item \textbf{LGPL} \textit{(Lesser General Public License)} \cite{lgpl} licencia de código abierto que permite a los usuarios el uso, modificación y distribución de bibliotecas LGPL sin necesidad de que todo el proyecto se licencie bajo sus términos. Únicamente los elementos derivados del proyecto requerirán seguir la licencia.
-    
 \end{enumerate}
+\newpage
+La licencia utilizada en el proyecto ha sido la licencia MIT. Esta elección se consideró la más adecuada, ya que permite a los usuarios la modificación, la distribución y el uso privado y comercial. Además, es compatible con las demás licencias utilizadas en las herramientas del proyecto.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=1.1\textwidth]{licencia-MIT}
+\caption{Licencia MIT del proyecto..}
+\label{fig:licencia-MIT}
+\end{figure}

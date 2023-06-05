@@ -8,16 +8,31 @@ El usuario puede acceder a la aplicación a través del enlace: \url{https://tea
 
 La aplicación se ha desplegado en Heroku, lo que significa que está siempre disponible, siempre y cuando se tenga una conexión a Internet y se disponga de un navegador compatible.
 
+Debido a las limitaciones de Heroku en términos de tiempo de espera y almacenamiento de archivos cargados en la aplicación, la funcionalidad de carga de archivos del profesor solo estará disponible para su uso en entornos locales. Si se intenta cargar un archivo en la versión desplegada de la aplicación, se producirá un error.
+Para utilizar esta función del profesor, se proporciona una máquina virtual que incluye todos los recursos necesarios para su correcto funcionamiento. Los usuarios deberán descargar y utilizar esta máquina virtual para probar la funcionalidad de carga de archivos de los juegos.
+
+Como la aplicación consta de tres roles diferentes, se proporcionan las credenciales de tres usuarios, cada uno con un rol específico, para realizar pruebas de las distintas funcionalidades:
+\begin{itemize}
+    \item \textbf{Rol de usuario:} nombre de usuario ``UsuarioPruebas`` y contraseña ``UsuarioPruebas1+``.
+    \item \textbf{Rol de profesor}: nombre de usuario ``ProfesorPruebas`` y contraseña ``ProfesorPruebas1+".
+    \item \textbf{Rol de administrador:} nombre de usuario ``AdministradorPruebas`` y contraseña ``AdministradorPruebas1+``.
+\end{itemize}
+
 \section{Instalación}
 Dado que se trata de una aplicación web, no es necesario realizar ninguna instalación adicional, ya que se puede acceder a ella a través de la URL en la que está desplegada.
 
+En el caso de querer probar la funcionalidad para cargar archivos de los juegos se dispone de una máquina virtual.
+
 \section{Manual del usuario}
-El manual de usuario se ha realizado en una wiki en español e inglés, la cual está
-accesible a través de este enlace: 
+El manual de usuario se ha realizado en una wiki disponible tanto en español como en inglés.
+
+El manual en español está accesible a través del enlace: \url{https://ebd1004alu.gitbook.io/teachmeplay-es/}. Y, el manual en inglés está accesible a través del enlace: \url{https://ebd1004alu.gitbook.io/teachmeplay-en/}.
 
 A continuación, se muestran los pasos a seguir para el uso de la aplicación web.
 
 \subsection{Inicio}
+Para iniciar la aplicación se accede al enlace: \url{https://teachmeplay.herokuapp.com/}.
+
 Esta es la primera página que se muestra al acceder a la aplicación web. En ella se presentan el nombre y el logotipo de la aplicación, una breve descripción de lo que el usuario puede hacer en ella, así como el nombre y la institución de la autora.
 
 Aquí, el usuario tiene la opción de registrarse o iniciar sesión para acceder a la aplicación. Además, puede cambiar el idioma de la aplicación a inglés o continuar en español, que es el idioma por defecto de la aplicación.
@@ -30,14 +45,23 @@ Aquí, el usuario tiene la opción de registrarse o iniciar sesión para acceder
 \end{figure}
 
 \subsection{Acerca de}
-En la sección "Acerca de", se presenta una breve explicación sobre el propósito y los objetivos de la aplicación.
-\newpage
+En la sección ``Acerca de``, se presenta una breve explicación sobre el propósito y los objetivos de la aplicación.
 \begin{figure}[htb]
 \centering
 \includegraphics[width=1.0\textwidth]{acerca}
 \caption{Acerca de de la aplicación.}
 \label{fig:acerca}
 \end{figure}
+
+En el botón de ayuda de la cabecera de la página de inicio se abrirá el manual de ayuda para el usuario. 
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.2\textwidth]{btn-help}
+\caption{Botones de ayuda.}
+\label{fig:btn-help}
+\end{figure}
+
+Si se está accediendo desde la aplicación con el idioma en español, se abrirá el manual de ayuda en español; y si se está accediendo desde la aplicación con el idioma en inglés, se abrirá el manual de ayuda en inglés.
 
 \subsection{Iniciar sesión}
 La página de iniciar sesión va a permitir acceder al menú de juegos.
@@ -49,7 +73,7 @@ La página de iniciar sesión va a permitir acceder al menú de juegos.
 \label{fig:login}
 \end{figure}
 
-Si el usuario no tiene una cuenta, se le permite registrarse a través del botón "Registrarse".
+Si el usuario no tiene una cuenta, se le permite registrarse a través del botón ``Registrarse``.
 
 \begin{figure}[htb]
 \centering
@@ -61,7 +85,6 @@ Si el usuario no tiene una cuenta, se le permite registrarse a través del botó
 En el caso de que el usuario ya tenga una cuenta y desee acceder a la aplicación, debe ingresar sus credenciales, es decir, su nombre de usuario y contraseña.
 
 Si el usuario introduce incorrectamente las credenciales, se mostrará un mensaje de error indicando que las credenciales son incorrectas.
-\newpage
 \begin{figure}[htb]
 \centering
 \includegraphics[width=1.0\textwidth]{incorrectos}
@@ -88,7 +111,7 @@ La página de registro va a permitir al usuario crearse una cuenta nueva.
 \label{fig:registro}
 \end{figure}
 
-Si el usuario ya tiene una cuenta, se le permite iniciar sesión a través del botón "Iniciar sesión".
+Si el usuario ya tiene una cuenta, se le permite iniciar sesión a través del botón ``Iniciar sesión``.
 
 \begin{figure}[htb]
 \centering
@@ -171,7 +194,7 @@ Además, el usuario cuenta con una barra de búsqueda y filtros en la aplicació
 \label{fig:buscar}
 \end{figure}
 
-En la cabecera, el usuario también tiene acceso a un botón llamado "Contacto", a través del cual puede enviar una solicitud para obtener el rol de profesor. 
+En la cabecera, el usuario también tiene acceso a un botón llamado ``Contacto``, a través del cual puede enviar una solicitud para obtener el rol de profesor. 
 \begin{figure}[htb]
 \centering
 \includegraphics[width=0.2\textwidth]{btn-contacto}
@@ -214,6 +237,22 @@ En esta ventana aparece toda la información más detallada de cada juego.
 \label{fig:informacion}
 \end{figure}
 
+En la información del juego se le permite al usuario descargar los archivos de las instrucciones del jugador y del instructor en el caso de que se encuentren disponibles.
+\begin{figure}[htb]
+\centering
+\includegraphics[width=1.0\textwidth]{descargar-archivos}
+\caption{Descargar archivos de instrucciones.}
+\label{fig:descargar-archivos}
+\end{figure}
+
+También, en el caso de que esté disponible el archivo del propio juego el usuario podrá descargarlo.
+\begin{figure}[htb]
+\centering
+\includegraphics[width=1.0\textwidth]{descargar-archivo}
+\caption{Descargar archivos de instrucciones.}
+\label{fig:descargar-archivo}
+\end{figure}
+
 \subsection{Valorar un juego}
 En esta ventana el usuario puede añadir una puntuación y un comentario a un juego.
 \begin{figure}[htb]
@@ -225,6 +264,7 @@ En esta ventana el usuario puede añadir una puntuación y un comentario a un ju
 
 \subsection{Visualizar valoraciones de juegos}
 Para ver más todas las valoraciones que tiene un juego se debe pulsar a la puntuación que se encuentra al lado de las estrellas.
+\newpage
 \begin{figure}[htb]
 \centering
 \includegraphics[width=0.5\textwidth]{btn-info}
@@ -242,6 +282,7 @@ En esta ventana aparece todas las valoraciones de cada juego.
 
 \subsection{Menú de juegos para los profesores}
 Cuando el profesor ha iniciado sesión correctamente, se le redirige a su menú de juegos, donde puede acceder a diversas funcionalidades.
+\newpage
 \begin{figure}[htb]
 \centering
 \includegraphics[width=1.0\textwidth]{menu-profesor}
@@ -258,6 +299,7 @@ Al igual que el usuario, el profesor visualiza las tarjetas de información de l
 \end{figure}
 
 Además, el profesor también dispone de una barra de búsqueda y filtros en la aplicación, lo que le permite realizar una búsqueda personalizada y más específica según sus intereses.
+\newpage
 \begin{figure}[htb]
 \centering
 \includegraphics[width=1.0\textwidth]{buscar}
@@ -273,7 +315,7 @@ Desde estas tarjetas, el profesor puede obtener más información sobre cada jue
 \label{fig:btn-profe}
 \end{figure}
 
-En la cabecera, el profesor también tiene acceso a un botón llamado "Añadir juego", a través del cual puede agregar un nuevo juego en la aplicación.
+En la cabecera, el profesor también tiene acceso a un botón llamado ``Añadir juego``, a través del cual puede agregar un nuevo juego en la aplicación.
 
 \begin{figure}[htb]
 \centering
@@ -311,6 +353,47 @@ El profesor tiene la capacidad de añadir diferentes archivos para las instrucci
 \label{fig:añadir-archivos}
 \end{figure}
 
+En el caso de que se presione el botón de carga de archivos sin seleccionar ningún archivo, se mostrará un mensaje de error indicando que no se ha seleccionado ningún archivo.
+\begin{figure}[htb]
+\centering
+\includegraphics[width=1.0\textwidth]{error-no-archivo}
+\caption{Error no se seleccionó el archivo.}
+\label{fig:error-no-archivo}
+\end{figure}
+
+Si el usuario intenta cargar un archivo que excede el límite de tamaño establecido, se mostrará una alerta que impide la carga del archivo.
+\newpage
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.6\textwidth]{error-tamaño}
+\caption{Alerta error de tamaño.}
+\label{fig:error-tamaño}
+\end{figure}
+
+Si el usuario intenta cargar un archivo con un tipo de archivo no válido, también se mostrará un mensaje de error que impide la carga del archivo y se informará al usuario sobre los tipos de archivo permitidos.
+\begin{figure}[htb]
+\centering
+\includegraphics[width=1.0\textwidth]{error-tipo}
+\caption{Error de tipo.}
+\label{fig:error-tipo}
+\end{figure}
+
+También se tiene en cuenta la longitud del nombre del archivo, por lo que si el usuario intenta cargar un archivo con un nombre demasiado largo saldrá un error.
+\begin{figure}[htb]
+\centering
+\includegraphics[width=1.0\textwidth]{error-nombre}
+\caption{Error de nombre.}
+\label{fig:error-nombre}
+\end{figure}
+
+En caso de que el archivo que el usuario intenta cargar cumpla todas las restricciones establecidas, se mostrará un mensaje de éxito y se realizará la carga del archivo. Sin embargo, es importante tener en cuenta que esta funcionalidad solo estará disponible en la máquina virtual de prueba, ya que en la aplicación desplegada se generará un error al intentar cargar archivos.
+\begin{figure}[htb]
+\centering
+\includegraphics[width=1.0\textwidth]{archivo-exito}
+\caption{Archivo cargado con éxito.}
+\label{fig:archivo-exito}
+\end{figure}
+
 \subsection{Menú de juegos para el administrador}
 Cuando el administrador ha iniciado sesión correctamente, se le redirige a su menú de juegos, donde puede acceder a diversas funcionalidades.
 \begin{figure}[htb]
@@ -322,7 +405,7 @@ Cuando el administrador ha iniciado sesión correctamente, se le redirige a su m
 
 Al igual que el usuario y el profesor, el administrador visualiza las tarjetas de información de los distintos juegos disponibles en la aplicación. Además, el administrador también dispone de una barra de búsqueda y filtros en la aplicación, lo que le permite realizar una búsqueda personalizada y más específica según sus intereses.
 
-En la cabecera, el administrador tiene acceso a un botón llamado "Administración", a través del cual puede gestionar los juegos, usuarios y solicitudes.ç
+En la cabecera, el administrador tiene acceso a un botón llamado ``Administración``, a través del cual puede gestionar los juegos, usuarios y solicitudes.
 
 \begin{figure}[htb]
 \centering
