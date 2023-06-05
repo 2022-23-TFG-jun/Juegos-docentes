@@ -43,5 +43,14 @@ Tanto la aplicación como la base de datos se encuentran desplegadas en Heroku.
 
 Para visualizar la página web, simplemente se debe acceder al siguiente enlace: https://teachmeplay.herokuapp.com/ 
 
-![Texto alternativo](videos/video.gif)
+## Manual de usuario
+El manual de usuario se encuentra disponible tanto en español como en inglés.
+
+El manual en español está accesible a través del enlace: https://ebd1004alu.gitbook.io/teachmeplay-es/
+
+Y, el manual en inglés está accesible a través del enlace: https://ebd1004alu.gitbook.io/teachmeplay-en/
+
+<p align="center">
+  <img src="videos/video.gif" alt="Texto alternativo" />
+</p>
 
