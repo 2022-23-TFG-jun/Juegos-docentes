@@ -15,21 +15,25 @@ Además, se debe disponer del archivo .env que contiene las variables de entorno
 para la conexión a la base de datos.
 
 Para la creación del entorno virtual y su activación se deben ejecutar los siguientes comandos respectivamente:
-
-bash
+```bash
 $ python -m venv env
+```
 
-bash
+```bash
 $ env\Scripts\activate
+```
 
 Las librerías de Python se deben instalar de la siguiente forma:
 
-bash
+```bash
 $ pip install [librería]
+```
 
 Y finalmente para ejecutar el proyecto se debe ejcutar el comando:
-bash
+
+```bash
 $ flask run
+```
 
 ## Aplicación desplegada
 Tanto la aplicación como la base de datos se encuentran desplegadas en Heroku. 
