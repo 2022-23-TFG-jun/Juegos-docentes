@@ -81,7 +81,7 @@ class Usuario(UserMixin):
         try:
             db = conectar()
             cursor = db.cursor()
-            cursor.execute("SELECT * FROM schema_juegos_docentes.usuarios WHERE usuario = %s", (usuario,))
+            cursor.execute("SELECT * FROM schema_juegos_docentes.usuarios WHERE usuario = %s AND borrado = 'N' ", (usuario,))
             usuario_db = cursor.fetchone()
             return usuario_db
         except Exception as e:
