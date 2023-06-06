@@ -52,6 +52,6 @@ El manual en inglés está accesible a través del enlace: https://ebd1004alu.gi
 
 
 <p align="center">
-  <img src="videos/video.gif" alt="Texto alternativo" />
+  <img src="static/img/video.gif" alt="Texto alternativo" />
 </p>
 
