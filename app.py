@@ -41,7 +41,7 @@ app.secret_key = 'clavesecretadeaplicacion'
 app.config['UPLOAD_FOLDER'] = './uploads'
 
 # Lista de extensiones permitidas
-extensiones_permitidas = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'exe', 'bat', 'docx'}
+extensiones_permitidas = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'exe', 'bat', 'docx', 'apk'}
 
 # Configurar el registro de errores
 logging.basicConfig(
@@ -207,7 +207,8 @@ def registro_post():
         Usuario.crear(usuario, nombre, apellido, institucion, contraseña)    
         
         # Redirigir a la página de inicio de sesión
-        return redirect('/login')
+        traduccionesLogin = cargar_traducciones_login(idioma)
+        return render_template('login.html', traducciones=traduccionesLogin, idioma=idioma)
     except Exception as e:
         logging.error("Ocurrió un error en la función registro_post: %s", str(e))
         return redirect(url_for('inicio_get'))

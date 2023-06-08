@@ -16,11 +16,11 @@
         "es": "Administrar juegos"
     },
     "BTN-SOLICITUDES": {
-        "en": "Manage Requests",
+        "en": "Manage requests",
         "es": "Administrar solicitudes"
     },
     "USUARIOS": {
-        "en": "Users Management",
+        "en": "Users management",
         "es": "Administración de usuarios"
     },
     "TXT-USUARIOS": {
@@ -36,7 +36,7 @@
         "es": "Aquí podrás administrar los juegos disponibles en la plataforma, permitiendo la eliminación de juegos."
     },
     "SOLICITUDES": {
-        "en": "Request Management",
+        "en": "Request management",
         "es": "Administración de solicitudes"
     },
     "TXT-SOLICITUDES": {

@@ -48,8 +48,8 @@
         "es": "No se seleccionó ningún archivo."
     },
     "TIPO-ARCHIVO": {
-        "en": "File type not allowed. Only file types are allowed: 'txt', 'pdf', 'png', 'jpg', 'jpeg', 'exe', 'bat' and 'docx'.",
-        "es": "Tipo de archivo no permitido. Solo se permiten archivos tipo: 'txt', 'pdf', 'png', 'jpg', 'jpeg', 'exe', 'bat' y 'docx'."
+        "en": "File type not allowed. Only file types are allowed: 'txt', 'pdf', 'png', 'jpg', 'jpeg', 'exe', 'bat', 'docx' and 'apk'.",
+        "es": "Tipo de archivo no permitido. Solo se permiten archivos tipo: 'txt', 'pdf', 'png', 'jpg', 'jpeg', 'exe', 'bat', 'docx' y 'apk'."
     },
     "NOMBRE-ARCHIVO": {
         "en": "File name not allowed. It's too long.",
